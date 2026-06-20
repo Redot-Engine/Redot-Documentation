@@ -8,13 +8,14 @@ public class VersionManagerService
     public string[] Versions => _versions.Keys.ToArray();
     private Dictionary<string, VersionProvider> _versions = new();
     private List<string> _configuredVersions = new();
+    private const string VersionFileName = "./docs/Versions.json";
 
 
     public VersionManagerService()
     {
-        if (File.Exists("./docs/versions.json"))
+        if (File.Exists(VersionFileName))
         {
-            string fileContent = File.ReadAllText("./docs/versions.json");
+            string fileContent = File.ReadAllText(VersionFileName);
             _configuredVersions = JsonSerializer.Deserialize<List<string>>(fileContent) ?? new List<string>() { "latest" };
         }
         else
