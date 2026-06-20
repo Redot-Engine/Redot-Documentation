@@ -13,6 +13,15 @@ html, body {
     color: var(--app-text);
 }
 
+table, th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+th {
+    font-weight: bold;
+    text-align: center;
+}
+
 a, .btn-link {
     color: var(--app-link-color);
 }
