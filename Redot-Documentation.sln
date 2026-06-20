@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder", "SolutionF
 		README.md = README.md
 		REDOT_AUTHORS.md = REDOT_AUTHORS.md
 		LICENSE.txt = LICENSE.txt
+		.gitignore = .gitignore
 	EndProjectSection
 EndProject
 Global
