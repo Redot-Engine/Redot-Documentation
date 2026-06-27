@@ -8,6 +8,7 @@ COPY Redot-Documentation.sln .
 # Copy ALL .csproj files
 COPY Redot-Documentation/Redot-Documentation.csproj ./Redot-Documentation/
 COPY Redot-Documentation.Client/Redot-Documentation.Client.csproj ./Redot-Documentation.Client/
+COPY Redot-Documentation-Tests/Redot-Documentation-Tests.csproj ./Redot-Documentation-Tests/
 
 # Restore ALL projects
 RUN dotnet restore
