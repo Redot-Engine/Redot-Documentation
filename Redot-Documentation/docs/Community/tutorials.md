@@ -18,7 +18,7 @@ While the below resources are designed for Godot Engine, they are still relevant
 
 The Godot video tutorials by [GDQuest](https://www.youtube.com/channel/UCxboW7x0jZqFdvMdCFKTMsQ/playlists) are well-regarded in the community and often recommended as a gentle introduction to beginners.
 
-GDQuest's *Learn GDScript From Zero* is a free and open source interactive tutorial for absolute beginners to learn to program with Redot's GDScript language. It is available as a [desktop application](https://gdquest.itch.io/learn-godot-gdscript)  or [in the browser](https://gdquest.github.io/learn-gdscript).
+*Learn GDScript From Zero* is a free and open-source interactive tutorial for absolute beginners to learn GDScript, which is used in both Godot and Redot. It is available as a [desktop application](https://gdquest.itch.io/learn-godot-gdscript) or [in the browser](https://gdquest.github.io/learn-gdscript).
 
 Some tutorials mentioned below cover more advanced subjects, e.g. on 3D or shaders.
 
