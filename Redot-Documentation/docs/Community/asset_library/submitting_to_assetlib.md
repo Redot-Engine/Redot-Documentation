@@ -3,7 +3,7 @@ import TabItem from "@theme/TabItem";
 
 :::note
 
-The asset library is maintained upstream by Redot.
+The asset library is maintained upstream by Godot.
 The Redot team does not have any involvement in the submission or moderation processes.
 
 :::
