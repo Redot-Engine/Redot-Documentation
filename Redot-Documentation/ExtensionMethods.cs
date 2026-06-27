@@ -24,7 +24,7 @@ public static class ExtensionMethods
             }
             else if (lastCharWhitespace)
             {
-                result.Append(char.ToUpper(c));
+                result.Append(char.ToUpperInvariant(c));
                 lastCharWhitespace = false;
             }
             else
