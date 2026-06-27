@@ -111,9 +111,11 @@ else
         var segments = normalizedPath.Split('/', StringSplitOptions.RemoveEmptyEntries);
         var versionSegment = segments[0];
 
-        if (VersionManagerService.Versions.Contains(versionSegment, StringComparer.OrdinalIgnoreCase))
+        var matchedVersion = VersionManagerService.Versions
+            .FirstOrDefault(v => string.Equals(v, versionSegment, StringComparison.OrdinalIgnoreCase));
+        if (matchedVersion is not null)
         {
-            var provider = VersionManagerService.GetVersionProvider(versionSegment);
+            var provider = VersionManagerService.GetVersionProvider(matchedVersion);
             var pathWithoutVersion = string.Join('/', segments.Skip(1));
             return (provider, pathWithoutVersion);
         }
