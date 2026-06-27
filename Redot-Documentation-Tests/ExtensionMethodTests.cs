@@ -8,6 +8,8 @@ public class ExtensionMethodTests
     [InlineData("hello world", "Hello World")]
     [InlineData("this is a test", "This Is A Test")]
     [InlineData("the Quick brown fox jumps over the Lazy dog", "The Quick Brown Fox Jumps Over The Lazy Dog")]
+    [InlineData("foo   bar", "Foo   Bar")]
+    [InlineData("   foo", "   Foo")]
     public void TestCapitalizeEachWord(string input, string expectedOutput)
     {
         input = input.CapitalizeEachWord();

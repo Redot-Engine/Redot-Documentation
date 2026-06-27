@@ -1,3 +1,6 @@
+using System.Text;
+using Markdig.Helpers;
+
 namespace Redot_Documentation;
 
 public static class ExtensionMethods
@@ -9,7 +12,28 @@ public static class ExtensionMethods
     /// <returns>A new string with each word's first letter capitalized.</returns>
     public static string CapitalizeEachWord(this string input)
     {
-        return string.Join(" ", input.Split(' ').Select(word => char.ToUpper(word[0]) + word.Substring(1)));
+        StringBuilder result = new();
+        bool lastCharWhitespace = true; // Start as true to ensure the first character is capitalized if the string doesnt start with whitespace
+        for (int i = 0; i < input.Length; i++)
+        {
+            char c = input[i];
+            if (c.IsWhitespace())
+            {
+                lastCharWhitespace = true;
+                result.Append(c);
+            }
+            else if (lastCharWhitespace)
+            {
+                result.Append(char.ToUpper(c));
+                lastCharWhitespace = false;
+            }
+            else
+            {
+                result.Append(c);
+            }
+        }
+        return result.ToString();
+
     }
 
     /// <summary>
