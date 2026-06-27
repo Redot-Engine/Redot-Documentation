@@ -18,7 +18,8 @@ public class Article : IRanking
     {
         Name = name;
         Path = path;
-        Slug = slug;
+        int extensionLoc = slug.LastIndexOf('.');
+        Slug = extensionLoc > 0 ? slug.Substring(0, extensionLoc) : slug;
         Rank = ranking;
     }
 
