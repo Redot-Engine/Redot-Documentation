@@ -369,20 +369,20 @@ And that's it! Your game should work in multiple resolutions.
 
 ## When is the next release of Redot out?
 
-When it's ready! See [doc_release_policy_when_is_next_release_out](doc_release_policy_when_is_next_release_out) for more
+When it's ready! See [abt_release_policy_when_is_next_release_out](abt_release_policy_when_is_next_release_out) for more
 information.
 
 ## Which Redot version should I use for a new project?
 
 We recommend using Redot 4.x for new projects, but depending on the feature set
 you need, it may be better to use 3.x instead. See
-[doc_release_policy_which_version_should_i_use](doc_release_policy_which_version_should_i_use) for more information.
+[abt_release_policy_which_version_should_i_use](abt_release_policy_which_version_should_i_use) for more information.
 
 ## Should I upgrade my project to use new Redot versions?
 
 Some new versions are safer to upgrade to than others. In general, whether you
 should upgrade depends on your project's circumstances. See
-[doc_release_policy_should_i_upgrade_my_project](doc_release_policy_should_i_upgrade_my_project) for more information.
+[abt_release_policy_should_i_upgrade_my_project](abt_release_policy_should_i_upgrade_my_project) for more information.
 
 ## Should I use the Forward+, Mobile, or Compatibility renderer?
 
@@ -474,9 +474,9 @@ have to deal with the LGPL licensing caveats that come with GTK or Qt. Lastly,
 this means Redot is "eating its own dog food" since the editor itself is one of
 the most complex users of Redot's UI system.
 
-This custom UI toolkit [can't be used as a library ](doc_faq_use_Redot_as_library),
+This custom UI toolkit [can't be used as a library ](abt_faq_use_Redot_as_library),
 but you can still
-[use Redot to create non-game applications by using the editor ](doc_faq_non_game_applications).
+[use Redot to create non-game applications by using the editor ](abt_faq_non_game_applications).
 
 ## Why does Redot use the SCons build system?
 

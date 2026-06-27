@@ -15,7 +15,7 @@ Redot. Some of these features are not available in the
 
 :::info
 
-See [doc_system_requirements](doc_system_requirements) for hardware and software version requirements.
+See [doc_system_requirements](abt_system_requirements) for hardware and software version requirements.
 
 :::
 

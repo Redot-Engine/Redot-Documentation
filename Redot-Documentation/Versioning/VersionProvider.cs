@@ -15,6 +15,8 @@ public class VersionProvider
 
     private Dictionary<string, string> SlugLookupTable = new();
 
+    public static readonly string[] SlugPrefixes = ["doc_", "abt_", "comm_", "class_", "contrib_"];
+
     public VersionProvider()
     {
         AboutSection.LoadAndParse();
@@ -56,20 +58,30 @@ public class VersionProvider
             if (ranking is Section subSection)
                 ParseSlugs(subSection);
             else
-                SlugLookupTable.Add(ranking.Slug, ranking.Path.Replace(".", "/en"));
+            {
+                SlugLookupTable.Add(ranking.Slug, GetReferentialPath(ranking.Path));
+            }
         }
+    }
+
+    public static string GetReferentialPath(string path)
+    {
+        if (path.StartsWith("./"))
+            path = "/en" + path.Substring(1);
+        path = path.Replace("/docs/", "/");
+        return path;
     }
 
     private void ParseSlugs(Section section)
     {
         if (section.IndexArticle != null)
-            SlugLookupTable.Add(section.IndexArticle.Slug, section.IndexArticle.Path.Replace(".", "/en"));
+            SlugLookupTable.Add(section.IndexArticle.Slug, GetReferentialPath(section.IndexArticle.Path));
         foreach (IRanking ranking in section.GetSortedRankings())
         {
             if (ranking is Section subSection)
                 ParseSlugs(subSection);
             else
-                SlugLookupTable.Add(ranking.Slug, ranking.Path.Replace(".", "/en"));
+                SlugLookupTable.Add(ranking.Slug, GetReferentialPath(ranking.Path));
         }
     }
     public string GetPathFromSlug(string slug) => SlugLookupTable[slug];

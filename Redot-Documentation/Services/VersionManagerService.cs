@@ -26,9 +26,11 @@ public class VersionManagerService
 
     public void LoadContent()
     {
-        foreach (string version in _configuredVersions)
+        foreach (string versionName in _configuredVersions)
         {
-            _versions.Add(version, new VersionProvider(version));
+            var version = new VersionProvider(versionName);
+            version.ParseSlugs();
+            _versions.Add(versionName, version);
         }
     }
 

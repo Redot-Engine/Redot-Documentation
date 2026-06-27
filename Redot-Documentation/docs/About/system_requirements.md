@@ -26,7 +26,7 @@ Windows 7/8/8.1 are supported on a best-effort basis. These versions are not
 regularly tested and some features may be missing (such as colored
 [print_rich ](/docs/Classes/@GlobalScope_method_print_rich) console output).
 Support for Windows 7/8/8.1 may be removed in a
-[future Redot 4.x release ](doc_release_policy).
+[future Redot 4.x release ](abt_release_policy).
 
 Vulkan drivers for these Windows versions are known to have issues with
 memory leaks. As a result, it's recommended to stick to the Compatibility
@@ -101,7 +101,7 @@ Windows 7/8/8.1 are supported on a best-effort basis. These versions are not
 regularly tested and some features may be missing (such as colored
 [print_rich ](/docs/Classes/@GlobalScope_method_print_rich) console output).
 Support for Windows 7/8/8.1 may be removed in a
-[future Redot 4.x release ](doc_release_policy).
+[future Redot 4.x release ](abt_release_policy).
 
 Vulkan drivers for these Windows versions are known to have issues with
 memory leaks. As a result, it's recommended to stick to the Compatibility

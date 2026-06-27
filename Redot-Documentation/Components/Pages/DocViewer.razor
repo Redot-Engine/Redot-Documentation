@@ -2,8 +2,10 @@
 @page "/en/{*DocumentPath}"
 @layout MainLayout
 @using Redot_Documentation.Services
+@using Redot_Documentation.Versioning
 @using System.Text.RegularExpressions
 @inject DocRendererService DocRendererService
+@inject VersionManagerService VersionManagerService
 
 
 <PageTitle>Introduction</PageTitle>
@@ -77,13 +79,14 @@ else
 
         try
         {
-            var path = string.IsNullOrWhiteSpace(DocumentPath)
+            var (versionProvider, docPath) = ResolveVersionProviderAndDocumentPath();
+            var path = string.IsNullOrWhiteSpace(docPath)
                 ? "index.md"
-                : DocumentPath.EndsWith(".md", StringComparison.OrdinalIgnoreCase)
-                    ? DocumentPath
-                    : $"{DocumentPath}.md";
+                : docPath.EndsWith(".md", StringComparison.OrdinalIgnoreCase)
+                    ? docPath
+                    : $"{docPath}.md";
 
-            var html = await DocRendererService.RenderToHtmlAsync(path);
+            var html = await DocRendererService.RenderToHtmlAsync(path, versionProvider);
             renderedHtml = BuildTableOfContentsAndEnsureHeadingIds(html);
         }
         catch (Exception ex)
@@ -95,6 +98,27 @@ else
         {
             isLoading = false;
         }
+    }
+
+    private (VersionProvider provider, string path) ResolveVersionProviderAndDocumentPath()
+    {
+        var normalizedPath = (DocumentPath ?? string.Empty).Trim('/');
+        if (string.IsNullOrWhiteSpace(normalizedPath))
+        {
+            return (VersionManagerService.GetVersionProvider("latest"), normalizedPath);
+        }
+
+        var segments = normalizedPath.Split('/', StringSplitOptions.RemoveEmptyEntries);
+        var versionSegment = segments[0];
+
+        if (VersionManagerService.Versions.Contains(versionSegment, StringComparer.OrdinalIgnoreCase))
+        {
+            var provider = VersionManagerService.GetVersionProvider(versionSegment);
+            var pathWithoutVersion = string.Join('/', segments.Skip(1));
+            return (provider, pathWithoutVersion);
+        }
+
+        return (VersionManagerService.GetVersionProvider("latest"), normalizedPath);
     }
 
     private string BuildTableOfContentsAndEnsureHeadingIds(string html)

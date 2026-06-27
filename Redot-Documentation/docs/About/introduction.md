@@ -60,7 +60,7 @@ if you need a quick write-up about Redot Engine:
     platforms, including the major desktop platforms (Linux, macOS, Windows),
     mobile platforms (Android, iOS), as well as Web-based platforms and consoles.
 
-    Redot is completely free and open source under the [permissive MIT license ](doc_complying_with_licenses). No strings attached, no royalties,
+    Redot is completely free and open source under the [permissive MIT license ](abt_complying_with_licenses). No strings attached, no royalties,
     nothing. Users' games are theirs, down to the last line of engine code.
     Redot's development is fully independent and community-driven, empowering
     users to help shape their engine to match their expectations.
@@ -71,7 +71,7 @@ This documentation is organized into several sections:
 
 - **About** contains this introduction as well as
   information about the engine, its history, its licensing, authors, etc. It
-  also contains the [doc_faq](doc_faq).
+  also contains the [doc_faq](abt_faq).
 - **Getting Started** contains all necessary information on using the
   engine to make games. It starts with the [Step by step ](toc-learn-step_by_step) tutorial which should be the entry point for all
   new users. **This is the best place to start if you're new!**

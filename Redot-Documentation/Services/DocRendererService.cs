@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
 using Markdig;
+using Redot_Documentation.Versioning;
 
 public class DocRendererService
 {
@@ -18,7 +19,7 @@ public class DocRendererService
         docsRootPath = Path.Combine(webHostEnvironment.ContentRootPath, "docs");
     }
 
-    public async Task<string> RenderToHtmlAsync(string documentPath, CancellationToken cancellationToken = default)
+    public async Task<string> RenderToHtmlAsync(string documentPath, VersionProvider versionProvider, CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrWhiteSpace(documentPath))
         {
@@ -39,13 +40,20 @@ public class DocRendererService
         }
 
         var markdown = await File.ReadAllTextAsync(fullPath, cancellationToken);
-        var transformedMarkdown = TransformMarkdown(markdown);
+        var transformedMarkdown = TransformMarkdown(markdown, versionProvider);
         return Markdown.ToHtml(transformedMarkdown, MarkdownPipeline);
     }
 
-    private static string TransformMarkdown(string markdown)
+    private static string TransformMarkdown(string markdown, VersionProvider versionProvider)
     {
         var transformedMarkdown = markdown;
+
+        // Transform Links
+        transformedMarkdown = Regex.Replace(
+            transformedMarkdown,
+            @"\[[^\]]*\]\([^)]+\)",
+            match => TransformLink(match.Value, versionProvider),
+            RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
         transformedMarkdown = Regex.Replace(
             transformedMarkdown,
@@ -87,6 +95,57 @@ public class DocRendererService
         transformedMarkdown = TransformTabsBlocks(transformedMarkdown);
 
         return transformedMarkdown;
+    }
+
+    private static string TransformLink(string matchValue, VersionProvider versionProvider)
+    {
+        var (linkName, linkUrl) = SplitMarkdownLink(matchValue);
+
+        if (linkUrl.StartsWithAny(VersionProvider.SlugPrefixes))
+        {
+            try
+            {
+                linkUrl = versionProvider.GetPathFromSlug(linkUrl);
+            }
+            catch (KeyNotFoundException)
+            {
+                // Keep original URL when no slug mapping exists.
+                Console.WriteLine($"No slug mapping found for {linkUrl}");
+            }
+        }
+
+        if (linkName.StartsWith("doc_"))
+        {
+            linkName = linkName.Replace("doc_", "").Replace('_', ' ').CapitalizeEachWord();
+        }
+        linkName = linkName.Replace("_", " ");
+        linkName = linkName.Trim();
+        return $"[{linkName}]({linkUrl})";
+    }
+
+    /// <summary>
+    /// Parses a markdown link in the format [name](url) and splits it into its constituent name and URL components.
+    /// </summary>
+    /// <param name="matchValue">The markdown link string in the format [name](url) to be parsed and split.</param>
+    /// <returns>
+    /// A tuple containing the name and URL as strings.
+    /// The first item in the tuple is the name, and the second item is the URL.
+    /// </returns>
+    /// <exception cref="ArgumentException">Thrown when the provided string does not match the expected markdown link format.</exception>
+    private static (string name, string url) SplitMarkdownLink(string matchValue)
+    {
+        // normalize just in case.
+        matchValue = matchValue.Trim();
+        if (!matchValue.StartsWith("[") || !matchValue.EndsWith(")"))
+            throw new ArgumentException("Invalid markdown link format");
+        int endNameIndex = matchValue.IndexOf(']');
+        if (endNameIndex == -1)
+            throw new ArgumentException("Invalid markdown link format");
+        if (matchValue[endNameIndex + 1] != '(')
+            throw new ArgumentException("Invalid markdown link format");
+        var name = matchValue.Substring(1, endNameIndex - 1);
+        var url = matchValue.Substring(endNameIndex + 2, matchValue.Length - endNameIndex - 3);
+        return (name, url);
     }
 
     private static string TransformTabsBlocks(string markdown)
