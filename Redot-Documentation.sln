@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder", "SolutionF
 		LICENSE.txt = LICENSE.txt
 		.gitignore = .gitignore
 		Dockerfile = Dockerfile
+		.github\workflows\dotnet-ci.yml = .github\workflows\dotnet-ci.yml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redot-Documentation-Tests", "Redot-Documentation-Tests\Redot-Documentation-Tests.csproj", "{3A38BB65-8DEC-4C71-A01B-41662DBA3D0B}"
