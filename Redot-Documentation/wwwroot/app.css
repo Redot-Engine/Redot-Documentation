@@ -256,3 +256,76 @@ h1:focus {
     line-height: 1.6;
     color: #ffffff;
 }
+
+.doc-viewer-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 2rem;
+    align-items: start;
+}
+
+.doc-viewer-content {
+    min-width: 0;
+}
+
+.doc-viewer-toc {
+    position: sticky;
+    top: 1rem;
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+    padding-left: 0.75rem;
+    border-left: 1px solid #333;
+}
+
+.doc-viewer-toc h4 {
+    margin: 0 0 0.75rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.doc-viewer-toc ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.doc-viewer-toc li {
+    margin: 0.35rem 0;
+    font-size: 0.9rem;
+    line-height: 1.3;
+}
+
+.doc-viewer-toc .toc-level-2 {
+    padding-left: 0.75rem;
+}
+
+.doc-viewer-toc .toc-level-3 {
+    padding-left: 1.5rem;
+}
+
+.doc-viewer-toc a {
+    color: var(--app-text);
+    text-decoration: none;
+    opacity: 0.85;
+}
+
+.doc-viewer-toc a:hover {
+    color: var(--app-link-color);
+    opacity: 1;
+}
+
+@media (max-width: 1100px) {
+    .doc-viewer-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .doc-viewer-toc {
+        position: static;
+        max-height: none;
+        margin-top: 1.5rem;
+        padding-left: 0;
+        border-left: 0;
+        border-top: 1px solid #333;
+        padding-top: 1rem;
+    }
+}

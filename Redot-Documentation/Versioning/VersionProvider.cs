@@ -6,7 +6,7 @@ public class VersionProvider
 
     public string VersionName { get; set; } = "latest";
     public Section AboutSection { get; set; } = new("About", "./docs/About/", 0);
-    
+
     public Section CommunitySection { get; set; } = new("Community", "./docs/Community/", 1);
 
     public Section? VersionedDocsSection { get; set; } = null;
