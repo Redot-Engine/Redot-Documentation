@@ -264,6 +264,10 @@ h1:focus {
     align-items: start;
 }
 
+.doc-viewer-layout:not(:has(.doc-viewer-toc)) {
+    grid-template-columns: minmax(0, 1fr);
+}
+
 .doc-viewer-content {
     min-width: 0;
 }
