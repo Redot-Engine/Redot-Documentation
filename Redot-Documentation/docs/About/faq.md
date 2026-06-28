@@ -218,8 +218,8 @@ third-party library integrates with Redot.
 Since you don't need to actually install Redot on your system to run it,
 this means desktop integration is not performed automatically.
 
-We eventually plan to create a lancher and project manager to manage Redot installations and projects.
-However, this is not ready yet and we do not have a publicly available version.
+We eventually plan to create a launcher and project manager to manage Redot installations and projects.
+However, this is not ready yet, and we do not have a publicly available version.
 For the time being, you can manually perform the steps that an installer would do for you:
 
 ### Windows

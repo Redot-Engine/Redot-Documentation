@@ -21,19 +21,19 @@ See [doc_system_requirements](abt_system_requirements) for hardware and software
    - Binaries are statically linked and can run on any distribution if compiled
      on an old enough base distribution.
    - Official binaries are compiled using the
-     [Redot Engine buildroot ](https://github.com/redot-engine/buildroot)_,
+     [Redot Engine buildroot](https://github.com/redot-engine/buildroot)_,
      allowing for binaries that work across common Linux distributions.
 
 - Android (editor support is experimental).
-- [Web browsers ](doc_using_the_web_editor).
+- [Web browsers](doc_using_the_web_editor).
 
 **Runs exported projects:**
 
 - iOS.
-- [Consoles ](doc_consoles).
+- [Consoles](doc_consoles).
 
 Redot aims to be as platform-independent as possible and can be
-[ported to new platforms ](doc_custom_platform_ports) with relative ease.
+[ported to new platforms](doc_custom_platform_ports) with relative ease.
 
 :::note
 
@@ -48,15 +48,15 @@ web platform.
 
 - Scene tree editor.
 - Built-in script editor.
-- Support for [external script editors ](doc_external_editor) such as
+- Support for [external script editors](doc_external_editor) such as
   Visual Studio Code or Vim.
-- GDScript [debugger ](doc_debugger_panel).
+- GDScript [debugger](doc_debugger_panel).
 
 - Support for debugging in threads is available.
 - Visual profiler with CPU and GPU time indications for each step of the
   rendering pipeline.
 - Performance monitoring tools, including
-  [custom performance monitors ](doc_custom_performance_monitors).
+  [custom performance monitors](doc_custom_performance_monitors).
 - Live script reloading.
 - Live scene editing.
 
@@ -76,10 +76,10 @@ web platform.
 **Plugins:**
 
 - Editor plugins can be downloaded from the
-  [asset library ](doc_what_is_assetlib) to extend editor functionality.
-- [Create your own plugins ](doc_making_plugins) using GDScript to add new
+  [asset library](doc_what_is_assetlib) to extend editor functionality.
+- [Create your own plugins](doc_making_plugins) using GDScript to add new
   features or speed up your workflow.
-- [Download projects from the asset library ](doc_using_assetlib_editor)
+- [Download projects from the asset library](doc_using_assetlib_editor)
   in the Project Manager and import them directly.
 
 ## Rendering
@@ -111,7 +111,7 @@ See [doc_renderers](doc_renderers) for a detailed comparison of the rendering me
 
    - Pseudo-3D support including preview in the editor.
 
-- [2D lighting ](doc_2d_lights_and_shadows) with normal maps and specular maps.
+- [2D lighting](doc_2d_lights_and_shadows) with normal maps and specular maps.
 
    - Point (omni/spot) and directional 2D lights.
    - Hard or soft shadows (adjustable on a per-light basis).
@@ -119,7 +119,7 @@ See [doc_renderers](doc_renderers) for a detailed comparison of the rendering me
      representation of the 2D scene based on [class_LightOccluder2D](/docs/Classes/LightOccluder2D) nodes,
      which can be used for improved 2D lighting effects including 2D global illumination.
 
-- [Font rendering ](doc_gui_using_fonts) using bitmaps, rasterization using FreeType
+- [Font rendering](doc_gui_using_fonts) using bitmaps, rasterization using FreeType
   or multi-channel signed distance fields (MSDF).
 
    - Bitmap fonts can be exported using tools like BMFont, or imported from images
@@ -137,22 +137,22 @@ See [doc_renderers](doc_renderers) for a detailed comparison of the rendering me
      requiring re-rasterization. Multi-channel usage makes SDF fonts scale down
      to lower sizes better compared to monochrome SDF fonts.
 
-- GPU-based [particles ](doc_particle_systems_2d) with support for
-  [custom particle shaders ](doc_particle_shader).
+- GPU-based [particles](doc_particle_systems_2d) with support for
+  [custom particle shaders](doc_particle_shader).
 - CPU-based particles.
-- Optional [2D HDR rendering ](doc_environment_and_post_processing_using_glow_in_2d)
+- Optional [2D HDR rendering](doc_environment_and_post_processing_using_glow_in_2d)
   for better glow capabilities.
 
 ## 2D tools
 
-- [TileMaps ](doc_using_tilemaps) for 2D tile-based level design.
+- [TileMaps](doc_using_tilemaps) for 2D tile-based level design.
 - 2D camera with built-in smoothing and drag margins.
 - Path2D node to represent a path in 2D space.
 
    - Can be drawn in the editor or generated procedurally.
    - PathFollow2D node to make nodes follow a Path2D.
 
-- [2D geometry helper class ](/docs/Classes/Geometry2D).
+- [2D geometry helper class](/docs/Classes/Geometry2D).
 
 ## 2D physics
 
@@ -225,7 +225,7 @@ See [doc_renderers](doc_renderers) for a detailed comparison of the rendering me
 
 **Global illumination with indirect lighting:**
 
-- [Baked lightmaps ](doc_using_lightmap_gi) (fast, but can't be updated at runtime).
+- [Baked lightmaps](doc_using_lightmap_gi) (fast, but can't be updated at runtime).
 
    - Supports baking indirect light only or baking both direct and indirect lighting.
      The bake mode can be adjusted on a per-light basis to allow for hybrid light
@@ -236,17 +236,17 @@ See [doc_renderers](doc_renderers) for a detailed comparison of the rendering me
    - Lightmaps are baked on the GPU using compute shaders (much faster compared
      to CPU lightmapping). Baking can only be performed from the editor,
      not in exported projects.
-   - Supports GPU-based [denoising ](doc_using_lightmap_gi_denoising)
+   - Supports GPU-based [denoising](doc_using_lightmap_gi_denoising)
      with JNLM, or CPU/GPU-based denoising with OIDN.
 
-- [Voxel-based GI probes ](doc_using_voxel_gi). Supports
+- [Voxel-based GI probes](doc_using_voxel_gi). Supports
   dynamic lights *and* dynamic occluders, while also supporting reflections.
   Requires a fast baking step which can be performed in the editor or at
   runtime (including from an exported project).
-- [Signed-distance field GI ](doc_using_sdfgi) designed for large open worlds.
+- [Signed-distance field GI](doc_using_sdfgi) designed for large open worlds.
   Supports dynamic lights, but not dynamic occluders. Supports reflections.
   No baking required.
-- [Screen-space indirect lighting (SSIL) ](doc_environment_and_post_processing_ssil)
+- [Screen-space indirect lighting (SSIL)](doc_environment_and_post_processing_ssil)
   at half or full resolution. Fully real-time and supports any kind of emissive
   light source (including decals).
 - VoxelGI and SDFGI use a deferred pass to allow for rendering GI at half
@@ -271,7 +271,7 @@ See [doc_renderers](doc_renderers) for a detailed comparison of the rendering me
 
 **Decals:**
 
-- [Supports albedo ](doc_using_decals), emissive, :abbr:`ORM (Occlusion Roughness Metallic)`,
+- [Supports albedo](doc_using_decals), emissive, :abbr:`ORM (Occlusion Roughness Metallic)`,
   and normal mapping.
 - Texture channels are smoothly overlaid on top of the underlying material,
   with support for normal/ORM-only decals.
@@ -290,7 +290,7 @@ See [doc_renderers](doc_renderers) for a detailed comparison of the rendering me
 
 - Panorama sky (using an HDRI).
 - Procedural sky and Physically-based sky that respond to the DirectionalLights in the scene.
-- Support for [custom sky shaders ](doc_sky_shader), which can be animated.
+- Support for [custom sky shaders](doc_sky_shader), which can be animated.
 - The radiance map used for ambient and specular light can be updated in
   real-time depending on the quality settings chosen.
 
@@ -306,7 +306,7 @@ See [doc_renderers](doc_renderers) for a detailed comparison of the rendering me
 
 **Volumetric fog:**
 
-- Global [volumetric fog ](doc_volumetric_fog) that reacts to lights and shadows.
+- Global [volumetric fog](doc_volumetric_fog) that reacts to lights and shadows.
 - Volumetric fog can take indirect light into account when using VoxelGI or SDFGI.
 - Fog volume nodes that can be placed to add fog to specific areas (or remove fog from specific areas).
   Supported shapes include box, ellipse, cone, cylinder, and 3D texture-based density maps.
@@ -338,7 +338,7 @@ See [doc_renderers](doc_renderers) for a detailed comparison of the rendering me
 - Glow/bloom with optional bicubic upscaling and several blend modes available:
   Screen, Soft Light, Add, Replace, Mix.
 - Glow can have a colored dirt map texture, acting as a lens dirt effect.
-- Glow can be [used as a screen-space blur effect ](doc_environment_and_post_processing_using_glow_to_blur_the_screen).
+- Glow can be [used as a screen-space blur effect](doc_environment_and_post_processing_using_glow_to_blur_the_screen).
 - Color correction using a one-dimensional ramp or a 3D LUT texture.
 - Roughness limiter to reduce the impact of specular aliasing.
 - Brightness, contrast and saturation adjustments.
@@ -357,8 +357,8 @@ See [doc_renderers](doc_renderers) for a detailed comparison of the rendering me
 
 **Antialiasing:**
 
-- Temporal [antialiasing ](doc_3d_antialiasing) (TAA).
-- AMD FidelityFX Super Resolution 2.2 [antialiasing ](doc_3d_antialiasing) (FSR2),
+- Temporal [antialiasing](doc_3d_antialiasing) (TAA).
+- AMD FidelityFX Super Resolution 2.2 [antialiasing](doc_3d_antialiasing) (FSR2),
   which can be used at native resolution as a form of high-quality temporal antialiasing.
 - Multi-sample antialiasing (MSAA), for both [doc_2d_antialiasing](doc_2d_antialiasing) and [doc_3d_antialiasing](doc_3d_antialiasing).
 - Fast approximate antialiasing (FXAA).
@@ -367,7 +367,7 @@ See [doc_renderers](doc_renderers) for a detailed comparison of the rendering me
 
 **Resolution scaling:**
 
-- Support for [rendering 3D at a lower resolution ](doc_resolution_scaling)
+- Support for [rendering 3D at a lower resolution](doc_resolution_scaling)
   while keeping 2D rendering at the original scale. This can be used to improve
   performance on low-end systems or improve visuals on high-end systems.
 - Resolution scaling uses bilinear filtering, AMD FidelityFX Super Resolution
@@ -377,20 +377,20 @@ See [doc_renderers](doc_renderers) for a detailed comparison of the rendering me
 
 Most effects listed above can be adjusted for better performance or to further
 improve quality. This can be helpful when
-[using Redot for offline rendering ](doc_creating_movies).
+[using Redot for offline rendering](doc_creating_movies).
 
 ## 3D tools
 
 - Built-in meshes: cube, cylinder/cone, (hemi)sphere, prism, plane, quad, torus, ribbon, tube.
-- [GridMaps ](doc_using_gridmaps) for 3D tile-based level design.
-- [Constructive solid geometry ](doc_csg_tools) (intended for prototyping).
-- Tools for [procedural geometry generation ](doc_procedural_geometry).
+- [GridMaps](doc_using_gridmaps) for 3D tile-based level design.
+- [Constructive solid geometry](doc_csg_tools) (intended for prototyping).
+- Tools for [procedural geometry generation](doc_procedural_geometry).
 - Path3D node to represent a path in 3D space.
 
    - Can be drawn in the editor or generated procedurally.
    - PathFollow3D node to make nodes follow a Path3D.
 
-- [3D geometry helper class ](/docs/Classes/Geometry3D).
+- [3D geometry helper class](/docs/Classes/Geometry3D).
 - Support for exporting the current scene as a glTF 2.0 file, both from the editor
   and at runtime from an exported project.
 
@@ -418,7 +418,7 @@ improve quality. This can be helpful when
 
 - *2D:* Custom vertex, fragment, and light shaders.
 - *3D:* Custom vertex, fragment, light, and sky shaders.
-- Text-based shaders using a [shader language inspired by GLSL ](doc_shading_language).
+- Text-based shaders using a [shader language inspired by GLSL](doc_shading_language).
 - Visual shader editor.
 
    - Support for visual shader plugins.
@@ -429,19 +429,19 @@ improve quality. This can be helpful when
 
 - Object-oriented design pattern with scripts extending nodes.
 - Signals and groups for communicating between scripts.
-- Support for [cross-language scripting ](doc_cross_language_scripting).
+- Support for [cross-language scripting](doc_cross_language_scripting).
 - Many 2D, 3D and 4D linear algebra data types such as vectors and transforms.
 
-[GDScript: ](toc-learn-scripting-gdscript)
+[GDScript:](toc-learn-scripting-gdscript)
 
-- [High-level interpreted language ](doc_gdscript) with
-  [optional static typing ](doc_gdscript_static_typing).
+- [High-level interpreted language](doc_gdscript) with
+  [optional static typing](doc_gdscript_static_typing).
 - Syntax inspired by Python. However, GDScript is **not** based on Python.
 - Syntax highlighting is provided on GitHub.
-- [Use threads ](doc_using_multiple_threads) to perform asynchronous actions
+- [Use threads](doc_using_multiple_threads) to perform asynchronous actions
   or make use of multiple processor cores.
 
-[C#: ](toc-learn-scripting-C#)
+[C#:](toc-learn-scripting-C#)
 
 - Packaged in a separate binary to keep file sizes and dependencies down.
 - Supports .NET 8 and higher.
@@ -463,13 +463,13 @@ improve quality. This can be helpful when
    - For scripting game logic, GDScript or C# are recommended if their
      performance is suitable.
 
-- Official GDExtension bindings for [C ](https://github.com/redot-engine/redot-engine-headers)_
-  and [C++ ](https://github.com/redot-engine/redot-engine-cpp)_.
+- Official GDExtension bindings for [C](https://github.com/redot-engine/redot-engine-headers)_
+  and [C++](https://github.com/redot-engine/redot-engine-cpp)_.
 
    - Use any build system and language features you wish.
 
-- Actively developed GDExtension bindings for [D ](https://github.com/Godot-dlang/Godot-dlang)_,
-  [Swift ](https://github.com/migueldeicaza/SwiftGodot)_, and [Rust ](https://github.com/Godot-rust/gdextension)_
+- Actively developed GDExtension bindings for [D](https://github.com/Godot-dlang/Godot-dlang)_,
+  [Swift](https://github.com/migueldeicaza/SwiftGodot)_, and [Rust](https://github.com/Godot-rust/gdextension)_
   bindings provided by the community. (Some of these bindings may be experimental and not production-ready).
 
 ## Audio
@@ -481,7 +481,7 @@ improve quality. This can be helpful when
 
    - Optional Doppler effect in 2D and 3D.
 
-- Support for re-routable [audio buses ](doc_audio_buses) and effects
+- Support for re-routable [audio buses](doc_audio_buses) and effects
   with dozens of effects included.
 - Support for polyphony (playing several sounds from a single AudioStreamPlayer node).
 - Support for random volume and pitch.
@@ -489,7 +489,7 @@ improve quality. This can be helpful when
 - Support for sequential/random sample selection, including repetition prevention
   when using random sample selection.
 - Listener2D and Listener3D nodes to listen from a position different than the camera.
-- Support for [procedural audio generation ](/docs/Classes/AudioStreamGenerator).
+- Support for [procedural audio generation](/docs/Classes/AudioStreamGenerator).
 - Audio input to record microphones.
 - MIDI input.
 
@@ -503,7 +503,7 @@ improve quality. This can be helpful when
 
 ## Import
 
-- Support for [custom import plugins ](doc_import_plugins).
+- Support for [custom import plugins](doc_import_plugins).
 
 **Formats:**
 
@@ -518,17 +518,17 @@ improve quality. This can be helpful when
 
    - glTF 2.0 *(recommended)*.
    - ``.blend`` (by calling Blender's glTF export functionality transparently).
-   - FBX (by calling [FBX2glTF ](https://github.com/redot-engine/FBX2glTF)_ transparently).
+   - FBX (by calling [FBX2glTF](https://github.com/redot-engine/FBX2glTF)_ transparently).
    - Collada (.dae).
    - Wavefront OBJ (static scenes only, can be loaded directly as a mesh or imported as a 3D scene).
 
 - Support for loading glTF 2.0 scenes at runtime, including from an exported project.
-- 3D meshes use [Mikktspace ](http://www.mikktspace.com/)_ to generate tangents
+- 3D meshes use [Mikktspace](http://www.mikktspace.com/)_ to generate tangents
   on import, which ensures consistency with other 3D applications such as Blender.
 
 ## Input
 
-- [Input mapping system ](doc_input_examples) using hardcoded input events
+- [Input mapping system](doc_input_examples) using hardcoded input events
   or remappable input actions.
 
    - Axis values can be mapped to two different actions with a configurable deadzone.
@@ -549,9 +549,9 @@ improve quality. This can be helpful when
 
 ## Navigation
 
-- A* algorithm in [2D ](/docs/Classes/AStar2D) and [3D ](/docs/Classes/AStar3D).
+- A* algorithm in [2D](/docs/Classes/AStar2D) and [3D](/docs/Classes/AStar3D).
 - Navigation meshes with dynamic obstacle avoidance in
-  [2D ](doc_navigation_overview_2d) and [3D ](doc_navigation_overview_3d).
+  [2D](doc_navigation_overview_2d) and [3D](doc_navigation_overview_3d).
 - Generate navigation meshes from the editor or at runtime (including from an exported project).
 
 ## Networking
@@ -563,28 +563,28 @@ improve quality. This can be helpful when
 
    - Supports HTTPS out of the box using bundled certificates.
 
-- [High-level multiplayer ](doc_high_level_multiplayer) API using UDP and ENet.
+- [High-level multiplayer](doc_high_level_multiplayer) API using UDP and ENet.
 
    - Automatic replication using remote procedure calls (RPCs).
    - Supports unreliable, reliable and ordered transfers.
 
-- [WebSocket ](doc_websocket) client and server, available on all platforms.
-- [WebRTC ](doc_webrtc) client and server, available on all platforms.
-- Support for [UPnP ](/docs/Classes/UPNP) to sidestep the requirement to forward ports
+- [WebSocket](doc_websocket) client and server, available on all platforms.
+- [WebRTC](doc_webrtc) client and server, available on all platforms.
+- Support for [UPnP](/docs/Classes/UPNP) to sidestep the requirement to forward ports
   when hosting a server behind a NAT.
 
 ## Internationalization
 
 - Full support for Unicode including emoji.
-- Store localization strings using [CSV ](doc_internationalizing_games)
-  or [gettext ](doc_localization_using_gettext).
+- Store localization strings using [CSV](doc_internationalizing_games)
+  or [gettext](doc_localization_using_gettext).
 
   - Support for generating gettext POT and PO files from the editor.
 
 - Use localized strings in your project automatically in GUI elements or by
   using the ``tr()`` function.
 - Support for pluralization and translation contexts when using gettext translations.
-- Support for [bidirectional typesetting ](doc_internationalizing_games_bidi),
+- Support for [bidirectional typesetting](doc_internationalizing_games_bidi),
   text shaping and OpenType localized forms.
 - Automatic UI mirroring for right-to-left locales.
 - Support for pseudolocalization to test your project for i18n-friendliness.
@@ -608,23 +608,23 @@ improve quality. This can be helpful when
 - Open file paths and URLs using default or custom protocol handlers (if registered on the system).
 - Parse custom command line arguments.
 - Any Redot binary (editor or exported project) can be
-  [used as a headless server ](doc_exporting_for_dedicated_servers)
+  [used as a headless server](doc_exporting_for_dedicated_servers)
   by starting it with the ``--headless`` command line argument.
   This allows running the engine without a GPU or display server.
 
 ## Mobile
 
-- In-app purchases on [Android ](doc_android_in_app_purchases)
-  and [iOS ](doc_plugins_for_ios).
+- In-app purchases on [Android](doc_android_in_app_purchases)
+  and [iOS](doc_plugins_for_ios).
 - Support for advertisements using third-party modules.
 
 ## XR support (AR and VR)
 
-- Out of the box [support for OpenXR ](doc_setting_up_xr).
+- Out of the box [support for OpenXR](doc_setting_up_xr).
 
    - Including support for popular desktop headsets like the Valve Index, WMR headsets, and Quest over Link.
 
-- Support for [Android-based headsets ](doc_deploying_to_android) using OpenXR through a plugin.
+- Support for [Android-based headsets](doc_deploying_to_android) using OpenXR through a plugin.
 
   - Including support for popular stand alone headsets like the Meta Quest 1/2/3 and Pro, Pico 4, Magic Leap 2, and Lynx R1.
 
@@ -646,7 +646,7 @@ The editor UI can easily be extended in many ways using add-ons.
 - Dropdown menus using [class_PopupMenu](/docs/Classes/PopupMenu) and [class_OptionButton](/docs/Classes/OptionButton).
 - Scrollbars.
 - Labels.
-- RichTextLabel for [text formatted using BBCode ](doc_bbcode_in_richtextlabel),
+- RichTextLabel for [text formatted using BBCode](doc_bbcode_in_richtextlabel),
   with support for animated custom effects.
 - Trees (can also be used to represent tables).
 - Color picker with RGB and HSV modes.
@@ -657,14 +657,14 @@ The editor UI can easily be extended in many ways using add-ons.
 - Anchors to keep GUI elements in a specific corner, edge or centered.
 - Containers to place GUI elements automatically following certain rules.
 
-   - [Stack ](/docs/Classes/BoxContainer) layouts.
-   - [Grid ](/docs/Classes/GridContainer) layouts.
-   - [Flow ](/docs/Classes/FlowContainer) layouts (similar to autowrapping text).
-   - [Margin ](/docs/Classes/MarginContainer), [centered ](/docs/Classes/CenterContainer)
-     and [aspect ratio ](/docs/Classes/AspectRatioContainer) layouts.
-   - [Draggable splitter ](/docs/Classes/SplitContainer) layouts.
+   - [Stack](/docs/Classes/BoxContainer) layouts.
+   - [Grid](/docs/Classes/GridContainer) layouts.
+   - [Flow](/docs/Classes/FlowContainer) layouts (similar to autowrapping text).
+   - [Margin](/docs/Classes/MarginContainer), [centered](/docs/Classes/CenterContainer)
+     and [aspect ratio](/docs/Classes/AspectRatioContainer) layouts.
+   - [Draggable splitter](/docs/Classes/SplitContainer) layouts.
 
-- Scale to [multiple resolutions ](doc_multiple_resolutions) using the
+- Scale to [multiple resolutions](doc_multiple_resolutions) using the
   ``canvas_items`` or ``viewport`` stretch modes.
 - Support any aspect ratio using anchors and the ``expand`` stretch aspect.
 
@@ -693,7 +693,7 @@ like Electron or Qt.
 
 ## File formats
 
-- Scenes and resources can be saved in [text-based ](doc_tscn_file_format) or binary formats.
+- Scenes and resources can be saved in [text-based](doc_tscn_file_format) or binary formats.
 
    - Text-based formats are human-readable and more friendly to version control.
    - Binary formats are faster to save/load for large scenes/resources.
@@ -708,7 +708,7 @@ like Electron or Qt.
    - Can (de)serialize any Redot datatype, including Vector2/3, Color, ...
 
 - Read XML files using [class_XMLParser](/docs/Classes/XMLParser).
-- [Load and save images, audio/video, fonts and ZIP archives ](doc_runtime_loading_and_saving)
+- [Load and save images, audio/video, fonts and ZIP archives](doc_runtime_loading_and_saving)
   in an exported project without having to go through Redot's import system.
 - Pack game data into a PCK file (custom format optimized for fast seeking),
   into a ZIP archive, or directly into the executable for single-file distribution.
@@ -717,24 +717,24 @@ like Electron or Qt.
 
 ## Miscellaneous
 
-- [Video playback ](doc_playing_videos) with built-in support for Ogg Theora.
-- [Movie Maker mode ](doc_creating_movies) to record videos from a running
+- [Video playback](doc_playing_videos) with built-in support for Ogg Theora.
+- [Movie Maker mode](doc_creating_movies) to record videos from a running
   project with synchronized audio and perfect frame pacing.
-- [Low-level access to servers ](doc_using_servers) which allows bypassing
+- [Low-level access to servers](doc_using_servers) which allows bypassing
   the scene tree's overhead when needed.
-- [Command line interface ](doc_command_line_tutorial) for automation.
+- [Command line interface](doc_command_line_tutorial) for automation.
 
    - Export and deploy projects using continuous integration platforms.
-   - [Shell completion scripts ](https://github.com/redot-engine/redot-engine/tree/master/misc/dist/shell)_
+   - [Shell completion scripts](https://github.com/redot-engine/redot-engine/tree/master/misc/dist/shell)_
      are available for Bash, zsh and fish.
    - Print colored text to standard output on all platforms using
-     [print_rich ](/docs/Classes/@GlobalScope_method_print_rich).
+     [print_rich](/docs/Classes/@GlobalScope_method_print_rich).
 
-- Support for [C++ modules ](doc_custom_modules_in_cpp) statically linked
+- Support for [C++ modules](doc_custom_modules_in_cpp) statically linked
   into the engine binary.
 - Engine and editor written in C++17.
 
-   - Can be [compiled ](doc_introduction_to_the_buildsystem) using GCC,
+   - Can be [compiled](doc_introduction_to_the_buildsystem) using GCC,
      Clang and MSVC. MinGW is also supported.
    - Friendly towards packagers. In most cases, system libraries can be used
      instead of the ones provided by Redot. The build system doesn't download anything.
@@ -742,11 +742,11 @@ like Electron or Qt.
 
 - Licensed under the permissive MIT license.
 
-   - Open development process with [contributions welcome ](doc_ways_to_contribute).
+   - Open development process with [contributions welcome](doc_ways_to_contribute).
 
 :::info
 
-The [Redot proposals repository ](https://github.com/redot-engine/redot-engine-proposals)_
+The [Redot proposals repository](https://github.com/redot-engine/redot-engine-proposals)_
 lists features that have been requested by the community and may be implemented
 in future Redot releases.
 

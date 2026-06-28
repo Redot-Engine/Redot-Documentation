@@ -29,7 +29,7 @@ Starting in 2026, Redot will be released on a quarterly basis. The current versi
 |-----------------------|------------------|-------------------|
 | Redot 26.3 (`master`) | TBD              | Unstable          |
 | Redot 26.2            | June 2026        | Supported         |
-| Redot 26.1            | Feburary 2026    | EOL               |
+| Redot 26.1            | February 2026    | EOL               |
 | Redot 4.4             | December 2025    | EOL               |
 | Redot 4.3             | August 2024      | EOL               |
 
@@ -58,11 +58,11 @@ consider whether it's a good idea for your project before attempting an
 upgrade. Also, make backups of your project or use version control to
 prevent losing data in case the upgrade goes wrong.
 
-That said, we do our best to keep avoid breaking changes between releases.
+That said, we do our best to avoid breaking changes between releases.
 
 :::
 
-The general recommendation is to only upgrade your project if you are needing new features or improvements,
+The general recommendation is to only upgrade your project if you need new features or improvements,
 or if you are experiencing issues that have been fixed in a newer release.
 
 ## When is the next release out?

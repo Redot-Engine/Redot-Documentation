@@ -3,7 +3,7 @@
 
 The documentation is continually being improved. New releases
 include new pages, fixes and updates to existing pages, and many updates
-to the [class reference ](doc_class_reference).
+to the [class reference](doc_class_reference).
 
 :::note
 
