@@ -374,9 +374,8 @@ information.
 
 ## Which Redot version should I use for a new project?
 
-We recommend using Redot 4.x for new projects, but depending on the feature set
-you need, it may be better to use 3.x instead. See
-[abt_release_policy_which_version_should_i_use](abt_release_policy_which_version_should_i_use) for more information.
+We recommend using the latest stable version for new projects. Please see the [Downloads](https://www.redotengine.org/download)
+page on our website.
 
 ## Should I upgrade my project to use new Redot versions?
 
