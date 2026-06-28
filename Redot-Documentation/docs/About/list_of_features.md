@@ -3,13 +3,6 @@
 
 This page aims to list **all** features currently supported by Redot.
 
-:::note
-
-This page lists features supported by the current stable version of
-Redot. Some of these features are not available in the
-[3.x release series ](https://docs.redotengine.org/en/3.6/about/list_of_features.html)_.
-
-:::
 
 ## Platforms
 
@@ -32,8 +25,7 @@ See [doc_system_requirements](abt_system_requirements) for hardware and software
      allowing for binaries that work across common Linux distributions.
 
 - Android (editor support is experimental).
-- [Web browsers ](doc_using_the_web_editor). Experimental in 4.0,
-  using Redot 3.x is recommended instead when targeting HTML5.
+- [Web browsers ](doc_using_the_web_editor).
 
 **Runs exported projects:**
 
@@ -45,10 +37,8 @@ Redot aims to be as platform-independent as possible and can be
 
 :::note
 
-Projects written in C# using Redot 4 currently cannot be exported to the
-web platform. To use C# on that platform, consider Redot 3 instead.
-Android and iOS platform support is available as of Redot 4.2, but is
-experimental and [some limitations apply ](doc_c_sharp_platforms).
+Projects written in C# using Redot LTS currently cannot be exported to the
+web platform.
 
 :::
 
@@ -62,7 +52,7 @@ experimental and [some limitations apply ](doc_c_sharp_platforms).
   Visual Studio Code or Vim.
 - GDScript [debugger ](doc_debugger_panel).
 
-   - Support for debugging in threads is available since 4.2.
+- Support for debugging in threads is available.
 - Visual profiler with CPU and GPU time indications for each step of the
   rendering pipeline.
 - Performance monitoring tools, including
@@ -458,7 +448,7 @@ improve quality. This can be helpful when
 
    - Full support for the C# 12.0 syntax and features.
 
-- Supports Windows, Linux, and macOS. Since Redot 4.2, experimental support for Android and iOS is also available.
+- Supports Windows, Linux, and macOS.
 
    - On the iOS platform only some architectures are supported: ``arm64``.
    - The web platform is currently unsupported. To use C# on that platform,
