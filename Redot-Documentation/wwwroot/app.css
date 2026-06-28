@@ -118,6 +118,16 @@ h1:focus {
     display: block;
 }
 
+.doc-viewer-content pre {
+    margin: 1rem 0;
+    padding: 1rem;
+    overflow-x: auto;
+}
+
+.doc-viewer-content code {
+    font-family: Consolas, "Cascadia Code", "Fira Code", "JetBrains Mono", Menlo, Monaco, "Courier New", monospace;
+}
+
 .callout-tip {
     display: flex;
     gap: 16px;

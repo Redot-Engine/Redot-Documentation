@@ -6,6 +6,7 @@
 @using System.Text.RegularExpressions
 @inject DocRendererService DocRendererService
 @inject VersionManagerService VersionManagerService
+@inject IJSRuntime JS
 
 
 <PageTitle>Introduction</PageTitle>
@@ -98,6 +99,12 @@ else
         {
             isLoading = false;
         }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+            await JS.InvokeVoidAsync("highlightCode");
     }
 
     private (VersionProvider provider, string path) ResolveVersionProviderAndDocumentPath()

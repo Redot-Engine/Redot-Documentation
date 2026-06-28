@@ -7,6 +7,7 @@
     <base href="/"/>
     <ResourcePreloader/>
     <link rel="stylesheet" href="@Assets["lib/bootstrap/dist/css/bootstrap.min.css"]"/>
+    <link rel="stylesheet" href="@Assets["lib/prism/prism-tomorrow.min.css"]"/>
     <link rel="stylesheet" href="@Assets["app.css"]"/>
     <link rel="stylesheet" href="@Assets["Redot-Documentation.styles.css"]"/>
     <ImportMap/>
@@ -17,8 +18,16 @@
 <body>
 <Routes/>
 <ReconnectModal/>
-<script src="@Assets["_framework/blazor.web.js"]"></script>
 <script src="@Assets["js/doc-tabs.js"]"></script>
+<script>window.Prism = window.Prism || {}; Prism.manual = true;</script>
+<script src="@Assets["lib/prism/prism-core.min.js"]"></script>
+<script src="@Assets["lib/prism/prism-clike.min.js"]"></script>
+<script src="@Assets["lib/prism/prism-c.min.js"]"></script>
+<script src="@Assets["lib/prism/prism-cpp.min.js"]"></script>
+<script src="@Assets["lib/prism/prism-csharp.min.js"]"></script>
+<script src="@Assets["lib/prism/prism-gdscript.min.js"]"></script>
+<script src="@Assets["js/syntax-highlight.js"]"></script>
+<script src="@Assets["_framework/blazor.web.js"]"></script>
 </body>
 
 </html>

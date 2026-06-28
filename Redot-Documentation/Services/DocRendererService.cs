@@ -41,12 +41,23 @@ public class DocRendererService
 
         var markdown = await File.ReadAllTextAsync(fullPath, cancellationToken);
         var transformedMarkdown = TransformMarkdown(markdown, versionProvider);
-        return Markdown.ToHtml(transformedMarkdown, MarkdownPipeline);
+        var renderedHtml = Markdown.ToHtml(transformedMarkdown.Markdown, MarkdownPipeline);
+
+        while (transformedMarkdown.HtmlPlaceholders.Keys.Any(key => renderedHtml.Contains(key, StringComparison.Ordinal)))
+        {
+            foreach (var placeholder in transformedMarkdown.HtmlPlaceholders)
+            {
+                renderedHtml = renderedHtml.Replace(placeholder.Key, placeholder.Value, StringComparison.Ordinal);
+            }
+        }
+
+        return renderedHtml;
     }
 
-    private static string TransformMarkdown(string markdown, VersionProvider versionProvider)
+    private static (string Markdown, Dictionary<string, string> HtmlPlaceholders) TransformMarkdown(string markdown, VersionProvider versionProvider)
     {
         var transformedMarkdown = markdown;
+        var htmlPlaceholders = new Dictionary<string, string>();
 
         // Transform Links
         transformedMarkdown = Regex.Replace(
@@ -71,30 +82,30 @@ public class DocRendererService
         transformedMarkdown = Regex.Replace(
             transformedMarkdown,
             @":::tip\s*\r?\n(.*?)\r?\n:::",
-            match => TransformCallout(match.Value, "tip", IconConstants.TipsIcon),
+            match => TransformCallout(match.Value, "tip", htmlPlaceholders, IconConstants.TipsIcon),
             RegexOptions.IgnoreCase | RegexOptions.Singleline);
         // note
         transformedMarkdown = Regex.Replace(
             transformedMarkdown,
             @":::note\s*\r?\n(.*?)\r?\n:::",
-            match => TransformCallout(match.Value, "note", IconConstants.TipsIcon),
+            match => TransformCallout(match.Value, "note", htmlPlaceholders, IconConstants.TipsIcon),
             RegexOptions.IgnoreCase | RegexOptions.Singleline);
         // info
         transformedMarkdown = Regex.Replace(
             transformedMarkdown,
             @":::info\s*\r?\n(.*?)\r?\n:::",
-            match => TransformCallout(match.Value, "info", IconConstants.TipsIcon),
+            match => TransformCallout(match.Value, "info", htmlPlaceholders, IconConstants.TipsIcon),
             RegexOptions.IgnoreCase | RegexOptions.Singleline);
-        transformedMarkdown = TransformTabsBlocks(transformedMarkdown);
+        transformedMarkdown = TransformTabsBlocks(transformedMarkdown, htmlPlaceholders);
         // warning
         transformedMarkdown = Regex.Replace(
             transformedMarkdown,
             @":::warning\s*\r?\n(.*?)\r?\n:::",
-            match => TransformCallout(match.Value, "warning", IconConstants.TipsIcon),
+            match => TransformCallout(match.Value, "warning", htmlPlaceholders, IconConstants.TipsIcon),
             RegexOptions.IgnoreCase | RegexOptions.Singleline);
-        transformedMarkdown = TransformTabsBlocks(transformedMarkdown);
+        transformedMarkdown = TransformTabsBlocks(transformedMarkdown, htmlPlaceholders);
 
-        return transformedMarkdown;
+        return (transformedMarkdown, htmlPlaceholders);
     }
 
     private static string TransformLink(string matchValue, VersionProvider versionProvider)
@@ -148,17 +159,17 @@ public class DocRendererService
         return (name, url);
     }
 
-    private static string TransformTabsBlocks(string markdown)
+    private static string TransformTabsBlocks(string markdown, Dictionary<string, string> htmlPlaceholders)
     {
         var tabsIndex = 0;
         return Regex.Replace(
             markdown,
             @"<Tabs>(.*?)</Tabs>",
-            match => TransformSingleTabsBlock(match, tabsIndex++),
+            match => TransformSingleTabsBlock(match, tabsIndex++, htmlPlaceholders),
             RegexOptions.IgnoreCase | RegexOptions.Singleline);
     }
 
-    private static string TransformSingleTabsBlock(Match tabsBlockMatch, int tabsIndex)
+    private static string TransformSingleTabsBlock(Match tabsBlockMatch, int tabsIndex, Dictionary<string, string> htmlPlaceholders)
     {
         var tabsContent = tabsBlockMatch.Groups[1].Value;
         var tabItemMatches = Regex.Matches(
@@ -206,11 +217,20 @@ public class DocRendererService
                 $"<div id=\"{panelId}\" class=\"doc-tab-panel{activeClass}\" role=\"tabpanel\" data-value=\"{WebUtility.HtmlEncode(value)}\" data-label=\"{WebUtility.HtmlEncode(label)}\">{panelHtml}</div>");
         }
 
-        return
+        var tabsMarkup =
             "<div class=\"doc-tabs\">" +
             $"<div class=\"doc-tab-buttons\" role=\"tablist\">{string.Join(string.Empty, tabButtonsMarkup)}</div>" +
             $"<div class=\"doc-tab-panels\">{string.Join(string.Empty, tabPanelsMarkup)}</div>" +
             "</div>";
+
+        return StoreHtmlBlock(htmlPlaceholders, tabsMarkup);
+    }
+
+    private static string StoreHtmlBlock(Dictionary<string, string> htmlPlaceholders, string html)
+    {
+        var placeholder = $"<!--DOC_HTML_BLOCK_{htmlPlaceholders.Count}-->";
+        htmlPlaceholders[placeholder] = html;
+        return placeholder;
     }
 
     private static string GetAttributeValue(string attributes, string attributeName)
@@ -235,7 +255,11 @@ public class DocRendererService
         return sanitized;
     }
 
-    public static string TransformCallout(string markdownSection, string calloutType, string? iconPath = null)
+    public static string TransformCallout(
+        string markdownSection,
+        string calloutType,
+        Dictionary<string, string> htmlPlaceholders,
+        string? iconPath = null)
     {
         string calloutLower = calloutType.ToLowerInvariant();
         string calloutUpper = calloutType.ToUpperInvariant();
@@ -254,6 +278,6 @@ public class DocRendererService
                                   </div>
                               </div>
                               """;
-        return transformed;
+        return StoreHtmlBlock(htmlPlaceholders, transformed);
     }
 }
