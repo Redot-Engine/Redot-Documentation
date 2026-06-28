@@ -297,6 +297,7 @@ public class DocRendererService
                                       </div>
                                   </div>
                               </div>
+                              <br/>
                               """;
         return StoreHtmlBlock(htmlPlaceholders, transformed);
     }
