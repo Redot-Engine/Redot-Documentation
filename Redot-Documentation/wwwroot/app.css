@@ -164,6 +164,18 @@ h1:focus {
     color: white;
 }
 
+.callout-danger {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+
+    background: #4d0000;
+    border-left: 8px solid #8b0000;
+    border-radius: 4px;
+    padding: 20px 24px;
+    color: white;
+}
+
 .callout-icon-warning {
     width: 48px;
     height: 48px;
@@ -172,6 +184,19 @@ h1:focus {
 
     -webkit-mask: url("./Icons/Font-Awesome/solid/exclamation-triangle.svg") no-repeat center;
     mask: url("./Icons/Font-Awesome/solid/exclamation-triangle.svg") no-repeat center;
+
+    -webkit-mask-size: contain;
+    mask-size: contain;
+}
+
+.callout-icon-danger {
+    width: 24px;
+    height: 24px;
+
+    background-color: white;
+
+    -webkit-mask: url("./Icons/Font-Awesome/solid/fire-flame-curved.svg") no-repeat center;
+    mask: url("./Icons/Font-Awesome/solid/fire-flame-curved.svg") no-repeat center;
 
     -webkit-mask-size: contain;
     mask-size: contain;

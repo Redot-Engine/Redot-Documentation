@@ -106,6 +106,12 @@ public class DocRendererService
             @":::warning\s*\r?\n(.*?)\r?\n:::",
             match => TransformCallout(match.Value, "warning", htmlPlaceholders, IconConstants.TipsIcon),
             RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        // danger
+        transformedMarkdown = Regex.Replace(
+            transformedMarkdown,
+            @":::danger\s*\r?\n(.*?)\r?\n:::",
+            match => TransformCallout(match.Value, "danger", htmlPlaceholders, IconConstants.TipsIcon),
+            RegexOptions.IgnoreCase | RegexOptions.Singleline);
         transformedMarkdown = TransformTabsBlocks(transformedMarkdown, htmlPlaceholders);
         // Render tabs
         transformedMarkdown = Regex.Replace(
