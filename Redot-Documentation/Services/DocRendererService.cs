@@ -66,17 +66,6 @@ public class DocRendererService
             match => TransformLink(match.Value, versionProvider),
             RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
-        transformedMarkdown = Regex.Replace(
-            transformedMarkdown,
-            @"^import\s+Tabs\s+from\s+[\""'][^\""']+[\""'];\s*$",
-            string.Empty,
-            RegexOptions.IgnoreCase | RegexOptions.Multiline);
-
-        transformedMarkdown = Regex.Replace(
-            transformedMarkdown,
-            @"^import\s+TabItem\s+from\s+[\""'][^\""']+[\""'];\s*$",
-            string.Empty,
-            RegexOptions.IgnoreCase | RegexOptions.Multiline);
         // Parse callout blocks
         // tip
         transformedMarkdown = Regex.Replace(
@@ -104,6 +93,18 @@ public class DocRendererService
             match => TransformCallout(match.Value, "warning", htmlPlaceholders, IconConstants.TipsIcon),
             RegexOptions.IgnoreCase | RegexOptions.Singleline);
         transformedMarkdown = TransformTabsBlocks(transformedMarkdown, htmlPlaceholders);
+        // Render tabs
+        transformedMarkdown = Regex.Replace(
+            transformedMarkdown,
+            @"^import\s+Tabs\s+from\s+[\""'][^\""']+[\""'];\s*$",
+            string.Empty,
+            RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+        transformedMarkdown = Regex.Replace(
+            transformedMarkdown,
+            @"^import\s+TabItem\s+from\s+[\""'][^\""']+[\""'];\s*$",
+            string.Empty,
+            RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
         return (transformedMarkdown, htmlPlaceholders);
     }
