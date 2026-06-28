@@ -52,19 +52,19 @@ especially the Redot [Discord ](https://discord.gg/redot) community.
 A game engine is a complex tool and difficult to present in a few words.
 Here's a quick synopsis, which you are free to reuse
 if you need a quick write-up about Redot Engine:
-
-    Redot Engine is a feature-packed, cross-platform game engine to create 2D
-    and 3D games from a unified interface. It provides a comprehensive set of
-    common tools, so that users can focus on making games without having to
-    reinvent the wheel. Games can be exported with one click to a number of
-    platforms, including the major desktop platforms (Linux, macOS, Windows),
-    mobile platforms (Android, iOS), as well as Web-based platforms and consoles.
-
-    Redot is completely free and open source under the [permissive MIT license ](abt_complying_with_licenses). No strings attached, no royalties,
-    nothing. Users' games are theirs, down to the last line of engine code.
-    Redot's development is fully independent and community-driven, empowering
-    users to help shape their engine to match their expectations.
-
+<br/><br/>
+Redot Engine is a feature-packed, cross-platform game engine to create 2D
+and 3D games from a unified interface. It provides a comprehensive set of
+common tools, so that users can focus on making games without having to
+reinvent the wheel. Games can be exported with one click to a number of
+platforms, including the major desktop platforms (Linux, macOS, Windows),
+mobile platforms (Android, iOS), as well as Web-based platforms and consoles.
+<br/><br/>
+Redot is completely free and open source under the [permissive MIT license ](abt_complying_with_licenses). No strings attached, no royalties,
+nothing. Users' games are theirs, down to the last line of engine code.
+Redot's development is fully independent and community-driven, empowering
+users to help shape their engine to match their expectations.
+<br/><br/>
 ## Organization of the documentation
 
 This documentation is organized into several sections:
