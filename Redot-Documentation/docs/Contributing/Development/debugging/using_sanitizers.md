@@ -5,7 +5,7 @@
 
 Sanitizers are static instrumentation tools that help find bugs that traditional
 debuggers usually cannot catch. This is particularly useful when combined with
-[doc_unit_testing](../core_and_modules/unit_testing.md) in continuous integration.
+[Unit Testing](doc_unit_testing) in continuous integration.
 
 Sanitizers can be used on Windows, macOS and Linux by using the Clang (LLVM),
 GCC or Visual Studio compilers.
@@ -59,8 +59,7 @@ about 2× slower.
 
 :::warning
 
-Due to a `design decision
-&lt;https://stackoverflow.com/questions/36971902/why-cant-clang-enable-all-sanitizers/&gt;`__,
+Due to a [design decision](https://stackoverflow.com/questions/36971902/why-cant-clang-enable-all-sanitizers/),
 the address, memory and thread sanitizers are mutually exclusive. This means
 you can only use one of those sanitizers in a given binary.
 
@@ -76,7 +75,7 @@ The leak sanitizer can detect memory leaks, which are situations where memory
 that is no longer in use is never freed by the running program. This can
 potentially lead to out-of-memory situations if the program runs for long
 enough. Since Redot may run on
-[dedicated servers](../../../tutorials/export/exporting_for_dedicated_servers.md) for months or
+[dedicated servers](doc_exporting_for_dedicated_servers) for months or
 even years without a restart, it's important to fix memory leaks when they occur.
 
 To enable the leak sanitizer in a Redot build, pass the ``use_lsan=yes`` SCons
@@ -100,8 +99,7 @@ about 3× slower.
 
 :::warning
 
-Due to a `design decision
-&lt;https://stackoverflow.com/questions/36971902/why-cant-clang-enable-all-sanitizers/&gt;`__,
+Due to a [design decision](https://stackoverflow.com/questions/36971902/why-cant-clang-enable-all-sanitizers/),
 the address, memory and thread sanitizers are mutually exclusive. This means
 you can only use one of those sanitizers in a given binary.
 
@@ -127,8 +125,7 @@ slower, while also multiplying memory usage by an approximately 8× factor.
 
 :::warning
 
-Due to a `design decision
-&lt;https://stackoverflow.com/questions/36971902/why-cant-clang-enable-all-sanitizers/&gt;`__,
+Due to a [design decision](https://stackoverflow.com/questions/36971902/why-cant-clang-enable-all-sanitizers/),
 the address, memory and thread sanitizers are mutually exclusive. This means
 you can only use one of those sanitizers in a given binary.
 
@@ -194,7 +191,7 @@ performance overhead.
 
 ### Web
 
-When [compiling for the Web](../compiling/compiling_for_web.md),
+When [compiling for the Web](doc_compiling_for_web),
 there are 2 additional sanitizer SCons options available:
 
 - ``use_assertions=yes`` enables runtime Emscripten assertions, which can catch

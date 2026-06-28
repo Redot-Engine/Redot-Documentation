@@ -35,7 +35,7 @@ The editor's code is fully self-contained in the
 of the Redot source repository.
 
 Some editor functionality is also implemented via
-[modules](../core_and_modules/custom_modules_in_cpp.md). Some of these are only enabled in
+[modules](doc_custom_modules_in_cpp.md). Some of these are only enabled in
 editor builds to decrease the binary size of export templates. See the
 [modules/](https://github.com/redot-engine/redot-engine/tree/master/modules) folder
 in the Redot source repository.
@@ -74,11 +74,11 @@ from ``servers/`` and ``core/``, it cannot depend on includes from ``editor/``.
 
 Currently, there are some dependencies to ``editor/`` includes in ``scene/``
 files, but
-[they are in the process of being removed](https://github.com/redot-engine/redot-engine/issues/53295).
+[they are in the process of being removed](https://github.com/godot-engine/godot/issues/53295).
 
 ## Development tips
 
 To iterate quickly on the editor, we recommend to set up a test project and
-[open it from the command line](../../../tutorials/editor/command_line_tutorial.md) after compiling
+[open it from the command line](doc_command_line_tutorial.md) after compiling
 the editor. This way, you don't have to go through the Project Manager every
 time you start Redot.

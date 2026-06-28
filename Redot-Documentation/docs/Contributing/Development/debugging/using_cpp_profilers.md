@@ -6,7 +6,7 @@ To this end, profilers are useful tools.
 
 :::note
 
-There is a [built-in GDScript profiler](../../../tutorials/scripting/debug/the_profiler.md) in the editor,
+There is a [built-in GDScript profiler](doc_the_profiler.md) in the editor,
 but using C++ profiler may be useful in cases where the GDScript profiler
 is not accurate enough or is missing information due to bugs in the profiler.
 
@@ -51,7 +51,7 @@ The ``--quit`` option works with ``--editor``, ``--project-manager`` or
 
 :::info
 
-See [doc_command_line_tutorial](../../../tutorials/editor/command_line_tutorial.md) for more command line arguments
+See [Command Line Tutorial](doc_command_line_tutorial.md) for more command line arguments
 supported by Redot.
 
 :::
@@ -66,7 +66,7 @@ supported by Redot.
   will spawn a child process for every project edited or run.
 - Open VerySleepy and select the Redot executable in the list of processes on the left:
 
-![Image](img/cpp_profiler_verysleepy_select_process.png)
+![Image](/img/Contributing/Development/Debugging/cpp_profiler_verysleepy_select_process.png)
 
 - Click the **Profile All** button on the right to start profiling.
 - Perform the actions you wish to profile in the editor or project. When you're done, click **Stop** (*not* Abort).
@@ -77,13 +77,13 @@ supported by Redot.
   **Filter Module to &lt;Redot executable name&gt;** in the dropdown that appears.
 - Your results window should now look something like this:
 
-![Image](img/cpp_profiler_verysleepy_results_filtered.png)
+![Image](/img/Contributing/Development/Debugging/cpp_profiler_verysleepy_results_filtered.png)
 
 ### HotSpot
 
 - Open HotSpot. Click **Record Data**:
 
-![Image](img/cpp_profiler_hotspot_welcome.png)
+![Image](/img/Contributing/Development/Debugging/cpp_profiler_hotspot_welcome.png)
 
 - In the next window, specify the path to the Redot binary that includes debug symbols.
 - Specify command line arguments to run a specific project, with or without the editor.
@@ -95,7 +95,7 @@ supported by Redot.
   Otherwise, some events may be missing in the capture.
   Your settings should now look something like this:
 
-![Image](img/cpp_profiler_hotspot_record.png)
+![Image](/img/Contributing/Development/Debugging/cpp_profiler_hotspot_record.png)
 
 - Click **Start Recording** and perform the actions you wish to profile in the editor/project.
 - Quit the editor/project normally or use the **Stop Profiling** button in HotSpot
@@ -103,7 +103,7 @@ supported by Redot.
   if you're not interested in the engine's quit procedure.
 - Click **View Results** and wait for the profiling visualization to be generated:
 
-![Image](img/cpp_profiler_hotspot_view_results.png)
+![Image](/img/Contributing/Development/Debugging/cpp_profiler_hotspot_view_results.png)
 
 - Use the tabs at the top to navigate between the different views. These views
   show the same data, but in different ways. The **Flame Graph** tab is a good
@@ -114,7 +114,7 @@ supported by Redot.
   started by the engine among with the CPU utilization for each thread.
   This lets you see threads that can be a bottleneck at a given point in time.
 
-![Image](img/cpp_profiler_hotspot_flame_graph.png)
+![Image](/img/Contributing/Development/Debugging/cpp_profiler_hotspot_flame_graph.png)
 
 :::note
 
@@ -132,20 +132,20 @@ This process attachment-based workflow is similar to the one used by VerySleepy.
 - Open Xcode. Select **Open Developer Tool** - **Instruments** from the **Xcode** app menu:
 - Double-click on **Time Profiler** in the **Instruments** window:
 
-![Image](img/cpp_profiler_xcode_menu.png)
+![Image](/img/Contributing/Development/Debugging/cpp_profiler_xcode_menu.png)
 
 - In the Time Profiler window, click on the **Target** menu, select **Choose target...**
   and specify the path to the Redot binary, command line arguments and environment variables
   in the next window.
 
-![Image](img/cpp_profiler_time_profiler.png)
+![Image](/img/Contributing/Development/Debugging/cpp_profiler_time_profiler.png)
 
 - You can also attach the Time Profiler to a running process by selecting it from the **Target**
   menu.
 
 - Click the **Start an immediate mode recording** button to start profiling.
 
-![Image](img/cpp_profiler_time_profiler_record.png)
+![Image](/img/Contributing/Development/Debugging/cpp_profiler_time_profiler_record.png)
 
 - Perform the actions you wish to profile in the editor or project. When you're done,
   click the **Stop** button.
@@ -157,4 +157,4 @@ This process attachment-based workflow is similar to the one used by VerySleepy.
   remove external modules.
 - You can use the timeline at the top of the window to display details for the specific time period.
 
-![Image](img/cpp_profiler_time_profiler_result.png)
+![Image](/img/Contributing/Development/Debugging/cpp_profiler_time_profiler_result.png)

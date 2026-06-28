@@ -48,7 +48,7 @@ contain few items make it difficult to navigate the inspector, while missing the
 benefits of using sections such as folding.
 
 There are some valid exceptions for this, such as material features in
-[class_StandardMaterial3D](class_StandardMaterial3D).
+[StandardMaterial3D](class_StandardMaterial3D).
 
 This advice also applies to the Project Settings and Editor Settings.
 

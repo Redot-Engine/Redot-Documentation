@@ -8,7 +8,7 @@ public class VersionProvider
     public Section AboutSection { get; set; } = new("About", "./docs/About/", 0);
 
     public Section CommunitySection { get; set; } = new("Community", "./docs/Community/", 1);
-    
+
     public Section ContributingSection { get; set; } = new("Contributing", "./docs/Contributing/", 2);
 
     public Section? VersionedDocsSection { get; set; } = null;
