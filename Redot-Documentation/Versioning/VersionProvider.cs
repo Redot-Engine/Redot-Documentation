@@ -8,6 +8,8 @@ public class VersionProvider
     public Section AboutSection { get; set; } = new("About", "./docs/About/", 0);
 
     public Section CommunitySection { get; set; } = new("Community", "./docs/Community/", 1);
+    
+    public Section ContributingSection { get; set; } = new("Contributing", "./docs/Contributing/", 2);
 
     public Section? VersionedDocsSection { get; set; } = null;
 
@@ -23,6 +25,8 @@ public class VersionProvider
         AboutSection.SortRankings();
         CommunitySection.LoadAndParse();
         CommunitySection.SortRankings();
+        ContributingSection.LoadAndParse();
+        ContributingSection.SortRankings();
     }
     public VersionProvider(string versionName) : this()
     {
@@ -40,6 +44,7 @@ public class VersionProvider
         _sortedRankings.Clear();
         _sortedRankings.Add(AboutSection);
         _sortedRankings.Add(CommunitySection);
+        _sortedRankings.Add(ContributingSection);
         _sortedRankings.Sort();
         if (VersionedDocsSection != null)
         {

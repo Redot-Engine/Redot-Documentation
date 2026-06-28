@@ -1,7 +1,7 @@
 .navbar-toggler {
     appearance: none;
     cursor: pointer;
-    width: 3.5rem;
+    width: 5.5rem;
     height: 2.5rem;
     color: white;
     position: absolute;
@@ -99,12 +99,12 @@
 }
 
 .nav-item ::deep .nav-article-link {
-    padding-left: calc(0.75rem + var(--section-level, 0) * 1rem);
+    padding-left: calc(0.5rem + var(--section-level, 0) * 0.25rem);
 }
 
 .nav-item ::deep .nav-section {
     margin: 0;
-    padding-left: calc(var(--section-level, 0) * 0.75rem);
+    padding-left: calc(var(--section-level, 0) * 0.25rem);
 }
 
 .nav-item ::deep .nav-section-summary {

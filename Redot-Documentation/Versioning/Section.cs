@@ -61,14 +61,15 @@ public sealed class Section : IRanking
             excludedItems.Add("img");
             excludedItems.Add("video");
         }
-
+        if (string.IsNullOrEmpty(Slug))
+            Slug = Name.ToLowerInvariant();
         FileInfo[] files = directory.GetFiles("*.md");
         foreach (FileInfo file in files)
         {
             if (excludedItems.Contains(file.Name)) continue;
             int priority = rankingPriorities.GetValueOrDefault(file.Name, 1024);
             Article article = new Article(file.Name, FilePath.Combine(Path, file.Name), SlugPrefix + file.Name, priority);
-            if (article.Name == "index")
+            if (article.Name == "index" || article.Name == "index.md")
             {
                 IndexArticle = article;
                 IndexArticle.Name = Name;
