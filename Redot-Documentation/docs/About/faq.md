@@ -17,7 +17,7 @@ In short:
 
 All the contents of this accompanying documentation are published under the permissive Creative Commons
 Attribution 3.0 ([CC BY 3.0 ](https://creativecommons.org/licenses/by/3.0/)) license, with attribution
-to "Juan Linietsky, Ariel Manzur and the Godot Engine community."
+to "Juan Linietsky, Ariel Manzur and the Godot & Redot Engine community."
 
 Logos and icons are generally under the same Creative Commons license. Note
 that some third-party libraries included with Redot's source code may have
@@ -49,9 +49,10 @@ Also, see [the license page on the Redot website ](https://redotengine.org/licen
 
 Both 32- and 64-bit binaries are supported where it makes sense, with 64
 being the default. Official macOS builds support Apple Silicon natively as well as x86_64.
-
-Some users also report building and using Redot successfully on ARM-based
-systems with Linux, like the Raspberry Pi.
+:::note
+Redot does not provide pre-compiled 32-bit binaries for the editor or exported games.
+These platforms are considered legacy, and must be compiled from source.
+:::
 
 The Redot team can't provide an open source console export due to the licensing
 terms imposed by console manufacturers.
@@ -85,7 +86,7 @@ to [Python ](https://github.com/touilleMan/godot-python) and [Nim ](https://gith
 
 ## What is GDScript and why should I use it?
 
-GDScript is Redot's integrated scripting language. It was built from the ground
+GDScript is Godot & Redot's integrated scripting language. It was built from the ground
 up to maximize Redot's potential in the least amount of code, affording both novice
 and expert developers alike to capitalize on Redot's strengths as fast as possible.
 If you've ever written anything in a language like Python before, then you'll feel
@@ -216,13 +217,10 @@ third-party library integrates with Redot.
 
 Since you don't need to actually install Redot on your system to run it,
 this means desktop integration is not performed automatically.
-There are two ways to overcome this. You can install Redot from
 
-[Scoop ](https://scoop.sh/)_ (Windows), [Homebrew ](https://brew.sh/)_ (macOS)
-or [Flathub ](https://flathub.org/apps/details/org.godotengine.Redot)_ (Linux).
-This will automatically perform the required steps for desktop integration.
-
-Alternatively, you can manually perform the steps that an installer would do for you:
+We eventually plan to create a lancher and project manager to manage Redot installations and projects.
+However, this is not ready yet and we do not have a publicly available version.
+For the time being, you can manually perform the steps that an installer would do for you:
 
 ### Windows
 
@@ -284,6 +282,7 @@ more.
 
 While Vulkan and OpenGL remain our primary focus for their open standard and
 cross-platform benefits, Redot 4.3 introduced experimental support for Direct3D 12.
+As of 26.2 this support is still experimental and may not be fully functional or optimized.
 This addition aims to enhance performance and compatibility on platforms where
 Direct3D 12 is prevalent, such as Windows and Xbox. However, Vulkan and OpenGL
 will continue as the default rendering drivers on all platforms, including Windows.
@@ -369,8 +368,8 @@ And that's it! Your game should work in multiple resolutions.
 
 ## When is the next release of Redot out?
 
-When it's ready! See [abt_release_policy_when_is_next_release_out](abt_release_policy_when_is_next_release_out) for more
-information.
+We have a release once per quarter, or every 3 months.
+Please see our [Release Policy](abt_release_policy) for more information.
 
 ## Which Redot version should I use for a new project?
 
@@ -393,10 +392,10 @@ Awesome! As an open source project, Redot thrives off of the innovation and
 the ambition of developers like you.
 
 The best way to start contributing to Redot is by using it and reporting
-any [issues ](https://github.com/redot-engine/redot-engine/issues) that you might experience.
+any [issues](https://github.com/redot-engine/redot-engine/issues) that you might experience.
 A good bug report with clear reproduction steps helps your fellow contributors
 fix bugs quickly and efficiently. You can also report issues you find in the
-[online documentation ](https://github.com/redot-engine/redot-docs-site/issues).
+[online documentation](https://github.com/redot-engine/redot-docs-site/issues).
 
 If you feel ready to submit your first PR, pick any issue that resonates with you from
 one of the links above and try your hand at fixing it. You will need to learn how to
@@ -404,7 +403,7 @@ compile the engine from sources, or how to build the documentation. You also nee
 get familiar with Git, a version control system that Redot developers use.
 
 We explain how to work with the engine source, how to edit the documentation, and
-what other ways to contribute are there in our [documentation for contributors ](doc_ways_to_contribute).
+what other ways to contribute are there in our [documentation for contributors](doc_ways_to_contribute).
 
 ## I have a great idea for Redot. How can I share it?
 
@@ -414,23 +413,23 @@ you might face while working on your project are a great data point for us when 
 engine enhancements.
 
 If you experience a usability problem or are missing a feature in the current version of
-Redot, start by discussing it with our [community ](https://redotengine.org/community/).
+Redot, start by discussing it with our [community](https://redotengine.org/community/).
 There may be other, perhaps better, ways to achieve the desired result that community members
 could suggest. And you can learn if other users experience the same issue, and figure out
 a good solution together.
 
 If you come up with a well-defined idea for the engine, feel free to open a
-[proposal issue ](https://github.com/redot-engine/redot-proposals/issues).
+[proposal issue](https://github.com/redot-engine/redot-proposals/issues).
 Try to be specific and concrete while describing your problem and your proposed
 solution — only actionable proposals can be considered. It is not required, but
 if you want to implement it yourself, that's always appreciated!
 
 If you only have a general idea without specific details, you can open a
-[proposal discussion ](https://github.com/redot-engine/redot-proposals/discussions).
+[proposal discussion](https://github.com/redot-engine/redot-proposals/discussions).
 These can be anything you want, and allow for a free-form discussion in search of
 a solution. Once you find one, a proposal issue can be opened.
 
-Please, read the [readme ](https://github.com/redot-engine/redot-proposals/blob/master/README.md)
+Please, read the [readme](https://github.com/redot-engine/redot-proposals/blob/master/README.md)
 document before creating a proposal to learn more about the process.
 
 ## Is it possible to use Redot to create non-game applications?
@@ -439,11 +438,11 @@ Yes! Redot features an extensive built-in UI system, and its small distribution
 size can make it a suitable alternative to frameworks like Electron or Qt.
 
 When creating a non-game application, make sure to enable
-[low-processor mode ](/docs/Classes/ProjectSettings_property_application/run/low_processor_mode)
+[low-processor mode](/docs/Classes/ProjectSettings_property_application/run/low_processor_mode)
 in the Project Settings to decrease CPU and GPU usage.
 
-Check out [Material Maker ](https://github.com/RodZill4/material-maker)_ and
-[Pixelorama ](https://github.com/Orama-Interactive/Pixelorama)_ for examples of
+Check out [Material Maker](https://github.com/RodZill4/material-maker)_ and
+[Pixelorama](https://github.com/Orama-Interactive/Pixelorama)_ for examples of
 open source applications made with Redot.
 
 ## Is it possible to use Redot as a library?
@@ -473,13 +472,13 @@ have to deal with the LGPL licensing caveats that come with GTK or Qt. Lastly,
 this means Redot is "eating its own dog food" since the editor itself is one of
 the most complex users of Redot's UI system.
 
-This custom UI toolkit [can't be used as a library ](abt_faq_use_Redot_as_library),
+This custom UI toolkit [can't be used as a library](abt_faq_use_Redot_as_library),
 but you can still
-[use Redot to create non-game applications by using the editor ](abt_faq_non_game_applications).
+[use Redot to create non-game applications by using the editor](abt_faq_non_game_applications).
 
 ## Why does Redot use the SCons build system?
 
-Redot uses the [SCons ](https://www.scons.org/)_ build system. There are no
+Redot uses the [SCons](https://www.scons.org/)_ build system. There are no
 plans to switch to a different build system in the near future. There are many
 reasons why we have chosen SCons over other alternatives. For example:
 
@@ -493,7 +492,7 @@ reasons why we have chosen SCons over other alternatives. For example:
    configurations, additions, removals etc.
 -  Redot's build process is not simple. Several files are generated by
    code (binders), others are parsed (shaders), and others need to offer
-   customization ([modules ](../Contributing/Development/core_and_modules/custom_modules_in_cpp.md)). This requires
+   customization ([modules](../Contributing/Development/core_and_modules/custom_modules_in_cpp.md)). This requires
    complex logic which is easier to write in an actual programming language (like Python)
    rather than using a mostly macro-based language only meant for building.
 -  Redot's build process makes heavy use of cross-compiling tools. Each
@@ -542,7 +541,7 @@ by creating child Nodes with individual scripts. These nodes can then be added a
 removed at runtime to dynamically add and remove behaviors.
 
 More information about Redot's design choices can be found in
-[this article ](https://godotengine.org/article/why-isnt-godot-ecs-based-game-engine)_.
+[this article](https://godotengine.org/article/why-isnt-godot-ecs-based-game-engine).
 
 ## Why does Redot not force users to implement DOD (Data-Oriented Design)?
 
@@ -569,4 +568,4 @@ See [doc_ways_to_contribute](doc_ways_to_contribute).
 
 ## Who is working on Redot? How can I contact you?
 
-See the corresponding page on the [Redot website ](https://redotengine.org/contact).
+See the corresponding page on the [Redot website](https://redotengine.org/contact).
