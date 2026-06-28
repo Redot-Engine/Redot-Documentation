@@ -43,11 +43,25 @@ public class DocRendererService
         var transformedMarkdown = TransformMarkdown(markdown, versionProvider);
         var renderedHtml = Markdown.ToHtml(transformedMarkdown.Markdown, MarkdownPipeline);
 
-        while (transformedMarkdown.HtmlPlaceholders.Keys.Any(key => renderedHtml.Contains(key, StringComparison.Ordinal)))
+        var placeholders = transformedMarkdown.HtmlPlaceholders;
+        for (var pass = 0; pass < placeholders.Count; pass++)
         {
-            foreach (var placeholder in transformedMarkdown.HtmlPlaceholders)
+            var replacedInPass = false;
+
+            foreach (var placeholder in placeholders)
             {
+                if (!renderedHtml.Contains(placeholder.Key, StringComparison.Ordinal))
+                {
+                    continue;
+                }
+
                 renderedHtml = renderedHtml.Replace(placeholder.Key, placeholder.Value, StringComparison.Ordinal);
+                replacedInPass = true;
+            }
+
+            if (!replacedInPass)
+            {
+                break;
             }
         }
 
@@ -229,7 +243,12 @@ public class DocRendererService
 
     private static string StoreHtmlBlock(Dictionary<string, string> htmlPlaceholders, string html)
     {
-        var placeholder = $"<!--DOC_HTML_BLOCK_{htmlPlaceholders.Count}-->";
+        string placeholder;
+        do
+        {
+            placeholder = $"<!--DOC_HTML_BLOCK_{System.Guid.NewGuid():N}-->";
+        } while (htmlPlaceholders.ContainsKey(placeholder) || html.Contains(placeholder, StringComparison.Ordinal));
+
         htmlPlaceholders[placeholder] = html;
         return placeholder;
     }
