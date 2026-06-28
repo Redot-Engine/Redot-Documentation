@@ -157,16 +157,16 @@ h1:focus {
     gap: 16px;
     align-items: flex-start;
 
-    background: #8a8a8a;
-    border-left: 8px solid #aaaaaa;
+    background: #937a07;
+    border-left: 8px solid #756005;
     border-radius: 4px;
     padding: 20px 24px;
     color: white;
 }
 
 .callout-icon-warning {
-    width: 24px;
-    height: 24px;
+    width: 48px;
+    height: 48px;
 
     background-color: white;
 
