@@ -45,20 +45,44 @@ public interface IRanking : IComparable<IRanking>
 
     };
 
+    private static Dictionary<string, string> _specialWords = new Dictionary<string, string>()
+    {
+        {"faq", "FAQ"},
+        {"ip", "IP"},
+        {"mac", "MAC"}
+    };
+
     public string GetDisplayName()
     {
-        string temp = Name.Replace('_', ' ').Trim();
+        string temp = Name.Replace('_', ' ');
+        int extensionLoc = temp.LastIndexOf('.');
+        if (extensionLoc > -1)
+        {
+            temp = temp.Substring(0, extensionLoc);
+        }
+        temp = temp.Trim();
         StringBuilder builder = new StringBuilder(temp.Length);
         string[] words = temp.Split(' ');
         for (int i = 0; i < words.Length; i++)
         {
-            if (i > 0 && _notCapitalizedWords.Contains(words[i].ToLower()))
+            void AddSpace()
             {
-                builder.Append(words[i].ToLower());
                 if (i < words.Length - 1)
                 {
                     builder.Append(" ");
                 }
+            }
+            string lowerVersion = words[i].ToLowerInvariant();
+            if (i > 0 && _notCapitalizedWords.Contains(lowerVersion))
+            {
+                builder.Append(words[i].ToLower());
+                AddSpace();
+                continue;
+            }
+            if (_specialWords.TryGetValue(lowerVersion, out string? specialWord))
+            {
+                builder.Append(specialWord);
+                AddSpace();
                 continue;
             }
             for (int j = 0; j < words[i].Length; j++)
@@ -72,10 +96,7 @@ public interface IRanking : IComparable<IRanking>
                     builder.Append(words[i][j].ToString());
                 }
             }
-            if (i < words.Length - 1)
-            {
-                builder.Append(" ");
-            }
+            AddSpace();
         }
         return builder.ToString();
     }
