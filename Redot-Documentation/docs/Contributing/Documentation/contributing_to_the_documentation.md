@@ -7,32 +7,30 @@ writing or reviewing pages.
 :::info
 
 If you want to translate pages or the class reference from English to other
-languages, read [doc_editor_and_docs_localization](editor_and_docs_localization.md).
+languages, read [editor_and_docs_localization](doc_editor_and_docs_localization).
 
 :::
 
 ## Getting started
 
-To modify or create pages in the reference manual, you need to edit ``.rst``
-files in the `Redot-docs GitHub repository
-&lt;https://github.com/redot-engine/redot-docs-site&gt;`_. Modifying those pages in a pull
-request triggers a rebuild of the online documentation upon merging.
+To modify or create pages in the reference manual, you need to edit ``.md``
+files in the [Redot-Documentation GitHub repository](https://github.com/redot-engine/redot-docs-site).
+Modifying those pages in a pull request triggers a rebuild of the online documentation upon merging.
 
 :::info
 For details on Git usage and the pull request workflow, please
-refer to the [doc_pr_workflow](../Workflow/pr_workflow.md) page. Most of what it describes
+refer to the [PR Workflow](../Workflow/doc_pr_workflow) page. Most of what it describes
 regarding the main Redotengine/Redot repository is also valid for
 the docs repository.
 
 :::
 
 :::warning
-The class reference's source files are in the `Redot engine
-repository &lt;https://github.com/redot-engine/redot&gt;`_. We generate
+The class reference's source files are in the [Redot engine repository](https://github.com/redot-engine/redot-engine). We generate
 the [Class Reference](doc_class_reference) section of this documentation
 from them. If you want to update the description of a class, its
 methods, or properties, read
-[doc_updating_the_class_reference](updating_the_class_reference.md).
+[updating_the_class_reference](doc_updating_the_class_reference).
 
 :::
 
@@ -45,35 +43,26 @@ two game creation tutorials in the Getting Started section.
 We strive to write factual content in an accessible and well-written language. To
 contribute, you should also read:
 
-1. [doc_docs_writing_guidelines](docs_writing_guidelines.md). There, you will find rules and
+1. [docs_writing_guidelines](doc_docs_writing_guidelines). There, you will find rules and
    recommendations to write in a way that everyone understands.
-2. [doc_content_guidelines](content_guidelines.md). They explain the principles we follow to write the
+2. [content_guidelines](doc_content_guidelines). They explain the principles we follow to write the
    documentation and the kind of content we accept.
 
 ## Contributing changes
 
-**Pull requests should use the** ``master`` **branch by default.** Only make pull
-requests against other branches (e.g. ``3.6`` or ``4.2``) if your changes only
-apply to that specific version of Redot. After a pull request is merged into
-``master``, it will usually be cherry-picked into the current stable branch by
-documentation maintainers.
-
-Though less convenient to edit than a wiki, this Git repository is where we
-write the documentation. Having direct access to the source files in a revision
-control system is a plus to ensure our documentation quality.
+**Pull requests should only use the** ``master`` **branch.**
 
 ### Editing existing pages
 
-To edit an existing page, locate its ``.rst`` source file and open it in your
+To edit an existing page, locate its ``.md`` source file and open it in your
 favorite text editor. You can then commit the changes, push them to your fork,
 and make a pull request. **Note that the pages in** ``classes/`` **should not be
-edited here.** They are automatically generated from Redot's `XML class
-reference &lt;https://github.com/redot-engine/redot-engine/tree/master/doc/classes&gt;`__.
-See [doc_updating_the_class_reference](updating_the_class_reference.md) for details.
+edited here.** They are automatically generated from Redot's [XML class reference](https://github.com/redot-engine/redot-engine/tree/master/doc/classes).
+See [updating_the_class_reference](doc_updating_the_class_reference) for details.
 
 :::info
 To build the manual and test changes on your computer, see
-[doc_building_the_manual](building_the_manual.md).
+[building_the_manual](doc_building_the_manual).
 
 :::
 
@@ -100,7 +89,7 @@ and to log in to use it. Once logged in, you can propose change like so:
    Click the button **Propose changes**.
 
 5. On the following screens, click the **Create pull request** button until you
-   see a message like *Username wants to merge 1 commit into Redotengine:master
+   see a message like *Username wants to merge 1 commit into Redot-engine:master
    from Username:patch-1*.
 
 :::note
@@ -119,14 +108,13 @@ they're good. They may also make changes or ask you to do so before merging.
 
 Before adding a new page, please ensure that it fits in the documentation:
 
-1. Look for `existing issues
-   &lt;https://github.com/redot-engine/redot-docs-site/issues&gt;`_ or open a new one to see
-   if the page is necessary.
+1. Look for [existing issues](https://github.com/redot-engine/redot-docs-site/issues)
+   or open a new one to see if the page is necessary.
 2. Ensure there isn't a page that already covers the topic.
-3. Read our [doc_content_guidelines](content_guidelines.md).
+3. Read our [content_guidelines](doc_content_guidelines).
 
-To add a new page, create a ``.rst`` file with a meaningful name in the section you
-want to add a file to, e.g. ``tutorials/3d/light_baking.rst``.
+To add a new page, create a ``.md`` file with a meaningful name in the section you
+want to add a file to, e.g. ``tutorials/3d/light_baking.md``.
 
 You should then add your page to the relevant "toctree" (table of contents,
 e.g. ``tutorials/3d/index.rst``). Add your new filename to the list on a new
@@ -134,21 +122,21 @@ line, using a relative path and no extension, e.g. here ``light_baking``.
 
 ### Titles
 
-Always begin pages with their title and a Sphinx reference name:
+Always begin pages with their title:
+
+```markdown
+
+# Insert your title here
+
 
 ```
-.. _doc_insert_your_title_here:
 
-Insert your title here
-======================
+Most articles can be referenced in links by adding a prefix to their filename.
+For most types of articles, the prefix should be ``doc_``, however, several others exist such as ``abt_``, and ``class_``,
+which are for the about section and class reference pages respectively.
 
-```
-
-The reference ``_doc_insert_your_title_here`` and the title should match.
-
-The reference allows linking to this page using the ``:ref:`` format, e.g.
-``[doc_insert_your_title_here](doc_insert_your_title_here)`` would link to the above example page (note
-the lack of leading underscore in the reference).
+For example, let's say that you made an article in ``Contributing/Documentation/foo.md``.
+You can link to it from any other page by using <code>[foo]</code><code>(doc_foo)</code>.
 
 Write your titles like plain sentences, without capitalizing each word:
 
@@ -158,49 +146,83 @@ Write your titles like plain sentences, without capitalizing each word:
 Only proper nouns, projects, people, and node class names should have their
 first letter capitalized.
 
-### Sphinx and reStructuredText syntax
+### Markdown syntax guide
 
-Check Sphinx's [reST Primer](https://www.sphinx-doc.org/en/stable/rest.html)
-and the [official reference](https://docutils.sourceforge.net/rst.html) for
-details on the syntax.
+The documentation in this repository is written in Markdown (``.md`` files).
+Most pages can be written using standard Markdown syntax:
 
-Sphinx uses specific reST comments to do specific operations, like defining the
-table of contents (``.. toctree::``) or cross-referencing pages. Check the
-`official Sphinx documentation
-&lt;https://www.sphinx-doc.org/en/stable/index.html&gt;`__ for more details. To learn
-how to use Sphinx directives like ``.. note::`` or ``.. seealso::``, check out
-the `Sphinx directives documentation
-&lt;https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html&gt;`__.
+- Headings: ``#``, ``##``, ``###``
+- Links: ``[link text](https://example.com)`` or ``[internal_link](doc_page_name)``
+- Inline code: `` `code` ``
+- Code blocks:
+
+```markdown
+```language
+Your code here
+```
+
+
+For callouts such as notes, tips, and warnings, use the container blocks used
+throughout this documentation:
+
+<pre><code class="language-markdown">
+:::<i></i>note
+Your note here.
+:::
+
+:::<i></i>info
+Useful context.
+:::
+
+:::<i></i>warning
+Important warning.
+:::
+</code></pre>
+
+These callouts will render like below.
+
+:::note
+Your note here.
+:::
+
+:::info
+Useful context.
+:::
+
+:::warning
+Important warning.
+:::
 
 ### Adding images and attachments
 
-To add images, please put them in an ``img/`` folder next to the ``.rst`` file with
+To add images, please put them in the corresponding folder within ``wwwroot/img/<PATH TO IMAGE>`` file with
 a meaningful name and include them in your page with:
 
-```rst
-.. image:: img/image_name.webp
+```markdown
+![Descriptive alt text](/img/image_name.webp)
 
 ```
 
-Alternatively, you can use the `figure` directive, which gives the image a contrasting
-border and allows centering it on the page.
+If you need a captioned image block, you can use HTML in Markdown:
 
-```rst
-.. figure:: img/image_name.webp
-    :align: center
+```markdown
+<figure>
+  <img src="img/image_name.webp" alt="Descriptive alt text" />
+  <figcaption>Image caption text.</figcaption>
+</figure>
 
 ```
 
 You can also include attachments as support material for a tutorial, by placing them
-into a ``files/`` folder next to the ``.rst`` file, and using this inline markup:
+into a ``files/`` folder next to the ``.md`` file, and using normal Markdown links:
 
 Consider using the [Redot-docs-project-starters](https://github.com/redot-engine/redot-docs-site-project-starters)
 repository for hosting support materials, such as project templates and asset packs.
 You can use a direct link to the generated archive from that repository with the regular
 link markup:
 
-```rst
-`file_name.zip <https://github.com/redot-engine/redot-docs-site-project-starters/releases/download/latest-4.x/file_name.zip>`_
+```markdown
+[file_name.zip](https://github.com/redot-engine/redot-docs-site-project-starters/releases/download/latest-4.x/file_name.zip)
 
 ```
 

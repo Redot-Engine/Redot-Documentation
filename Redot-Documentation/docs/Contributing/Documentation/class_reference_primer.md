@@ -72,17 +72,17 @@ member variables, constants, and signals in separate XML nodes.
 For each, you want to learn how they work in Redot's source code. Then, fill
 their documentation by completing or improving the text in these tags:
 
-- `&lt;brief_description&gt;`
-- `&lt;description&gt;`
-- `&lt;constant&gt;`
-- `&lt;method&gt;` (in its `&lt;description&gt;` tag; return types and arguments don't take separate
+- `<brief_description>`
+- `<description>`
+- `<constant>`
+- `<method>` (in its `<description>` tag; return types and arguments don't take separate
   documentation strings)
-- `&lt;member&gt;`
-- `&lt;signal&gt;` (in its `&lt;description&gt;` tag; arguments don't take separate documentation strings)
-- `&lt;constant&gt;`
+- `<member>`
+- `<signal>` (in its `<description>` tag; arguments don't take separate documentation strings)
+- `<constant>`
 
-Write in a clear and simple language. Always follow the :ref:`writing guidelines
-&lt;doc_docs_writing_guidelines&gt;` to keep your descriptions short and easy to read.
+Write in a clear and simple language. Always follow the [writing guidelines](doc_docs_writing_guidelines) 
+to keep your descriptions short and easy to read.
 **Do not leave empty lines** in the descriptions: each line in the XML file will
 result in a new paragraph, even if it is empty.
 
@@ -95,7 +95,7 @@ updates the XML automatically.
 
 :::note
 For some modules in the engine's source code, you'll find the XML
-files in the ``modules/&lt;module_name&gt;/doc_classes/`` directory instead.
+files in the ``modules/<module_name>/doc_classes/`` directory instead.
 
 :::
 
@@ -110,7 +110,7 @@ errors if anything's wrong.
 
 Alternatively, you can build Redot and open the modified page in the built-in
 code reference. To learn how to compile the engine, read the :ref:`compilation
-guide &lt;toc-devel-compiling&gt;`.
+guide <toc-devel-compiling>`.
 
 We recommend using a code editor that supports XML files like Vim, Atom, Visual Studio Code,
 Notepad++, or another to comfortably edit the file. You can also use their
@@ -134,40 +134,40 @@ In the tables below you can find the available tags, usage examples and the resu
 Whenever you link to a member of another class, you need to specify the class name.
 For links to the same class, the class name is optional and can be omitted.
 
-| Tag and Description | Example | Result |
-| --- | --- | --- |
-| ``[Class]`` Link to class | ``Move the [Sprite2D].`` | Move the [class_Sprite2D](/docs/Classes/Sprite2D). |
-| ``[annotation Class.name]`` Link to annotation | ``See [annotation @GDScript.@rpc].`` | See [@GDScript.@rpc](/docs/Classes/@GDScript_annotation_@rpc). |
-| ``[constant Class.name]`` Link to constant | ``See [constant Color.RED].`` | See [Color.RED](/docs/Classes/Color_constant_RED). |
-| ``[enum Class.name]`` Link to enum | ``See [enum Mesh.ArrayType].`` | See [Mesh.ArrayType](enum_Mesh_ArrayType). |
-| ``[member Class.name]`` Link to member | ``Get [member Node2D.scale].`` | Get [Node2D.scale](/docs/Classes/Node2D_property_scale). |
-| ``[method Class.name]`` Link to method | ``Call [method Node3D.hide].`` | Call [Node3D.hide()](/docs/Classes/Node3D_method_hide). |
-| ``[constructor Class.name]`` Link to built-in constructor | ``Use [constructor Color.Color].`` | Use  [Color.Color](/docs/Classes/Color_constructor_Color). |
-| ``[operator Class.name]`` Link to built-in operator | ``Use [operator Color.operator *].`` | Use  [Color.operator *](/docs/Classes/Color_operator_mul_int). |
-| ``[signal Class.name]`` Link to signal | ``Emit [signal Node.renamed].`` | Emit [Node.renamed](/docs/Classes/Node_signal_renamed). |
-| ``[theme_item Class.name]`` Link to theme item | ``See [theme_item Label.font].`` | See [Label.font](/docs/Classes/Label_theme_font_font). |
-| ``[param name]`` Parameter name (as code) | ``Takes [param size] for the size.`` | Takes ``size`` for the size. |
+| Tag and Description                                       | Example                              | Result                                                              |
+|-----------------------------------------------------------|--------------------------------------|---------------------------------------------------------------------|
+| ``[Class]`` Link to class                                 | ``Move the [Sprite2D].``             | Move the [class_Sprite2D](/en/latest/Classes/Sprite2D).             |
+| ``[annotation Class.name]`` Link to annotation            | ``See [annotation @GDScript.@rpc].`` | See [@GDScript.@rpc](/en/latest/Classes/@GDScript_annotation_@rpc). |
+| ``[constant Class.name]`` Link to constant                | ``See [constant Color.RED].``        | See [Color.RED](/en/latest/Classes/Color_constant_RED).             |
+| ``[enum Class.name]`` Link to enum                        | ``See [enum Mesh.ArrayType].``       | See [Mesh.ArrayType](enum_Mesh_ArrayType).                          |
+| ``[member Class.name]`` Link to member                    | ``Get [member Node2D.scale].``       | Get [Node2D.scale](/en/latest/Classes/Node2D_property_scale).       |
+| ``[method Class.name]`` Link to method                    | ``Call [method Node3D.hide].``       | Call [Node3D.hide()](/en/latest/Classes/Node3D_method_hide).        |
+| ``[constructor Class.name]`` Link to built-in constructor | ``Use [constructor Color.Color].``   | Use  [Color.Color](/en/latest/Classes/Color_constructor_Color).     |
+| ``[operator Class.name]`` Link to built-in operator       | ``Use [operator Color.operator *].`` | Use  [Color.operator *](/en/latest/Classes/Color_operator_mul_int). |
+| ``[signal Class.name]`` Link to signal                    | ``Emit [signal Node.renamed].``      | Emit [Node.renamed](/en/latest/Classes/Node_signal_renamed).        |
+| ``[theme_item Class.name]`` Link to theme item            | ``See [theme_item Label.font].``     | See [Label.font](/en/latest/Classes/Label_theme_font_font).         |
+| ``[param name]`` Parameter name (as code)                 | ``Takes [param size] for the size.`` | Takes ``size`` for the size.                                        |
 
 :::note
 
-Currently only [class_@GDScript](/docs/Classes/@GDScript) has annotations.
+Currently only [class_@GDScript](/en/latest/Classes/@GDScript) has annotations.
 
 :::
 
 ##### Formatting text
 
-| Tag and Description | Example | Result |
-| --- | --- | --- |
-| ``[br]`` Line break | ``Line 1.[br]`` ``Line 2.`` | Line 1. Line 2. |
-| ``[lb]`` ``[rb]`` ``[`` and ``]`` respectively | ``[lb]b[rb]text[lb]/b[rb]`` | [b]text[/b] |
-| ``[b]`` ``[/b]`` Bold | ``Do [b]not[/b] call this method.`` | Do **not** call this method. |
-| ``[i]`` ``[/i]`` Italic | ``Returns the [i]global[/i] position.`` | Returns the *global* position. |
-| ``[u]`` ``[/u]`` Underline | ``[u]Always[/u] use this method.`` | .. raw:: html &lt;u&gt;Always&lt;/u&gt; use this method. |
-| ``[s]`` ``[/s]`` Strikethrough | ``[s]Outdated information.[/s]`` | .. raw:: html &lt;s&gt;Outdated information.&lt;/s&gt; |
-| ``[url]`` ``[/url]`` Hyperlink | ``[url]https://example.com[/url]`` ``[url=https://example.com]Website[/url]`` | https://example.com [Website](https://example.com) |
-| ``[center]`` ``[/center]`` Horizontal centering | ``[center]2 + 2 = 4[/center]`` | .. raw:: html &lt;center&gt;2 + 2 = 4&lt;/center&gt; |
-| ``[kbd]`` ``[/kbd]`` Keyboard/mouse shortcut | ``Press [kbd]Ctrl + C[/kbd].`` | Press `Ctrl + C`. |
-| ``[code]`` ``[/code]`` Inline code fragment | ``Returns [code]true[/code].`` | Returns ``true``. |
+| Tag and Description                             | Example                                                                       | Result                                             |
+|-------------------------------------------------|-------------------------------------------------------------------------------|----------------------------------------------------|
+| ``[br]`` Line break                             | ``Line 1.[br]`` ``Line 2.``                                                   | Line 1.<br/>Line 2.                                |
+| ``[lb]`` ``[rb]`` ``[`` and ``]`` respectively  | ``[lb]b[rb]text[lb]/b[rb]``                                                   | [text]                                             |
+| ``[b]`` ``[/b]`` Bold                           | ``Do [b]not[/b] call this method.``                                           | Do **not** call this method.                       |
+| ``[i]`` ``[/i]`` Italic                         | ``Returns the [i]global[/i] position.``                                       | Returns the *global* position.                     |
+| ``[u]`` ``[/u]`` Underline                      | ``[u]Always[/u] use this method.``                                            | <u>Always</u> use this method.                     |
+| ``[s]`` ``[/s]`` Strikethrough                  | ``[s]Outdated information.[/s]``                                              | <s>Outdated information.</s>                       |
+| ``[url]`` ``[/url]`` Hyperlink                  | ``[url]https://example.com[/url]`` ``[url=https://example.com]Website[/url]`` | https://example.com [Website](https://example.com) |
+| ``[center]`` ``[/center]`` Horizontal centering | ``[center]2 + 2 = 4[/center]``                                                | <center>2 + 2 = 4</center>                         |
+| ``[kbd]`` ``[/kbd]`` Keyboard/mouse shortcut    | ``Press [kbd]Ctrl + C[/kbd].``                                                | Press `Ctrl + C`.                                  |
+| ``[code]`` ``[/code]`` Inline code fragment     | ``Returns [code]true[/code].``                                                | Returns ``true``.                                  |
 
 :::note
 
@@ -229,7 +229,7 @@ If you need to have different code version in GDScript and C#, use
 least one of the language-specific tags, ``[gdscript]`` and ``[csharp]``.
 
 Always write GDScript code examples first! You can use this `experimental code
-translation tool &lt;https://github.com/HaSa1002/codetranslator&gt;`_ to speed up your
+translation tool <https://github.com/HaSa1002/codetranslator>`_ to speed up your
 workflow.
 
 ```none

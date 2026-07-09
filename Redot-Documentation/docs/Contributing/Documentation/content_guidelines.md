@@ -28,7 +28,7 @@ should ensure that we cover everything Redot does.
 :::note
 
 When adding or updating an engine feature, the documentation team needs to
-know about it. Contributors should open an issue on the `Redot-docs` repository
+know about it. Contributors should open an issue on the `Redot-Documentation` repository
 when their work gets merged and requires documentation.
 
 :::
