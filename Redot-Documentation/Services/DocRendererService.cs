@@ -36,7 +36,13 @@ public class DocRendererService
 
         if (!File.Exists(fullPath))
         {
-            throw new FileNotFoundException($"Markdown document not found: {documentPath}", fullPath);
+            fullPath = Path.GetFullPath(Path.Combine(versionProvider.VersionRoot, normalizedPath));
+            if (!fullPath.StartsWith(docsRootPath, StringComparison.OrdinalIgnoreCase))
+            {
+                throw new InvalidOperationException("Document path points outside the docs directory.");
+            }
+            if (!File.Exists(fullPath))
+                throw new FileNotFoundException($"Markdown document not found: {documentPath}", fullPath);
         }
 
         var markdown = await File.ReadAllTextAsync(fullPath, cancellationToken);
