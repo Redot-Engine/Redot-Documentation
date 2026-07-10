@@ -34,7 +34,7 @@ you work towards that goal.
 
 :::info
 
-See the [content guidelines](content_guidelines.md) for information
+See the [content guidelines](doc_content_guidelines) for information
 on the types of documentation you can write in the official documentation.
 
 :::
@@ -46,8 +46,6 @@ on the types of documentation you can write in the official documentation.
 Use the active voice when possible. Take the classes, methods, and
 constants you describe as the subject. It's natural to write using the
 passive voice, but it's harder to read and produces longer sentences.
-
-.. highlight:: none
 
 Passive:
 
@@ -475,7 +473,7 @@ should always use them instead of synonyms, so the users know what
 you're talking about.
 
 <figure>
-  <img src="/Contributing/Documentation/img/editor-vocabulary-overview.png" alt="Overview of the interface and common vocabulary" />
+  <img src="/img/Contributing/Documentation/editor-vocabulary-overview.png" alt="Overview of the interface and common vocabulary" />
   <figcaption>
     Overview of the interface and common vocabulary
   </figcaption>
@@ -504,12 +502,12 @@ class names, which you can't fold, are ``Classes`` e.g. the
 
 ## Keyboard shortcut guidelines
 
-Keyboard and mouse shortcuts should make use of the ``:kbd:`` tag, which allows
-shortcuts to stand out from the rest of the text and inline code. Use the
-compact form for modifier keys (`Ctrl`/`Cmd`) instead of their spelled
+Keyboard and mouse shortcuts should be written with inline code tags. 
+Use the compact form for modifier keys (`Ctrl`/`Cmd`) instead of their spelled
 out form (`Control`/`Command`). For combinations, use the ``+`` symbol
 with a space on either side of the symbol.
 
+<!-- TODO: Update link below after adding versioned tutorials section -->
 Make sure to mention shortcuts that differ on macOS compared to other platforms.
 You can find a list of all shortcuts, including what they are on macOS, on
 [this page](../../tutorials/editor/default_key_mapping.md).
@@ -540,13 +538,13 @@ since every change will require the paragraph to be re-translated.
 
 There are a few styles that the manual uses.
 
-| Style | RST formatting | Typical usage |
-| --- | --- | --- |
-| Plaintext | ``text`` | Used for most text. |
-| *Italics* | ``*text*`` | Used for emphasis. Used for introducing new terms. |
-| **Bold** | ``**text**`` | Used for emphasis, and for editor UI like menus and windows. |
-| ``Code`` | `` text `` | Used for variable names, literal values, and code snippets. ``code`` is used in many cases where you would use "quoted plaintext" in typical English. |
-| "Quotes" | ``"text"`` | Used for some literal or quoted values. In many cases, another style is preferred. |
+| Style     | Markdown formatting | Typical usage                                                                                                                                         |
+|-----------|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Plaintext | `text`              | Used for most text.                                                                                                                                   |
+| *Italics* | `*text*`            | Used for emphasis. Used for introducing new terms.                                                                                                    |
+| **Bold**  | `**text**`          | Used for emphasis, and for editor UI like menus and windows.                                                                                          |
+| `Code`    | `` `text` ``        | Used for variable names, literal values, and code snippets. `code` is used in many cases where you would use "quoted plaintext" in typical English. |
+| "Quotes"  | `"text"`            | Used for some literal or quoted values. In many cases, another style is preferred.                                                                    |
 
 ### Emphasis
 
@@ -676,46 +674,23 @@ your ``settings.json`` to add rulers at 80 and 100 characters:
 
 ### Section header syntax
 
-Use the following syntax for section headers:
+Use Markdown headings for section headers:
 
-```
-Page title
-==========
+```markdown
+# Page title
 
-Renders as h1.
-Every page has this.
+## Section header
 
-Section header
---------------
+### Sub-section header
 
-Renders as h2.
-Usually appears in sidebar. Many pages only need one level of nested headers.
-
-Sub-section header
-~~~~~~~~~~~~~~~~~~
-
-Renders as h3.
-Appears in sidebar in some pages, depending on how deeply nested the page is.
-
-Sub-sub-section header
-^^^^^^^^^^^^^^^^^^^^^^
-
-Renders as h4.
-Usually won't appear in the sidebar.
-
+#### Sub-sub-section header
 ```
 
-Currently, there are no cases of deeper header nesting than this. Avoid
-introducing any deeper nesting.
+Most pages should stay within four heading levels. Avoid introducing deeper
+nesting unless there is a clear structural need.
 
-Note that headers have no inherent meaning. In reStructuredText, headers are
-parsed based on the order that they initially appear within a page. Make sure
-that if you use an ``h3`` section header (``~~~``), you include an ``h2``
-sub-section header (``---``) first.
-
-See the [Sphinx documentation](https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#sections)
-and the [reStructuredText documentation](https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html#sections)
-for more information.
+Use heading levels in order. For example, add a ``##`` heading before adding
+a ``###`` heading in the same page section.
 
 ## When to refer to a specific Redot version
 

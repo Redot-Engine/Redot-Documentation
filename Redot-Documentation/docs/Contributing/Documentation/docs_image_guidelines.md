@@ -61,7 +61,7 @@ For a screenshot of a 2D or 3D scene in the editor, the above steps will be enou
 But for most UI images some extra work should be done, specifically cropping to
 make an image look clean. Below is an example of good cropping.
 
-![Image](img/cropped_image.webp)
+![Image](/img/Contributing/Documentation/cropped_image.webp)
 
 For cropping Krita is the recommended program. While some screenshot programs do
 have cropping built-in it's not always easy to get something precise. And while
@@ -73,17 +73,17 @@ on Linux you may also be able to download it from your distributions repository,
 flathub is also an option. Once it's installed on your computer open Krita then
 open the image you want to crop. This button on the left panel is the crop tool.
 
-![Image](img/crop_tool.webp)
+![Image](/img/Contributing/Documentation/crop_tool.webp)
 
 After selecting it, click on the image, you should now have cropping tools available.
 
-![Image](img/crop_edit.webp)
+![Image](/img/Contributing/Documentation/crop_edit.webp)
 
 Click and drag the white boxes to adjust what gets cropped, if you zoom in close
 to the image you will see the individual pixels in an image, which is useful for
 precision.
 
-![Image](img/crop_pixels.webp)
+![Image](/img/Contributing/Documentation/crop_pixels.webp)
 
 If you make a mistake and overcrop don't worry, cropping is non-destructive in
 Krita and can be adjusted. Click on the image with your cropping tool still selected
@@ -142,11 +142,11 @@ Once you've finished working on your image, it can be added to the documentation
 All images are stored in folders named ``img`` next to the page they are used in.
 
 To add your image, add it to the ``img`` folder that's in the same folder as the
-``.rst`` file for the page (create it if it doesn't exist). In the ``.rst`` page,
-images should be included with the following code snippet
+``.md`` file for the page (create it if it doesn't exist). In the ``.md`` page,
+images should be included with Markdown image syntax:
 
-```
-.. image:: img/documentation_image.webp
+```markdown
+![Descriptive alt text](img/documentation_image.webp)
 
 ```
 
@@ -171,7 +171,7 @@ to record the entire screen, a specific window or a predetermined rectangle.
 The recommended framerate for video recordings is 60 FPS, although you can use
 30 FPS for longer videos to reduce their file size. For fullscreen videos,
 use a resolution of 1280×720.
-
+<!-- TODO: update movie maker link. Requires a functional versioned tutorial section -->
 :::note
 
 Redot's [Movie Maker mode](../../tutorials/animation/creating_movies.md) can be used to record
@@ -230,21 +230,24 @@ Once you've finished working on your video, it can be added to the documentation
 All videos are stored in folders named ``video`` next to the page they are used in.
 
 To add your video, add it to the ``video`` folder that's in the same folder as the
-``.rst`` file for the page (create it if it doesn't exist). In the ``.rst`` page,
-videos should be included with the following code snippet
+``.md`` file for the page (create it if it doesn't exist). In the ``.md`` page,
+videos should be included with HTML:
+
+```html
+<video autoplay loop muted playsinline>
+  <source src="video/csg_tools.webm" type="video/webm" />
+</video>
 
 ```
-.. video:: video/csg_tools.webm
-   :alt: Put a text description of the video here
-   :autoplay:
-   :loop:
-   :muted:
 
-```
-
-Where ``documentation_video.webp`` would be changed to the name of the video you
+Where ``documentation_video.webm`` would be changed to the name of the video you
 created. Name your videos in a way that makes their meaning clear, possibly with
 a prefix that makes their relationship to a documentation page explicit.
 
-The ``:autoplay:``, ``:loop:`` and ``:muted:`` flags should always be specified
-unless the video needs to play audio. In this case, do not specify *any* of these flags.
+:::note
+
+The ``autoplay``, ``loop`` and ``muted`` attributes should always be specified
+unless the video needs to play audio. In that case, omit those attributes and
+add ``controls`` so readers can play/pause and adjust volume.
+
+:::

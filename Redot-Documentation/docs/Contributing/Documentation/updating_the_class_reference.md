@@ -1,7 +1,16 @@
+:::danger
+
+This page is severely outdated and was written by the Godot team specifically for Sphinx.<br/>
+This docs site is not using Spinx, so none of the content on this page is currently applicable.<br/><br/>
+However, this page still exists as a placeholder for now.<br/>
+The new documentation site does not yet have the ability to sync the class reference with the main Redot repository.<br/>
+The new site will eventually just pull the corresponding XML files from the Redot repository dynamically.<br/><br/>
+We will update this page accordingly once that functionality is implemented.
+
+:::
 
 # Contributing to the class reference
 
-.. highlight:: shell
 
 The [Class reference](doc_class_reference) is a set of articles describing
 the public API of the engine. This includes descriptions for various classes,

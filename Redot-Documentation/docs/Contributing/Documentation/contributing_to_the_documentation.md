@@ -164,7 +164,7 @@ Your code here
 
 For callouts such as notes, tips, and warnings, use the container blocks used
 throughout this documentation:
-
+<!-- Note, this is written out this way to escape the callout blocks. They are implemented using Regex, and need to be escaped -->
 <pre><code class="language-markdown">
 :::<i></i>note
 Your note here.
