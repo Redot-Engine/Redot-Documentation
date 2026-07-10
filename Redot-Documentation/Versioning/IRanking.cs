@@ -55,10 +55,9 @@ public interface IRanking : IComparable<IRanking>
     public string GetDisplayName()
     {
         string temp = Name.Replace('_', ' ');
-        int extensionLoc = temp.LastIndexOf('.');
-        if (extensionLoc > -1)
+        if (temp.EndsWith(".md", StringComparison.OrdinalIgnoreCase))
         {
-            temp = temp.Substring(0, extensionLoc);
+            temp = temp[..^3];
         }
         temp = temp.Trim();
         StringBuilder builder = new StringBuilder(temp.Length);

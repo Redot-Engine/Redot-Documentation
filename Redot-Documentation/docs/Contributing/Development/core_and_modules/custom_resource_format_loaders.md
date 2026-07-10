@@ -196,15 +196,17 @@ Error JsonResource::load_file(const String &p_path) {
     while (!file->eof_reached()) {
         json_string += file->get_line();
     }
-    file->close();
-
     String error_string;
     int error_line;
     JSON json;
     Variant result;
     error = json.parse(json_string, result, error_string, error_line);
     if (error != OK) {
-        file->close();
+        return error;
+    }
+
+    content = Dictionary(result);
+    file->close();
         return error;
     }
 

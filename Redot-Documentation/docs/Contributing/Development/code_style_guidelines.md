@@ -153,7 +153,7 @@ ones, the following rules should be followed:
   separation.
 - Finally, third-party headers (either from ``thirdparty`` or from the system's
   include paths) come next and should be included with the &lt; and &gt; symbols, e.g.
-  `[#include](png.h)`. The block of third-party headers should also be followed
+  `#include <png.h>`. The block of third-party headers should also be followed
   by an empty line for separation.
 - Redot and third-party headers should be included in the file that requires
   them, i.e. in the `.h` header if used in the declarative code or in the `.cpp`
