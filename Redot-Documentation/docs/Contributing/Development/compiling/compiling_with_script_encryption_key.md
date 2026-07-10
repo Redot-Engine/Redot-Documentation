@@ -1,6 +1,3 @@
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
-
 # Compiling with PCK encryption key
 
 .. highlight:: shell

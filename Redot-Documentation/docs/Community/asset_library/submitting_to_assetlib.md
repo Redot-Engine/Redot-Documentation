@@ -1,6 +1,3 @@
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
-
 :::note
 
 The asset library is maintained upstream by Godot.

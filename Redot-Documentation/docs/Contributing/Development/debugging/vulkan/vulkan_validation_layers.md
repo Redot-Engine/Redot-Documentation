@@ -1,6 +1,3 @@
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
-
 # Validation layers
 
 Validation layers enable developers to verify their application's correct use of

@@ -1,6 +1,3 @@
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
-
 # Compiling for Linux, \*BSD
 
 .. highlight:: shell

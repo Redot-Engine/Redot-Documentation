@@ -1,6 +1,3 @@
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
-
 # Class reference primer
 
 This page explains how to write the class reference. You will learn where to

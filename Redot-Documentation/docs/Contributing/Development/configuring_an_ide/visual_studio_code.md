@@ -1,6 +1,3 @@
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
-
 # Visual Studio Code
 
 [Visual Studio Code](https://code.visualstudio.com) is a free cross-platform code editor
