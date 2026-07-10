@@ -1,7 +1,7 @@
 :::danger
 
 This page is severely outdated and was written by the Godot team specifically for Sphinx.<br/>
-This docs site is not using Spinx, so none of the content on this page is currently applicable.<br/><br/>
+This docs site is not using Sphinx, so none of the content on this page is currently applicable.<br/><br/>
 However, this page still exists as a placeholder for now.<br/>
 The new documentation site does not yet have the ability to sync the class reference with the main Redot repository.<br/>
 The new site will eventually just pull the corresponding XML files from the Redot repository dynamically.<br/><br/>
