@@ -1,8 +1,6 @@
 
 # Compiling for Windows
 
-.. highlight:: shell
-
 :::info
 
 This page describes how to compile Windows editor and export template binaries from source.

@@ -1,7 +1,5 @@
 # Compiling with PCK encryption key
 
-.. highlight:: shell
-
 The export dialog gives you the option to encrypt your PCK file with a 256-bit
 AES key when releasing your project. This will make sure your scenes, scripts
 and other resources are not stored in plain text and can not easily be ripped

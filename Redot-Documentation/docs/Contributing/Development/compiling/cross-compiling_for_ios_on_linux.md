@@ -1,8 +1,6 @@
 
 # Cross-compiling for iOS on Linux
 
-.. highlight:: shell
-
 The procedure for this is somewhat complex and requires a lot of steps,
 but once you have the environment properly configured you can
 compile Redot for iOS anytime you want.

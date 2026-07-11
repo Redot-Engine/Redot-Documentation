@@ -1,7 +1,5 @@
 # Compiling for Linux, \*BSD
 
-.. highlight:: shell
-
 :::info
 
 This page describes how to compile Linux editor and export template binaries from source.

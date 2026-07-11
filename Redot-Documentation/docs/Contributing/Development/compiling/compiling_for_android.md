@@ -1,8 +1,6 @@
 
 # Compiling for Android
 
-.. highlight:: shell
-
 :::info
 
 This page describes how to compile Android export template binaries from source.

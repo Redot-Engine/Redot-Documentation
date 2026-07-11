@@ -1,8 +1,6 @@
 
 # Optimizing a build for size
 
-.. highlight:: shell
-
 ## Rationale
 
 Sometimes, it is desired to optimize a build for size rather than speed.

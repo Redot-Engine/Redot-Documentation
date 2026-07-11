@@ -1,8 +1,6 @@
 
 # Bisecting regressions
 
-.. highlight:: shell
-
 Bisecting is a way to find regressions in software. After reporting a bug on the
 [Redot repository on GitHub](https://github.com/redot-engine/redot), you may
 be asked by a contributor to *bisect* the issue. Bisecting makes it possible for

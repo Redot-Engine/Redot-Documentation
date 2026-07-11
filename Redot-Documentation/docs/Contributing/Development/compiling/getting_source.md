@@ -1,8 +1,6 @@
 
 # Getting the source
 
-.. highlight:: shell
-
 ## Downloading the Redot source code
 
 Before [getting into the SCons build system](introduction_to_the_buildsystem.md)

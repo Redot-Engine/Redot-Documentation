@@ -8,8 +8,6 @@ If you're looking to export your project to HTML5 instead, read [doc_exporting_f
 
 :::
 
-.. highlight:: shell
-
 ## Requirements
 
 To compile export templates for the Web, the following is required:

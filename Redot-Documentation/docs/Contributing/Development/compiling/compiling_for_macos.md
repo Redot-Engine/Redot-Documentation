@@ -1,8 +1,6 @@
 
 # Compiling for macOS
 
-.. highlight:: shell
-
 :::note
 
 This page describes how to compile macOS editor and export template binaries from source.

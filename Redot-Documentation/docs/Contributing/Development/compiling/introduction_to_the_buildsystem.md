@@ -1,7 +1,5 @@
 # Introduction to the buildsystem
 
-.. highlight:: shell
-
 Redot is a primarily C++ project and it [uses the SCons build system.](doc_faq_why_scons)
 We love SCons for how maintainable and easy to set up it makes our buildsystem. And thanks to
 that compiling Redot from source can be as simple as running

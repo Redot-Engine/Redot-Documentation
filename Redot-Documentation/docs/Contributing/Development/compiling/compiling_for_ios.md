@@ -1,8 +1,6 @@
 
 # Compiling for iOS
 
-.. highlight:: shell
-
 :::info
 
 This page describes how to compile iOS export template binaries from source.

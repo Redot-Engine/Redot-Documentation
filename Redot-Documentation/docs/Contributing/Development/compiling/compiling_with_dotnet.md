@@ -1,8 +1,6 @@
 
 # Compiling with .NET
 
-.. highlight:: shell
-
 ## Requirements
 
 - [.NET SDK 8.0+](https://dotnet.microsoft.com/download)
