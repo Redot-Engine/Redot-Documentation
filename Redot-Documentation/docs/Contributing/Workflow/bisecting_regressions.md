@@ -24,16 +24,16 @@ Before using Git's ``bisect`` command, we strongly recommend trying to reproduce
 the bug with an older (or newer) official release. This greatly reduces the
 range of commits that potentially need to be built from source and tested.
 You can find binaries of official releases, as well as alphas, betas,
-and release candidates [here](https://downloads.tuxfamily.org/Redotengine/).
+and release candidates [here](https://github.com/Redot-Engine/redot-engine/releases).
 
-If you have experience with Redot 3.x and can reproduce an issue with Redot 4.0,
-we recommend trying to reproduce the issue in the latest Redot 3.x version (if
-the feature exhibiting the bug is present in 3.x). This can be used to check
-whether the issue is a regression in 4.0 or not.
+If you have experience with Godot 4.x and can reproduce an issue with Redot 26.2,
+we recommend trying to reproduce the issue in the latest Godot 4.x version (if
+the feature exhibiting the bug is present in 4.x). This can be used to check
+whether the issue is a regression in 26.2 or not.
 
-- If the issue **is present** in 3.x, then you'll need to check whether the issue
-  occurs in older 3.x versions as well.
-- If the issue is **not present** in 3.x, then you can try older 4.0 alphas and
+- If the issue **is present** in 26.x, then you'll need to check whether the issue
+  occurs in older 26.x versions as well.
+- If the issue is **not present** in 26.x, then you can try older 26.2 alphas and
   betas to determine when the regression started.
 
 :::danger
@@ -62,7 +62,7 @@ reproduce the bug.
 
 Before bisecting a regression, you need to set up a build environment to
 compile Redot from source. To do so, read the
-[Compiling](toc-devel-compiling) page for your target platform.
+[Compiling](doc_introduction_to_the_buildsystem) page for your target platform.
 (Compiling Redot from source doesn't require C++ programming knowledge.)
 
 Note that compiling Redot can take a while on slow hardware (up an hour for
@@ -78,13 +78,15 @@ another contributor can continue bisecting from there.
 To start bisecting, you must first determine the commit hashes (identifiers) of
 the "bad" and "good" build. "bad" refers to the build that exhibits the bug,
 whereas "good" refers to the version that doesn't exhibit the bug. If you're
-using a pre-release build as the "good" or "bad" build, browse the `download
-mirror &lt;https://downloads.tuxfamily.org/Redotengine/&gt;`__, go to the folder that
-contains the pre-release you downloaded and look for the ``README.txt`` file.
-The commit hash is written inside that file.
+using a pre-release build as the "good" or "bad" build, browse the
+[download mirror](https://github.com/Redot-Engine/redot-engine/releases), go to
+the folder that contains the pre-release you downloaded and look for the
+``README.txt`` file. The commit hash is written inside that file.
 
 If you're using a stable release as the "good" or "bad" build, use one of the
 following commit hashes depending on the version:
+
+# TODO
 
 ```none
 4.1.1-stable
@@ -138,7 +140,7 @@ hashes, ``master`` is a perpetually moving target.
 
 ### Build the engine
 
-[Get Redot's source code using Git](../Development/compiling/getting_source.md). Once this
+[Get Redot's source code using Git](doc_getting_source). Once this
 is done, in the terminal window, use ``cd`` to reach the Redot repository
 folder and enter the following command:
 
@@ -164,7 +166,8 @@ Run the binary located in the ``bin/`` folder and try to reproduce the bug.
 
 :::note
 
-[Double-check the output file name](doc_introduction_to_the_buildsystem_resulting_binary)
+# TODO(Tekk): doc_introduction_to_the_buildsystem -> resulting_binary subheading
+[Double-check the output file name](doc_introduction_to_the_buildsystem)
 in ``bin/`` to make sure you're actually running the binary you've just compiled.
 Different Redot versions will output binaries with different names.
 

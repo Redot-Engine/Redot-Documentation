@@ -27,13 +27,14 @@ following:
   4. Another maintainer reviews the code with a focus on code style/clarity and
      approves it once satisfied.
 
-  5. A team leader or a member of the `production team
-     &lt;https://redotengine.org/teams#production&gt;`_ merges the pull request if
-     satisfied that it has been sufficiently reviewed.
+  # TODO(Tekk): https://redotengine.org/teams#production does not exist
+
+  5. A team leader or a member of the [production team](https://redotengine.org/teams#production)
+     merges the pull request if satisfied that it has been sufficiently reviewed.
 
 This document will explain steps 2, 3, 4, and 5 in more detail. For a more
-detailed explanation of the pull request workflow please see the :ref:`pull
-request workflow document &lt;doc_pr_workflow&gt;`.
+detailed explanation of the pull request workflow please see the [pull
+request workflow document](doc_pr_workflow).
 
 :::note
 
@@ -47,6 +48,7 @@ Typically the first interaction on a pull request will be an engine maintainer
 assigning tags to the pull request and flagging it for review by someone
 familiar with that area of code.
 
+# TODO(Tekk): https://redotengine.org/teams does not exist
 Engine maintainers are folks who are "members" of the Redot project repository
 on GitHub and/or are listed on the [Teams page](https://redotengine.org/teams)
 on the Redot website. Maintainers are responsible for a given area of the
@@ -143,6 +145,8 @@ Here are some things to think about and look out for as you review the code:
 
 ### 4. Iterate with the contributor and improve the PR
 
+# TODO(Tekk): code_style_review.md does not exist
+
 Maintainers should provide feedback and suggestions for improvement if they spot
 things in the code that they would like changed. Preferably, suggestions should
 come in order of importance: first, address overall code design and the approach
@@ -159,8 +163,11 @@ want to avoid stringing people along because it feels bad to say "sorry, no".
 
 :::
 
-As you review pull requests, keep the Redot `Code of Conduct
-&lt;https://redotengine.org/code-of-conduct&gt;`_ in mind. Especially the following:
+# TODO(Tekk): Delete almost everything here? Redot doesn't have code of conduct
+
+As you review pull requests, keep the Redot
+[Code of Conduct](https://redotengine.org/code-of-conduct) in mind.
+Especially the following:
 
 * Politeness is expected at all times. Be kind and courteous.
 
@@ -193,11 +200,11 @@ contributor:
   within scope, but try to keep the scope as close to the original pull request
   as possible.
 
+# TODO(Tekk): https://chat.redotengine.org/ does not exist
 And ultimately, don't feel pressured to deal with the PR all alone. Feel free to
-ask for a helping hand on the `Redot Contributors Chat
-&lt;https://chat.redotengine.org&gt;`_, in the appropriate channel or in #general.
-Other teams may already be tagged for review, so you can also wait or ask for
-their assistance.
+ask for a helping hand on the [Redot Contributors Chat](https://chat.redotengine.org/),
+in the appropriate channel or in #general. Other teams may already be tagged for
+review, so you can also wait or ask for their assistance.
 
 ### 5. Approve the pull request
 
