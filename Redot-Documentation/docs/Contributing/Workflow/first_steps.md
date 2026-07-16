@@ -37,6 +37,7 @@ A good place to start is by searching for issues tagged as
 on GitHub.
 
 :::info
+
 Technical details about the PR workflow are outlined in a
 specific section, [doc_pr_workflow](doc_pr_workflow).
 
@@ -57,10 +58,10 @@ To make sure that your time and efforts aren't wasted, it is recommended to vet 
 first before implementing it and putting it for a review as a PR. To that end, Redot
 has a [proposal system](https://github.com/redot-engine/redot-proposals). Its
 usage is encouraged to plan changes and discuss them with the community. Implementation
-# TODO(Tekk): https://chat.redotengine.org/ doesn't exist
-details can also be discussed with other contributors on the [Redot Contributors Chat](https://chat.redotengine.org/).
+details can also be discussed with other contributors on the [Redot Discord Server](https://discord.com/invite/redot).
 
 :::note
+
 Proposals are only required when working on an enhancement or a new feature.
 Bug reports are sufficient for fixing issues.
 
@@ -106,8 +107,8 @@ There are two separate resources referred to as "documentation" in Redot:
 
 - **The class reference.** This is the documentation for the complete Redot API
   as exposed to GDScript and the other scripting languages. It can be consulted
-  # TODO(Tekk): class_reference.md doesnt exist
-  # TODO(Tekk): does this need to be re-written for current site?
+  <!-- TODO(Tekk): class_reference.md doesnt exist -->
+  <!-- TODO(Tekk): does this need to be re-written for current site? -->
   offline, directly in Redot's code editor, or online at Redot [Class Reference](doc_class_reference).
   To contribute to the class reference, you have to edit the
   XML file corresponding to the class and make a pull request.

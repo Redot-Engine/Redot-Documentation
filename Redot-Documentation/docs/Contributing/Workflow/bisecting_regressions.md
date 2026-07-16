@@ -86,7 +86,7 @@ the folder that contains the pre-release you downloaded and look for the
 If you're using a stable release as the "good" or "bad" build, use one of the
 following commit hashes depending on the version:
 
-# TODO
+<!-- TODO(Tekk): Need to add only existing commit hashes for redot -->
 
 ```none
 4.1.1-stable
@@ -118,9 +118,10 @@ following commit hashes depending on the version:
 You can also use this Bash function to retrieve the Git commit hash of a
 pre-release build (add it to your ``$HOME/.bashrc`` or similar):
 
-```
-gd_snapshot_commit() {
-    curl -s https://downloads.tuxfamily.org/Redotengine/$1/$2/README.txt \
+<!-- TODO(Tekk): we dont have a mirror, this needs to be replaced by using gits release page or something -->
+```shell
+rd_snapshot_commit() {
+    curl -s https://downloads.tuxfamily.org/redot-engine/$1/$2/README.txt \
         | grep 'from commit' \
         | sed 's/^Built from commit \(.*\)\.$/\1/'
 }
@@ -130,7 +131,7 @@ gd_snapshot_commit() {
 Example usage:
 
 ```shell
-gd_snapshot_commit 4.0 beta4
+rd_snapshot_commit 4.0 beta4
 
 ```
 
@@ -166,8 +167,7 @@ Run the binary located in the ``bin/`` folder and try to reproduce the bug.
 
 :::note
 
-# TODO(Tekk): doc_introduction_to_the_buildsystem -> resulting_binary subheading
-[Double-check the output file name](doc_introduction_to_the_buildsystem)
+[Double-check the output file name](doc_introduction_to_the_buildsystem#resulting_binary)
 in ``bin/`` to make sure you're actually running the binary you've just compiled.
 Different Redot versions will output binaries with different names.
 
