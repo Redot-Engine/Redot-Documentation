@@ -26,14 +26,14 @@ range of commits that potentially need to be built from source and tested.
 You can find binaries of official releases, as well as alphas, betas,
 and release candidates [here](https://github.com/Redot-Engine/redot-engine/releases).
 
-If you have experience with Godot 4.x and can reproduce an issue with Redot 26.2,
+If you have experience with Godot 4.x and can reproduce an issue with Redot 26.x,
 we recommend trying to reproduce the issue in the latest Godot 4.x version (if
 the feature exhibiting the bug is present in 4.x). This can be used to check
-whether the issue is a regression in 26.2 or not.
+whether the issue is a regression in 26.x or not.
 
 - If the issue **is present** in 26.x, then you'll need to check whether the issue
   occurs in older 26.x versions as well.
-- If the issue is **not present** in 26.x, then you can try older 26.2 alphas and
+- If the issue is **not present** in 26.x, then you can try older 26.x alphas and
   betas to determine when the regression started.
 
 :::danger
@@ -86,52 +86,12 @@ the folder that contains the pre-release you downloaded and look for the
 If you're using a stable release as the "good" or "bad" build, use one of the
 following commit hashes depending on the version:
 
-<!-- TODO(Tekk): Need to add only existing commit hashes for redot -->
-
 ```none
-4.1.1-stable
-4.1-stable
-4.0.3-stable
-4.0.2-stable
-4.0.1-stable
-4.0-stable
-3.5.2-stable
-3.5.1-stable
-3.5-stable
-3.4.5-stable
-3.4.4-stable
-3.4.3-stable
-3.4.2-stable
-3.4.1-stable
-3.4-stable
-3.3.4-stable
-3.3.3-stable
-3.3.2-stable
-3.3.1-stable
-3.3-stable
-3.2-stable
-3.1-stable
-3.0-stable
-
-```
-
-You can also use this Bash function to retrieve the Git commit hash of a
-pre-release build (add it to your ``$HOME/.bashrc`` or similar):
-
-<!-- TODO(Tekk): we dont have a mirror, this needs to be replaced by using gits release page or something -->
-```shell
-rd_snapshot_commit() {
-    curl -s https://downloads.tuxfamily.org/redot-engine/$1/$2/README.txt \
-        | grep 'from commit' \
-        | sed 's/^Built from commit \(.*\)\.$/\1/'
-}
-
-```
-
-Example usage:
-
-```shell
-rd_snapshot_commit 4.0 beta4
+4.3-stable
+4.3.1-stable
+4.4-stable
+26.1-stable
+26.2-stable
 
 ```
 

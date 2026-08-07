@@ -27,9 +27,8 @@ following:
   4. Another maintainer reviews the code with a focus on code style/clarity and
      approves it once satisfied.
 
-  <!-- TODO(Tekk): https://redotengine.org/teams#production does not exist -->
-  5. A team leader or a member of the [production team](https://redotengine.org/teams#production)
-     merges the pull request if satisfied that it has been sufficiently reviewed.
+  5. A repository maintainer merges the pull request if satisfied that it has
+     been sufficiently reviewed.
 
 This document will explain steps 2, 3, 4, and 5 in more detail. For a more
 detailed explanation of the pull request workflow please see the
@@ -47,12 +46,11 @@ Typically the first interaction on a pull request will be an engine maintainer
 assigning tags to the pull request and flagging it for review by someone
 familiar with that area of code.
 
-<!-- TODO(Tekk): https://redotengine.org/teams does not exist -->
 Engine maintainers are folks who are "members" of the Redot project repository
-on GitHub and/or are listed on the [Teams page](https://redotengine.org/teams)
-on the Redot website. Maintainers are responsible for a given area of the
-engine. Typically this means they are the people who are given more trust to
-approve and recommend pull requests for merging.
+on GitHub and/or have the Project Manager role in the [discord server](https://discord.com/invite/redot).
+Maintainers are responsible for a given area of the engine. Typically this
+means they are the people who are given more trust to approve and recommend
+pull requests for merging.
 
 Even if you are not a maintainer, you can still help by reviewing code,
 providing feedback on PRs and testing PRs locally on your machine to confirm
@@ -364,7 +362,6 @@ out more broadly to ask for help reviewing. Consider asking:
 
 * **Validate the target branch of the PR.**
 
-<!-- TODO(Tekk): review versioning -->
   Most Redot development happens around in the ``master`` branch. Therefore most
   pull requests must be made against it. From there pull requests can then be
   backported to other branches. Be wary of people making PRs on the version they

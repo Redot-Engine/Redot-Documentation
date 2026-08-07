@@ -52,7 +52,6 @@ You can also try out [GitHub's interactive guide](https://try.github.io/).
 
 The branches on the Git repository are organized as follows:
 
-<!-- TODO(Tekk): review versioning -->
 -  The ``master`` branch is where the development of the next major version
    occurs. As a development branch, it can be unstable
    and is not meant for use in production. This is where PRs should be done
@@ -77,12 +76,12 @@ repository on GitHub. To do so, you will need to have a GitHub account and to
 be logged in. In the top right corner of the repository's GitHub page, you
 should see the "Fork" button as shown below:
 
-![Image](img/Contributing/Workflow/github_fork_button.png)
+![Image](/img/Contributing/Workflow/github_fork_button.png)
 
 Click it, and after a while you should be redirected to your own fork of the
 Redot repo, with your GitHub username as namespace:
 
-![Image](img/Contributing/Workflow/github_fork_url.png)
+![Image](/img/Contributing/Workflow/github_fork_url.png)
 
 You can then *clone* your fork, i.e. create a local copy of the online
 repository (in Git speak, the *origin remote*). If you haven't already,
@@ -250,11 +249,10 @@ changes are easy to review and understand long after they have been merged.
 
 :::
 
-<!-- TODO(Tekk): doc_pr_workflow_rebase doesnt exist -->
 If you have already created a merge commit without using ``rebase``, or
 have made any other changes that have resulted in undesired history, the best option
 is to use an *interactive rebase* on the upstream branch. See the
-[dedicated section](doc_pr_workflow_rebase) for instructions.
+[dedicated section](doc_pr_workflow#the_interactive_rebase) for instructions.
 
 :::tip
 
@@ -285,7 +283,6 @@ bring changes from the working directory to the Git repository, you need to
 There are various commands you should know to review your current work,
 before staging it, while it is staged, and after it has been committed.
 
-<!-- TODO(Tekk): review if commands are correct -->
 - ``git diff`` will show you the current unstaged changes, i.e. the
   differences between your working directory and the staging area.
 - ``git checkout -- (files)`` will undo the unstaged changes to the given
@@ -387,7 +384,7 @@ When you load your fork's branch on GitHub, you should see a line saying
 commits behind, if your ``master`` branch was out of sync with the upstream
 ``master`` branch).
 
-![Image](img/Contributing/Workflow/github_fork_make_pr.png)
+![Image](/img/Contributing/Workflow/github_fork_make_pr.png)
 
 On that line, there is a "Pull request" link. Clicking it will open a form
 that will let you issue a pull request on the ``redot-engine/redot-engine`` upstream

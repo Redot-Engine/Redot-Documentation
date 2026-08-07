@@ -107,13 +107,10 @@ There are two separate resources referred to as "documentation" in Redot:
 
 - **The class reference.** This is the documentation for the complete Redot API
   as exposed to GDScript and the other scripting languages. It can be consulted
-  <!-- TODO(Tekk): class_reference.md doesnt exist -->
-  <!-- TODO(Tekk): does this need to be re-written for current site? -->
-  offline, directly in Redot's code editor, or online at Redot [Class Reference](doc_class_reference).
+  offline, directly in Redot's code editor, or online at Redot [Class Reference](doc_class_reference_primer).
   To contribute to the class reference, you have to edit the
   XML file corresponding to the class and make a pull request.
-  See [doc_updating_the_class_reference](doc_updating_the_class_reference) and [doc_class_reference_primer](doc_class_reference_primer)
-  for more details.
+  See [doc_updating_the_class_reference](doc_updating_the_class_reference) for more details.
 
 - **The tutorials and engine documentation and its translations.**
   This is the part you are reading now, which is distributed in the HTML format.
