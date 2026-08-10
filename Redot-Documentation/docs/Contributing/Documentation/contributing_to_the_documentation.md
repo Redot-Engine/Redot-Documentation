@@ -14,19 +14,22 @@ languages, read [editor_and_docs_localization](doc_editor_and_docs_localization)
 ## Getting started
 
 To modify or create pages in the reference manual, you need to edit ``.md``
-files in the [Redot-Documentation GitHub repository](https://github.com/redot-engine/redot-docs-site).
+files in the [Redot-Documentation GitHub repository](https://github.com/Redot-Engine/Redot-Documentation).
 Modifying those pages in a pull request triggers a rebuild of the online documentation upon merging.
 
 :::info
+
 For details on Git usage and the pull request workflow, please
-refer to the [PR Workflow](../Workflow/doc_pr_workflow) page. Most of what it describes
+refer to the [PR Workflow](doc_pr_workflow) page. Most of what it describes
 regarding the main Redotengine/Redot repository is also valid for
 the docs repository.
 
 :::
 
+<!-- TODO(Tekk): The color of the warning label clashes with the link color -->
 :::warning
-The class reference's source files are in the [Redot engine repository](https://github.com/redot-engine/redot-engine). We generate
+
+The class reference's source files are in the [Redot engine repository](https://github.com/Redot-Engine/redot-engine). We generate
 the [Class Reference](doc_class_reference) section of this documentation
 from them. If you want to update the description of a class, its
 methods, or properties, read
@@ -108,7 +111,7 @@ they're good. They may also make changes or ask you to do so before merging.
 
 Before adding a new page, please ensure that it fits in the documentation:
 
-1. Look for [existing issues](https://github.com/redot-engine/redot-docs-site/issues)
+1. Look for [existing issues](https://github.com/Redot-Engine/Redot-Documentation/issues)
    or open a new one to see if the page is necessary.
 2. Ensure there isn't a page that already covers the topic.
 3. Read our [content_guidelines](doc_content_guidelines).
@@ -127,7 +130,6 @@ Always begin pages with their title:
 ```markdown
 
 # Insert your title here
-
 
 ```
 
@@ -163,34 +165,46 @@ Your code here
 
 
 For callouts such as notes, tips, and warnings, use the container blocks used
-throughout this documentation:
+throughout this documentation (note the newlines before and after the text):
 <!-- Note, this is written out this way to escape the callout blocks. They are implemented using Regex, and need to be escaped -->
 <pre><code class="language-markdown">
 :::<i></i>note
+
 Your note here.
+
 :::
 
 :::<i></i>info
+
 Useful context.
+
 :::
 
 :::<i></i>warning
+
 Important warning.
+
 :::
 </code></pre>
 
 These callouts will render like below.
 
 :::note
+
 Your note here.
+
 :::
 
 :::info
+
 Useful context.
+
 :::
 
 :::warning
+
 Important warning.
+
 :::
 
 ### Adding images and attachments
@@ -216,6 +230,7 @@ If you need a captioned image block, you can use HTML in Markdown:
 You can also include attachments as support material for a tutorial, by placing them
 into a ``files/`` folder next to the ``.md`` file, and using normal Markdown links:
 
+<!-- TODO(Tekk): `https://github.com/redot-engine/redot-docs-site-project-starters` doesn't exist -->
 Consider using the [Redot-docs-project-starters](https://github.com/redot-engine/redot-docs-site-project-starters)
 repository for hosting support materials, such as project templates and asset packs.
 You can use a direct link to the generated archive from that repository with the regular
@@ -229,9 +244,8 @@ link markup:
 ## License
 
 This documentation and every page it contains is published under the terms of
-the `Creative Commons Attribution 3.0 license (CC BY 3.0)
-&lt;https://creativecommons.org/licenses/by/3.0/&gt;`_, with attribution to "Juan
-Linietsky, Ariel Manzur and the Redot community".
+the [Creative Commons Attribution 3.0 license (CC BY 3.0)](https://creativecommons.org/licenses/by/3.0/),
+with attribution to "Juan Linietsky, Ariel Manzur and the Redot community".
 
 By contributing to the documentation on the GitHub repository, you agree that
 your changes are distributed under this license.

@@ -19,7 +19,7 @@ Because contrary to popular opinion, we need more than just programmers on the p
   To let us know about your findings, fill out this [bug report form](https://github.com/redot-engine/redot-engine/issues/new/choose) on our GitHub.
   Make sure to include as much information as possible to ensure these issues can easily be reproduced by others.
 
-  If you are interested in helping keep our bug tracker organized, you can even join the [bugsquad](https://www.redotengine.org/community)!
+  If you are interested in helping keep our bug tracker organized, you can even join the [bugsquad](https://github.com/orgs/Redot-Engine/teams/redot-triage)!
 
 - **Test Development Versions**
   While it is recommended to use the stable releases for your projects, you can help us test dev releases, betas, and release candidates
@@ -27,22 +27,23 @@ Because contrary to popular opinion, we need more than just programmers on the p
   Make sure to have a backup ready, since this can produce irreversible changes.
 
 - **Contribute Engine Code (mainly C++)**
-  The engine development is mainly coordinated on our [Community Discord](https://discord.gg/redot/),
+  The engine development is mainly coordinated on our [Community Discord](https://discord.com/invite/redot),
   so if you are serious about making PRs you should join us there!
 
-  Read more about the **technical submission process**: [doc_first_steps](Workflow/first_steps.md)
+  Read more about the **technical submission process**: [doc_first_steps](doc_first_steps)
 
 - **Review Code Contributions**
   All pull requests need to be thoroughly reviewed before they can be merged into the master branch.
   Help us get a headstart by participating in the code review process.
 
-  To get started, chose any [open pull request](https://github.com/redot-engine/redot-engine/pulls) and reference our **style guide**: [doc_pr_review_guidelines](Workflow/pr_review_guidelines.md)
+  To get started, chose any [open pull request](https://github.com/redot-engine/redot-engine/pulls) and reference our **style guide**: [doc_pr_review_guidelines](doc_pr_review_guidelines)
 
+<!-- TODO(Tekk): Redot asset library doesn't exist -->
 - **Write Plugins (GDScript, C#, & more)**
   Community addons are not directly included in the core engine download or repository, yet they provide essential quality of life upgrades for your fellow game developers.
-  Upload your plugins to the [Redot Asset Library](https://godotengine.org/asset-library/asset) to make them available to others.
+  Upload your plugins to the [Redot Asset Library](https://www.redotengine.org/asset-library/asset) to make them available to others.
 
 - **Demo projects (GDScript, C#, and making Assets)**
-  We provide new users with [demo projects](https://github.com/redot-engine/redot-engine-demo-projects/) so they can quickly test new features or get familiar with the engine in the first place.
+  We provide new users with [demo projects](https://github.com/Redot-Engine/redot-demo-projects) so they can quickly test new features or get familiar with the engine in the first place.
   At industry events, we might even exhibit these demo projects to showcase what Redot can do!
-  Help improve existing projects or supply your own to be added to the pool, and join the [demo channel](https://chat.redotengine.org/channel/demo-content) in the Contributor RocketChat to talk about it.
+  Help improve existing projects or supply your own to be added to the pool, and join the [Community Discord](https://discord.com/invite/redot) to talk about it.

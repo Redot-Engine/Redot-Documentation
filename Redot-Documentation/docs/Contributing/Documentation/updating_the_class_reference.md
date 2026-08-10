@@ -28,38 +28,36 @@ existing and create missing reference material.
 ## The source of the class reference
 
 As the class reference is available in two places, online and in the editor, we need to
-take care to keep things in sync. To achieve this the [main Redot repository](https://github.com/redot-engine/redot-engine/)
+take care to keep things in sync. To achieve this the [main Redot repository](https://github.com/Redot-Engine/redot-engine/)
 is picked as the source of truth, and the documentation for the class reference is tracked there.
 
 :::warning
 
 You should **not** edit ``.rst`` files in the ``classes/`` folder of the
-[documentation repository](https://github.com/redot-engine/redot-docs-site/).
+[documentation repository](https://github.com/Redot-Engine/Redot-Documentation).
 These files are generated automatically and are synced manually by project
 maintainers. Read further to learn how to correctly edit the class reference.
 
 :::
 
 In the main repository the class reference is stored in XML files, one for each exposed
-class or global object. The majority of these files is located in `doc/classes/
-&lt;https://github.com/redot-engine/redot-engine/tree/master/doc/classes&gt;`_, but some modules
-contain their own documentation as well. You will find it in the ``modules/&lt;module_name&gt;/doc_classes/``
-directory. To learn more about editing XML files refer to [doc_class_reference_primer](class_reference_primer.md).
+class or global object. The majority of these files is located in [doc/classes/](https://github.com/redot-engine/redot-engine/tree/master/doc/classes),
+but some modules contain their own documentation as well. You will find it in the ``modules/<module_name>/doc_classes/``
+directory. To learn more about editing XML files refer to [doc_class_reference_primer](doc_class_reference_primer).
 
 :::info
 
 For details on Git usage and the pull request workflow, please
-refer to the [doc_pr_workflow](../Workflow/pr_workflow.md) page.
+refer to the [doc_pr_workflow](doc_pr_workflow) page.
 
 If you want to translate the class reference from English to another
 language, see [doc_editor_and_docs_localization](editor_and_docs_localization.md). This guide is
-also available as a `video tutorial on YouTube
-&lt;https://www.youtube.com/watch?v=5jeHXxeX-JY&gt;`_.
+also available as a [video tutorial on YouTube](https://www.youtube.com/watch?v=5jeHXxeX-JY).
 
 :::
 
 **Important:** If you plan to make large changes, you should create an issue on
-the [Redot-docs repository](https://github.com/redot-engine/redot-docs-site/)
+the [Redot-Documentation repository](https://github.com/Redot-Engine/Redot-Documentation)
 or comment on an existing issue. Doing so lets others know you're already
 taking care of a given class.
 
@@ -73,6 +71,7 @@ for documentation and are hard to identify automatically.
 
 :::info
 
+<!-- TODO(Tekk): i have no idea if we have a documentation status tracker... -->
 Following this principle is important and allows us to create tools for contributors.
 Such as the class reference's [completion status tracker](https://Redotengine.github.io/doc-status/).
 You can use it to quickly find documentation pages missing descriptions.
@@ -84,8 +83,7 @@ worry. Leave it for now, and list the methods you skipped when you open a pull r
 with your changes. Another writer will take care of it.
 
 You can still look at the methods' implementation in Redot's source code on GitHub.
-If you have doubts, feel free to ask on the [Q&A website](https://ask.redotengine.org/)
-and [Redot Contributors Chat](https://chat.redotengine.org/).
+If you have doubts, feel free to ask on the [Redot Discord Server](https://discord.com/invite/redot).
 
 :::warning
 
@@ -95,7 +93,7 @@ XML well, like keeping indentations consistent, and it does not allow amending c
 based on reviews.
 
 It also doesn't allow you to test your changes in the engine or with validation
-scripts as described in [doc_class_reference_editing_xml](doc_class_reference_editing_xml).
+scripts as described in [doc_class_reference_editing_xml](class_reference_primer#how-to-edit-class-xml).
 
 :::
 
@@ -104,7 +102,7 @@ scripts as described in [doc_class_reference_editing_xml](doc_class_reference_ed
 When you create a new class or modify an existing engine's API, you need to re-generate
 the XML files in ``doc/classes/``.
 
-To do so, you first need to compile Redot. See the [doc_introduction_to_the_buildsystem](../Development/compiling/introduction_to_the_buildsystem.md)
+To do so, you first need to compile Redot. See the [doc_introduction_to_the_buildsystem](doc_introduction_to_the_buildsystem)
 page to learn how. Then, execute the compiled Redot binary from the Redot root directory
 with the ``--doctool`` option. For example, if you're on 64-bit Linux, the command might be:
 

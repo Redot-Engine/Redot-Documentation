@@ -472,6 +472,7 @@ interface. They're used in the sources, in the documentation, and you
 should always use them instead of synonyms, so the users know what
 you're talking about.
 
+<!-- TODO(Tekk): Image too big -->
 <figure>
   <img src="/img/Contributing/Documentation/editor-vocabulary-overview.png" alt="Overview of the interface and common vocabulary" />
   <figcaption>
@@ -510,7 +511,7 @@ with a space on either side of the symbol.
 <!-- TODO: Update link below after adding versioned tutorials section -->
 Make sure to mention shortcuts that differ on macOS compared to other platforms.
 You can find a list of all shortcuts, including what they are on macOS, on
-[this page](../../tutorials/editor/default_key_mapping.md).
+[this page](doc_default_key_mapping).
 
 Try to integrate the shortcut into sentences the best you can. Here are some
 examples with the ``:kbd:`` tag left as-is for better visibility:
@@ -527,6 +528,7 @@ Use your best judgement. If you can write more clearly by breaking one of these
 guidelines, please do! But remember that the guidelines exist for a reason.
 
 :::note
+
 In many cases, the manual does not follow these guidelines. If you are
 already making changes to a paragraph or section of the docs, update it to
 follow these standards. Avoid making unrelated changes that *only* update style,
@@ -609,6 +611,7 @@ reader must navigate. Use ``&gt;`` as a separator. You can omit ellipses in menu
     - Select **Scene &gt; Export As &gt; MeshLibrary**.
 
 :::note
+
 Sometimes, ``-&gt;`` or ``→`` is used as a separator. This is nonstandard.
 Replace it with ``&gt;`` if you are already making changes to a section.
 
@@ -662,6 +665,7 @@ trailing whitespace when you do.
 ```
 
 :::tip
+
 In most text editors, you can add a vertical guide or "ruler" at 80
 characters. For example, in Visual Studio Code, you can add the following to
 your ``settings.json`` to add rulers at 80 and 100 characters:
@@ -669,6 +673,15 @@ your ``settings.json`` to add rulers at 80 and 100 characters:
 ```json
 "editor.rulers": [80,100],
 ```
+
+:::
+
+:::tip
+
+For linux users, there is a commonly available command called `fold`, which 
+folds given text to a default of 80 columns. This could be used to 
+semi-automate paragraph folding. `-s` flag will break on spaces, which is
+expected behaviour.
 
 :::
 

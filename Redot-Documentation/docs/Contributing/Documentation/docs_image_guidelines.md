@@ -4,6 +4,7 @@ Throughout the documentation, images are often needed to make the explanation
 of a feature or concept as clear as possible for a reader. This page will
 explain the process from beginning to end.
 
+<!-- TODO(Tekk): Why is 2nd level header smaller than 3rd level header? -->
 ## Images
 
 ### Capturing an image
@@ -20,10 +21,11 @@ On macOS, pressing `Shift + Command + 3` does the same.
 To take a picture of the entire screen press `Shift + Command + 4`.
 All screenshots taken will be saved to the desktop.
 
-Each Linux desktop environment has it's own screenshot tool. For example,
-on KDE Plasma the program Spectacle is used for taking screenshots. If your
-distribution doesn't come with one by default try searching its package
-repository, or Flathub if that's supported.
+Each Linux desktop environment has it's own screenshot tool, but they should be
+invoked with the `PrtSc` (Print Screen) button. For example, on KDE Plasma the
+program Spectacle is used for taking screenshots. If your distribution doesn't
+come with one by default try searching its package repository, or Flathub if
+that's supported.
 
 All screenshots should ideally be taken on a 1080p screen. Anything higher
 resolution is adding detail that doesn't make the documentation better and
@@ -46,6 +48,14 @@ compression is fine, even if the file size is bigger.
 
 If you already have an image editor such as GIMP, Krita or Photoshop installed
 it may have the ability to open an image then save it as a WebP file.
+
+Alternatively, if you are aren't scared of command line tools, [FFMPEG](https://ffmpeg.org//)
+is a popular program for converting just about any type of media to another. Here is an
+example command to convert a `.png` to a `.webp`:
+```
+ffmpeg -i input.png output.webp
+
+```
 
 :::note
 
@@ -146,7 +156,7 @@ To add your image, add it to the ``img`` folder that's in the same folder as the
 images should be included with Markdown image syntax:
 
 ```markdown
-![Descriptive alt text](img/documentation_image.webp)
+![Descriptive alt text](/img/documentation_image.webp)
 
 ```
 

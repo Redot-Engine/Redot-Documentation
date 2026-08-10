@@ -7,7 +7,7 @@ built-in node types.
 :::info
 
 To learn to submit your changes to the Redot project using the Git version
-control system, see [doc_updating_the_class_reference](updating_the_class_reference.md).
+control system, see [doc_updating_the_class_reference](doc_updating_the_class_reference).
 
 :::
 
@@ -106,8 +106,7 @@ This will convert the XML files to the online documentation's format and output
 errors if anything's wrong.
 
 Alternatively, you can build Redot and open the modified page in the built-in
-code reference. To learn how to compile the engine, read the :ref:`compilation
-guide <toc-devel-compiling>`.
+code reference. To learn how to compile the engine, read the [compilation guide](doc_introduction_to_the_buildsystem).
 
 We recommend using a code editor that supports XML files like Vim, Atom, Visual Studio Code,
 Notepad++, or another to comfortably edit the file. You can also use their
@@ -131,6 +130,7 @@ In the tables below you can find the available tags, usage examples and the resu
 Whenever you link to a member of another class, you need to specify the class name.
 For links to the same class, the class name is optional and can be omitted.
 
+<!-- TODO(Tekk): Add the actual class docs and fix this -->
 | Tag and Description                                       | Example                              | Result                                                              |
 |-----------------------------------------------------------|--------------------------------------|---------------------------------------------------------------------|
 | ``[Class]`` Link to class                                 | ``Move the [Sprite2D].``             | Move the [class_Sprite2D](/en/latest/Classes/Sprite2D).             |
@@ -225,9 +225,9 @@ If you need to have different code version in GDScript and C#, use
 ``[codeblocks]`` instead. If you use ``[codeblocks]``, you also need to have at
 least one of the language-specific tags, ``[gdscript]`` and ``[csharp]``.
 
-Always write GDScript code examples first! You can use this `experimental code
-translation tool <https://github.com/HaSa1002/codetranslator>`_ to speed up your
-workflow.
+<!-- TODO(Tekk): Maybe make an official one? this one wasnt updated in 5 years -->
+Always write GDScript code examples first! You can use this [experimental code translation tool](https://github.com/HaSa1002/codetranslator)
+to speed up your workflow.
 
 ```none
 [codeblocks]
