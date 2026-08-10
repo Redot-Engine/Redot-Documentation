@@ -13,7 +13,7 @@ In summary, always try to:
 2. Use precise action verbs
 3. Avoid verbs that end in -ing
 4. Remove unnecessary adverbs and adjectives.
-5. Ban these 8 words: obvious, simple, basic, easy, actual, just, clear, and however
+5. Ban these 7 words: obvious, simple, basic, easy, actual, just and clear
 6. Use explicit references
 7. Use 's to show possession
 8. Use the Oxford comma
@@ -156,9 +156,9 @@ A big texture [...]
 
 ```
 
-### Ban these 8 words
+### Ban these 7 words
 
-**Don't** ever use these 8 banned words:
+**Don't** ever use these 7 banned words:
 
 1. obvious
 2. simple
@@ -167,7 +167,6 @@ A big texture [...]
 5. actual
 6. just
 7. clear
-8. however (some uses)
 
 Game creation and programming aren't simple, and nothing's easy to
 someone learning to use the API for the first time. Other words in the
@@ -672,6 +671,7 @@ your ``settings.json`` to add rulers at 80 and 100 characters:
 
 ```json
 "editor.rulers": [80,100],
+
 ```
 
 :::
@@ -697,6 +697,7 @@ Use Markdown headings for section headers:
 ### Sub-section header
 
 #### Sub-sub-section header
+
 ```
 
 Most pages should stay within four heading levels. Avoid introducing deeper

@@ -120,4 +120,5 @@ way, with some additional arguments to provide the correct paths:
 
 ```
 scons platform=ios arch=arm64 target=template_release IOS_SDK_PATH="/path/to/iPhoneSDK" IOS_TOOLCHAIN_PATH="/path/to/iostoolchain" ios_triple="arm-apple-darwin11-"
+
 ```

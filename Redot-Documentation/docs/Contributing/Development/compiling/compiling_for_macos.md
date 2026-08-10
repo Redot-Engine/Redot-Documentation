@@ -3,8 +3,9 @@
 
 :::note
 
+<!-- TODO(Tekk): doc_exporting_for_macos doenst exist -->
 This page describes how to compile macOS editor and export template binaries from source.
-If you're looking to export your project to macOS instead, read [doc_exporting_for_macos](../../../tutorials/export/exporting_for_macos.md).
+If you're looking to export your project to macOS instead, read [doc_exporting_for_macos](doc_exporting_for_macos).
 
 :::
 
@@ -22,6 +23,7 @@ For compiling under macOS, the following is required:
   ``misc/scripts/install_vulkan_sdk_macos.sh`` within the Redot source repository.
 
 :::note
+
 If you have [Homebrew](https://brew.sh/) installed, you can easily
 install SCons using the following command
 
@@ -44,11 +46,12 @@ sudo port install scons
 :::
 
 :::info
+
 To get the Redot source code for compiling, see
-[doc_getting_source](getting_source.md).
+[doc_getting_source](doc_getting_source).
 
 For a general overview of SCons usage for Redot, see
-[doc_introduction_to_the_buildsystem](introduction_to_the_buildsystem.md).
+[doc_introduction_to_the_buildsystem](doc_introduction_to_the_buildsystem).
 
 :::
 
@@ -81,7 +84,7 @@ lipo -create bin/Redot.macos.editor.x86_64 bin/Redot.macos.editor.arm64 -output 
 
 If you are compiling Redot to make changes or contribute to the engine,
 you may want to use the SCons options ``dev_build=yes`` or ``dev_mode=yes``.
-See [doc_introduction_to_the_buildsystem_development_and_production_aliases](doc_introduction_to_the_buildsystem_development_and_production_aliases)
+See [introduction_to_the_buildsystem](introduction_to_the_buildsystem#development-and-production-aliases)
 for more info.
 
 :::
@@ -92,6 +95,8 @@ runs without any dependencies. Executing it will bring up the Project
 Manager.
 
 :::note
+
+<!-- TODO(Tekk): doc_data_paths_self_contained_mode doesnt exist -->
 If you want to use separate editor settings for your own Redot builds
 and official releases, you can enable
 [doc_data_paths_self_contained_mode](doc_data_paths_self_contained_mode) by creating a file called

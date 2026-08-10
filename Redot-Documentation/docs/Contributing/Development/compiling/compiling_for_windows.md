@@ -3,8 +3,9 @@
 
 :::info
 
+<!-- TODO(Tekk): doc_exporting_for_windows doesnt exist -->
 This page describes how to compile Windows editor and export template binaries from source.
-If you're looking to export your project to Windows instead, read [doc_exporting_for_windows](../../../tutorials/export/exporting_for_windows.md).
+If you're looking to export your project to Windows instead, read [doc_exporting_for_windows](doc_exporting_for_windows).
 
 :::
 
@@ -34,6 +35,7 @@ For compiling under Windows, the following is required:
   Studio releases.
 
 :::note
+
 If you have [Scoop](https://scoop.sh/) installed, you can easily
 install MinGW and other dependencies using the following command
 
@@ -44,6 +46,7 @@ scoop install gcc python scons make mingw
 :::
 
 :::note
+
 If you have [MSYS2](https://www.msys2.org/) installed, you can easily
 install MinGW and other dependencies using the following command
 
@@ -59,11 +62,12 @@ For each MSYS2 MinGW subsystem, you should then run
 :::
 
 :::info
+
 To get the Redot source code for compiling, see
-[doc_getting_source](getting_source.md).
+[doc_getting_source](doc_getting_source).
 
 For a general overview of SCons usage for Redot, see
-[doc_introduction_to_the_buildsystem](introduction_to_the_buildsystem.md).
+[doc_introduction_to_the_buildsystem](doc_introduction_to_the_buildsystem).
 
 :::
 
@@ -97,7 +101,7 @@ SCons version is too old. Update it to the latest version with
 
 ## Downloading Redot's source
 
-Refer to [doc_getting_source](getting_source.md) for detailed instructions.
+Refer to [doc_getting_source](doc_getting_source) for detailed instructions.
 
 The tutorial will assume from now on that you placed the source code in
 ``C:\Redot``.
@@ -155,6 +159,7 @@ C:\Redot> scons platform=windows
 ```
 
 :::note
+
 When compiling with multiple CPU threads, SCons may warn about
 pywin32 being missing. You can safely ignore this warning.
 
@@ -164,7 +169,7 @@ pywin32 being missing. You can safely ignore this warning.
 
 If you are compiling Redot to make changes or contribute to the engine,
 you may want to use the SCons options ``dev_build=yes`` or ``dev_mode=yes``.
-See [doc_introduction_to_the_buildsystem_development_and_production_aliases](doc_introduction_to_the_buildsystem_development_and_production_aliases)
+See [doc_introduction_to_the_buildsystem](introduction_to_the_buildsystem#development-and-production-aliases)
 for more info.
 
 :::
@@ -179,6 +184,7 @@ This executable file contains the whole engine and runs without any
 dependencies. Running it will bring up the Project Manager.
 
 :::tip
+
 If you are compiling Redot for production use, you can
 make the final executable smaller and faster by adding the
 SCons option ``production=yes``. This enables additional compiler
@@ -192,6 +198,8 @@ with the above option, use ``production=yes lto=none`` or ``production=yes lto=t
 :::
 
 :::note
+
+<!-- TODO(Tekk): doc_data_paths_self_contained_mode doesnt exist -->
 If you want to use separate editor settings for your own Redot builds
 and official releases, you can enable
 [doc_data_paths_self_contained_mode](doc_data_paths_self_contained_mode) by creating a file called
@@ -214,18 +222,20 @@ You can find the detailed steps below if you wish to set up dependencies
 manually, but the above script handles everything for you (including the
 optional PIX and Agility SDK components).
 
-- [Redot-nir-static library](https://github.com/redot-engine/redot-engine-nir-static/releases/).
+<!-- TODO(Tekk): Redot doesnt have this -->
+- [godot-nir-static library](https://github.com/godotengine/godot-nir-static/releases).
   We compile the Mesa libraries you will need into a static library. Download it
   anywhere, unzip it and remember the path to the unzipped folder, you will
   need it below.
 
 :::note
+
 You can optionally build the Redot-nir-static libraries yourself with
 the following steps:
 
 1. Install the Python package [mako](https://www.makotemplates.org)
    which is needed to generate some files.
-2. Clone the [Redot-nir-static](https://github.com/redot-engine/redot-engine-nir-static)
+2. Clone the [godot-nir-static](https://github.com/godotengine/godot-nir-static/releases)
    directory and navigate to it.
 3. Run the following
 
@@ -268,12 +278,14 @@ Optionally, you can compile with the following for additional features:
   file to some path.
 
 :::note
+
 If you use a preview version of the Agility SDK, remember to enable
 developer mode in Windows; otherwise it won't be used.
 
 :::
 
 :::note
+
 If you want to use a PIX with MinGW build, navigate to PIX runtime
 directory and use the following commands to generate import library
 
@@ -305,10 +317,11 @@ C:\Redot> scons platform=windows d3d12=yes mesa_libs=<...> agility_sdk_path=<...
 ```
 
 :::note
+
 For the Agility SDK's DLLs you have to explicitly choose the kind of
 workflow. Single-arch is the default (DLLs copied to ``bin/``). If you
 pass ``agility_sdk_multi_arch=yes`` to SCons, you'll opt-in for
-multi-arch. DLLs will be copied to the appropriate ``bin/&lt;arch&gt;/``
+multi-arch. DLLs will be copied to the appropriate ``bin/<arch>/``
 subdirectories and at runtime the right one will be loaded.
 
 :::
@@ -323,6 +336,7 @@ By default, Redot is built with dynamically linked ANGLE, you can use it by plac
 ``libEGL.dll`` and ``libGLESv2.dll`` alongside the executable.
 
 :::note
+
 You can use dynamically linked ANGLE with export templates as well, rename
 aforementioned DLLs to ``libEGL.{architecture}.dll`` and ``libGLESv2.{architecture}.dll``
 and place them alongside export template executables, and libraries will
@@ -332,7 +346,7 @@ be automatically copied during the export process.
 
 To compile Redot with statically linked ANGLE:
 
-- Download pre-built static libraries from [Redot-angle-static library](https://github.com/redot-engine/redot-engine-angle-static/releases), and unzip them.
+- Download pre-built static libraries from [godot-nir-static library](https://github.com/godotengine/godot-nir-static/releases), and unzip them.
 - When building Redot, add ``angle_libs={path}`` to tell SCons where to look for the ANGLE libraries
 
 ```
@@ -341,10 +355,12 @@ scons platform=windows angle_libs=<...>
 ```
 
 :::note
+
 You can optionally build the Redot-angle-static libraries yourself with
 the following steps:
 
-1. Clone the [Redot-angle-static](https://github.com/redot-engine/redot-engine-angle-static)
+<!-- TODO(Tekk): Redot doesnt have this -->
+1. Clone the [godot-angle-static](https://github.com/godotengine/godot-angle-static)
    directory and navigate to it.
 2. Run the following command
 
@@ -391,7 +407,8 @@ You will be able to open Redot's source in a Visual Studio solution now,
 and able to build Redot using Visual Studio's **Build** button.
 
 :::info
-See [doc_configuring_an_ide_vs](../configuring_an_ide/visual_studio.md) for further details.
+
+See [doc_configuring_an_ide_vs](doc_visual_studio) for further details.
 
 :::
 
@@ -449,11 +466,13 @@ ${MINGW_PREFIX}/bin/x86_64-w64-mingw32-gcc --version
 ```
 
 :::note
+
 If you are building with MinGW-LLVM, add ``use_llvm=yes`` to the ``scons`` command.
 
 :::
 
 :::note
+
 When cross-compiling for Windows using MinGW-w64, keep in mind only
 ``x86_64`` and ``x86_32`` architectures are supported. MinGW-LLVM supports
 ``arm64`` as well. Be sure to specify the right ``arch=`` option when
@@ -464,7 +483,7 @@ invoking SCons if building from a different architecture.
 ### Troubleshooting
 
 Cross-compiling from some Ubuntu versions may lead to
-[this bug](https://github.com/redot-engine/redot-engine/issues/9258),
+[this bug](https://github.com/godotengine/godot/issues/9258),
 due to a default configuration lacking support for POSIX threading.
 
 You can change that configuration following those instructions,
@@ -504,7 +523,7 @@ C:\Redot> scons platform=windows target=template_release arch=arm64
 ```
 
 If you plan on replacing the standard export templates, copy these to the
-following location, replacing ``&lt;version&gt;`` with the version identifier
+following location, replacing ``<version>`` with the version identifier
 (such as ``4.2.1.stable`` or ``4.3.dev``):
 
 ```none
@@ -534,7 +553,7 @@ However, if you are using custom modules or custom engine code, you
 may instead want to configure your binaries as custom export templates
 here:
 
-![Image](img/wintemplates.webp)
+![Image](/img/Contributing/Development/Compiling/wintemplates.webp)
 
 Select matching architecture in the export config.
 

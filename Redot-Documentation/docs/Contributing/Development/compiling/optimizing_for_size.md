@@ -35,7 +35,7 @@ On Windows, ``strip.exe`` is included in most MinGW toolchain setups.
 This will reduce the size of compiled binaries by a factor between 5× and 10×.
 The downside is that crash backtraces will no longer provide accurate information
 (which is useful for troubleshooting the cause of a crash).
-[C++ profilers](../debugging/using_cpp_profilers.md) will also no longer be able to display
+[C++ profilers](doc_using_cpp_profilers) will also no longer be able to display
 function names (this does not affect the built-in GDScript profiler).
 
 :::note
@@ -166,6 +166,7 @@ scons target=template_release disable_advanced_gui=yes
 
 This is everything that will be disabled:
 
+<!-- TODO(Tekk): class reference doesnt exist yet -->
 - [class_AcceptDialog](/docs/Classes/AcceptDialog)
 - [class_CharFXTransform](/docs/Classes/CharFXTransform)
 - [class_CodeEdit](/docs/Classes/CodeEdit)
@@ -267,6 +268,7 @@ module_zip_enabled = "no"
 
 :::info
 
+<!-- TODO(Tekk): overriding_build_options.md doesnt exist -->
 [doc_overriding_build_options](doc_overriding_build_options).
 
 :::
@@ -318,4 +320,5 @@ even more efficient, as long as the web server is configured to serve those
 files when they exist. When supported, Brotli should be preferred over gzip as
 it has a greater potential for file size reduction.
 
+<!-- TODO(Tekk): doc_exporting_for_web_serving_the_files doesnt exist -->
 See [doc_exporting_for_web_serving_the_files](doc_exporting_for_web_serving_the_files) for instructions.

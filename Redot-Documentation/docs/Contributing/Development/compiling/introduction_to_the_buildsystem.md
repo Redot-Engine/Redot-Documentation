@@ -30,12 +30,12 @@ Following sections in the article will explain these and other universal options
 before you can compile Redot, you need to install a few prerequisites. Please refer to the platform
 documentation to learn more:
 
-- [doc_compiling_for_android](compiling_for_android.md)
-- [doc_compiling_for_ios](compiling_for_ios.md)
-- [doc_compiling_for_linuxbsd](compiling_for_linuxbsd.md)
-- [doc_compiling_for_macos](compiling_for_macos.md)
-- [doc_compiling_for_web](compiling_for_web.md)
-- [doc_compiling_for_windows](compiling_for_windows.md)
+- [doc_compiling_for_android](doc_compiling_for_android)
+- [doc_compiling_for_ios](doc_compiling_for_ios)
+- [doc_compiling_for_linuxbsd](doc_compiling_for_linuxbsd)
+- [doc_compiling_for_macos](doc_compiling_for_macos)
+- [doc_compiling_for_web](doc_compiling_for_web)
+- [doc_compiling_for_windows](doc_compiling_for_windows)
 
 These articles cover in great detail both how to setup your environment to compile Redot on a specific
 platform, and how to compile for that platform. Please feel free to go back and forth between them and
@@ -45,7 +45,7 @@ this article to reference platform-specific and universal configuration options.
 
 The build process may take a while, depending on how powerful your system is. By default, Redot's
 SCons setup is configured to use all CPU threads but one (to keep the system responsive during
-compilation). If you want to adjust how many CPU threads SCons will use, use the `[-j](threads)`
+compilation). If you want to adjust how many CPU threads SCons will use, use the `-j<threads>`
 parameter to specify how many threads will be used for the build.
 
 Example for using 4 threads
@@ -149,7 +149,7 @@ scons platform=<platform> target=editor/template_debug/template_release
 
 ## Development and production aliases
 
-When creating builds for development (running debugging/[profiling](../debugging/using_cpp_profilers.md)
+When creating builds for development (running debugging/[profiling](doc_using_cpp_profilers)
 tools), you often have different goals compared to production builds
 (making binaries as fast and small as possible).
 
@@ -158,7 +158,7 @@ Redot provides two aliases for this purpose:
 - ``dev_mode=yes`` is an alias for ``verbose=yes warnings=extra werror=yes
   tests=yes``. This enables warnings-as-errors behavior (similar to Redot's
   continuous integration setup) and also builds :ref:`unit tests
-  &lt;doc_unit_testing&gt;` so you can run them locally.
+  <doc_unit_testing>` so you can run them locally.
 - ``production=yes`` is an alias for ``use_static_cpp=yes debug_symbols=no
   lto=auto``. Statically linking libstdc++ allows for better binary portability
   when compiling for Linux. This alias also enables link-time optimization when
@@ -197,7 +197,7 @@ binary name.
 
 There are additional SCons options to enable *sanitizers*, which are tools
 you can enable at compile-time to better debug certain engine issues.
-See [doc_using_sanitizers](../debugging/using_sanitizers.md) for more information.
+See [doc_using_sanitizers](doc_using_sanitizers) for more information.
 
 :::
 
@@ -222,7 +222,7 @@ written to a separate ``.pdb`` file regardless of ``separate_debug_symbols``.
 
 :::tip
 
-Use the `[strip](path/to/binary)` command to remove debugging symbols from
+Use the `strip <path/to/binary>` command to remove debugging symbols from
 a binary you've already compiled.
 
 :::
@@ -233,7 +233,7 @@ Several compiler optimization levels can be chosen from:
 
 - ``optimize=speed_trace`` *(default when targeting non-Web platforms)*: Favors
   execution speed at the cost of larger binary size. Optimizations may sometimes
-  negatively impact debugger usage (stack traces may be less accurate. If this
+  negatively impact debugger usage (stack traces may be less accurate). If this
   occurs to you, use ``optimize=debug`` instead.
 - ``optimize=speed``: Favors even more execution speed, at the cost of even
   larger binary size compared to ``optimize=speed_trace``. Even less friendly to
@@ -296,14 +296,14 @@ to override built-in module implementations.
 
 :::info
 
-[doc_custom_modules_in_cpp](../core_and_modules/custom_modules_in_cpp.md)
+[doc_custom_modules_in_cpp](doc_custom_modules_in_cpp)
 
 :::
 
 ## Cleaning generated files
 
 Sometimes, you may encounter an error due to generated files being present. You
-can remove them by using `[scons --clean](options)`, where ``&lt;options&gt;`` is the
+can remove them by using `scons --clean <options>`, where ``<options>`` is the
 list of build options you've used to build Redot previously.
 
 Alternatively, you can use ``git clean -fixd`` which will clean build artifacts
@@ -336,10 +336,11 @@ extra_suffix = "game_title"
 ```
 
 You can also disable some of the built-in modules before compiling, saving some
-time it takes to build the engine. See [doc_optimizing_for_size](optimizing_for_size.md) page for more details.
+time it takes to build the engine. See [doc_optimizing_for_size](doc_optimizing_for_size) page for more details.
 
 :::info
 
+<!-- TODO(Tekk): https://Redot-build-options-generator.github.io/ doesnt exist -->
 You can use the online
 [Redot build options generator](https://Redot-build-options-generator.github.io/)
 to generate a ``custom.py`` file containing SCons options.
@@ -356,6 +357,7 @@ scons profile=path/to/custom.py
 ```
 
 :::note
+
 Build options set from the file can be overridden by the command line
 options.
 
@@ -406,6 +408,7 @@ set SCONSFLAGS=-j4
 
 ```powershell
 $env:SCONSFLAGS="-j4"
+
 ```
 
 </TabItem>
@@ -426,6 +429,7 @@ files, which can dramatically decrease build times.
 To perform an SCU build, use the ``scu_build=yes`` SCons option.
 
 :::note
+
 When developing a Pull Request using SCU builds, be sure to make a
 regular build prior to submitting the PR. This is because SCU builds
 by nature include headers from earlier ``.cpp`` files in the

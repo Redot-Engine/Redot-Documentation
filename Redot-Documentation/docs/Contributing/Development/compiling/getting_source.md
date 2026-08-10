@@ -3,7 +3,7 @@
 
 ## Downloading the Redot source code
 
-Before [getting into the SCons build system](introduction_to_the_buildsystem.md)
+Before [getting into the SCons build system](doc_introduction_to_the_buildsystem)
 and compiling Redot, you need to actually download the Redot source code.
 
 The source code is available on [GitHub](https://github.com/redot-engine/redot-engine)
@@ -11,7 +11,7 @@ and while you can manually download it via the website, in general you want to
 do it via the ``git`` version control system.
 
 If you are compiling in order to make contributions or pull requests, you should
-follow the instructions from the [Pull Request workflow](../../Workflow/pr_workflow.md).
+follow the instructions from the [Pull Request workflow](doc_pr_workflow).
 
 If you don't know much about ``git`` yet, there are a great number of
 [tutorials](https://git-scm.com/book) available on various websites.
@@ -61,4 +61,4 @@ You can get the source code for each release and pre-release in ``.tar.xz`` form
 This lacks version control information but has a slightly smaller download size.
 
 After downloading the Redot source code,
-you can [continue to compiling Redot](introduction_to_the_buildsystem.md).
+you can [continue to compiling Redot](doc_introduction_to_the_buildsystem).

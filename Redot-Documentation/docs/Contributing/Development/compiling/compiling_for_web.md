@@ -17,11 +17,12 @@ To compile export templates for the Web, the following is required:
 - [SCons 4.0+](https://scons.org/pages/download.html) build system.
 
 :::info
+
 To get the Redot source code for compiling, see
-[doc_getting_source](getting_source.md).
+[doc_getting_source](doc_getting_source).
 
 For a general overview of SCons usage for Redot, see
-[doc_introduction_to_the_buildsystem](introduction_to_the_buildsystem.md).
+[doc_introduction_to_the_buildsystem](doc_introduction_to_the_buildsystem).
 
 :::
 
@@ -41,7 +42,8 @@ scons platform=web target=template_debug
 
 ```
 
-By default, the [JavaScriptBridge singleton](../../../tutorials/platform/web/javascript_bridge.md) will be built
+<!-- TODO(Tekk): javascript_bridge doesnt exist -->
+By default, the [JavaScriptBridge singleton](doc_javascript_bridge) will be built
 into the engine. Official export templates also have the JavaScript singleton
 enabled. Since ``eval()`` calls can be a security concern, the
 ``javascript_eval`` option can be used to build without the singleton
@@ -83,6 +85,7 @@ mv bin/Redot.web.template_debug.wasm32.zip bin/web_debug.zip
 
 ## GDExtension
 
+<!-- TODO(Tekk): doc_javascript_export_options doesnt exist -->
 The default export templates do not include GDExtension support for
 performance and compatibility reasons. See the
 [export page](doc_javascript_export_options) for more info.
