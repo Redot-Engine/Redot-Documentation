@@ -102,7 +102,7 @@ or **Open Source Licenses**.
 
 ### Output log
 
-Printing the license text using the [print() ](/docs/Classes/@GlobalScope_method_print)
+Printing the license text using the [print() ](class_@GlobalScope_method_print)
 function may be enough on platforms where a global output log is readable.
 This is the case on desktop platforms, Android and HTML5 (but not iOS).
 
@@ -124,18 +124,18 @@ the license terms.
 :::tip
 
 Redot provides several methods to get license information in the
-[Engine ](/docs/Classes/Engine) singleton. This allows you to source the
+[Engine ](class_Engine) singleton. This allows you to source the
 license information directly from the engine binary, which prevents the
 information from becoming outdated if you update engine versions.
 
 For the engine itself:
 
-- [Engine.get_license_text](/docs/Classes/Engine_method_get_license_text)
+- [Engine.get_license_text](class_Engine_method_get_license_text)
 
 For third-party components used by the engine:
 
-- [Engine.get_license_info](/docs/Classes/Engine_method_get_license_info)
-- [Engine.get_copyright_info](/docs/Classes/Engine_method_get_copyright_info)
+- [Engine.get_license_info](class_Engine_method_get_license_info)
+- [Engine.get_copyright_info](class_Engine_method_get_copyright_info)
 
 :::
 

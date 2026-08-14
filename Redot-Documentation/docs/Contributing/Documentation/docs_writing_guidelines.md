@@ -623,9 +623,9 @@ in the link itself, or include the section and subsection separately from the
 link. Since long links are not split into multiple lines when the page is
 rendered, prefer splitting the setting name and the section when the link is long.
 
-    - Set the [Application &gt; Run &gt; Max FPS](/docs/Classes/ProjectSettings_property_application/run/max_fps) setting to ``60``.
-    - In the project settings under **Application &gt; Run**, set [Max FPS](/docs/Classes/ProjectSettings_property_application/run/max_fps) to ``60``.
-    - In **Project Settings &gt; Application &gt; Run**, set [Max FPS](/docs/Classes/ProjectSettings_property_application/run/max_fps) to ``60``.
+    - Set the [Application &gt; Run &gt; Max FPS](class_ProjectSettings_property_application/run/max_fps) setting to ``60``.
+    - In the project settings under **Application &gt; Run**, set [Max FPS](class_ProjectSettings_property_application/run/max_fps) to ``60``.
+    - In **Project Settings &gt; Application &gt; Run**, set [Max FPS](class_ProjectSettings_property_application/run/max_fps) to ``60``.
 
 ### Manually wrapping lines
 

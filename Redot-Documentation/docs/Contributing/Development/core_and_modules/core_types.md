@@ -86,7 +86,8 @@ library.
 For C++-style allocation, special macros are provided:
 
 ```none
-memnew( Class / Class(args) )
+memnew( Class )
+memnew( Class(args) )
 memdelete( instance )
 
 memnew_arr( Class , amount )
@@ -99,7 +100,7 @@ which are equivalent to new, delete, new[] and delete[].
 memnew/memdelete also use a little C++ magic and notify Objects right
 after they are created, and right before they are deleted.
 
-For dynamic memory, use Vector&lt;&gt;.
+For dynamic memory, use ``Vector<>``.
 
 ### References:
 
@@ -126,7 +127,7 @@ for(List<int>::Element *E=somelist.front();E;E=E->next()) {
 
 ```
 
-The Vector&lt;&gt; class also has a few nice features:
+The ``Vector<>`` class also has a few nice features:
 
 -  It does copy on write, so making copies of it is cheap as long as
    they are not modified.

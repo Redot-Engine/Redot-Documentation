@@ -4,13 +4,13 @@
 :::info
 
 This page describes the C++ implementation of objects in Redot.
-Looking for the Object class reference? [Have a look here.](/docs/Classes/Object)
+Looking for the Object class reference? [Have a look here.](class_Object)
 
 :::
 
 ## General definition
 
-[Object](/docs/Classes/object) is the base class for almost everything. Most classes in Redot
+[Object](class_Object) is the base class for almost everything. Most classes in Redot
 inherit directly or indirectly from it. Objects provide reflection and
 editable properties, and declaring them is a matter of using a single
 macro like this:
@@ -249,15 +249,17 @@ ADD_SIGNAL(MethodInfo("been_killed"))
 
 ## Notifications
 
-All objects in Redot have a [_notification](/docs/Classes/Object_private_method__notification)
+<!-- TODO(Tekk): some methods start with `__`, how will the doc parser handle this? -->
+<!-- TODO(Tekk): doc_Redot_notifications doesnt exist -->
+All objects in Redot have a [__notification](class_Object_private_method__notification)
 method that allows it to respond to engine level callbacks that may relate to it.
 More information can be found on the [doc_Redot_notifications](doc_Redot_notifications) page.
 
 ## References
 
-[RefCounted](/docs/Classes/RefCounted) inherits from Object and holds a
+[RefCounted](class_RefCounted) inherits from Object and holds a
 reference count. It is the base for reference counted object types.
-Declaring them must be done using Ref&lt;&gt; template. For example:
+Declaring them must be done using ``Ref<>`` template. For example:
 
 ```cpp
 class MyReference: public RefCounted {
@@ -268,7 +270,7 @@ Ref<MyReference> myref(memnew(MyReference));
 
 ```
 
-``myref`` is reference counted. It will be freed when no more Ref&lt;&gt;
+``myref`` is reference counted. It will be freed when no more ``Ref<>``
 templates point to it.
 
 ### References:
@@ -277,7 +279,7 @@ templates point to it.
 
 ## Resources
 
-[Resource](/docs/Classes/resource) inherits from RefCounted, so all resources
+[Resource](class_Resource) inherits from RefCounted, so all resources
 are reference counted. Resources can optionally contain a path, which
 reference a file on disk. This can be set with ``resource.set_path(path)``,
 though this is normally done by the resource loader. No two different
@@ -303,6 +305,7 @@ memory, the resource loader will return that reference. This means that
 there can be only one resource loaded from a file referenced on disk at
 the same time.
 
+<!-- TODO(Tekk): TODO -->
 -  resourceinteractiveloader (TODO)
 
 ### References:

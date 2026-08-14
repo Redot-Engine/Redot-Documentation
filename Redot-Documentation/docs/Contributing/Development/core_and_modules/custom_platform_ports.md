@@ -1,26 +1,27 @@
 
 # Custom platform ports
 
-Similar to [doc_custom_modules_in_cpp](custom_modules_in_cpp.md), Redot's multi-platform architecture
+Similar to [doc_custom_modules_in_cpp](doc_custom_modules_in_cpp), Redot's multi-platform architecture
 is designed in a way that allows creating platform ports without modifying any
 existing source code.
 
 An example of a custom platform port distributed independently from the engine
 is [FRT](https://github.com/efornara/frt), which targets single-board
 computers. Note that this platform port currently targets Redot 3.x; therefore,
-it does not use the [class_DisplayServer](/docs/Classes/DisplayServer) abstraction that is new in Redot 4.
+it does not use the [DisplayServer](class_DisplayServer) abstraction that is new in Redot 4.
 
 Some reasons to create custom platform ports might be:
 
-- You want to [port your game to consoles](../../../tutorials/platform/consoles.md), but wish to
+<!-- TODO(Tekk): doc_consoles doesnt exist -->
+- You want to [port your game to consoles](doc_consoles), but wish to
   write the platform layer yourself. This is a long and arduous process, as it
   requires signing NDAs with console manufacturers, but it allows you to have
   full control over the console porting process.
 - You want to port Redot to an exotic platform that isn't currently supported.
 
+<!-- TODO(Tekk): sohuld we have this here? -->
 If you have questions about creating a custom platform port, feel free to ask in
-the ``#platforms`` channel of the
-[Redot Contributors Chat](https://chat.redotengine.org/channel/platforms).
+the [Redot discord server](https://discord.com/invite/redot)..
 
 :::note
 
@@ -32,8 +33,8 @@ about 100 MB of RAM to run on Linux (50 MB in headless mode).
 
 If you want to run Redot on heavily memory-constrained platforms, older
 Redot versions have lower memory requirements. The porting process is
-similar, with the exception of [class_DisplayServer](/docs/Classes/DisplayServer) not being split
-from the [class_OS](/docs/Classes/OS) singleton.
+similar, with the exception of [DisplayServer](class_DisplayServer) not being split
+from the [OS](class_OS) singleton.
 
 :::
 
@@ -62,7 +63,7 @@ amount of work needed varies:
 
 ### Required features of a platform port
 
-At the very least, a platform port must have methods from the [class_OS](/docs/Classes/OS)
+At the very least, a platform port must have methods from the [OS](class_OS)
 singleton implemented to be buildable and usable for headless operation.
 A ``logo.svg`` (32×32) vector image must also be present within the platform
 folder. This logo is displayed in the Export dialog for each export preset
@@ -177,7 +178,7 @@ typically under NDAs which prevent redistribution to the public.
 
 Platform ports are designed to be as self-contained as possible. Most of the
 code can be kept within a single folder located in ``platform/``. Like
-[doc_custom_modules_in_cpp](custom_modules_in_cpp.md), this allows for streamlining the build process
+[doc_custom_modules_in_cpp](doc_custom_modules_in_cpp), this allows for streamlining the build process
 by making it possible to ``git clone`` a platform folder within a Redot repository
 clone's ``platform/`` folder, then run `[scons platform=](name)`. No other steps are
 necessary for building, unless third-party platform-specific dependencies need

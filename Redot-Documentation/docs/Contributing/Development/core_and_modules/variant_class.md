@@ -53,55 +53,56 @@ These types are available in Variant:
 | Type | Notes |
 | --- | --- |
 | Nil (can only store ``null``) | Nullable type |
-| [class_bool](/docs/Classes/bool) |  |
-| [class_int](/docs/Classes/int) |  |
-| [class_float](/docs/Classes/float) |  |
-| [class_string](/docs/Classes/string) |  |
-| [class_vector2](/docs/Classes/vector2) |  |
-| [class_vector2i](/docs/Classes/vector2i) |  |
-| [class_rect2](/docs/Classes/rect2) | 2D counterpart of AABB |
-| [class_rect2i](/docs/Classes/rect2i) |  |
-| [class_vector3](/docs/Classes/vector3) |  |
-| [class_vector3i](/docs/Classes/vector3i) |  |
-| [class_transform2d](/docs/Classes/transform2d) |  |
-| [class_vector4](/docs/Classes/vector4) |  |
-| [class_vector4i](/docs/Classes/vector4i) |  |
-| [class_plane](/docs/Classes/plane) |  |
-| [class_quaternion](/docs/Classes/quaternion) |  |
-| [class_aabb](/docs/Classes/aabb) | 3D counterpart of Rect2 |
-| [class_basis](/docs/Classes/basis) |  |
-| [class_transform3d](/docs/Classes/transform3d) |  |
-| [class_projection](/docs/Classes/projection) |  |
-| [class_color](/docs/Classes/color) |  |
-| [class_stringname](/docs/Classes/stringname) |  |
-| [class_nodepath](/docs/Classes/nodepath) |  |
-| [class_rid](/docs/Classes/rid) |  |
-| [class_object](/docs/Classes/object) | Nullable type |
-| [class_callable](/docs/Classes/callable) |  |
-| [class_signal](/docs/Classes/signal) |  |
-| [class_dictionary](/docs/Classes/dictionary) |  |
-| [class_array](/docs/Classes/array) |  |
-| [class_packedbytearray](/docs/Classes/packedbytearray) |  |
-| [class_packedint32array](/docs/Classes/packedint32array) |  |
-| [class_packedint64array](/docs/Classes/packedint64array) |  |
-| [class_packedfloat32array](/docs/Classes/packedfloat32array) |  |
-| [class_packedfloat64array](/docs/Classes/packedfloat64array) |  |
-| [class_packedstringarray](/docs/Classes/packedstringarray) |  |
-| [class_packedvector2array](/docs/Classes/packedvector2array) |  |
-| [class_packedvector3array](/docs/Classes/packedvector3array) |  |
-| [class_packedcolorarray](/docs/Classes/packedcolorarray) |  |
-| [class_packedvector4array](/docs/Classes/packedvector4array) |  |
+| [bool](class_bool) |  |
+| [int](class_int) |  |
+| [float](class_float) |  |
+| [string](class_string) |  |
+| [Vector2](class_Vector2) |  |
+| [Vector2i](class_Vector2i) |  |
+| [Rect2](class_Rect2) | 2D counterpart of AABB |
+| [Rect2i](class_Rect2i) |  |
+| [Vector3](class_Vector3) |  |
+| [Vector3i](class_Vector3i) |  |
+| [Transform2d](class_Transform2d) |  |
+| [Vector4](class_Vector4) |  |
+| [Vector4i](class_Vector4i) |  |
+| [Plane](class_Plane) |  |
+| [Quaternion](class_Quaternion) |  |
+| [AABB](class_AABB) | 3D counterpart of Rect2 |
+| [Basis](class_Basis) |  |
+| [Transform3d](class_Transform3d) |  |
+| [Projection](class_Projection) |  |
+| [Color](class_Color) |  |
+| [StringName](class_StringName) |  |
+| [NodePath](class_NodePath) |  |
+| [RID](class_RID) |  |
+| [Object](class_Object) | Nullable type |
+| [Callable](class_Callable) |  |
+| [Signal](class_Signal) |  |
+| [Dictionary](class_Dictionary) |  |
+| [Array](class_Array) |  |
+| [PackedByteArray](class_PackedByteArray) |  |
+| [PackedInt32Array](class_PackedInt32Array) |  |
+| [PackedInt64Array](class_PackedInt64Array) |  |
+| [PackedFloat32Array](class_PackedFloat32Array) |  |
+| [PackedFloat64Array](class_PackedFloat64Array) |  |
+| [PackedStringArray](class_PackedStringArray) |  |
+| [PackedVector2Array](class_PackedVector2Array) |  |
+| [PackedVector3Array](class_PackedVector3Array) |  |
+| [PackedColorArray](class_PackedColorArray) |  |
+| [PackedVector4Array](class_PackedVector4Array) |  |
 
 ## Containers: Array and Dictionary
 
-Both [class_array](/docs/Classes/array) and [class_dictionary](/docs/Classes/dictionary) are implemented using
+Both [class_Array](class_Array) and [class_Dictionary](class_Dictionary) are implemented using
 variants. A Dictionary can match any datatype used as key to any other datatype.
 An Array just holds an array of Variants. Of course, a Variant can also hold a
 Dictionary or an Array inside, making it even more flexible.
 
+<!-- TODO(Tekk): doc_using_multiple_threads doesnt exist -->
 Modifications to a container will modify all references to
 it. A Mutex should be created to lock it if
-[multi-threaded access](../../../tutorials/performance/using_multiple_threads.md) is desired.
+[multi-threaded access](doc_using_multiple_threads) is desired.
 
 ### References
 

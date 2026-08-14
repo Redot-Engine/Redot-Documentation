@@ -1,4 +1,4 @@
-
+<!-- TODO(Tekk): when website is squished, the word wrapping of this title makes the card look weird -->
 # Common engine methods and macros
 
 Redot's C++ codebase makes use of dozens of custom methods and macros which are
@@ -42,7 +42,7 @@ described below.
 
 ## Format a string
 
-The ``vformat()`` function returns a formatted [class_String](/docs/Classes/String). It behaves
+The ``vformat()`` function returns a formatted [String](class_String). It behaves
 in a way similar to C's ``sprintf()``:
 
 ```cpp
