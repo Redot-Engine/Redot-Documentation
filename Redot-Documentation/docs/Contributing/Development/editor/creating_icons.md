@@ -22,7 +22,7 @@ The icons must be created in a vector graphics editor in SVG format. There are
 two main requirements to follow:
 
 - Icons must be 16×16. In Inkscape, you can configure the document size in
-  **File &gt; Document Properties**.
+  **File > Document Properties**.
 - Lines should be snapped to pixels whenever possible to remain crisp at lower DPI.
   You can create a 16×16 grid in Inkscape to make this easier.
 
@@ -35,16 +35,17 @@ CPUParticles2D, name the file ``CPUParticles2D.svg``.
 
 If the user has configured their editor to use a light theme, Redot will
 convert the icon's colors based on a
-[set of predefined color mappings](https://github.com/redot-engine/redot-engine/blob/4.0.2-stable/editor/editor_themes.cpp#L60-L160).
+[set of predefined color mappings](https://github.com/Redot-Engine/redot-engine/blob/26.2/editor/themes/editor_color_map.cpp#L57C1-L169C1).
 This is to ensure the icon always displays with a sufficient contrast rate.
 Try to restrict your icon's color palette to colors found in the list above.
 Otherwise, your icon may become difficult to read on a light background.
 
 ### Icon optimization
 
+<!-- NOTE(Tekk): doc_code_style_guidelines#pre-commit-hook has a '-' in the subheading, will it be parsed properly? -->
 Because the editor renders SVGs once at load time, they need to be small
 in size so they can be efficiently parsed. When the
-[pre-commit hook](doc_code_style_guidelines_pre_commit_hook) runs, it automatically optimizes
+[pre-commit hook](doc_code_style_guidelines#pre-commit-hook) runs, it automatically optimizes
 the SVG using [svgo](https://github.com/svg/svgo).
 
 :::note
@@ -68,7 +69,7 @@ make a separate pull request for your icons to be available within the editor
 as they can be self-contained.
 
 For specific instructions on how to create module icons, refer to
-[Creating custom module icons](doc_custom_module_icons).
+[Creating custom module icons](doc_custom_modules_in_cpp#adding-custom-editor-icons).
 
 ### Troubleshooting
 
