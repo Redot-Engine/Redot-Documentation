@@ -116,7 +116,7 @@ There are two separate resources referred to as "documentation" in Redot:
   This is the part you are reading now, which is distributed in the HTML format.
   Its contents are generated from plain text files in the reStructured Text
   (rst) format, to which you can contribute via pull requests on the
-  [Redot-docs](https://github.com/redot-engine/redot-docs-site) GitHub repository.
+  [Redot-Documentation](https://github.com/Redot-Engine/Redot-Documentation) GitHub repository.
   See [doc_contributing_to_the_documentation](doc_contributing_to_the_documentation) for more details.
 
 ## Contributing translations

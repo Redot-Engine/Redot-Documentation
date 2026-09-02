@@ -106,7 +106,7 @@ After a little while, you should have a ``redot-engine`` directory in your curre
 working directory. Move into it using the ``cd`` command:
 
 ```
-cd Redot
+cd redot-engine
 
 ```
 

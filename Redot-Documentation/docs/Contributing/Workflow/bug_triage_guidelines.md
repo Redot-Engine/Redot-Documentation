@@ -152,8 +152,9 @@ Android and Linux exclusively, select those two platforms).
 
 ### Documentation labels
 
+<!-- TODO(Tekk): Rewrite the labels to match the linked repository -->
 In the [documentation repository](https://github.com/redot-engine/Redot-Documentation), we
-use the following [labels](https://github.com/redot-engine/redot-docs-site/labels):
+use the following [labels](https://github.com/Redot-Engine/Redot-Documentation/labels):
 
 -  *Archived*: either a duplicate of another issue, or invalid. Such an
    issue would also be closed.
