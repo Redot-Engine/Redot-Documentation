@@ -9,7 +9,7 @@ debuggers usually cannot catch. This is particularly useful when combined with
 
 Sanitizers can be used on Windows, macOS and Linux by using the Clang (LLVM),
 GCC or Visual Studio compilers.
-[Certain platforms](doc_using_sanitizers_platform_specific_sanitizers)
+[Certain platforms](doc_using_sanitizers#platform-specific-sanitizers)
 may also have their own sanitizers available.
 In situations where a single sanitizer is provided by several different compilers,
 remember that their output and behavior will differ slightly.
@@ -19,7 +19,7 @@ remember that their output and behavior will differ slightly.
 Sanitizers **require** recompiling the binary. This means you cannot use
 official Redot binaries to run sanitizers.
 
-When [compiling](toc-devel-compiling) with any of the sanitizers enabled,
+When [compiling](doc_introduction_to_the_buildsystem) with any of the sanitizers enabled,
 the resulting binary will have the ``.san`` suffix added to its name to
 distinguish it from a binary without sanitizers.
 
@@ -45,7 +45,7 @@ the result of a buffer overrun. (This message is printed by the C runtime, not
 Redot.)
 
 In certain situations (such as detecting uninitialized memory reads),
-the address sanitizer doesn't suffice. The [doc_using_sanitizers_memory_sanitizer](doc_using_sanitizers_memory_sanitizer)
+the address sanitizer doesn't suffice. The [doc_using_sanitizers_memory_sanitizer](doc_using_sanitizers#memory-sanitizer-msan)
 should be used instead.
 
 It is also possible to detect use-after-return situations by specifying the
@@ -71,6 +71,7 @@ you can only use one of those sanitizers in a given binary.
 - **Supported platforms:** Linux, Web
 - [Clang LSAN documentation](https://clang.llvm.org/docs/LeakSanitizer.html)
 
+<!-- TODO(Tekk): doc_exporting_for_dedicated_servers doesnt exist -->
 The leak sanitizer can detect memory leaks, which are situations where memory
 that is no longer in use is never freed by the running program. This can
 potentially lead to out-of-memory situations if the program runs for long
@@ -90,7 +91,7 @@ program exits.
 - [Clang MSAN documentation](https://clang.llvm.org/docs/MemorySanitizer.html)
 
 The memory sanitizer complements the
-[doc_using_sanitizers_address_sanitizer](doc_using_sanitizers_address_sanitizer). Unlike the address sanitizer,
+[doc_using_sanitizers_address_sanitizer](doc_using_sanitizers#address-sanitizer-asan). Unlike the address sanitizer,
 the memory sanitizer can detect uninitialized memory reads.
 
 To enable the memory sanitizer in a Redot build, pass the ``use_msan=yes``

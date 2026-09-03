@@ -59,7 +59,7 @@ currently defined in the Redot repository:
    class reference. Issues with this label are either for wrong documentation, or
    are user-reported "bugs" that are actually limitations to be further documented.
    Often paired with *Discussion*. Issues related to the ReadTheDocs documentation
-   should be filed on the [Redot-docs](https://github.com/redot-engine/redot-docs-site) repository.
+   should be filed on the [Redot-Documentation](https://github.com/redot-engine/Redot-Documentation) repository.
 -  *Enhancement*: describes a proposed enhancement to an existing
    functionality.
 -  *Feature proposal*: describes a wish for a new feature to be
@@ -69,7 +69,7 @@ currently defined in the Redot repository:
    PRs which add new features but do not have a corresponding proposal use this
    label.
 -  *For PR meeting*: the issue needs to be discussed in a pull request meeting.
-   These meetings are public and are held on the [Redot Contributors Chat](https://chat.redotengine.org/).
+   These meetings are public and are held on the [Redot Discord Server](https://discord.com/invite/redot).
 -  *Good first issue*: the issue is *assumed* to be an easy one to fix, which makes
    it a great fit for new contributors who want to become familiar with
    the code base. It should be removed while an active PR is available, that
@@ -152,8 +152,9 @@ Android and Linux exclusively, select those two platforms).
 
 ### Documentation labels
 
-In the [documentation repository](https://github.com/redot-engine/redot-docs-site), we
-use the following [labels](https://github.com/redot-engine/redot-docs-site/labels):
+<!-- TODO(Tekk): Rewrite the labels to match the linked repository -->
+In the [documentation repository](https://github.com/redot-engine/Redot-Documentation), we
+use the following [labels](https://github.com/Redot-Engine/Redot-Documentation/labels):
 
 -  *Archived*: either a duplicate of another issue, or invalid. Such an
    issue would also be closed.

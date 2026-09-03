@@ -13,14 +13,15 @@ when you actually need the output to debug the application.
 
 ## Windows
 
-Install the Vulkan SDK [&lt;https://vulkan.lunarg.com/sdk/home&gt;](&lt;https://vulkan.lunarg.com/sdk/home&gt;), which contains
+Install the [Vulkan SDK](https://vulkan.lunarg.com/sdk/home), which contains
 validation layers as part of its default installation. No need to enable any
 optional features in the installer; installing the core Vulkan SDK suffices. You
 don't need to reboot after installing the SDK, but you may need to close and
 reopen your current terminal.
 
+<!-- TODO(Tekk): doc_command_line_tutorial doesnt exist -->
 After installing the Vulkan SDK, run Redot with the ``--gpu-validation``
-[command line argument](../../../../tutorials/editor/command_line_tutorial.md). You can also specify
+[command line argument](doc_command_line_tutorial). You can also specify
 ``--gpu-abort`` which will make Redot quit as soon as a validation error happens.
 This can prevent your system from freezing if a validation error occurs.
 
@@ -34,13 +35,13 @@ instead.
 
 In practice, this means that using validation layers on macOS **requires**
 you to use a Redot build compiled with the ``use_volk=yes`` SCons option.
-[doc_compiling_for_macos](../../compiling/compiling_for_macos.md). If testing validation layers on an exported
+[doc_compiling_for_macos](doc_compiling_for_macos). If testing validation layers on an exported
 project, you must recompile the export template and specify it as a custom
 export template in your project's macOS export preset.
 
 :::
 
-Install the Vulkan SDK [&lt;https://vulkan.lunarg.com/sdk/home&gt;](&lt;https://vulkan.lunarg.com/sdk/home&gt;), which contains
+Install the Vulkan SDK [Vulkan SDK](https://vulkan.lunarg.com/sdk/home), which contains
 validation layers as part of its default installation. No need to enable any
 optional features in the installer; installing the core Vulkan SDK suffices. You
 don't need to reboot after installing the SDK, but you may need to close and
@@ -48,7 +49,7 @@ reopen your current terminal.
 
 After installing the Vulkan SDK, run a Redot binary that was compiled with
 ``use_volk=yes`` SCons option. Specify the ``--gpu-validation``
-[command line argument](../../../../tutorials/editor/command_line_tutorial.md).
+[command line argument](doc_command_line_tutorial).
 You can also specify ``--gpu-abort`` which will make Redot quit as soon
 as a validation error happens. This can prevent your system from freezing
 if a validation error occurs.
@@ -61,61 +62,61 @@ Install Vulkan validation layers from your distribution's repositories:
 
 <TabItem value="alpine_linux" label="Alpine Linux">
 
-vulkan-validation-layers
+``vulkan-validation-layers``
 
 </TabItem>
 
 <TabItem value="arch_linux" label="Arch Linux">
 
-pacman -S vulkan-validation-layers
+``pacman -S vulkan-validation-layers``
 
 </TabItem>
 
 <TabItem value="debian_ubuntu" label="Debian/Ubuntu">
 
-apt install vulkan-validationlayers
+``apt install vulkan-validationlayers``
 
 </TabItem>
 
 <TabItem value="fedora" label="Fedora">
 
-dnf install vulkan-validation-layers
+``dnf install vulkan-validation-layers``
 
 </TabItem>
 
 <TabItem value="freebsd" label="FreeBSD">
 
-pkg install graphics/vulkan-validation-layers
+``pkg install graphics/vulkan-validation-layers``
 
 </TabItem>
 
 <TabItem value="gentoo" label="Gentoo">
 
-emerge -an media-libs/vulkan-layers
+``emerge -an media-libs/vulkan-layers``
 
 </TabItem>
 
 <TabItem value="mageia" label="Mageia">
 
-urpmi vulkan-validation-layers
+``urpmi vulkan-validation-layers``
 
 </TabItem>
 
 <TabItem value="openbsd" label="OpenBSD">
 
-pkg_add graphics/vulkan-validation-layers
+``pkg_add graphics/vulkan-validation-layers``
 
 </TabItem>
 
 <TabItem value="opensuse" label="openSUSE">
 
-zypper install vulkan-validationlayers
+``zypper install vulkan-validationlayers``
 
 </TabItem>
 
 <TabItem value="solus" label="Solus">
 
-eopkg install -c vulkan-validation-layers
+``eopkg install -c vulkan-validation-layers``
 
 </TabItem>
 
@@ -125,7 +126,7 @@ You don't need to reboot after installing the validation layers, but you may
 need to close and reopen your current terminal.
 
 After installing the package, run Redot with the ``--gpu-validation``
-[command line argument](../../../../tutorials/editor/command_line_tutorial.md). You can also specify
+[command line argument](doc_command_line_tutorial). You can also specify
 ``--gpu-abort`` which will make Redot quit as soon as a validation error happens.
 This can prevent your system from freezing if a validation error occurs.
 
@@ -178,5 +179,6 @@ If the subdirectory ``libs/debug/vulkan_validation_layers`` doesn't exist, creat
 
 #### Compile and run the Android app
 
+<!-- TODO(Tekk): doc_one-click_deploy doesnt exist, and the formatting of the name is wrong (probably) -->
 Linked validation layers are automatically loaded and enabled in Android debug builds.
-You can use Redot's [doc_one-click_deploy](../../../../tutorials/export/one-click_deploy.md) feature to quickly test your project with the validation layers enabled.
+You can use Redot's [doc_one-click_deploy](doc_one-click_deploy) feature to quickly test your project with the validation layers enabled.

@@ -1,11 +1,10 @@
 # Compiling for Linux, \*BSD
 
-.. highlight:: shell
-
 :::info
 
+<!-- TODO(Tekk): doc_exporting_for_linux doesnt exist -->
 This page describes how to compile Linux editor and export template binaries from source.
-If you're looking to export your project to Linux instead, read [doc_exporting_for_linux](../../../tutorials/export/exporting_for_linux.md).
+If you're looking to export your project to Linux instead, read [doc_exporting_for_linux](doc_exporting_for_linux).
 
 :::
 
@@ -265,19 +264,11 @@ scons platform=linuxbsd
 
 ```
 
-:::note
-
-Prior to Redot 4.0, the Linux/\*BSD target was called ``x11`` instead of
-``linuxbsd``. If you are looking to compile Redot 3.x, make sure to use the
-[3.x branch of this documentation](https://docs.redotengine.org/en/3.6/development/compiling/compiling_for_x11.html).
-
-:::
-
 :::tip
 
 If you are compiling Redot to make changes or contribute to the engine,
 you may want to use the SCons options ``dev_build=yes`` or ``dev_mode=yes``.
-See [doc_introduction_to_the_buildsystem_development_and_production_aliases](doc_introduction_to_the_buildsystem_development_and_production_aliases)
+See [doc_introduction_to_the_buildsystem#development-and-production-aliases](doc_introduction_to_the_buildsystem#development-and-production-aliases)
 for more info.
 
 :::
@@ -315,7 +306,9 @@ lightweight but less effective form of LTO.
 
 :::
 
+<!-- TODO(Tekk): doc_data_paths_self_contained_mode doesnt exist -->
 :::note
+
 If you want to use separate editor settings for your own Redot builds
 and official releases, you can enable
 [doc_data_paths_self_contained_mode](doc_data_paths_self_contained_mode) by creating a file called
@@ -416,7 +409,7 @@ However, if you are writing your custom modules or custom C++ code, you
 might instead want to configure your binaries as custom export templates
 here:
 
-![Image](img/lintemplates.png)
+![Image](/img/Contributing/Development/Compiling/lintemplates.png)
 
 You don't even need to copy them, you can just reference the resulting
 files in the ``bin/`` directory of your Redot source folder, so the next
@@ -587,6 +580,7 @@ you may not be able to use system libraries for everything due to bugs in the
 system library packages (or in the build system, as this feature is less
 tested).
 
+<!-- TODO(Tekk): doc_compiling_for_linuxbsd_oneliners doesnt exist. is this a heading in this document? -->
 To compile Redot with system libraries, install these dependencies **on top** of the ones
 listed in the [doc_compiling_for_linuxbsd_oneliners](doc_compiling_for_linuxbsd_oneliners):
 

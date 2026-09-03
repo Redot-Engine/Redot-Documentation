@@ -1,7 +1,5 @@
 # Compiling with PCK encryption key
 
-.. highlight:: shell
-
 The export dialog gives you the option to encrypt your PCK file with a 256-bit
 AES key when releasing your project. This will make sure your scenes, scripts
 and other resources are not stored in plain text and can not easily be ripped
@@ -80,6 +78,7 @@ set SCRIPT_AES256_ENCRYPTION_KEY=your_generated_key
 
 ```bat
 $env:SCRIPT_AES256_ENCRYPTION_KEY="your_generated_key"
+
 ```
 
 </TabItem>
@@ -91,7 +90,7 @@ $env:SCRIPT_AES256_ENCRYPTION_KEY="your_generated_key"
 
 4. Set the encryption key in the **Encryption** tab of the export preset:
 
-![Image](img/encryption_key.png)
+![Image](/img/Contributing/Development/Compiling/encryption_key.png)
 
 5. Add filters for the files/folders to encrypt. **By default**, include filters
    are empty and **nothing will be encrypted**.
@@ -107,4 +106,5 @@ it at runtime.
 ```
 ERROR: open_and_parse: Condition "String::md5(md5.digest) != String::md5(md5d)" is true. Returning: ERR_FILE_CORRUPT
    At: core/io/file_access_encrypted.cpp:103
+
 ```

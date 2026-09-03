@@ -18,6 +18,7 @@ For running from the CLI, you can build and run with the following commands:
 dotnet restore
 dotnet build
 dotnet run --project Redot-Documentation/Redot-Documentation.csproj
+
 ```
 Note that after you have built the project at least once, you can skip the `dotnet restore` and `dotnet build` steps.
 

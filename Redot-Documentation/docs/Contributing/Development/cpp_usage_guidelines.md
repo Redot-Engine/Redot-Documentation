@@ -1,7 +1,8 @@
 
 # C++ usage guidelines
 
-As of Redot 26.3, we are moving to C++20. Below are some guidelines for C++ usage in Redot.
+<!-- TODO(Tekk): `++` is being escaped into underline? :P writing C++ will be difficult now -->
+As of Redot 26.3, we are moving to C\+\+20. Below are some guidelines for C\+\+ usage in Redot.
 
 :::info
 
@@ -18,6 +19,7 @@ purpose, such as improving code readability or performance.
 
 ### Standard Template Library
 
+<!-- TODO(Tekk): doc_faq_why_not_stl doesnt exist -->
 We don't allow using the [STL](https://en.wikipedia.org/wiki/Standard_Template_Library)
 as Redot provides its own data types (among other things).
 See [doc_faq_why_not_stl](doc_faq_why_not_stl) for more information.
@@ -71,7 +73,7 @@ Please prefer ``#pragma once`` in new files over ``#ifdef``-based include guards
 
 :::info
 
-See [doc_code_style_guidelines_header_includes](doc_code_style_guidelines_header_includes) for guidelines on sorting
+See [doc_code_style_guidelines_header_includes](doc_code_style_guidelines#header-includes) for guidelines on sorting
 includes in C++ and Objective-C files.
 
 :::

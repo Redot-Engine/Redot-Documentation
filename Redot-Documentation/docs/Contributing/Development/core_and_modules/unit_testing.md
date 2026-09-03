@@ -159,8 +159,9 @@ allows to prevent naming collisions for when other static helper functions are
 written to accommodate the repeating testing procedures such as populating
 common test data for each test, or writing parameterized tests.
 
+<!-- TODO(Tekk): doc_custom_module_unit_tests doesnt exist -->
 Redot supports writing tests per C++ module. For instructions on how to write
-module tests, refer to [doc_custom_module_unit_tests](doc_custom_module_unit_tests).
+module tests, refer to [doc_custom_modules_in_cpp_writing_custom_unit_tests](doc_custom_modules_in_cpp#writing-custom-unit-tests).
 
 ### Subcases
 
@@ -268,9 +269,9 @@ These tags can be added to the test case name to modify or extend the test envir
 
 | **Tag** | **Description** |
 | --- | --- |
-| ``[SceneTree]`` | Required for test cases that rely on a scene tree with MessageQueue to be available. It also enables a mock rendering server and [ThemeDB](/docs/Classes/ThemeDB). |
-| ``[Editor]`` | Like ``[SceneTree]``, but with additional editor-related infrastructure available, such as [EditorSettings](/docs/Classes/EditorSettings). |
-| ``[Audio]`` | Initializes the [AudioServer](/docs/Classes/AudioServer) using a mock audio driver. |
+| ``[SceneTree]`` | Required for test cases that rely on a scene tree with MessageQueue to be available. It also enables a mock rendering server and [ThemeDB](class_ThemeDB). |
+| ``[Editor]`` | Like ``[SceneTree]``, but with additional editor-related infrastructure available, such as [EditorSettings](class_EditorSettings). |
+| ``[Audio]`` | Initializes the [AudioServer](class_AudioServer) using a mock audio driver. |
 | ``[Navigation]`` | Creates the default 2D/3D navigation servers and makes them available for testing. |
 
 You can use them together to combine multiple test environment extensions.
@@ -289,7 +290,7 @@ The following macros can be use to test signals:
      - Starts watching the specified signal on the given object.
    * - ``SIGNAL_UNWATCH(object, "signal_name")``
      - Stops watching the specified signal on the given object.
-   * - ``SIGNAL_CHECK("signal_name", Vector&lt;Vector&lt;Variant&gt;&gt;)``
+   * - ``SIGNAL_CHECK("signal_name", Vector<Vector<Variant>>)``
      - Checks the arguments of all fired signals. The outer vector contains each fired signal, while the inner vector contains the list of arguments for that signal. The order of signals is significant.
    * - ``SIGNAL_CHECK_FALSE("signal_name")``
      - Checks if the specified signal was not fired.
@@ -365,7 +366,7 @@ REGISTER_TEST_COMMAND("gdscript-compiler", &test_compiler);
 ```
 
 The custom command-line parsing can be performed by a test tool itself with the
-help of OS [get_cmdline_args](/docs/Classes/OS_method_get_cmdline_args) method.
+help of OS [get_cmdline_args](class_OS_method_get_cmdline_args) method.
 
 ## Integration tests for GDScript
 
@@ -390,7 +391,7 @@ Therefore, the process of writing integration tests for GDScript is the followin
 
    Here's an example test script:
 
-```
+```gdscript
 func test():
     if true # Missing colon here.
         print("true")

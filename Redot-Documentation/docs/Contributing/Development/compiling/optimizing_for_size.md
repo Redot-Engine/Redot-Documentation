@@ -1,8 +1,6 @@
 
 # Optimizing a build for size
 
-.. highlight:: shell
-
 ## Rationale
 
 Sometimes, it is desired to optimize a build for size rather than speed.
@@ -37,7 +35,7 @@ On Windows, ``strip.exe`` is included in most MinGW toolchain setups.
 This will reduce the size of compiled binaries by a factor between 5× and 10×.
 The downside is that crash backtraces will no longer provide accurate information
 (which is useful for troubleshooting the cause of a crash).
-[C++ profilers](../debugging/using_cpp_profilers.md) will also no longer be able to display
+[C++ profilers](doc_using_cpp_profilers) will also no longer be able to display
 function names (this does not affect the built-in GDScript profiler).
 
 :::note
@@ -168,34 +166,35 @@ scons target=template_release disable_advanced_gui=yes
 
 This is everything that will be disabled:
 
-- [class_AcceptDialog](/docs/Classes/AcceptDialog)
-- [class_CharFXTransform](/docs/Classes/CharFXTransform)
-- [class_CodeEdit](/docs/Classes/CodeEdit)
-- [class_CodeHighlighter](/docs/Classes/CodeHighlighter)
-- [class_ColorPickerButton](/docs/Classes/ColorPickerButton)
-- [class_ColorPicker](/docs/Classes/ColorPicker)
-- [class_ConfirmationDialog](/docs/Classes/ConfirmationDialog)
-- [class_FileDialog](/docs/Classes/FileDialog)
-- [class_GraphEdit](/docs/Classes/GraphEdit)
-- [class_GraphElement](/docs/Classes/GraphElement)
-- [class_GraphFrame](/docs/Classes/GraphFrame)
-- [class_GraphNode](/docs/Classes/GraphNode)
-- [class_HSplitContainer](/docs/Classes/HSplitContainer)
-- [class_MenuBar](/docs/Classes/MenuBar)
-- [class_MenuButton](/docs/Classes/MenuButton)
-- [class_OptionButton](/docs/Classes/OptionButton)
-- [class_PopupMenu](/docs/Classes/PopupMenu) (will make all popup menus unavailable in code for classes that use them,
-  like [class_LineEdit](/docs/Classes/LineEdit), even though those classes are still available)
-- [class_RichTextEffect](/docs/Classes/RichTextEffect)
-- [class_RichTextLabel](/docs/Classes/RichTextLabel)
-- [class_SpinBox](/docs/Classes/SpinBox)
-- [class_SplitContainer](/docs/Classes/SplitContainer)
-- [class_SubViewportContainer](/docs/Classes/SubViewportContainer)
-- [class_SyntaxHighlighter](/docs/Classes/SyntaxHighlighter)
-- [class_TextEdit](/docs/Classes/TextEdit)
-- [class_TreeItem](/docs/Classes/TreeItem)
-- [class_Tree](/docs/Classes/Tree)
-- [class_VSplitContainer](/docs/Classes/VSplitContainer)
+<!-- TODO(Tekk): class reference doesnt exist yet -->
+- [AcceptDialog](class_AcceptDialog)
+- [CharFXTransform](class_CharFXTransform)
+- [CodeEdit](class_CodeEdit)
+- [CodeHighlighter](class_CodeHighlighter)
+- [ColorPickerButton](class_ColorPickerButton)
+- [ColorPicker](class_ColorPicker)
+- [ConfirmationDialog](class_ConfirmationDialog)
+- [FileDialog](class_FileDialog)
+- [GraphEdit](class_GraphEdit)
+- [GraphElement](class_GraphElement)
+- [GraphFrame](class_GraphFrame)
+- [GraphNode](class_GraphNode)
+- [HSplitContainer](class_HSplitContainer)
+- [MenuBar](class_MenuBar)
+- [MenuButton](class_MenuButton)
+- [OptionButton](class_OptionButton)
+- [PopupMenu](class_PopupMenu) (will make all popup menus unavailable in code for classes that use them,
+  like [LineEdit](class_LineEdit), even though those classes are still available)
+- [RichTextEffect](class_RichTextEffect)
+- [RichTextLabel](class_RichTextLabel)
+- [SpinBox](class_SpinBox)
+- [SplitContainer](class_SplitContainer)
+- [SubViewportContainer](class_SubViewportContainer)
+- [SyntaxHighlighter](class_SyntaxHighlighter)
+- [TextEdit](class_TextEdit)
+- [TreeItem](class_TreeItem)
+- [Tree](class_Tree)
+- [VSplitContainer](class_VSplitContainer)
 
 ## Disabling unwanted modules
 
@@ -269,6 +268,7 @@ module_zip_enabled = "no"
 
 :::info
 
+<!-- TODO(Tekk): overriding_build_options.md doesnt exist -->
 [doc_overriding_build_options](doc_overriding_build_options).
 
 :::
@@ -320,4 +320,5 @@ even more efficient, as long as the web server is configured to serve those
 files when they exist. When supported, Brotli should be preferred over gzip as
 it has a greater potential for file size reduction.
 
+<!-- TODO(Tekk): doc_exporting_for_web_serving_the_files doesnt exist -->
 See [doc_exporting_for_web_serving_the_files](doc_exporting_for_web_serving_the_files) for instructions.

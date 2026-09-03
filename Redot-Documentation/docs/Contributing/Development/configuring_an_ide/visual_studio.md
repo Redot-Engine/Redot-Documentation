@@ -20,12 +20,11 @@ with the solution file, it can be generated using SCons.
 - Use the **Build** top menu to build the project.
 
 :::warning
+
 Visual Studio must be configured with the C++ package. It can be selected
 in the installer:
 
-<figure>
-  <img src="/img/vs_1_install_cpp_package.png" />
-</figure>
+![Image](/img/Contributing/Development/configuring_an_ide/vs_1_install_cpp_package.png)
 
 :::
 
@@ -35,39 +34,34 @@ Visual Studio features a powerful debugger. This allows the user to examine Redo
 source code, stop at specific points in the code, inspect the current execution context,
 and make live changes to the codebase.
 
-You can launch the project with the debugger attached using the **Debug &gt; Start Debugging**
+You can launch the project with the debugger attached using the **Debug > Start Debugging**
 option from the top menu. However, unless you want to debug the Project Manager specifically,
 you'd need to configure debugging options first. This is due to the fact that when the Redot
 Project Manager opens a project, the initial process is terminated and the debugger gets detached.
 
-- To configure the launch options to use with the debugger use **Project &gt; Properties**
+- To configure the launch options to use with the debugger use **Project > Properties**
   from the top menu:
 
-<figure>
-  <img src="/Contributing/Development/configuring_an_ide/img/vs_2_project_properties.png" />
-</figure>
+![Image](/img/Contributing/Development/configuring_an_ide/vs_2_project_properties.png)
 
 - Open the **Debugging** section and under **Command Arguments** add two new arguments:
   the ``-e`` flag opens the editor instead of the Project Manager, and the ``--path`` argument
   tells the executable to open the specified project (must be provided as an *absolute* path
   to the project root, not the ``project.Redot`` file; if the path contains spaces be sure to pass it inside double quotation marks).
 
-<figure>
-  <img src="/Contributing/Development/configuring_an_ide/img/vs_3_debug_command_line.webp" />
-</figure>
+![Image](/img/Contributing/Development/configuring_an_ide/vs_3_debug_command_line.webp)
 
+<!-- TODO(Tekk): doc_command_line_tutorial doesnt exist -->
 To learn more about command line arguments, refer to the
-[command line tutorial](../../../tutorials/editor/command_line_tutorial.md).
+[command line tutorial](doc_command_line_tutorial).
 
 Even if you start the project without a debugger attached it can still be connected to the running
-process using **Debug &gt; Attach to Process...** menu.
+process using **Debug > Attach to Process...** menu.
 
 To check that everything is working, put a breakpoint in ``main.cpp`` and press `F5` to
 start debugging.
 
-<figure>
-  <img src="/Contributing/Development/configuring_an_ide/img/vs_4_debugging_main.png" />
-</figure>
+![Image](/img/Contributing/Development/configuring_an_ide/vs_4_debugging_main.png)
 
-If you run into any issues, ask for help in one of
-[Redot's community channels](https://redotengine.org/community).
+If you run into any issues, ask for help in the
+[Redot discord server](https://discord.com/invite/redot).

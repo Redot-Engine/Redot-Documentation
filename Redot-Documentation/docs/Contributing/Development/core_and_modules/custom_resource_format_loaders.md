@@ -9,11 +9,11 @@ path again, the previous loaded Resource will be referenced. Naturally,
 loaded resources must be stateless.
 
 This guide assumes the reader knows how to create C++ modules and Redot
-data types. If not, refer to this guide: [doc_custom_modules_in_cpp](custom_modules_in_cpp.md)
+data types. If not, refer to this guide: [doc_custom_modules_in_cpp](doc_custom_modules_in_cpp)
 
 ### References
 
-- [ResourceLoader](/docs/Classes/resourceloader)
+- [ResourceLoader](class_ResourceLoader)
 - [core/io/resource_loader.cpp](https://github.com/redot-engine/redot-engine/blob/master/core/io/resource_loader.cpp)
 
 ## What for?
@@ -141,7 +141,7 @@ void ResourceFormatSaverJson::get_recognized_extensions(const RES &p_resource, L
 
 ## Creating custom data types
 
-Redot may not have a proper substitute within its [doc_core_types](core_types.md)
+Redot may not have a proper substitute within its [doc_core_types](doc_core_types)
 or managed resources. Redot needs a new registered data type to
 understand additional binary formats such as machine learning models.
 
@@ -356,11 +356,12 @@ project's root folder:
 
 Then attach the following script to any node
 
-```
+```gdscript
 extends Node
 
 @onready var json_resource = load("res://demo.json")
 
 func _ready():
     print(json_resource.get_dict())
+
 ```

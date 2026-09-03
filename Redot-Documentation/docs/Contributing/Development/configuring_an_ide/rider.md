@@ -4,6 +4,7 @@
 [JetBrains Rider](https://www.jetbrains.com/rider/) is a commercial
 [JetBrains](https://www.jetbrains.com/) IDE for C# and C++ that uses the same solution system as Visual Studio.
 
+<!-- TODO(Tekk): doc_c_sharp_setup_external_editor doesnt exist -->
 :::note
 
 This documentation is for contributions to the game engine, and not using
@@ -20,6 +21,7 @@ you can install using the Visual Studio Installer. Ensure all dependencies are i
 before you continue to the next steps.
 
 :::tip
+
 If you already use Visual Studio as your main IDE, you can use the same solution file in Rider.
 Rider and Visual Studio use the same solution format, so you can switch between the two IDEs without rebuilding the solution file.
 Debug configurations need to be changed when going from one IDE to another.
@@ -44,6 +46,7 @@ The ``dev_build`` parameter makes sure the debug symbols are included, allowing 
   or by using the **Open** option inside of Rider.
 
 :::note
+
 Rider could fail to build the solution.
 If that is the case, try running `git clean -xdf` to remove all traces of the previous build artifacts
 and regenerate the build files using the `scons` command again. Restarting the terminal and your
@@ -56,15 +59,11 @@ Rider comes with a built-in debugger that can be used to debug the Redot project
 by pressing the **Debug** icon at the top of the screen, this only works for the Project manager,
 if you want to debug the editor, you need to configure the debugger first.
 
-<figure>
-  <img src="/Contributing/Development/configuring_an_ide/img/rider_run_debug.webp" />
-</figure>
+![Image](/img/Contributing/Development/configuring_an_ide/rider_run_debug.webp)
 
-- Click on the **Redot &gt; Edit Configurations** option at the top of the screen.
+- Click on the **Redot > Edit Configurations** option at the top of the screen.
 
-<figure>
-  <img src="/Contributing/Development/configuring_an_ide/img/rider_configurations.webp" />
-</figure>
+![Image](/img/Contributing/Development/configuring_an_ide/rider_configurations.webp)
 
 - Ensure the following values for the C++ Project Run Configuration:
 
@@ -76,24 +75,18 @@ if you want to debug the editor, you need to configure the debugger first.
 This will tell the executable to debug the specified project without using the project manager.
 Use the root path to the project folder, not ``project.Redot`` file path.
 
-<figure>
-  <img src="/Contributing/Development/configuring_an_ide/img/rider_configurations_changed.webp" />
-</figure>
+![Image](/img/Contributing/Development/configuring_an_ide/rider_configurations_changed.webp)
 
 - Finally click on "Apply" and "OK" to save the changes.
 
 - When you press the **Debug** icon at the top of the screen, JetBrains Rider will launch the Redot editor with the debugger attached.
 
-Alternatively you can use **Run &gt; Attach to Process** to attach the debugger to a running Redot instance.
+Alternatively you can use **Run > Attach to Process** to attach the debugger to a running Redot instance.
 
-<figure>
-  <img src="/Contributing/Development/configuring_an_ide/img/rider_attach_to_process.webp" />
-</figure>
+![Image](/img/Contributing/Development/configuring_an_ide/rider_attach_to_process.webp)
 
 - You can find the Redot instance by searching for ``Redot.editor`` and then clicking ``Attach with LLDB``
 
-<figure>
-  <img src="/Contributing/Development/configuring_an_ide/img/rider_attach_to_process_dialog.webp" />
-</figure>
+![Image](/img/Contributing/Development/configuring_an_ide/rider_attach_to_process_dialog.webp)
 
 Please consult the [JetBrains Rider documentation](https://www.jetbrains.com/rider/documentation/) for any specific information about the JetBrains IDE.

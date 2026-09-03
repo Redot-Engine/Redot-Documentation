@@ -4,9 +4,10 @@
 To optimize Redot's performance, you need to know what to optimize first.
 To this end, profilers are useful tools.
 
+<!-- TODO(Tekk): doc_the_profiler doesnt exist -->
 :::note
 
-There is a [built-in GDScript profiler](doc_the_profiler.md) in the editor,
+There is a [built-in GDScript profiler](doc_the_profiler) in the editor,
 but using C++ profiler may be useful in cases where the GDScript profiler
 is not accurate enough or is missing information due to bugs in the profiler.
 
@@ -47,11 +48,12 @@ If you're looking into optimizing Redot's startup/shutdown performance,
 you can tell the profiler to use the ``--quit`` command line option on the Redot binary.
 This will exit Redot just after it finished starting.
 The ``--quit`` option works with ``--editor``, ``--project-manager`` or
-`[--path](path to project directory)` (which runs a project directly).
+`--path <path to project directory>` (which runs a project directly).
 
+<!-- TODO(Tekk): doc_command_line_tutorial doesnt exist -->
 :::info
 
-See [Command Line Tutorial](doc_command_line_tutorial.md) for more command line arguments
+See [Command Line Tutorial](doc_command_line_tutorial) for more command line arguments
 supported by Redot.
 
 :::
@@ -74,7 +76,7 @@ supported by Redot.
 - Once the results window appears, filter the view to remove external modules (such as the graphics driver).
   You can filter by module by finding a line whose **Module** matches the Redot
   executable name, right-clicking that line then choosing
-  **Filter Module to &lt;Redot executable name&gt;** in the dropdown that appears.
+  **Filter Module to <Redot executable name>** in the dropdown that appears.
 - Your results window should now look something like this:
 
 ![Image](/img/Contributing/Development/Debugging/cpp_profiler_verysleepy_results_filtered.png)

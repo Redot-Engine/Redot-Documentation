@@ -6,9 +6,11 @@ On this page, you will learn:
 - The **design decisions** behind the Redot editor.
 - How to work efficiently on the Redot editor's C++ code.
 
+<!-- TODO(Tekk): doc_making_plugins doesnt exist -->
 This guide is aimed at current or future engine contributors.
-To create editor plugins in GDScript, see [making plugins](doc_making_plugins.md) instead.
+To create editor plugins in GDScript, see [making plugins](doc_making_plugins) instead.
 
+<!-- TODO(Tekk): doc_Redot_design_philosophy doesnt exist -->
 :::info
 
 If you are new to Redot, we recommended you to read
@@ -20,8 +22,9 @@ to the editor.
 
 ## Technical choices
 
+<!-- TODO(Tekk): doc_ui_index doesnt exist. it was the index file of the UI tutorial. -->
 The Redot editor is drawn using Redot's renderer and
-[UI system](../../../tutorials/ui/index.md). It does *not* rely on a toolkit
+[UI system](doc_ui_index). It does *not* rely on a toolkit
 such as GTK or Qt. This is similar in spirit to software like Blender.
 While using toolkits makes it easier to achieve a "native" appearance, they are
 also quite heavy and their licensing is not compatible with Redot's.
@@ -31,26 +34,27 @@ The editor is fully written in C++. It can't contain any GDScript or C# code.
 ## Directory structure
 
 The editor's code is fully self-contained in the
-[editor/](https://github.com/redot-engine/redot-engine/tree/master/editor) folder
+[editor/](https://github.com/Redot-Engine/redot-engine/tree/master/editor) folder
 of the Redot source repository.
 
 Some editor functionality is also implemented via
-[modules](doc_custom_modules_in_cpp.md). Some of these are only enabled in
+[modules](doc_custom_modules_in_cpp). Some of these are only enabled in
 editor builds to decrease the binary size of export templates. See the
-[modules/](https://github.com/redot-engine/redot-engine/tree/master/modules) folder
+[modules/](https://github.com/Redot-Engine/redot-engine/tree/master/modules) folder
 in the Redot source repository.
 
 Some important files in the editor are:
 
-- [editor/editor_node.cpp](https://github.com/redot-engine/redot-engine/blob/master/editor/editor_node.cpp):
+<!-- TODO(Tekk): The changed plugin systems should be explained in more detail, since theyre not in the `plugins/` directory anymore -->
+- [editor/editor_node.cpp](https://github.com/Redot-Engine/redot-engine/blob/master/editor/editor_node.cpp):
   Main editor initialization file. Effectively the "main scene" of the editor.
-- [editor/project_manager.cpp](https://github.com/redot-engine/redot-engine/blob/master/editor/project_manager.cpp):
+- [editor/project_manager/project_manager.cpp](https://github.com/Redot-Engine/redot-engine/blob/master/editor/project_manager/project_manager.cpp):
   Main Project Manager initialization file. Effectively the "main scene" of the Project Manager.
-- [editor/plugins/canvas_item_editor_plugin.cpp](https://github.com/redot-engine/redot-engine/blob/master/editor/plugins/canvas_item_editor_plugin.cpp):
+- [editor/scene/canvas_item_editor_plugin.cpp](https://github.com/Redot-Engine/redot-engine/blob/master/editor/scene/canvas_item_editor_plugin.cpp):
   The 2D editor viewport and related functionality (toolbar at the top, editing modes, overlaid helpers/panels, …).
-- [editor/plugins/node_3d_editor_plugin.cpp](https://github.com/redot-engine/redot-engine/blob/master/editor/plugins/node_3d_editor_plugin.cpp):
+- [editor/scene/3d/node_3d_editor_plugin.cpp](https://github.com/Redot-Engine/redot-engine/blob/master/editor/scene/3d/node_3d_editor_plugin.cpp):
   The 3D editor viewport and related functionality (toolbar at the top, editing modes, overlaid panels, …).
-- [editor/plugins/node_3d_editor_gizmos.cpp](https://github.com/redot-engine/redot-engine/blob/master/editor/plugins/node_3d_editor_gizmos.cpp):
+- [editor/scene/3d/node_3d_editor_gizmos.cpp](https://github.com/Redot-Engine/redot-engine/blob/master/editor/scene/3d/node_3d_editor_gizmos.cpp):
   Where the 3D editor gizmos are defined and drawn.
   This file doesn't have a 2D counterpart as 2D gizmos are drawn by the nodes themselves.
 
@@ -66,7 +70,7 @@ you use ``#ifdef TOOLS_ENABLED``.
 To make the codebase easier to follow and more self-contained, the allowed
 dependency order is:
 
-- ``editor/`` -&gt; ``scene/`` -&gt; ``servers/`` -&gt; ``core/``
+- ``editor/`` -> ``scene/`` -> ``servers/`` -> ``core/``
 
 This means that files in ``editor/`` can depend on includes from ``scene/``,
 ``servers/``, and ``core/``. But, for example, while ``scene/`` can depend on includes
@@ -74,11 +78,13 @@ from ``servers/`` and ``core/``, it cannot depend on includes from ``editor/``.
 
 Currently, there are some dependencies to ``editor/`` includes in ``scene/``
 files, but
-[they are in the process of being removed](https://github.com/godot-engine/godot/issues/53295).
+<!-- TODO(Tekk): Keep godot link? issue is still open, as of the time of writing this comment -->
+[they are in the process of being removed](https://github.com/godotengine/godot/issues/53295).
 
 ## Development tips
 
+<!-- TODO(Tekk): doc_command_line_tutorial doesnt exist -->
 To iterate quickly on the editor, we recommend to set up a test project and
-[open it from the command line](doc_command_line_tutorial.md) after compiling
+[open it from the command line](doc_command_line_tutorial) after compiling
 the editor. This way, you don't have to go through the Project Manager every
 time you start Redot.

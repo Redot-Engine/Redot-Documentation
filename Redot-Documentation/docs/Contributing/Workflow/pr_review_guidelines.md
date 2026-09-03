@@ -27,13 +27,12 @@ following:
   4. Another maintainer reviews the code with a focus on code style/clarity and
      approves it once satisfied.
 
-  5. A team leader or a member of the `production team
-     &lt;https://redotengine.org/teams#production&gt;`_ merges the pull request if
-     satisfied that it has been sufficiently reviewed.
+  5. A repository maintainer merges the pull request if satisfied that it has
+     been sufficiently reviewed.
 
 This document will explain steps 2, 3, 4, and 5 in more detail. For a more
-detailed explanation of the pull request workflow please see the :ref:`pull
-request workflow document &lt;doc_pr_workflow&gt;`.
+detailed explanation of the pull request workflow please see the
+[pull request workflow document](doc_pr_workflow).
 
 :::note
 
@@ -48,10 +47,10 @@ assigning tags to the pull request and flagging it for review by someone
 familiar with that area of code.
 
 Engine maintainers are folks who are "members" of the Redot project repository
-on GitHub and/or are listed on the [Teams page](https://redotengine.org/teams)
-on the Redot website. Maintainers are responsible for a given area of the
-engine. Typically this means they are the people who are given more trust to
-approve and recommend pull requests for merging.
+on GitHub and/or have the Project Manager role in the [discord server](https://discord.com/invite/redot).
+Maintainers are responsible for a given area of the engine. Typically this
+means they are the people who are given more trust to approve and recommend
+pull requests for merging.
 
 Even if you are not a maintainer, you can still help by reviewing code,
 providing feedback on PRs and testing PRs locally on your machine to confirm
@@ -143,6 +142,8 @@ Here are some things to think about and look out for as you review the code:
 
 ### 4. Iterate with the contributor and improve the PR
 
+<!-- TODO(Tekk): code_style_review.md does not exist -->
+
 Maintainers should provide feedback and suggestions for improvement if they spot
 things in the code that they would like changed. Preferably, suggestions should
 come in order of importance: first, address overall code design and the approach
@@ -159,8 +160,8 @@ want to avoid stringing people along because it feels bad to say "sorry, no".
 
 :::
 
-As you review pull requests, keep the Redot `Code of Conduct
-&lt;https://redotengine.org/code-of-conduct&gt;`_ in mind. Especially the following:
+As you review pull requests, follow the rules of common decency.
+Especially the following:
 
 * Politeness is expected at all times. Be kind and courteous.
 
@@ -194,10 +195,9 @@ contributor:
   as possible.
 
 And ultimately, don't feel pressured to deal with the PR all alone. Feel free to
-ask for a helping hand on the `Redot Contributors Chat
-&lt;https://chat.redotengine.org&gt;`_, in the appropriate channel or in #general.
-Other teams may already be tagged for review, so you can also wait or ask for
-their assistance.
+ask for a helping hand on the [Redot Discord Server](https://discord.com/invite/redot),
+in the appropriate channel or in #redot-discussion. Other teams may already be tagged for
+review, so you can also wait or ask for their assistance.
 
 ### 5. Approve the pull request
 
@@ -229,9 +229,10 @@ review. The important thing is that both the substantive code and the code style
 need to be reviewed and considered before a pull request is merged.
 
 When reviewing code style pay particular attention to ensuring that the pull
-request follows the [doc_code_style_guidelines](../Development/code_style_guidelines.md). While ``clang-format`` and
-various CI checks can catch a lot of inconsistencies, they are far from perfect
-and are unable to detect some issues. For example, you should check that:
+request follows the [doc_code_style_guidelines](doc_code_style_guidelines).
+While``clang-format`` and various CI checks can catch a lot of inconsistencies,
+they are far from perfect and are unable to detect some issues. For example, you
+should check that:
 
   * The style of header includes is respected.
   * Identifiers use ``snake_case`` and follow our naming conventions.
@@ -299,8 +300,7 @@ Redot organization left a review without having the relevant expertise.
 
 An easy way to find PRs that may be ready for merging is filtering by
 approved PRs and sorting by recently updated. For example, in the main Redot
-repository, you can use `this link
-&lt;https://github.com/redot-engine/redot-engine/pulls?q=is%3Apr+is%3Aopen+review%3Aapproved+sort%3Aupdated-desc&gt;`_.
+repository, you can use [this link](https://github.com/redot-engine/redot-engine/pulls?q=is%3Apr+is%3Aopen+review%3Aapproved+sort%3Aupdated-desc)
 
 :::
 
@@ -331,7 +331,7 @@ out more broadly to ask for help reviewing. Consider asking:
 * **Make sure that the PR has no merge conflicts.**
 
   Contributors may need to rebase their changes on top of the relevant branch
-  (e.g. ``master`` or ``3.x``) and manually fix merge conflicts. Even if there
+  (e.g. ``master`` or ``4.x``) and manually fix merge conflicts. Even if there
   are no merge conflicts, contributors may need to rebase especially old PRs as
   the GitHub conflict checker may not catch all conflicts, or the CI may have
   changed since it was originally run.
@@ -354,9 +354,8 @@ out more broadly to ask for help reviewing. Consider asking:
   While we don't have a very strict ruleset for commit messages, we still
   require them to be short yet descriptive and use proper English. As a
   maintainer you've probably written them enough times to know how to make one,
-  but for a general template think about *"Fix &lt;issue&gt; in &lt;part of codebase&gt;"*.
-  For a more detailed recommendation see the `contributing.md
-  &lt;https://github.com/redot-engine/redot-engine/blob/master/CONTRIBUTING.md#format-your-commit-messages-with-readability-in-mind&gt;`_
+  but for a general template think about *"Fix \<issue\>; in \<part of codebase\>;"*.
+  For a more detailed recommendation see the [contributing](https://github.com/redot-engine/redot-engine/blob/master/CONTRIBUTING.md#format-your-commit-messages-with-readability-in-mind)
   page in the main Redot repository.
 
 ### 4. GitHub checklist
@@ -366,19 +365,19 @@ out more broadly to ask for help reviewing. Consider asking:
   Most Redot development happens around in the ``master`` branch. Therefore most
   pull requests must be made against it. From there pull requests can then be
   backported to other branches. Be wary of people making PRs on the version they
-  are using (e.g, ``3.3``) and guide them to make a change against a
-  higher-order branch (e.g. ``3.x``). If the change is not applicable for the
+  are using (e.g, ``26.1``) and guide them to make a change against a
+  higher-order branch (e.g. ``26.x``). If the change is not applicable for the
   ``master`` branch, the initial PR can be made against the current maintenance
-  branch, such as ``3.x``. It's okay for people to make multiple PRs for each
+  branch, such as ``26.x``. It's okay for people to make multiple PRs for each
   target branch, especially if the changes cannot be easily backported.
   Cherry-picking is also an option, if possible. Use the appropriate labels if
-  the PR can be cherrypicked (e.g. ``cherrypick:3.x``).
+  the PR can be cherrypicked (e.g. ``cherrypick:26.x``).
 
 :::note
 
 It is possible to change the target branch of the PR, that has already been
 submitted, but be aware of the consequences. As it cannot be synchronized
-with the push, the target branch change will inevitable tag the entire list
+with the push, the target branch change will inevitably tag the entire list
 of maintainers for review. It may also render the CI incapable of running
 properly. A push should help with that, but if nothing else, recommend
 opening a new, fresh PR.
@@ -395,7 +394,7 @@ opening a new, fresh PR.
   target branch change).
 
   Similarly, when merging a PR with a higher milestone than the current version,
-  or a "wildcard" milestone (e.g. "4.x"), ensure to update the milestone to the
+  or a "wildcard" milestone (e.g. ``26.x``), ensure to update the milestone to the
   current version.
 
 * **Make sure that the opening message of the PR contains the
@@ -412,7 +411,7 @@ opening a new, fresh PR.
   relevant milestone.**
 
   In other words, if the PR is targeting the ``master`` branch, but is then also
-  cherrypicked for ``3.x``, the next ``3.x`` release would be the appropriate
+  cherrypicked for ``26.x``, the next ``26.x`` release would be the appropriate
   milestone for the closed issue.
 
 ### 5. Merge the pull request

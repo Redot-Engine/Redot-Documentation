@@ -10,7 +10,7 @@ to handle this in a way that makes the transition as smooth as possible.
 
 ## A practical example
 
-These changes are taken from [pull request #88047](https://github.com/redot-engine/redot-engine/pull/88047), which added
+These changes are taken from [pull request #88047](https://github.com/godotengine/godot/pull/88047), which added
 new pathing options to ``AStarGrid2D`` and other AStar classes.
 Among other changes, these methods were modified in ``core/math/a_star_grid_2d.h``:
 
@@ -138,4 +138,4 @@ Such lines shouldn't be added to the ``.expected`` file, but fixed by binding th
 And that's it! You might run into a bit more complicated cases, like rearranging arguments,
 changing return types, etc., but this covers the basic on how to use this system.
 
-For more information, see [pull request #76446](https://github.com/redot-engine/redot-engine/pull/76446).
+For more information, see [pull request #76446](https://github.com/godotengine/godot/pull/76446).

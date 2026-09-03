@@ -2,22 +2,23 @@
 
 ## Object
 
-![Image](img/Object.webp)
+![Image](/img/Contributing/Development/core_and_modules/Object.webp)
 
 ## Reference
 
-![Image](img/RefCounted.webp)
+![Image](/img/Contributing/Development/core_and_modules/RefCounted.webp)
 
 ## Control
 
-![Image](img/Control.webp)
+![Image](/img/Contributing/Development/core_and_modules/Control.webp)
 
 ## Node2D
 
-![Image](img/Node2D.webp)
+![Image](/img/Contributing/Development/core_and_modules/Node2D.webp)
 
 ## Node3D
 
-![Image](img/Node3D.webp)
+![Image](/img/Contributing/Development/core_and_modules/Node3D.webp)
 
-Source files: :download:[class_tree.zip](files/class_tree.zip).
+<!-- TODO(Tekk): need to fix link for zip download -->
+Source files: [class_tree.zip](files/class_tree.zip).

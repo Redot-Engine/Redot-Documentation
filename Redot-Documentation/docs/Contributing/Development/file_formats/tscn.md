@@ -18,7 +18,7 @@ in scene/resource files. It is possible to write them manually, but they will be
 discarded when saving the file.
 
 For those looking for a complete description, the parsing is handled in the file
-[resource_format_text.cpp](https://github.com/redot-engine/redot-engine/blob/master/scene/resources/resource_format_text.cpp)
+[resource_format_text.cpp](https://github.com/Redot-Engine/redot-engine/blob/master/scene/resources/resource_format_text.cpp)
 in the ``ResourceFormatLoaderText`` class.
 
 :::note
@@ -27,6 +27,7 @@ The scene and resource file formats have changed significantly in Redot 4,
 with the introduction of string-based UIDs to replace incremental integer
 IDs.
 
+<!-- TODO(Tekk): Keep godot link? -->
 Mesh, skeleton and animation data is also stored differently compared to Redot 3.
 You can read about some of the changes in this article:
 [Animation data rework for 4.0](https://godotengine.org/article/animation-data-redesign-40/)
@@ -53,6 +54,7 @@ If the file has no resources, ``load_steps`` is omitted. The engine will
 still load the file correctly if ``load_steps`` is incorrect, but this will affect
 loading bars and any other piece of code relying on that value.
 
+<!-- TODO(Tekk): Keep godot link? -->
 ``uid`` is a unique string-based identifier representing the scene. This is
 used by the engine to track files that are moved around, even while the editor
 is closed. Scripts can also load UID-based resources using the ``uid://`` path
@@ -196,7 +198,7 @@ skeleton = NodePath("..")
 
 The [Skeleton3D](class_Skeleton3D) node inherits the Node3D node, but may also have a
 list of bones described in key-value pairs in the format
-``bones/&lt;id&gt;/&lt;attribute&gt; = value``. The bone attributes consist of:
+``bones/<id>/<attribute> = value``. The bone attributes consist of:
 
 - ``position``: Vector3
 - ``rotation``: Quaternion
@@ -239,20 +241,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 
 ### AnimationPlayer
 
+<!-- TODO(Tekk): doc_tscn_animation doesnt exist -->
 The [AnimationPlayer](class_AnimationPlayer) node works with one or more animation libraries
 stored in [AnimationLibrary](class_AnimationLibrary) resources. An animation library is a
 collection of individual [Animation](class_Animation) resources, whose structure is
 documented [here](doc_tscn_animation).
 
+<!-- TODO(Tekk): Keep godot link? -->
 This split between animations themselves and animation libraries was done in
 Redot 4, so that animations can be imported separately from 3D meshes, which is
-a common workflow in 3D animation software. See the `original pull request
-&lt;https://github.com/redot-engine/redot-engine/pull/59980&gt;`__ for details.
+a common workflow in 3D animation software. See the
+[original pull request](https://github.com/godotengine/godot/pull/59980)
+for details.
 
 If the library name is empty, then it acts acts the unique source of animations
-for this AnimationPlayer. This allows using ``&lt;animation_name&gt;`` directly to
+for this AnimationPlayer. This allows using ``<animation_name>`` directly to
 play animations from script. If you name the library, then you must play it as
-``&lt;library_name&gt;/&lt;animation_name&gt;``. This ensures backwards compatibility and
+``<library_name>/<animation_name>``. This ensures backwards compatibility and
 keeps the existing workflow if you don't want to use multiple animation
 libraries.
 
@@ -389,7 +394,7 @@ Each animation has the following properties:
   This is only used in the editor; it doesn't affect animation playback in any way.
 
 Each track is described by a list of key-value pairs in the format
-``tracks/&lt;id&gt;/&lt;attribute&gt;``. Each track includes:
+``tracks/<id>/<attribute>``. Each track includes:
 
 - ``type``: The track's type. This defines what kind of properties may be
   animated by this track, and how it'll be exposed to the user in the editor.
@@ -513,4 +518,5 @@ tracks/<id>/keys = PackedFloat32Array(T, E,   X, Y, Z,      T, E,   X, Y, Z, ...
 
 # For 3D rotation, which use Quaternion:
 tracks/<id>/keys = PackedFloat32Array(T, E,   X, Y, Z, W,      T, E,   X, Y, Z, W, ...)
+
 ```

@@ -1,12 +1,11 @@
 
 # Compiling for Android
 
-.. highlight:: shell
-
 :::info
 
+<!-- TODO(Tekk) [doc_exporting_for_android] doesnt exist -->
 This page describes how to compile Android export template binaries from source.
-If you're looking to export your project to Android instead, read [doc_exporting_for_android](../../../tutorials/export/exporting_for_android.md).
+If you're looking to export your project to Android instead, read [doc_exporting_for_android](doc_exporting_for_android).
 
 :::
 
@@ -17,7 +16,7 @@ enough. Compiling the Android APK manually is mostly useful for custom
 builds or custom packages for the deployer.
 
 Also, you still need to follow the steps mentioned in the
-[doc_exporting_for_android](../../../tutorials/export/exporting_for_android.md) tutorial before attempting to build
+[doc_exporting_for_android](doc_exporting_for_android) tutorial before attempting to build
 a custom export template.
 
 ## Requirements
@@ -39,11 +38,12 @@ For compiling under Windows, Linux or macOS, the following is required:
    - You can download a build from [Adoptium](https://adoptium.net/temurin/releases/?variant=openjdk17).
 
 :::info
+
 To get the Redot source code for compiling, see
 [doc_getting_source](getting_source.md).
 
 For a general overview of SCons usage for Redot, see
-[doc_introduction_to_the_buildsystem](introduction_to_the_buildsystem.md).
+[doc_introduction_to_the_buildsystem](doc_introduction_to_the_buildsystem).
 
 :::
 
@@ -139,6 +139,7 @@ The resulting templates will be located under the ``bin`` directory:
 
 :::info
 
+<!-- TODO(Tekk): [Vulkan validation layers on Android] doesnt exist -->
 If you want to enable Vulkan validation layers, see
 [Vulkan validation layers on Android](doc_vulkan_validation_layers_android).
 
@@ -205,7 +206,7 @@ However, if you are writing your custom modules or custom C++ code, you
 might instead want to configure your template binaries as custom export templates
 here:
 
-![Image](img/andtemplates.png)
+![Image](/img/Contributing/Development/Compiling/andtemplates.png)
 
 You don't even need to copy them, you can just reference the resulting
 file in the ``bin\`` directory of your Redot source folder, so that the
@@ -241,12 +242,14 @@ You can use the following commands to remove the generated editor binaries:
 
 ```
 cd platform/android/java
-# On Windows
-```
 
-   .\gradlew clean
-   # On Linux and macOS
-   ./gradlew clean
+# On Windows
+.\gradlew clean
+
+# On Linux and macOS
+./gradlew clean
+
+```
 
 ## Installing the Redot editor APK
 
@@ -262,6 +265,7 @@ adb install ./bin/android_editor_builds/android_editor-release.apk
 
 ### Platform doesn't appear in SCons
 
+<!-- TODO(Tekk): doc_android_setting_up_the_buildsystem doesnt exist -->
 Double-check that you've set the ``ANDROID_HOME``
 environment variable. This is required for the platform to appear in SCons'
 list of detected platforms.
@@ -294,8 +298,8 @@ one of the following reasons:
 
 -  Make sure to use export templates that match your editor version; if
    you use a new Redot version, you *have* to update the templates too.
--  ``libRedot_android.so`` is not in ``libs/&lt;arch&gt;/``
-   where ``&lt;arch&gt;`` is the device's architecture.
+-  ``libRedot_android.so`` is not in ``libs/<arch>/``
+   where ``<arch>`` is the device's architecture.
 -  The device's architecture does not match the exported one(s).
    Make sure your templates were built for that device's architecture,
    and that the export settings included support for that architecture.

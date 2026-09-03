@@ -9,8 +9,7 @@ The goal of this page is to document design decisions taken to best suit
 while providing a starting point for new rendering contributors.
 
 If you have questions about rendering internals not answered here, feel free to
-ask in the ``#rendering`` channel of the
-[Redot Contributors Chat](https://chat.redotengine.org/channel/rendering).
+ask in the [Redot discord server](https://discord.com/invite/redot).
 
 :::note
 
@@ -92,6 +91,7 @@ Forward+ in simple scenes thanks to its lower complexity and lower
 bandwidth usage. This is especially noticeable on low-end GPUs, integrated
 graphics or in VR applications.
 
+<!-- TODO(Tekk): doc_volumetric_fog doesnt exist -->
 Given its low-end focus, this rendering method does not provide high-end
 rendering features such as SDFGI and [doc_volumetric_fog](doc_volumetric_fog). Several
 post-processing effects are also not available.
@@ -164,7 +164,7 @@ loader, and
 is used for memory management.
 
 Both the Forward+ and Mobile
-[doc_internal_rendering_architecture_methods](doc_internal_rendering_architecture_methods) are supported when using the
+[doc_internal_rendering_architecture_methods](doc_internal_rendering_architecture#methods) are supported when using the
 Vulkan driver.
 
 **Vulkan context creation:**
@@ -180,13 +180,14 @@ Vulkan driver.
 Like Vulkan, the Direct3D 12 driver targets modern platforms only. It is
 designed to target both Windows and Xbox (whereas Vulkan can't be used directly on Xbox).
 
-Both the Forward+ and Mobile [doc_internal_rendering_architecture_methods](doc_internal_rendering_architecture_methods) can be
+Both the Forward+ and Mobile [doc_internal_rendering_architecture](doc_internal_rendering_architecture#methods) can be
 used with Direct3D 12.
 
-[doc_internal_rendering_architecture_core_shaders](doc_internal_rendering_architecture_core_shaders) are shared with the
+<!-- TODO(Tekk): Link to godot article or keep godot link? -->
+[doc_internal_rendering_architecture_core_shaders](doc_internal_rendering_architecture#core-shaders) are shared with the
 Vulkan renderer. Shaders are transpiled from
-:abbr:`SPIR-V (Standard Portable Intermediate Representation)` to
-:abbr:`DXIL (DirectX Intermediate Language)` using
+`SPIR-V (Standard Portable Intermediate Representation)` to
+`DXIL (DirectX Intermediate Language)` using
 Mesa NIR ([more information](https://godotengine.org/article/d3d12-adventures-in-shaderland/)).
 
 **This driver is still experimental and only available in Redot 4.3 and later.**
@@ -201,11 +202,11 @@ Redot provides a native Metal driver that works on all Apple Silicon hardware
 (macOS ARM). Compared to using the MoltenVK translation layer, this is
 significantly faster, particularly in CPU-bound scenarios.
 
-Both the Forward+ and Mobile [doc_internal_rendering_architecture_methods](doc_internal_rendering_architecture_methods) can be
+Both the Forward+ and Mobile [doc_internal_rendering_architecture_methods](doc_internal_rendering_architecture#methods) can be
 used with Metal.
 
-[doc_internal_rendering_architecture_core_shaders](doc_internal_rendering_architecture_core_shaders) are shared with the
-Vulkan renderer. Shaders are transpiled from GLSL to :abbr:`MSL (Metal Shading Language)`
+[doc_internal_rendering_architecture_core_shaders](doc_internal_rendering_architecture#core-shaders) are shared with the
+Vulkan renderer. Shaders are transpiled from GLSL to `MSL (Metal Shading Language)`
 using SPIRV-Cross.
 
 Redot also supports Metal rendering via [MoltenVK](https://github.com/KhronosGroup/MoltenVK),
@@ -227,10 +228,10 @@ by passing the ``--rendering-driver opengl3_es`` command line argument, although
 will only work on graphics drivers that feature native OpenGL ES support (such
 as Mesa).
 
-Only the [doc_internal_rendering_architecture_compatibility](doc_internal_rendering_architecture_compatibility) rendering
+Only the [doc_internal_rendering_architecture_compatibility](doc_internal_rendering_architecture#compatibility) rendering
 method can be used with the OpenGL driver.
 
-[doc_internal_rendering_architecture_core_shaders](doc_internal_rendering_architecture_core_shaders) are entirely different
+[doc_internal_rendering_architecture_core_shaders](doc_internal_rendering_architecture#core-shaders) are entirely different
 from the Vulkan renderer.
 
 Many advanced features are not supported with this driver, as it targets low-end
@@ -285,12 +286,13 @@ RenderingDevice presents a similar level of abstraction as WebGPU.
 
 This diagram represents the structure of rendering classes in Redot, including the RenderingDevice abstraction:
 
-![Image](img/rendering_architecture_diagram.webp)
+![Image](/img/Contributing/Development/core_and_modules/rendering_architecture_diagram.webp)
 
 [View at full size](https://raw.githubusercontent.com/Redot-engine/Redot-docs/master/contributing/development/core_and_modules/img/rendering_architecture_diagram.webp)
 
 ## Core shaders
 
+<!-- TODO(Tekk): doc_shading_language doesnt exist -->
 While shaders in Redot projects are written using a
 [custom language inspired by GLSL](doc_shading_language), core shaders are
 written directly in GLSL.
@@ -317,7 +319,7 @@ shaders must be kept as simple as possible to avoid performance issues and
 ensure shader compilation doesn't become too slow.
 
 If you use ``if`` branching in a shader, performance may decrease as
-:abbr:`VGPR (Vector General-Purpose Register)` usage will increase in the
+`VGPR (Vector General-Purpose Register)` usage will increase in the
 shader. This happens even if all pixels evaluate to ``true`` or ``false`` in
 a given frame.
 
@@ -374,8 +376,8 @@ resolution scaling.
 :::
 
 2D and 3D are rendered to separate buffers, as 2D rendering in Redot is performed
-in :abbr:`LDR (Low Dynamic Range)` sRGB-space while 3D rendering uses
-:abbr:`HDR (High Dynamic Range)` linear space.
+in `LDR (Low Dynamic Range)` sRGB-space while 3D rendering uses
+`HDR (High Dynamic Range)` linear space.
 
 The color format used for 2D rendering is RGB8 (RGBA8 if the **Transparent**
 property on the Viewport is enabled). 3D rendering uses a 24-bit unsigned
@@ -482,7 +484,7 @@ Forward+ renderer.
 ### Shadow mapping
 
 Both Forward+ and Mobile methods use
-:abbr:`PCF (Percentage Closer Filtering)` to filter shadow maps and create a
+`PCF (Percentage Closer Filtering)` to filter shadow maps and create a
 soft penumbra. Instead of using a fixed PCF pattern, these methods use a vogel
 disk pattern which allows for changing the number of samples and smoothly
 changing the quality.
@@ -667,6 +669,7 @@ SSR is always performed at half resolution to improve performance.
 
 :::info
 
+<!-- TODO(Tekk): doc_sky_shader doesnt exist -->
 [doc_sky_shader](doc_sky_shader)
 
 :::
@@ -680,6 +683,7 @@ PanoramaSkyMaterial generate a built-in shader for sky rendering. This is
 similar to what BaseMaterial3D provides for 3D scene materials.
 
 A detailed technical implementation can be found in the
+<!-- TODO(Tekk): Keep linking to godot? -->
 [Custom sky shaders in Redot 4.0](https://godotengine.org/article/custom-sky-shaders-godot-4-0)
 article.
 
@@ -701,6 +705,7 @@ Only available in the Forward+ renderer, not the Mobile or Compatibility rendere
 
 :::info
 
+<!-- TODO(Tekk): doc_fog_shader doesnt exist -->
 [doc_fog_shader](doc_fog_shader)
 
 :::
@@ -714,6 +719,7 @@ represent density.
 The FogMaterial resource generates a built-in shader for FogVolume nodes. This is
 similar to what BaseMaterial3D provides for 3D scene materials.
 
+<!-- TODO(Tekk): Keep linking to godot? -->
 A detailed technical explanation can be found in the
 [Fog Volumes arrive in Redot 4.0](https://godotengine.org/article/fog-volumes-arrive-in-godot-4)
 article.

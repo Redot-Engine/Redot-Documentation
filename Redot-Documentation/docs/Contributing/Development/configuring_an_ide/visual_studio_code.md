@@ -1,7 +1,7 @@
 # Visual Studio Code
 
 [Visual Studio Code](https://code.visualstudio.com) is a free cross-platform code editor
-by [Microsoft](https://microsoft.com) (not to be confused with [doc_configuring_an_ide_vs](visual_studio.md)).
+by [Microsoft](https://microsoft.com) (not to be confused with [doc_visual_studio](doc_visual_studio)).
 
 ## Importing the project
 
@@ -11,24 +11,18 @@ by [Microsoft](https://microsoft.com) (not to be confused with [doc_configuring_
   can be used instead.
 - When using the clangd extension, run ``scons compiledb=yes``.
 - From the Visual Studio Code's main screen open the Redot root folder with
-  **File &gt; Open Folder...**.
+  **File > Open Folder...**.
 - Press `Ctrl + Shift + P` to open the command prompt window and enter *Configure Task*.
 
-<figure>
-  <img src="/Contributing/Development/configuring_an_ide/img/vscode_configure_task.png" />
-</figure>
+![Image](/img/Contributing/Development/configuring_an_ide/vscode_configure_task.png)
 
 - Select the **Create tasks.json file from template** option.
 
-<figure>
-  <img src="/Contributing/Development/configuring_an_ide/img/vscode_create_tasksjson.png" />
-</figure>
+![Image](/img/Contributing/Development/configuring_an_ide/vscode_create_tasksjson.png)
 
 - Then select **Others**.
 
-<figure>
-  <img src="/Contributing/Development/configuring_an_ide/img/vscode_create_tasksjson_others.png" />
-</figure>
+![Image](/img/Contributing/Development/configuring_an_ide/vscode_create_tasksjson_others.png)
 
 - If there is no such option as **Create tasks.json file from template** available, either delete the file if it already exists in your folder or create a ``.vscode/tasks.json`` file manually. See [Tasks in Visual Studio Code](https://code.visualstudio.com/docs/editor/tasks#_custom-tasks) for more details on tasks.
 
@@ -49,15 +43,10 @@ by [Microsoft](https://microsoft.com) (not to be confused with [doc_configuring_
 
 ```
 
-<figure>
-  <img src="/Contributing/Development/configuring_an_ide/img/vscode_3_tasks.json.png" alt="An example of a filled out ``tasks.json``." />
-  <figcaption>
-    An example of a filled out ``tasks.json``.
-  </figcaption>
-</figure>
+![An example of a filled out ``tasks.json``.](/img/Contributing/Development/configuring_an_ide/vscode_3_tasks.json.png)
 
 Arguments can be different based on your own setup and needs. See
-[doc_introduction_to_the_buildsystem](../compiling/introduction_to_the_buildsystem.md) for a full list of arguments.
+[doc_introduction_to_the_buildsystem](doc_introduction_to_the_buildsystem) for a full list of arguments.
 
 ## Debugging the project
 
@@ -66,9 +55,7 @@ To run and debug the project you need to create a new configuration in the ``lau
 - Press `Ctrl + Shift + D` to open the Run panel.
 - If ``launch.json`` file is missing you will be prompted to create a new one.
 
-<figure>
-  <img src="/Contributing/Development/configuring_an_ide/img/vscode_1_create_launch.json.png" />
-</figure>
+![Image](/img/Contributing/Development/configuring_an_ide/vscode_1_create_launch.json.png)
 
 - Select **C++ (GDB/LLDB)**. There may be another platform-specific option here. If selected,
   adjust the configuration example provided accordingly.
@@ -98,7 +85,7 @@ To run and debug the project you need to create a new configuration in the ``lau
 
 </TabItem>
 
-<TabItem value="linuxbsd_gdb" label="LinuxBSD_gdb">
+<TabItem value="linuxbsd_gdb" label="LinuxBSD (GDB)">
 
 ```js
 {
@@ -178,12 +165,8 @@ To run and debug the project you need to create a new configuration in the ``lau
 
 </Tabs>
 
-<figure>
-  <img src="/Contributing/Development/configuring_an_ide/img/vscode_2_launch.json.png" alt="An example of a filled out ``launch.json``." />
-  <figcaption>
-    An example of a filled out ``launch.json``.
-  </figcaption>
-</figure>
+<!-- TODO(Tekk): apparently some of these images were figures, and we may want to actually show the alt text above or below the image -->
+![An example of a filled out ``launch.json``.](/img/Contributing/Development/configuring_an_ide/vscode_2_launch.json.png)
 
 :::note
 
@@ -193,7 +176,7 @@ is installed.
 
 If you encounter issues with lldb, you may consider using gdb (see the LinuxBSD_gdb configuration).
 
-Do note that lldb may work better with LLVM-based builds. See [doc_compiling_for_linuxbsd](../compiling/compiling_for_linuxbsd.md) for further information.
+Do note that lldb may work better with LLVM-based builds. See [doc_compiling_for_linuxbsd](doc_compiling_for_linuxbsd) for further information.
 
 :::
 
@@ -211,15 +194,13 @@ To fix include errors you may be having, you need to configure some settings in 
 
 - Edit the C/C++ Configuration file either with the UI or with text:
 
-<figure>
-  <img src="/Contributing/Development/configuring_an_ide/img/vscode_edit_configurations.webp" />
-</figure>
+![Image](/img/Contributing/Development/configuring_an_ide/vscode_edit_configurations.webp)
 
 - Add an include path for your platform, for example, ``${workspaceFolder}/platform/windows``.
 
 - Add defines for the editor ``TOOLS_ENABLED``, debug builds ``DEBUG_ENABLED``, and tests ``TESTS_ENABLED``.
 
-- Make sure the compiler path is configured correctly to the compiler you are using. See [doc_introduction_to_the_buildsystem](../compiling/introduction_to_the_buildsystem.md) for further information on your platform.
+- Make sure the compiler path is configured correctly to the compiler you are using. See [doc_introduction_to_the_buildsystem](doc_introduction_to_the_buildsystem) for further information on your platform.
 
 - The ``c_cpp_properties.json`` file should look similar to this for Windows:
 
@@ -256,8 +237,8 @@ To fix include errors you may be having, you need to configure some settings in 
 
   - This argument can be added to your build task in ``tasks.json`` since it will need to be run whenever files are added or moved.
 
-If you run into any issues, ask for help in one of
-[Redot's community channels](https://redotengine.org/community).
+If you run into any issues, ask for help in the
+[Redot discord server](https://discord.com/invite/redot).
 
 :::tip
 

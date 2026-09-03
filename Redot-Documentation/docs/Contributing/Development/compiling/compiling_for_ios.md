@@ -1,10 +1,9 @@
 
 # Compiling for iOS
 
-.. highlight:: shell
-
 :::info
 
+<!-- TODO(Tekk): doc_exporting_for_ios doesnt exist -->
 This page describes how to compile iOS export template binaries from source.
 If you're looking to export your project to iOS instead, read [doc_exporting_for_ios](doc_exporting_for_ios).
 
@@ -23,6 +22,7 @@ If you're looking to export your project to iOS instead, read [doc_exporting_for
    from the [MoltenVK SDK](https://github.com/KhronosGroup/MoltenVK#fetching-moltenvk-source-code).
 
 :::note
+
 If you have [Homebrew](https://brew.sh/) installed, you can easily
 install SCons using the following command
 
@@ -45,6 +45,7 @@ sudo port install scons
 :::
 
 :::info
+
 To get the Redot source code for compiling, see
 [doc_getting_source](doc_getting_source).
 

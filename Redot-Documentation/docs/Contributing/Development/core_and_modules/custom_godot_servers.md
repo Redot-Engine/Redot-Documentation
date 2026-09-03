@@ -10,10 +10,11 @@ engine and other modules. In addition, the server claims ownership for
 its RID allocations.
 
 This guide assumes the reader knows how to create C++ modules and Redot
-data types. If not, refer to [doc_custom_modules_in_cpp](custom_modules_in_cpp.md).
+data types. If not, refer to [doc_custom_modules_in_cpp](doc_custom_modules_in_cpp).
 
 ### References
 
+<!-- TODO(Tekk): change this URL to redot ardicle or keep godot article? -->
 - [Why does Redot use servers and RIDs?](https://godotengine.org/article/why-does-godot-use-servers-and-rids)
 - [Singleton pattern](https://en.wikipedia.org/wiki/Singleton_pattern)
 - [Mediator pattern](https://en.wikipedia.org/wiki/Mediator_pattern)
@@ -305,7 +306,7 @@ public:
 
 ### References
 
-- [RID](/docs/Classes/rid)
+- [RID](class_RID)
 - [core/templates/rid.h](https://github.com/redot-engine/redot-engine/blob/master/core/templates/rid.h)
 
 ## Registering the class in GDScript
@@ -318,7 +319,7 @@ Since a Redot server class creates an instance and binds it to a static singleto
 binding the class might not reference the correct instance. Therefore, a dummy
 class must be created to reference the proper Redot server.
 
-In ``register_server_types()``, ``Engine::get_singleton()-&gt;add_singleton``
+In ``register_server_types()``, ``Engine::get_singleton()->add_singleton``
 is used to register the dummy class in GDScript.
 
 ```cpp

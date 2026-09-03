@@ -24,7 +24,7 @@ since there will be fewer review steps required.
 
 :::info
 
-Try to follow the [Docs Writing Guidelines](doc_docs_writing_guidelines.md) in addition to the
+Try to follow the [Docs Writing Guidelines](doc_docs_writing_guidelines) in addition to the
 guidelines outlined above.
 
 :::

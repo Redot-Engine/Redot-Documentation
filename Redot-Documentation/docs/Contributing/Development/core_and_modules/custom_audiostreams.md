@@ -14,7 +14,7 @@ its own internal custom AudioStreamPlayback which translates
 AudioStream into PCM data.
 
 This guide assumes the reader knows how to create C++ modules. If not, refer to this guide
-[doc_custom_modules_in_cpp](custom_modules_in_cpp.md).
+[doc_custom_modules_in_cpp](doc_custom_modules_in_cpp).
 
 ### References:
 

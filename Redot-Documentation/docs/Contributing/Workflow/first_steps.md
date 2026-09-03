@@ -37,12 +37,13 @@ A good place to start is by searching for issues tagged as
 on GitHub.
 
 :::info
+
 Technical details about the PR workflow are outlined in a
-specific section, [doc_pr_workflow](pr_workflow.md).
+specific section, [doc_pr_workflow](doc_pr_workflow).
 
 Details about the code style guidelines and the ``clang-format``
 tool used to enforce them are outlined in
-[doc_code_style_guidelines](../Development/code_style_guidelines.md).
+[doc_code_style_guidelines](doc_code_style_guidelines).
 
 :::
 
@@ -57,9 +58,10 @@ To make sure that your time and efforts aren't wasted, it is recommended to vet 
 first before implementing it and putting it for a review as a PR. To that end, Redot
 has a [proposal system](https://github.com/redot-engine/redot-proposals). Its
 usage is encouraged to plan changes and discuss them with the community. Implementation
-details can also be discussed with other contributors on the [Redot Contributors Chat](https://chat.redotengine.org/).
+details can also be discussed with other contributors on the [Redot Discord Server](https://discord.com/invite/redot).
 
 :::note
+
 Proposals are only required when working on an enhancement or a new feature.
 Bug reports are sufficient for fixing issues.
 
@@ -77,7 +79,7 @@ the development branch and in future maintenance releases.
 To help with the testing, you have several possibilities:
 
 -  Compile the engine from source yourself, following the instructions of the
-   [Compiling](toc-devel-compiling) page for your platform.
+   [Compiling](doc_introduction_to_the_buildsystem) page for your platform.
 
 -  Test official pre-release binaries when they are announced (usually on the
    blog and other community platforms), such as alpha, beta and release candidate (RC) builds.
@@ -105,18 +107,17 @@ There are two separate resources referred to as "documentation" in Redot:
 
 - **The class reference.** This is the documentation for the complete Redot API
   as exposed to GDScript and the other scripting languages. It can be consulted
-  offline, directly in Redot's code editor, or online at Redot :ref:`Class Reference
-  &lt;doc_class_reference&gt;`. To contribute to the class reference, you have to edit the
+  offline, directly in Redot's code editor, or online at Redot [Class Reference](doc_class_reference_primer).
+  To contribute to the class reference, you have to edit the
   XML file corresponding to the class and make a pull request.
-  See [doc_updating_the_class_reference](../Documentation/updating_the_class_reference.md) and [doc_class_reference_primer](../Documentation/class_reference_primer.md)
-  for more details.
+  See [doc_updating_the_class_reference](doc_updating_the_class_reference) for more details.
 
 - **The tutorials and engine documentation and its translations.**
   This is the part you are reading now, which is distributed in the HTML format.
   Its contents are generated from plain text files in the reStructured Text
   (rst) format, to which you can contribute via pull requests on the
-  [Redot-docs](https://github.com/redot-engine/redot-docs-site) GitHub repository.
-  See [doc_contributing_to_the_documentation](../Documentation/contributing_to_the_documentation.md) for more details.
+  [Redot-Documentation](https://github.com/Redot-Engine/Redot-Documentation) GitHub repository.
+  See [doc_contributing_to_the_documentation](doc_contributing_to_the_documentation) for more details.
 
 ## Contributing translations
 
@@ -124,4 +125,4 @@ To make Redot accessible to everyone, including users who may prefer resources
 in their native language instead of English, our community helps translate both
 the Redot editor and its documentation in many languages.
 
-See [doc_editor_and_docs_localization](../Documentation/editor_and_docs_localization.md) for more details.
+See [doc_editor_and_docs_localization](doc_editor_and_docs_localization) for more details.

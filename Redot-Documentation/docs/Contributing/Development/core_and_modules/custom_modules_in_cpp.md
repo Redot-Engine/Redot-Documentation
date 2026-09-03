@@ -28,8 +28,7 @@ instead. Adding C++ modules can be useful in the following scenarios:
 
 ## Creating a new module
 
-Before creating a module, make sure to :ref:`download the source code of Redot
-and compile it &lt;toc-devel-compiling&gt;`.
+Before creating a module, make sure to download the [source code](doc_getting_source) of Redot and [compile it](doc_introduction_to_the_buildsystem).
 
 To create a new module, the first step is creating a directory inside
 ``modules/``. If you want to maintain the module separately, you can checkout
@@ -228,6 +227,7 @@ building for every platform (instructions in the previous sections),
 your module will be included.
 
 :::note
+
 There is a parameter limit of 5 in C++ modules for things such
 as subclasses. This can be raised to 13 by including the header
 file ``core/method_bind_ext.gen.inc``.
@@ -238,6 +238,7 @@ file ``core/method_bind_ext.gen.inc``.
 
 You can now use your newly created module from any script:
 
+<!-- TODO(Tekk): add csharp? -->
 <Tabs>
 
 <TabItem value="gdscript" label="GDScript">
@@ -249,6 +250,7 @@ s.add(20)
 s.add(30)
 print(s.get_total())
 s.reset()
+
 ```
 
 </TabItem>
@@ -258,20 +260,22 @@ s.reset()
 The output will be ``60``.
 
 :::info
+
 The previous Summator example is great for small, custom modules,
 but what if you want to use a larger, external library? Refer to
-[doc_binding_to_external_libraries](binding_to_external_libraries.md) for details about binding to
+[doc_binding_to_external_libraries](doc_binding_to_external_libraries) for details about binding to
 external libraries.
 
 :::
 
 :::warning
+
 If your module is meant to be accessed from the running project
 (not just from the editor), you must also recompile every export
 template you plan to use, then specify the path to the custom
 template in each export preset. Otherwise, you'll get errors when
 running the project as the module isn't compiled in the export
-template. See the [Compiling](toc-devel-compiling) pages
+template. See [doc_introduction_to_the_buildsystem](doc_introduction_to_the_buildsystem)
 for more information.
 
 :::
@@ -328,7 +332,7 @@ specific path structure on your machine.
 
 :::info
 
-[Introduction to the buildsystem - Custom modules build option](doc_buildsystem_custom_modules).
+[Introduction to the buildsystem - Custom modules build option](doc_buildsystem_custom_modules#custom-modules).
 
 :::
 
@@ -381,6 +385,7 @@ void unregister_summator_types();
 ```
 
 :::note
+
 Unlike other register methods, we have to explicitly define
 ``MODULE_SUMMATOR_HAS_PREREGISTER`` to let the build system know what
 relevant method calls to include at compile time. The module's name
@@ -594,7 +599,7 @@ Untracked files:
 3. Now we can generate the documentation:
 
 We can do this via running Redot's doctool i.e. `[Redot --doctool](path)`,
-which will dump the engine API reference to the given ``&lt;path&gt;`` in XML format.
+which will dump the engine API reference to the given ``<path>`` in XML format.
 
 In our case we'll point it to the root of the cloned repository. You can point it
 to an another folder, and just copy over the files that you need.
@@ -610,7 +615,7 @@ Now if you go to the ``Redot/modules/summator/doc_classes`` folder, you will see
 that it contains a ``Summator.xml`` file, or any other classes, that you referenced
 in your ``get_doc_classes`` function.
 
-Edit the file(s) following [doc_class_reference_primer](../../Documentation/class_reference_primer.md) and recompile the engine.
+Edit the file(s) following [doc_class_reference_primer](doc_class_reference_primer) and recompile the engine.
 
 Once the compilation process is finished, the docs will become accessible within
 the engine's built-in documentation system.
@@ -623,7 +628,7 @@ the things that you previously added. Of course if you point it to your Redot
 folder, make sure you don't lose work by extracting older docs from an older engine build
 on top of the newer ones.
 
-Note that if you don't have write access rights to your supplied ``&lt;path&gt;``,
+Note that if you don't have write access rights to your supplied ``<path>``,
 you might encounter an error similar to the following:
 
 ```console
@@ -636,7 +641,7 @@ ERROR: Can't write doc file: docs/doc/classes/@GDScript.xml
 
 It's possible to write self-contained unit tests as part of a C++ module. If you
 are not familiar with the unit testing process in Redot yet, please refer to
-[doc_unit_testing](unit_testing.md).
+[doc_unit_testing](doc_unit_testing).
 
 The procedure is the following:
 
@@ -704,7 +709,7 @@ Similarly to how you can write self-contained documentation within a module,
 you can also create your own custom icons for classes to appear in the editor.
 
 For the actual process of creating editor icons to be integrated within the engine,
-please refer to [doc_editor_icons](../editor/creating_icons.md) first.
+please refer to [doc_editor_icons](doc_editor_icons) first.
 
 Once you've created your icon(s), proceed with the following steps:
 
@@ -739,10 +744,10 @@ Remember to:
 But this is not all, depending what you do, you will be greeted with
 some (hopefully positive) surprises.
 
--  If you inherit from [class_Node](/docs/Classes/Node) (or any derived node type, such as
+-  If you inherit from [Node](class_Node) (or any derived node type, such as
    Sprite2D), your new class will appear in the editor, in the inheritance
    tree in the "Add Node" dialog.
--  If you inherit from [class_Resource](/docs/Classes/Resource), it will appear in the resource
+-  If you inherit from [Resource](class_Resource), it will appear in the resource
    list, and all the exposed properties can be serialized when
    saved/loaded.
 -  By this same logic, you can extend the Editor and almost any area of

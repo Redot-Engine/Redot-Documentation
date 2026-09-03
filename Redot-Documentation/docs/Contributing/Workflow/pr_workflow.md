@@ -1,8 +1,6 @@
 
 # Pull request workflow
 
-.. highlight:: shell
-
 The so-called "PR workflow" used by Redot is common to many projects using
 Git, and should be familiar to veteran free software contributors. The idea
 is that only a small number (if any) commit directly to the *master* branch.
@@ -29,7 +27,7 @@ issue tracker and PR system.
 
 :::note
 If you are contributing to the documentation, its repository can
-be found [here](https://github.com/redot-engine/redot-docs-site).
+be found [here](https://github.com/redot-engine/Redot-Documentation).
 
 :::
 
@@ -58,12 +56,12 @@ The branches on the Git repository are organized as follows:
    occurs. As a development branch, it can be unstable
    and is not meant for use in production. This is where PRs should be done
    in priority.
--  The stable branches are named after their version, e.g. ``3.1`` and ``2.1``.
+-  The stable branches are named after their version, e.g. ``4.3`` and ``26.2``.
    They are used to backport bugfixes and enhancements from the ``master``
-   branch to the currently maintained stable release (e.g. 3.1.2 or 2.1.6).
+   branch to the currently maintained stable release (e.g. 4.2 or 26.2).
    As a rule of thumb, the last stable branch is maintained until the next
-   minor version (e.g. the ``3.0`` branch was maintained until the release of
-   Redot 3.1).
+   minor version (e.g. the ``26.1`` branch was maintained until the release of
+   Redot ``26.2``).
    If you want to make PRs against a maintained stable branch, please check
    first if your changes are also relevant for the ``master`` branch, and if so
    make the PR for the ``master`` branch in priority. Release managers can then
@@ -73,17 +71,17 @@ The branches on the Git repository are organized as follows:
 
 ## Forking and cloning
 
-The first step is to *fork* the [Redotengine/Redot](https://github.com/redot-engine/redot)
+The first step is to *fork* the [redot-engine](https://github.com/redot-engine/redot-engine)
 repository on GitHub. To do so, you will need to have a GitHub account and to
 be logged in. In the top right corner of the repository's GitHub page, you
 should see the "Fork" button as shown below:
 
-![Image](img/github_fork_button.png)
+![Image](/img/Contributing/Workflow/github_fork_button.png)
 
 Click it, and after a while you should be redirected to your own fork of the
 Redot repo, with your GitHub username as namespace:
 
-![Image](img/github_fork_url.png)
+![Image](/img/Contributing/Workflow/github_fork_url.png)
 
 You can then *clone* your fork, i.e. create a local copy of the online
 repository (in Git speak, the *origin remote*). If you haven't already,
@@ -91,6 +89,7 @@ download Git from [its website](https://git-scm.com) if you're using Windows or
 macOS, or install it through your package manager if you're using Linux.
 
 :::note
+
 If you are on Windows, open Git Bash to type commands. macOS and Linux users
 can use their respective terminals.
 
@@ -99,36 +98,37 @@ can use their respective terminals.
 To clone your fork from GitHub, use the following command:
 
 ```
-git clone https://github.com/USERNAME/Redot
+git clone https://github.com/USERNAME/redot-engine
 
 ```
 
-After a little while, you should have a ``Redot`` directory in your current
+After a little while, you should have a ``redot-engine`` directory in your current
 working directory. Move into it using the ``cd`` command:
 
 ```
-cd Redot
+cd redot-engine
 
 ```
 
 We will start by setting up a reference to the original repository that we forked:
 
 ```
-git remote add upstream https://github.com/redot-engine/redot
+git remote add upstream https://github.com/redot-engine/redot-engine
 git fetch upstream
 
 ```
 
 This will create a reference named ``upstream`` pointing to the original
-``Redotengine/Redot`` repository. This will be useful when you want to pull new
+``redot-engine/redot-engine`` repository. This will be useful when you want to pull new
 commits from its ``master`` branch to update your fork. You have another
-remote reference named ``origin``, which points to your fork (``USERNAME/Redot``).
+remote reference named ``origin``, which points to your fork (``USERNAME/redot-engine``).
 
 You only need to do the above steps once, as long as you keep that local
-``Redot`` folder (which you can move around if you want, the relevant
+``redot-engine`` folder (which you can move around if you want, the relevant
 metadata is hidden in its ``.git`` subfolder).
 
 :::note
+
 *Branch it, pull it, code it, stage it, commit, push it, rebase
 it... technologic.*
 
@@ -231,6 +231,7 @@ You will then be back to the original state of your branch before calling
 ``git pull --rebase``.
 
 :::note
+
 If you omit the ``--rebase`` argument, you will instead create a merge
 commit which tells Git what to make of the two distinct branches. If any
 conflicts arise, they would be resolved all at once via this merge commit.
@@ -250,13 +251,14 @@ changes are easy to review and understand long after they have been merged.
 
 If you have already created a merge commit without using ``rebase``, or
 have made any other changes that have resulted in undesired history, the best option
-is to use an *interactive rebase* on the upstream branch. See the :ref:`dedicated
-section &lt;doc_pr_workflow_rebase&gt;` for instructions.
+is to use an *interactive rebase* on the upstream branch. See the
+[dedicated section](doc_pr_workflow#the_interactive_rebase) for instructions.
 
 :::tip
+
 If at any time you want to *reset* a local branch to a given commit or branch,
-you can do so with `[git reset --hard](commit ID)` or
-``git reset --hard &lt;remote&gt;/&lt;branch&gt;`` (e.g. ``git reset --hard upstream/master``).
+you can do so with ``git reset --hard <commit ID>`` or
+``git reset --hard <remote>/<branch>;`` (e.g. ``git reset --hard upstream/master``).
 
 Be warned that this will remove any changes that you might have committed in
 this branch. If you ever lose commits by mistake, use the ``git reflog`` command
@@ -283,12 +285,12 @@ before staging it, while it is staged, and after it has been committed.
 
 - ``git diff`` will show you the current unstaged changes, i.e. the
   differences between your working directory and the staging area.
-- `[git checkout --](files)` will undo the unstaged changes to the given
+- ``git checkout -- (files)`` will undo the unstaged changes to the given
   files.
-- `[git add](files)` will *stage* the changes on the listed files.
+- ``git add (files)`` will *stage* the changes on the listed files.
 - ``git diff --staged`` will show the current staged changes, i.e. the
   differences between the staging area and the last commit.
-- `[git reset HEAD](files)` will *unstage* changes to the listed files.
+- ``git reset HEAD (files)`` will *unstage* changes to the listed files.
 - ``git status`` will show you what are the currently staged and unstaged
   modifications.
 - ``git commit`` will commit the staged files. It will open a text editor
@@ -369,8 +371,7 @@ Git will ask you for your username and password. For your password, enter your
 GitHub Personal Access Token (PAT). If you do not have a GitHub Personal Access
 Token, or do not have one with the correct permissions for your newly forked
 repository, you will need to create one. Follow this link to create your Personal
-Access Token: `Creating a personal access token
-&lt;https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token&gt;`_.
+Access Token: [Creating a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 
 After you have successfully verified your account using your PAT, the changes
 will be sent to your remote repository. If you check the fork's page on GitHub,
@@ -379,18 +380,18 @@ you should see a new branch with your added commits.
 ## Issuing a pull request
 
 When you load your fork's branch on GitHub, you should see a line saying
-*"This branch is 2 commits ahead of Redotengine:master."* (and potentially some
+*"This branch is 2 commits ahead of redot-engine:master."* (and potentially some
 commits behind, if your ``master`` branch was out of sync with the upstream
 ``master`` branch).
 
-![Image](img/github_fork_make_pr.png)
+![Image](/img/Contributing/Workflow/github_fork_make_pr.png)
 
 On that line, there is a "Pull request" link. Clicking it will open a form
-that will let you issue a pull request on the ``Redotengine/Redot`` upstream
+that will let you issue a pull request on the ``redot-engine/redot-engine`` upstream
 repository. It should show you your two commits, and state "Able to merge".
 If not (e.g. it has way more commits, or says there are merge conflicts),
 don't create the PR yet, something went wrong. Go to our
-[Redot Contributors Chat](https://chat.redotengine.org/) and ask for support :)
+[discord server](https://discord.com/invite/redot) and ask for support :)
 
 Use an explicit title for the PR and put the necessary details in the comment
 area. You can drag and drop screenshots, GIFs or zipped projects if relevant,
@@ -475,6 +476,7 @@ git rebase -i upstream/master
 ```
 
 :::note
+
 Referencing branches in Git is a bit tricky due to the distinction
 between remote and local branches. Here, ``upstream/master`` (with a
 `/`) is a local branch which has been pulled from the ``upstream``
@@ -559,7 +561,7 @@ and tedious. Fortunately ``git`` has a command just for this situation, ``git re
 If your PR was created from the ``4.2`` branch and you want to update it to instead start at ``master``
 the following steps *should* fix this in one step:
 
-```text
+```
 git rebase -i --onto master 4.2
 
 ```

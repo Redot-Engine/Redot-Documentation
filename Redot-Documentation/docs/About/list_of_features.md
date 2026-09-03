@@ -105,7 +105,7 @@ See [doc_renderers](doc_renderers) for a detailed comparison of the rendering me
 - Sprite, polygon and line rendering.
 
    - High-level tools to draw lines and polygons such as
-     [class_Polygon2D](/docs/Classes/Polygon2D) and [class_Line2D](/docs/Classes/Line2D), with support for texturing.
+     [Polygon2D](class_Polygon2D) and [Line2D](class_Line2D), with support for texturing.
 
 - AnimatedSprite2D as a helper for creating animated sprites.
 - Parallax layers.
@@ -117,7 +117,7 @@ See [doc_renderers](doc_renderers) for a detailed comparison of the rendering me
    - Point (omni/spot) and directional 2D lights.
    - Hard or soft shadows (adjustable on a per-light basis).
    - Custom shaders can access a real-time :abbr:`SDF (Signed Distance Field)`
-     representation of the 2D scene based on [class_LightOccluder2D](/docs/Classes/LightOccluder2D) nodes,
+     representation of the 2D scene based on [LightOccluder2D](class_LightOccluder2D) nodes,
      which can be used for improved 2D lighting effects including 2D global illumination.
 
 - [Font rendering](doc_gui_using_fonts) using bitmaps, rasterization using FreeType
@@ -153,7 +153,7 @@ See [doc_renderers](doc_renderers) for a detailed comparison of the rendering me
    - Can be drawn in the editor or generated procedurally.
    - PathFollow2D node to make nodes follow a Path2D.
 
-- [2D geometry helper class](/docs/Classes/Geometry2D).
+- [2D geometry helper class](class_Geometry2D).
 
 ## 2D physics
 
@@ -323,7 +323,7 @@ See [doc_renderers](doc_renderers) for a detailed comparison of the rendering me
   - 3D particle collision shapes supported: box, sphere, baked signed distance field
     and real-time heightmap (suited for open world weather effects).
   - 2D particle collision is handled using a signed distance field generated in real-time
-    based on [class_LightOccluder2D](/docs/Classes/LightOccluder2D) nodes in the scene.
+    based on [LightOccluder2D](class_LightOccluder2D) nodes in the scene.
   - Trails can use the built-in ribbon trail and tube trail meshes, or custom
     meshes with skeletons.
   - Support for custom particle shaders with manual emission.
@@ -391,7 +391,7 @@ improve quality. This can be helpful when
    - Can be drawn in the editor or generated procedurally.
    - PathFollow3D node to make nodes follow a Path3D.
 
-- [3D geometry helper class](/docs/Classes/Geometry3D).
+- [3D geometry helper class](class_Geometry3D).
 - Support for exporting the current scene as a glTF 2.0 file, both from the editor
   and at runtime from an exported project.
 
@@ -490,7 +490,7 @@ improve quality. This can be helpful when
 - Support for sequential/random sample selection, including repetition prevention
   when using random sample selection.
 - Listener2D and Listener3D nodes to listen from a position different than the camera.
-- Support for [procedural audio generation](/docs/Classes/AudioStreamGenerator).
+- Support for [procedural audio generation](class_AudioStreamGenerator).
 - Audio input to record microphones.
 - MIDI input.
 
@@ -550,17 +550,17 @@ improve quality. This can be helpful when
 
 ## Navigation
 
-- A* algorithm in [2D](/docs/Classes/AStar2D) and [3D](/docs/Classes/AStar3D).
+- A* algorithm in [2D](class_AStar2D) and [3D](class_AStar3D).
 - Navigation meshes with dynamic obstacle avoidance in
   [2D](doc_navigation_overview_2d) and [3D](doc_navigation_overview_3d).
 - Generate navigation meshes from the editor or at runtime (including from an exported project).
 
 ## Networking
 
-- Low-level TCP networking using [class_StreamPeer](/docs/Classes/StreamPeer) and [class_TCPServer](/docs/Classes/TCPServer).
-- Low-level UDP networking using [class_PacketPeer](/docs/Classes/PacketPeer) and [class_UDPServer](/docs/Classes/UDPServer).
-- Low-level HTTP requests using [class_HTTPClient](/docs/Classes/HTTPClient).
-- High-level HTTP requests using [class_HTTPRequest](/docs/Classes/HTTPRequest).
+- Low-level TCP networking using [StreamPeer](class_StreamPeer) and [TCPServer](class_TCPServer).
+- Low-level UDP networking using [PacketPeer](class_PacketPeer) and [UDPServer](class_UDPServer).
+- Low-level HTTP requests using [HTTPClient](class_HTTPClient).
+- High-level HTTP requests using [HTTPRequest](class_HTTPRequest).
 
    - Supports HTTPS out of the box using bundled certificates.
 
@@ -571,7 +571,7 @@ improve quality. This can be helpful when
 
 - [WebSocket](doc_websocket) client and server, available on all platforms.
 - [WebRTC](doc_webrtc) client and server, available on all platforms.
-- Support for [UPnP](/docs/Classes/UPNP) to sidestep the requirement to forward ports
+- Support for [UPnP](class_UPNP) to sidestep the requirement to forward ports
   when hosting a server behind a NAT.
 
 ## Internationalization
@@ -641,10 +641,10 @@ The editor UI can easily be extended in many ways using add-ons.
 
 - Buttons.
 - Checkboxes, check buttons, radio buttons.
-- Text entry using [class_LineEdit](/docs/Classes/LineEdit) (single line) and [class_TextEdit](/docs/Classes/TextEdit) (multiple lines).
+- Text entry using [LineEdit](class_LineEdit) (single line) and [TextEdit](class_TextEdit) (multiple lines).
   TextEdit also supports code editing features such as displaying line numbers
   and syntax highlighting.
-- Dropdown menus using [class_PopupMenu](/docs/Classes/PopupMenu) and [class_OptionButton](/docs/Classes/OptionButton).
+- Dropdown menus using [PopupMenu](class_PopupMenu) and [OptionButton](class_OptionButton).
 - Scrollbars.
 - Labels.
 - RichTextLabel for [text formatted using BBCode](doc_bbcode_in_richtextlabel),
@@ -658,12 +658,12 @@ The editor UI can easily be extended in many ways using add-ons.
 - Anchors to keep GUI elements in a specific corner, edge or centered.
 - Containers to place GUI elements automatically following certain rules.
 
-   - [Stack](/docs/Classes/BoxContainer) layouts.
-   - [Grid](/docs/Classes/GridContainer) layouts.
-   - [Flow](/docs/Classes/FlowContainer) layouts (similar to autowrapping text).
-   - [Margin](/docs/Classes/MarginContainer), [centered](/docs/Classes/CenterContainer)
-     and [aspect ratio](/docs/Classes/AspectRatioContainer) layouts.
-   - [Draggable splitter](/docs/Classes/SplitContainer) layouts.
+   - [Stack](class_BoxContainer) layouts.
+   - [Grid](class_GridContainer) layouts.
+   - [Flow](class_FlowContainer) layouts (similar to autowrapping text).
+   - [Margin](class_MarginContainer), [centered](class_CenterContainer)
+     and [aspect ratio](class_AspectRatioContainer) layouts.
+   - [Draggable splitter](class_SplitContainer) layouts.
 
 - Scale to [multiple resolutions](doc_multiple_resolutions) using the
   ``canvas_items`` or ``viewport`` stretch modes.
@@ -675,11 +675,11 @@ The editor UI can easily be extended in many ways using add-ons.
 
    - Generate a theme based on the current editor theme settings.
 
-- Procedural vector-based theming using [class_StyleBoxFlat](/docs/Classes/StyleBoxFlat).
+- Procedural vector-based theming using [StyleBoxFlat](class_StyleBoxFlat).
 
    - Supports rounded/beveled corners, drop shadows, per-border widths and antialiasing.
 
-- Texture-based theming using [class_StyleBoxTexture](/docs/Classes/StyleBoxTexture).
+- Texture-based theming using [StyleBoxTexture](class_StyleBoxTexture).
 
 Redot's small distribution size can make it a suitable alternative to frameworks
 like Electron or Qt.
@@ -699,16 +699,16 @@ like Electron or Qt.
    - Text-based formats are human-readable and more friendly to version control.
    - Binary formats are faster to save/load for large scenes/resources.
 
-- Read and write text or binary files using [class_FileAccess](/docs/Classes/FileAccess).
+- Read and write text or binary files using [FileAccess](class_FileAccess).
 
    - Can optionally be compressed or encrypted.
 
-- Read and write [class_JSON](/docs/Classes/JSON) files.
-- Read and write INI-style configuration files using [class_ConfigFile](/docs/Classes/ConfigFile).
+- Read and write [JSON](class_JSON) files.
+- Read and write INI-style configuration files using [ConfigFile](class_ConfigFile).
 
    - Can (de)serialize any Redot datatype, including Vector2/3, Color, ...
 
-- Read XML files using [class_XMLParser](/docs/Classes/XMLParser).
+- Read XML files using [XMLParser](class_XMLParser).
 - [Load and save images, audio/video, fonts and ZIP archives](doc_runtime_loading_and_saving)
   in an exported project without having to go through Redot's import system.
 - Pack game data into a PCK file (custom format optimized for fast seeking),
@@ -729,7 +729,7 @@ like Electron or Qt.
    - [Shell completion scripts](https://github.com/redot-engine/redot-engine/tree/master/misc/dist/shell)_
      are available for Bash, zsh and fish.
    - Print colored text to standard output on all platforms using
-     [print_rich](/docs/Classes/@GlobalScope_method_print_rich).
+     [print_rich](class_@GlobalScope_method_print_rich).
 
 - Support for [C++ modules](doc_custom_modules_in_cpp) statically linked
   into the engine binary.
