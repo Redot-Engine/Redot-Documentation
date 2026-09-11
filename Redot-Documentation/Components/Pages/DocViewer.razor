@@ -61,10 +61,6 @@ else
         @"\s+",
         RegexOptions.Compiled);
 
-    private static readonly Regex InvalidSlugCharacterRegex = new(
-        @"[^a-z0-9\-_ ]",
-        RegexOptions.Compiled);
-
     [Parameter]
     public string? DocumentPath { get; set; }
 
@@ -154,7 +150,7 @@ else
             }
             var id = existingIdMatch.Success
                 ? existingIdMatch.Groups["id"].Value
-                : BuildSlug(title);
+                : HeadingAnchor.FromTitle(title);
 
             id = EnsureUniqueId(id, usedIds);
 
@@ -177,14 +173,6 @@ else
         var withoutTags = HtmlTagRegex.Replace(content, string.Empty);
         var decoded = System.Net.WebUtility.HtmlDecode(withoutTags);
         return WhitespaceRegex.Replace(decoded, " ").Trim();
-    }
-
-    private static string BuildSlug(string title)
-    {
-        var lowercaseTitle = title.ToLowerInvariant();
-        var cleaned = InvalidSlugCharacterRegex.Replace(lowercaseTitle, string.Empty);
-        var slug = WhitespaceRegex.Replace(cleaned, "-").Trim('-');
-        return string.IsNullOrWhiteSpace(slug) ? "section" : slug;
     }
 
     private static string EnsureUniqueId(string id, HashSet<string> usedIds)

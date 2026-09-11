@@ -138,17 +138,25 @@ public class DocRendererService
     private static string TransformLink(string matchValue, VersionProvider versionProvider)
     {
         var (linkName, linkUrl) = SplitMarkdownLink(matchValue);
+        var fragmentIndex = linkUrl.IndexOf('#');
+        var documentSlug = fragmentIndex >= 0 ? linkUrl[..fragmentIndex] : linkUrl;
+        var sectionReference = fragmentIndex >= 0 ? linkUrl[(fragmentIndex + 1)..] : null;
 
-        if (linkUrl.StartsWithAny(VersionProvider.SlugPrefixes))
+        if (documentSlug.StartsWithAny(VersionProvider.SlugPrefixes))
         {
             try
             {
-                linkUrl = versionProvider.GetPathFromSlug(linkUrl);
+                linkUrl = versionProvider.GetPathFromSlug(documentSlug);
+                if (!string.IsNullOrWhiteSpace(sectionReference))
+                {
+                    var sectionId = HeadingAnchor.FromReference(sectionReference);
+                    linkUrl = $"{linkUrl}#{Uri.EscapeDataString(sectionId)}";
+                }
             }
             catch (KeyNotFoundException)
             {
                 // Keep original URL when no slug mapping exists.
-                Console.WriteLine($"No slug mapping found for {linkUrl}");
+                Console.WriteLine($"No slug mapping found for {documentSlug}");
             }
         }
 
