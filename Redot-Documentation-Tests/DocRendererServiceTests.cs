@@ -48,6 +48,25 @@ public sealed class DocRendererServiceTests : IDisposable
     }
 
     [Theory]
+    [InlineData("class_Node", "/en/latest/Classes/Node")]
+    [InlineData("class_Node_method_add_child", "/en/latest/Classes/Node#method-add-child")]
+    [InlineData("class_Node_property_name", "/en/latest/Classes/Node#member-name")]
+    [InlineData("class_Node_method_get_annotation_list", "/en/latest/Classes/Node#method-get-annotation-list")]
+    public async Task RenderToHtmlAsync_ResolvesClassReferenceSlugs(string target, string expectedHref)
+    {
+        Directory.CreateDirectory(Path.Combine(contentRootPath, "docs"));
+        await File.WriteAllTextAsync(
+            Path.Combine(contentRootPath, "docs", "source.md"),
+            $"[Class reference]({target})");
+
+        var renderer = new DocRendererService(new TestWebHostEnvironment(contentRootPath));
+
+        string html = await renderer.RenderToHtmlAsync("source.md", CreateVersionProvider());
+
+        Assert.Contains($"href=\"{expectedHref}\"", html);
+    }
+
+    [Theory]
     [InlineData("Some Section", "some_section")]
     [InlineData("Some_Section", "some%5Fsection")]
     [InlineData("The interactive rebase", "the_interactive_rebase")]

@@ -405,3 +405,123 @@ li ul li
         padding-top: 1rem;
     }
 }
+
+.class-doc-viewer,
+.class-index {
+    padding-bottom: 4rem;
+}
+
+.class-reference-header {
+    border-bottom: 1px solid #333;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+}
+
+.class-reference-kicker {
+    color: #aaa;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: -1.5rem;
+    text-transform: uppercase;
+}
+
+.class-inheritance,
+.class-api-meta,
+.class-reference-source {
+    color: #bbb;
+}
+
+.class-brief {
+    font-size: 1.12rem;
+    line-height: 1.7;
+}
+
+.class-api-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.class-api-item {
+    background: var(--app-panel);
+    border: 1px solid #333;
+    border-radius: 6px;
+    padding: 0 1rem 0.75rem;
+}
+
+.class-api-item h3 {
+    font-size: 1rem;
+    margin: 1rem 0;
+    overflow-wrap: anywhere;
+}
+
+.class-status {
+    border-left: 4px solid #d19a40;
+    margin: 0.75rem 0;
+    padding: 0.7rem 0.9rem;
+}
+
+.class-status p {
+    display: inline;
+}
+
+.class-status-deprecated {
+    background: #402626;
+    border-left-color: #e06c75;
+}
+
+.class-status-experimental,
+.class-status-warning {
+    background: #3d351e;
+}
+
+.class-reference-source {
+    border-top: 1px solid #333;
+    margin-top: 3rem;
+    padding-top: 1rem;
+}
+
+.class-text-center {
+    display: block;
+    text-align: center;
+}
+
+.class-search {
+    background: var(--app-panel);
+    border: 1px solid #555;
+    border-radius: 5px;
+    color: var(--app-text);
+    display: block;
+    margin: 0.5rem 0 2rem;
+    max-width: 34rem;
+    padding: 0.7rem 0.9rem;
+    width: 100%;
+}
+
+.class-index-group h2 {
+    border-bottom: 1px solid #333;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.35rem;
+}
+
+.class-index-list {
+    display: grid;
+    gap: 0.6rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(270px, 100%), 1fr));
+    list-style: none;
+    padding: 0;
+}
+
+.class-index-list li {
+    background: var(--app-panel);
+    border-radius: 5px;
+    margin: 0;
+    padding: 0.75rem;
+}
+
+.class-index-list span {
+    color: #bbb;
+    display: block;
+    font-size: 0.85rem;
+    margin-top: 0.35rem;
+}

@@ -1,3 +1,5 @@
+using System.Collections.ObjectModel;
+
 namespace Redot_Documentation.Versioning;
 
 public class VersionProvider
@@ -13,9 +15,10 @@ public class VersionProvider
 
     public Section? VersionedDocsSection { get; set; } = null;
 
-    private List<IRanking> _sortedRankings = new List<IRanking>();
+    private IReadOnlyList<IRanking> _sortedRankings = Array.Empty<IRanking>();
 
-    private Dictionary<string, string> SlugLookupTable = new();
+    private IReadOnlyDictionary<string, string> _slugLookupTable =
+        new ReadOnlyDictionary<string, string>(new Dictionary<string, string>());
 
     private readonly string _docsRootPath;
 
@@ -47,32 +50,43 @@ public class VersionProvider
 
     public void SortRankings()
     {
-        _sortedRankings.Clear();
-        _sortedRankings.Add(AboutSection);
-        _sortedRankings.Add(CommunitySection);
-        _sortedRankings.Add(ContributingSection);
-        _sortedRankings.Sort();
+        IRanking[] commonRankings = [AboutSection, CommunitySection, ContributingSection];
+        Array.Sort(commonRankings);
+
+        IRanking[] sortedRankings;
         if (VersionedDocsSection != null)
         {
             VersionedDocsSection.SortRankings();
-            _sortedRankings.AddRange(VersionedDocsSection.GetSortedRankings());
+            sortedRankings = [.. commonRankings, .. VersionedDocsSection.GetSortedRankings()];
         }
+        else
+            sortedRankings = commonRankings;
+
+        Volatile.Write(
+            ref _sortedRankings,
+            new ReadOnlyCollection<IRanking>(sortedRankings));
     }
-    public IRanking[] GetSortedRankings() => _sortedRankings.ToArray();
+
+    public IReadOnlyList<IRanking> GetSortedRankings()
+        => Volatile.Read(ref _sortedRankings);
 
     public void ParseSlugs()
     {
         SortRankings();
-        SlugLookupTable.Clear();
+        var slugLookupTable = new Dictionary<string, string>();
         foreach (IRanking ranking in GetSortedRankings())
         {
             if (ranking is Section subSection)
-                ParseSlugs(subSection);
+                ParseSlugs(subSection, slugLookupTable);
             else
             {
-                SlugLookupTable.Add(ranking.Slug, GetReferentialPath(ranking.Path));
+                slugLookupTable.Add(ranking.Slug, GetReferentialPath(ranking.Path));
             }
         }
+
+        Volatile.Write(
+            ref _slugLookupTable,
+            new ReadOnlyDictionary<string, string>(slugLookupTable));
     }
 
     public string GetReferentialPath(string path)
@@ -84,18 +98,20 @@ public class VersionProvider
         return $"/en/{relativePath}";
     }
 
-    private void ParseSlugs(Section section)
+    private void ParseSlugs(Section section, IDictionary<string, string> slugLookupTable)
     {
         if (section.IndexArticle != null)
-            SlugLookupTable.Add(section.IndexArticle.Slug, GetReferentialPath(section.IndexArticle.Path));
+            slugLookupTable.Add(section.IndexArticle.Slug, GetReferentialPath(section.IndexArticle.Path));
         foreach (IRanking ranking in section.GetSortedRankings())
         {
             if (ranking is Section subSection)
-                ParseSlugs(subSection);
+                ParseSlugs(subSection, slugLookupTable);
             else
-                SlugLookupTable.Add(ranking.Slug, GetReferentialPath(ranking.Path));
+                slugLookupTable.Add(ranking.Slug, GetReferentialPath(ranking.Path));
         }
     }
-    public string GetPathFromSlug(string slug) => SlugLookupTable[slug];
+
+    public string GetPathFromSlug(string slug)
+        => Volatile.Read(ref _slugLookupTable)[slug];
 
 }

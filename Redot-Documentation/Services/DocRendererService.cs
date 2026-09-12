@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
 using Markdig;
+using Redot_Documentation.ClassDocumentation;
 using Redot_Documentation.Versioning;
 
 public class DocRendererService
@@ -142,7 +143,16 @@ public class DocRendererService
         var documentSlug = fragmentIndex >= 0 ? linkUrl[..fragmentIndex] : linkUrl;
         var sectionReference = fragmentIndex >= 0 ? linkUrl[(fragmentIndex + 1)..] : null;
 
-        if (documentSlug.StartsWithAny(VersionProvider.SlugPrefixes))
+        if (documentSlug.StartsWith("class_", StringComparison.OrdinalIgnoreCase))
+        {
+            linkUrl = ResolveClassSlug(documentSlug, versionProvider.Version.Slug);
+            if (!string.IsNullOrWhiteSpace(sectionReference))
+            {
+                var sectionId = HeadingAnchor.FromReference(sectionReference);
+                linkUrl = $"{linkUrl}#{Uri.EscapeDataString(sectionId)}";
+            }
+        }
+        else if (documentSlug.StartsWithAny(VersionProvider.SlugPrefixes))
         {
             try
             {
@@ -167,6 +177,43 @@ public class DocRendererService
         linkName = linkName.Replace("_", " ");
         linkName = linkName.Trim();
         return $"[{linkName}]({linkUrl})";
+    }
+
+    private static string ResolveClassSlug(string documentSlug, string versionSlug)
+    {
+        string target = documentSlug["class_".Length..];
+        (string Marker, string AnchorPrefix)[] memberMarkers =
+        [
+            ("_annotation_", "annotation"),
+            ("_constant_", "constant"),
+            ("_constructor_", "constructor"),
+            ("_enum_", "enum"),
+            ("_method_", "method"),
+            ("_operator_", "operator"),
+            ("_property_", "member"),
+            ("_signal_", "signal"),
+            ("_theme_", "theme-item")
+        ];
+
+        (int Index, string Marker, string AnchorPrefix)? selectedMarker = null;
+        foreach ((string marker, string anchorPrefix) in memberMarkers)
+        {
+            int markerIndex = target.IndexOf(marker, StringComparison.OrdinalIgnoreCase);
+            if (markerIndex <= 0)
+                continue;
+
+            if (selectedMarker is null || markerIndex < selectedMarker.Value.Index)
+                selectedMarker = (markerIndex, marker, anchorPrefix);
+        }
+
+        if (selectedMarker is { } selected)
+        {
+            string className = target[..selected.Index];
+            string memberName = target[(selected.Index + selected.Marker.Length)..];
+            return $"{ClassDocumentationRenderer.ClassPath(versionSlug, className)}#{ClassDocumentationRenderer.MemberAnchor(selected.AnchorPrefix, memberName)}";
+        }
+
+        return ClassDocumentationRenderer.ClassPath(versionSlug, target);
     }
 
     /// <summary>

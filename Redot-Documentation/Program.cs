@@ -1,5 +1,6 @@
 
 using Redot_Documentation.Components;
+using Redot_Documentation.ClassDocumentation;
 using Redot_Documentation.Services;
 
 namespace Redot_Documentation;
@@ -16,6 +17,14 @@ public class Program
             .AddInteractiveWebAssemblyComponents();
         builder.Services.AddScoped<DocRendererService>();
         builder.Services.AddSingleton<VersionManagerService>();
+        builder.Services.Configure<ClassDocumentationOptions>(
+            builder.Configuration.GetSection(ClassDocumentationOptions.SectionName));
+        builder.Services.AddSingleton<ClassDocumentationCatalog>();
+        builder.Services.AddSingleton<ClassDocumentationParser>();
+        builder.Services.AddSingleton<ClassDocumentationRenderer>();
+        builder.Services.AddSingleton<IGitCommandRunner, GitCommandRunner>();
+        builder.Services.AddSingleton<IClassDocumentationSource, GitClassDocumentationSource>();
+        builder.Services.AddHostedService<ClassDocumentationSyncService>();
 
         var app = builder.Build();
 
@@ -42,6 +51,28 @@ public class Program
             .AddInteractiveWebAssemblyRenderMode()
             .AddAdditionalAssemblies(typeof(Client._Imports).Assembly);
         app.Services.GetService<VersionManagerService>()?.LoadContent();
+        app.MapGet("/health/class-docs", (
+            ClassDocumentationCatalog catalog,
+            VersionManagerService versionManager) =>
+        {
+            var versions = versionManager.Versions.Select(version =>
+            {
+                bool available = catalog.TryGetSnapshot(version.Slug, out ClassDocumentationSnapshot? snapshot);
+                return new
+                {
+                    version = version.Slug,
+                    branch = version.BranchName,
+                    available,
+                    commit = snapshot?.CommitSha,
+                    synchronizedAt = snapshot?.SynchronizedAt,
+                    classCount = snapshot?.Classes.Count ?? 0
+                };
+            }).ToArray();
+
+            return versions.All(version => version.available)
+                ? Results.Ok(versions)
+                : Results.Json(versions, statusCode: StatusCodes.Status503ServiceUnavailable);
+        });
         app.Run();
     }
 }

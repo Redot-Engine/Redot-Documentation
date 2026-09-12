@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Collections.ObjectModel;
 
 namespace Redot_Documentation.Versioning;
 
@@ -22,7 +23,7 @@ public sealed class Section : IRanking
 
     public string SlugPrefix { get; set; } = "doc_";
 
-    private List<IRanking> _sortedRankings = new List<IRanking>();
+    private IReadOnlyList<IRanking> _sortedRankings = Array.Empty<IRanking>();
 
     public string DisplayName => ((IRanking)this).GetDisplayName();
 
@@ -100,15 +101,21 @@ public sealed class Section : IRanking
 
     public void SortRankings()
     {
-        Articles.Sort();
-        SubSections.Sort();
-        _sortedRankings.Clear();
-        _sortedRankings.AddRange(Articles);
-        _sortedRankings.AddRange(SubSections);
+        Article[] sortedArticles = Articles.ToArray();
+        Section[] sortedSubSections = SubSections.ToArray();
+        Array.Sort(sortedArticles);
+        Array.Sort(sortedSubSections);
+
+        IRanking[] sortedRankings = [.. sortedArticles, .. sortedSubSections];
         if (IntermingleArticles)
-            _sortedRankings.Sort();
+            Array.Sort(sortedRankings);
+
+        Volatile.Write(
+            ref _sortedRankings,
+            new ReadOnlyCollection<IRanking>(sortedRankings));
     }
 
-    public IRanking[] GetSortedRankings() => _sortedRankings.ToArray();
+    public IReadOnlyList<IRanking> GetSortedRankings()
+        => Volatile.Read(ref _sortedRankings);
 
 }

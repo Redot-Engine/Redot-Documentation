@@ -129,6 +129,41 @@
     margin-left: 0.2rem;
 }
 
+.nav-item ::deep .nav-classes-list {
+    max-height: min(65vh, 48rem);
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+}
+
+.nav-item ::deep .nav-classes-section > .nav-section-summary {
+    align-items: center;
+    display: flex;
+}
+
+.nav-item ::deep .nav-classes-section > .nav-section-summary .nav-section-link {
+    padding-left: 0.25rem;
+    width: calc(100% - 1.5rem);
+}
+
+.nav-item ::deep .nav-classes-disclosure {
+    color: #d7d7d7;
+    cursor: pointer;
+    flex: 0 0 1.5rem;
+    font-size: 1.25rem;
+    pointer-events: none;
+    text-align: center;
+    transition: transform 120ms ease-in-out;
+}
+
+.nav-item ::deep .nav-classes-section[open] > .nav-section-summary .nav-classes-disclosure {
+    transform: rotate(90deg);
+}
+
+.nav-item ::deep .nav-class-link {
+    font-family: Consolas, "Cascadia Code", "Fira Code", "JetBrains Mono", Menlo, Monaco, "Courier New", monospace;
+    font-size: 0.82rem;
+}
+
 .nav-scrollable {
     display: none;
 }

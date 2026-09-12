@@ -1,0 +1,7 @@
+.git
+.idea
+.fleet
+.junie
+**/bin
+**/obj
+Redot-Documentation/App_Data

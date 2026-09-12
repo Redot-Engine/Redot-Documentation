@@ -1,8 +1,10 @@
 ﻿@using Redot_Documentation.Services
 @using Redot_Documentation.Versioning
+@using Redot_Documentation.ClassDocumentation
 @implements IDisposable
 @inject VersionManagerService VersionManagerService
 @inject NavigationManager NavigationManager
+@inject ClassDocumentationCatalog ClassDocumentationCatalog
 @rendermode InteractiveServer
 
 <div class="top-row ps-3 navbar navbar-dark">
@@ -47,6 +49,27 @@
                     <NavSectionTree Section="section" BuildArticleLink="GetArticleLink" Level="0" />
                 }
             }
+
+            <details class="nav-section nav-classes-section" open="@IsClassesRoute()" style="--section-level: 0;">
+                <summary class="nav-section-summary">
+                    <span class="nav-classes-disclosure" aria-hidden="true">›</span>
+                    <NavLink class="nav-link nav-section-link" href="@GetClassesLink()">
+                        Classes
+                    </NavLink>
+                </summary>
+
+                <div class="nav-section-children nav-classes-list">
+                    @foreach (ClassDocumentationEntry classDocumentation in _classes)
+                    {
+                        <a @key="classDocumentation.Name"
+                           class="nav-link nav-article-link nav-class-link"
+                           href="@ClassDocumentationRenderer.ClassPath(_selectedVersionSlug, classDocumentation.Name)"
+                           style="--section-level: 1;">
+                            @classDocumentation.Name
+                        </a>
+                    }
+                </div>
+            </details>
         </div>
 
 
@@ -57,7 +80,8 @@
     private IReadOnlyList<DocumentationVersion> _availableVersions = [];
     private string _selectedVersionSlug = string.Empty;
     private VersionProvider? _selectedVersionProvider;
-    private IRanking[] _rankings = [];
+    private IReadOnlyList<IRanking> _rankings = [];
+    private IReadOnlyList<ClassDocumentationEntry> _classes = [];
 
     protected override void OnInitialized()
     {
@@ -81,15 +105,14 @@
         _selectedVersionSlug = selectedVersion;
         LoadRankings();
 
-        string versionLandingPath = GetVersionLandingPath(_selectedVersionProvider!);
-        NavigationManager.NavigateTo(versionLandingPath);
+        NavigationManager.NavigateTo(GetVersionSwitchPath(_selectedVersionProvider!));
     }
 
     private void LoadRankings()
     {
         _selectedVersionProvider = VersionManagerService.GetVersionProvider(_selectedVersionSlug);
-        _selectedVersionProvider.SortRankings();
         _rankings = _selectedVersionProvider.GetSortedRankings();
+        _classes = ClassDocumentationCatalog.GetClassesAlphabetically(_selectedVersionSlug);
     }
 
     private string GetArticleLink(Article article)
@@ -125,6 +148,46 @@
         return landingArticle is null
             ? $"/en/{provider.Version.Slug}/"
             : GetArticleLink(landingArticle);
+    }
+
+    private string GetClassesLink()
+        => string.IsNullOrWhiteSpace(_selectedVersionSlug)
+            ? "/en/"
+            : $"/en/{Uri.EscapeDataString(_selectedVersionSlug)}/Classes";
+
+    private bool IsClassesRoute()
+    {
+        string relativePath = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+        string[] segments = relativePath.Split(['?', '#'], 2)[0]
+            .Trim('/')
+            .Split('/', StringSplitOptions.RemoveEmptyEntries);
+        return segments.Length >= 3
+            && string.Equals(segments[0], "en", StringComparison.OrdinalIgnoreCase)
+            && string.Equals(segments[1], _selectedVersionSlug, StringComparison.OrdinalIgnoreCase)
+            && string.Equals(segments[2], "Classes", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private string GetVersionSwitchPath(VersionProvider provider)
+    {
+        string relativePath = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+        string[] segments = relativePath.Split(['?', '#'], 2)[0]
+            .Trim('/')
+            .Split('/', StringSplitOptions.RemoveEmptyEntries);
+        if (segments.Length >= 3
+            && string.Equals(segments[0], "en", StringComparison.OrdinalIgnoreCase)
+            && string.Equals(segments[2], "Classes", StringComparison.OrdinalIgnoreCase))
+        {
+            if (segments.Length >= 4)
+            {
+                string className = Uri.UnescapeDataString(segments[3]);
+                if (ClassDocumentationCatalog.TryGetClass(provider.Version.Slug, className, out _))
+                    return ClassDocumentationRenderer.ClassPath(provider.Version.Slug, className);
+            }
+
+            return $"/en/{Uri.EscapeDataString(provider.Version.Slug)}/Classes";
+        }
+
+        return GetVersionLandingPath(provider);
     }
 
     private static Article? FindFirstArticle(Section section)
