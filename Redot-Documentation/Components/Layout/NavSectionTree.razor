@@ -2,6 +2,7 @@
 @rendermode InteractiveServer
 <details class="nav-section" style="@GetLevelStyle(Level)">
     <summary class="nav-section-summary">
+        <span class="nav-section-disclosure" aria-hidden="true">›</span>
         @if (Section.IndexArticle != null)
         {
             <NavLink class="nav-link nav-section-link" href="@BuildArticleLink(Section.IndexArticle)">
