@@ -1,6 +1,8 @@
 ﻿@using Redot_Documentation.Services
 @using Redot_Documentation.Versioning
+@implements IDisposable
 @inject VersionManagerService VersionManagerService
+@inject NavigationManager NavigationManager
 @rendermode InteractiveServer
 
 <div class="top-row ps-3 navbar navbar-dark">
@@ -25,10 +27,10 @@
             </NavLink>
 
             <label class="version-label" for="version-selector">Version</label>
-            <select id="version-selector" class="version-select" @onchange="OnVersionChanged" value="@_selectedVersion">
-                @foreach (string version in _availableVersions)
+            <select id="version-selector" class="version-select" @onchange="OnVersionChanged" value="@_selectedVersionSlug">
+                @foreach (DocumentationVersion version in _availableVersions)
                 {
-                    <option value="@version">@version</option>
+                    <option value="@version.Slug">@version.FriendlyName</option>
                 }
             </select>
 
@@ -52,24 +54,22 @@
 </div>
 
 @code {
-    private string[] _availableVersions = [];
-    private string _selectedVersion = "latest";
+    private IReadOnlyList<DocumentationVersion> _availableVersions = [];
+    private string _selectedVersionSlug = string.Empty;
+    private VersionProvider? _selectedVersionProvider;
     private IRanking[] _rankings = [];
 
     protected override void OnInitialized()
     {
         _availableVersions = VersionManagerService.Versions;
-        if (_availableVersions.Length == 0)
+        if (_availableVersions.Count == 0)
         {
             _rankings = [];
             return;
         }
 
-        _selectedVersion = _availableVersions.Contains("latest")
-            ? "latest"
-            : _availableVersions[0];
-
-        LoadRankings();
+        SelectVersionFromLocation();
+        NavigationManager.LocationChanged += OnLocationChanged;
     }
 
     private void OnVersionChanged(ChangeEventArgs changeEventArgs)
@@ -78,27 +78,84 @@
         if (string.IsNullOrWhiteSpace(selectedVersion))
             return;
 
-        _selectedVersion = selectedVersion;
+        _selectedVersionSlug = selectedVersion;
         LoadRankings();
+
+        string versionLandingPath = GetVersionLandingPath(_selectedVersionProvider!);
+        NavigationManager.NavigateTo(versionLandingPath);
     }
 
     private void LoadRankings()
     {
-        VersionProvider versionProvider = VersionManagerService.GetVersionProvider(_selectedVersion);
-        versionProvider.SortRankings();
-        _rankings = versionProvider.GetSortedRankings();
+        _selectedVersionProvider = VersionManagerService.GetVersionProvider(_selectedVersionSlug);
+        _selectedVersionProvider.SortRankings();
+        _rankings = _selectedVersionProvider.GetSortedRankings();
     }
 
-    private static string GetArticleLink(Article article)
+    private string GetArticleLink(Article article)
     {
-        string normalizedPath = article.Path.Replace("\\", "/");
-        if (normalizedPath.StartsWith("./docs/", StringComparison.OrdinalIgnoreCase))
-            normalizedPath = normalizedPath[7..];
+        string normalizedPath = _selectedVersionProvider!.GetReferentialPath(article.Path);
 
         if (normalizedPath.EndsWith(".md", StringComparison.OrdinalIgnoreCase))
             normalizedPath = normalizedPath[..^3];
 
-        return $"en/{normalizedPath}";
+        return normalizedPath;
+    }
+
+    private void SelectVersionFromLocation()
+    {
+        string relativePath = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+        string pathWithoutQueryOrFragment = relativePath.Split(['?', '#'], 2)[0].Trim('/');
+        string[] segments = pathWithoutQueryOrFragment.Split('/', StringSplitOptions.RemoveEmptyEntries);
+
+        VersionProvider? provider = null;
+        if (segments.Length >= 2 && string.Equals(segments[0], "en", StringComparison.OrdinalIgnoreCase))
+            VersionManagerService.TryGetVersionProvider(segments[1], out provider);
+
+        _selectedVersionSlug = provider?.Version.Slug ?? VersionManagerService.LatestStableVersion.Slug;
+        LoadRankings();
+    }
+
+    private string GetVersionLandingPath(VersionProvider provider)
+    {
+        Article? landingArticle = provider.VersionedDocsSection is null
+            ? null
+            : FindFirstArticle(provider.VersionedDocsSection);
+
+        return landingArticle is null
+            ? $"/en/{provider.Version.Slug}/"
+            : GetArticleLink(landingArticle);
+    }
+
+    private static Article? FindFirstArticle(Section section)
+    {
+        if (section.IndexArticle is not null)
+            return section.IndexArticle;
+
+        foreach (IRanking ranking in section.GetSortedRankings())
+        {
+            if (ranking is Article article)
+                return article;
+
+            if (ranking is Section subsection && FindFirstArticle(subsection) is Article subsectionArticle)
+                return subsectionArticle;
+        }
+
+        return null;
+    }
+
+    private void OnLocationChanged(object? sender, LocationChangedEventArgs locationChangedEventArgs)
+    {
+        _ = InvokeAsync(() =>
+        {
+            SelectVersionFromLocation();
+            StateHasChanged();
+        });
+    }
+
+    public void Dispose()
+    {
+        NavigationManager.LocationChanged -= OnLocationChanged;
     }
 
     private static string NormalizeArticleName(string articleName)

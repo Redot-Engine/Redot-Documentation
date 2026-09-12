@@ -23,6 +23,18 @@ dotnet run --project Redot-Documentation/Redot-Documentation.csproj
 ```
 Note that after you have built the project at least once, you can skip the `dotnet restore` and `dotnet build` steps.
 
+### Documentation versions
+
+Documentation versions are configured in `Redot-Documentation/docs/Versions.json`. Each entry contains:
+
+- `Slug`: Stable URL and local directory identifier, such as `26.1`.
+- `FriendlyName`: Label shown in the version selector.
+- `BranchName`: Git branch associated with the documentation version.
+- `IsLatestStable`: Selects the version used for unversioned documentation routes.
+- `IsNextPrerelease`: Identifies the upcoming prerelease documentation.
+
+Exactly one entry must be marked as the latest stable version and exactly one as the next prerelease. The same entry cannot hold both roles.
+
 ---
 
 ### Docker

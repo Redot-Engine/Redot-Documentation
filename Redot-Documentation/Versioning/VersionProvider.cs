@@ -2,14 +2,14 @@ namespace Redot_Documentation.Versioning;
 
 public class VersionProvider
 {
-    public string VersionRoot => $"./docs/{VersionName}/";
+    public DocumentationVersion Version { get; }
+    public string VersionRoot { get; }
 
-    public string VersionName { get; set; } = "latest";
-    public Section AboutSection { get; set; } = new("About", "./docs/About/", 0);
+    public Section AboutSection { get; set; }
 
-    public Section CommunitySection { get; set; } = new("Community", "./docs/Community/", 1);
+    public Section CommunitySection { get; set; }
 
-    public Section ContributingSection { get; set; } = new("Contributing", "./docs/Contributing/", 2);
+    public Section ContributingSection { get; set; }
 
     public Section? VersionedDocsSection { get; set; } = null;
 
@@ -17,20 +17,26 @@ public class VersionProvider
 
     private Dictionary<string, string> SlugLookupTable = new();
 
+    private readonly string _docsRootPath;
+
     public static readonly string[] SlugPrefixes = ["doc_", "abt_", "comm_", "class_", "contrib_"];
 
-    public VersionProvider()
+    public VersionProvider(DocumentationVersion version, string docsRootPath)
     {
+        Version = version;
+        _docsRootPath = Path.GetFullPath(docsRootPath);
+        VersionRoot = Path.Combine(_docsRootPath, version.Slug);
+
+        AboutSection = new Section("About", Path.Combine(_docsRootPath, "About"), 0);
+        CommunitySection = new Section("Community", Path.Combine(_docsRootPath, "Community"), 1);
+        ContributingSection = new Section("Contributing", Path.Combine(_docsRootPath, "Contributing"), 2);
+
         AboutSection.LoadAndParse();
         AboutSection.SortRankings();
         CommunitySection.LoadAndParse();
         CommunitySection.SortRankings();
         ContributingSection.LoadAndParse();
         ContributingSection.SortRankings();
-    }
-    public VersionProvider(string versionName) : this()
-    {
-        VersionName = versionName;
         if (Directory.Exists(VersionRoot))
         {
             VersionedDocsSection = new Section("Versioned Docs", VersionRoot);
@@ -69,12 +75,13 @@ public class VersionProvider
         }
     }
 
-    public static string GetReferentialPath(string path)
+    public string GetReferentialPath(string path)
     {
-        if (path.StartsWith("./"))
-            path = "/en" + path.Substring(1);
-        path = path.Replace("/docs/", "/");
-        return path;
+        string relativePath = Path.GetRelativePath(_docsRootPath, Path.GetFullPath(path)).Replace('\\', '/');
+        if (relativePath == ".." || relativePath.StartsWith("../", StringComparison.Ordinal))
+            throw new InvalidOperationException($"Documentation path '{path}' is outside the docs directory.");
+
+        return $"/en/{relativePath}";
     }
 
     private void ParseSlugs(Section section)

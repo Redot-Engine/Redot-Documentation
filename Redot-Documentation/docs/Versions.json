@@ -1,4 +1,16 @@
 [
-    "latest",
-    "26.1"
+  {
+    "Slug": "latest",
+    "FriendlyName": "Latest development",
+    "BranchName": "master",
+    "IsLatestStable": false,
+    "IsNextPrerelease": true
+  },
+  {
+    "Slug": "26.1",
+    "FriendlyName": "Redot 26.1",
+    "BranchName": "26.1",
+    "IsLatestStable": true,
+    "IsNextPrerelease": false
+  }
 ]

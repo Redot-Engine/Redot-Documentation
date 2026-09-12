@@ -67,12 +67,12 @@ public sealed class DocRendererServiceTests : IDisposable
         }
     }
 
-    private static VersionProvider CreateVersionProvider()
+    private VersionProvider CreateVersionProvider()
     {
         var about = new Section("About", "unused");
         about.Articles.Add(new Article(
             "some_doc.md",
-            "./docs/About/some_doc.md",
+            Path.Combine(contentRootPath, "docs", "About", "some_doc.md"),
             "doc_some_doc.md"));
         about.SortRankings();
 
@@ -82,7 +82,15 @@ public sealed class DocRendererServiceTests : IDisposable
         var contributing = new Section("Contributing", "unused");
         contributing.SortRankings();
 
-        var provider = new VersionProvider
+        var provider = new VersionProvider(
+            new DocumentationVersion
+            {
+                Slug = "latest",
+                FriendlyName = "Latest development",
+                BranchName = "master",
+                IsNextPrerelease = true
+            },
+            Path.Combine(contentRootPath, "docs"))
         {
             AboutSection = about,
             CommunitySection = community,

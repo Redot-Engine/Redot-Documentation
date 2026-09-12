@@ -108,22 +108,19 @@ else
         var normalizedPath = (DocumentPath ?? string.Empty).Trim('/');
         if (string.IsNullOrWhiteSpace(normalizedPath))
         {
-            return (VersionManagerService.GetVersionProvider("latest"), normalizedPath);
+            return (VersionManagerService.GetVersionProvider(VersionManagerService.LatestStableVersion.Slug), normalizedPath);
         }
 
         var segments = normalizedPath.Split('/', StringSplitOptions.RemoveEmptyEntries);
         var versionSegment = segments[0];
 
-        var matchedVersion = VersionManagerService.Versions
-            .FirstOrDefault(v => string.Equals(v, versionSegment, StringComparison.OrdinalIgnoreCase));
-        if (matchedVersion is not null)
+        if (VersionManagerService.TryGetVersionProvider(versionSegment, out VersionProvider? provider))
         {
-            var provider = VersionManagerService.GetVersionProvider(matchedVersion);
             var pathWithoutVersion = string.Join('/', segments.Skip(1));
-            return (provider, pathWithoutVersion);
+            return (provider!, pathWithoutVersion);
         }
 
-        return (VersionManagerService.GetVersionProvider("latest"), normalizedPath);
+        return (VersionManagerService.GetVersionProvider(VersionManagerService.LatestStableVersion.Slug), normalizedPath);
     }
 
     private string BuildTableOfContentsAndEnsureHeadingIds(string html)
