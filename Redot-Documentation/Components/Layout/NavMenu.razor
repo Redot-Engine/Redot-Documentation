@@ -82,9 +82,11 @@
     private VersionProvider? _selectedVersionProvider;
     private IReadOnlyList<IRanking> _rankings = [];
     private IReadOnlyList<ClassDocumentationEntry> _classes = [];
+    private bool _disposed;
 
     protected override void OnInitialized()
     {
+        ClassDocumentationCatalog.Changed += OnCatalogChanged;
         _availableVersions = VersionManagerService.Versions;
         if (_availableVersions.Count == 0)
         {
@@ -216,8 +218,22 @@
         });
     }
 
+    private void OnCatalogChanged(string versionSlug)
+    {
+        _ = InvokeAsync(() =>
+        {
+            if (_disposed || !string.Equals(versionSlug, _selectedVersionSlug, StringComparison.OrdinalIgnoreCase))
+                return;
+
+            _classes = ClassDocumentationCatalog.GetClassesAlphabetically(_selectedVersionSlug);
+            StateHasChanged();
+        });
+    }
+
     public void Dispose()
     {
+        _disposed = true;
+        ClassDocumentationCatalog.Changed -= OnCatalogChanged;
         NavigationManager.LocationChanged -= OnLocationChanged;
     }
 

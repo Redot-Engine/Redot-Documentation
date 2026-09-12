@@ -35,6 +35,9 @@ public sealed class GitClassDocumentationSource : IClassDocumentationSource
     /// <summary>Defines the synchronization metadata file name.</summary>
     private const string MetadataFileName = "sync.json";
 
+    /// <summary>Stores metadata inside the checkout so it is promoted with the repository.</summary>
+    private const string RepositoryMetadataFileName = ".redot-class-doc-sync.json";
+
     /// <summary>Runs Git commands.</summary>
     private readonly IGitCommandRunner _git;
 
@@ -128,13 +131,21 @@ public sealed class GitClassDocumentationSource : IClassDocumentationSource
                 _options.GitTimeout,
                 cancellationToken);
 
+            WriteMetadataFile(
+                Path.Combine(stagingRepositoryPath, RepositoryMetadataFileName),
+                new ClassDocumentationSyncMetadata(
+                    commitResult.StandardOutput,
+                    version.BranchName,
+                    _options.RepositoryUrl,
+                    DateTimeOffset.UtcNow));
+
             return ClassDocumentationCheckout.Pending(
                 version,
                 commitResult.StandardOutput,
                 stagingRepositoryPath,
                 GetClassDocumentationPath(stagingRepositoryPath),
                 stagingRoot,
-                () => Promote(version, stagingRepositoryPath, stagingRoot, commitResult.StandardOutput));
+                () => Promote(version, stagingRepositoryPath, stagingRoot));
         }
         catch
         {
@@ -203,18 +214,19 @@ public sealed class GitClassDocumentationSource : IClassDocumentationSource
     /// <param name="version">The documentation version.</param>
     /// <param name="stagingRepositoryPath">The staging repository path.</param>
     /// <param name="stagingRoot">The staging root path.</param>
-    /// <param name="commitSha">The staged commit identifier.</param>
     /// <exception cref="IOException">A cache move or metadata write fails.</exception>
     /// <exception cref="UnauthorizedAccessException">A cache path cannot be modified.</exception>
     private void Promote(
         DocumentationVersion version,
         string stagingRepositoryPath,
-        string stagingRoot,
-        string commitSha)
+        string stagingRoot)
     {
         string versionRoot = GetVersionRoot(version);
         string activeRepositoryPath = GetActiveRepositoryPath(version);
         string backupRepositoryPath = Path.Combine(versionRoot, "repository.previous");
+        ClassDocumentationSyncMetadata metadata = ReadMetadataFile(
+            Path.Combine(stagingRepositoryPath, RepositoryMetadataFileName), version)
+            ?? throw new InvalidDataException("The staged checkout has no valid synchronization metadata.");
 
         DeleteDirectoryIfPresent(backupRepositoryPath);
         if (Directory.Exists(activeRepositoryPath))
@@ -225,11 +237,7 @@ public sealed class GitClassDocumentationSource : IClassDocumentationSource
             Directory.Move(stagingRepositoryPath, activeRepositoryPath);
             try
             {
-                WriteMetadata(version, new ClassDocumentationSyncMetadata(
-                    commitSha,
-                    version.BranchName,
-                    _options.RepositoryUrl,
-                    DateTimeOffset.UtcNow));
+                WriteMetadata(version, metadata);
             }
             catch
             {
@@ -268,7 +276,7 @@ public sealed class GitClassDocumentationSource : IClassDocumentationSource
         }
     }
 
-    /// <summary>Restores a backup left by an interrupted promotion.</summary>
+    /// <summary>Restores a backup or finishes metadata publication after an interrupted promotion.</summary>
     /// <param name="version">The documentation version.</param>
     /// <exception cref="IOException">The backup cannot be restored.</exception>
     /// <exception cref="UnauthorizedAccessException">The cache path cannot be modified.</exception>
@@ -282,6 +290,17 @@ public sealed class GitClassDocumentationSource : IClassDocumentationSource
             _logger.LogWarning("Recovering the previous class documentation checkout for {Version}.", version.Slug);
             Directory.Move(backupRepositoryPath, activeRepositoryPath);
         }
+
+        // This file moves atomically with the checkout. It remains authoritative if
+        // the process stops after Directory.Move but before replacing sync.json.
+        string repositoryMetadataPath = Path.Combine(activeRepositoryPath, RepositoryMetadataFileName);
+        if (File.Exists(repositoryMetadataPath))
+        {
+            ClassDocumentationSyncMetadata? metadata = ReadMetadataFile(repositoryMetadataPath, version);
+            if (metadata is not null
+                && metadata != ReadMetadataFile(Path.Combine(versionRoot, MetadataFileName), version))
+                WriteMetadata(version, metadata);
+        }
     }
 
     /// <summary>Writes synchronization metadata atomically.</summary>
@@ -294,8 +313,18 @@ public sealed class GitClassDocumentationSource : IClassDocumentationSource
         string versionRoot = GetVersionRoot(version);
         Directory.CreateDirectory(versionRoot);
         string metadataPath = Path.Combine(versionRoot, MetadataFileName);
+        WriteMetadataFile(metadataPath, metadata);
+    }
+
+    /// <summary>Durably stages metadata before atomically replacing its destination.</summary>
+    private static void WriteMetadataFile(string metadataPath, ClassDocumentationSyncMetadata metadata)
+    {
         string temporaryPath = $"{metadataPath}.{Guid.NewGuid():N}.tmp";
-        File.WriteAllText(temporaryPath, JsonSerializer.Serialize(metadata));
+        using (var stream = new FileStream(temporaryPath, FileMode.CreateNew, FileAccess.Write, FileShare.None))
+        {
+            JsonSerializer.Serialize(stream, metadata);
+            stream.Flush(flushToDisk: true);
+        }
         File.Move(temporaryPath, metadataPath, overwrite: true);
     }
 
@@ -304,7 +333,16 @@ public sealed class GitClassDocumentationSource : IClassDocumentationSource
     /// <returns>The metadata, or <see langword="null"/> when absent or invalid.</returns>
     private ClassDocumentationSyncMetadata? ReadMetadata(DocumentationVersion version)
     {
-        string metadataPath = Path.Combine(GetVersionRoot(version), MetadataFileName);
+        string repositoryMetadataPath = Path.Combine(GetActiveRepositoryPath(version), RepositoryMetadataFileName);
+        // Fall back only for legacy checkouts, never for an invalid new metadata file.
+        return ReadMetadataFile(File.Exists(repositoryMetadataPath)
+            ? repositoryMetadataPath
+            : Path.Combine(GetVersionRoot(version), MetadataFileName), version);
+    }
+
+    /// <summary>Reads metadata without substituting metadata from another checkout.</summary>
+    private ClassDocumentationSyncMetadata? ReadMetadataFile(string metadataPath, DocumentationVersion version)
+    {
         if (!File.Exists(metadataPath))
             return null;
 

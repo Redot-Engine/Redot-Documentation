@@ -39,6 +39,80 @@ public sealed class ClassDocumentationSyncServiceTests : IDisposable
         await service.StopAsync(CancellationToken.None);
     }
 
+    [Fact]
+    public async Task StartAsync_RefreshesAfterCachedCheckoutAccessIsDenied()
+    {
+        VersionManagerService manager = CreateVersionManager();
+        string classesPath = Path.Combine(_contentRootPath, "fresh-classes");
+        Directory.CreateDirectory(classesPath);
+        File.WriteAllText(Path.Combine(classesPath, "Node.xml"), "<class name=\"Node\" />");
+        var source = new TestSource(classesPath) { DenyCacheAccess = true };
+        var catalog = new ClassDocumentationCatalog();
+        using var service = CreateService(manager, source, catalog);
+
+        await service.StartAsync(CancellationToken.None);
+        await service.StopAsync(CancellationToken.None);
+
+        foreach (var version in manager.Versions)
+            Assert.True(catalog.TryGetClass(version.Slug, "Node", out _));
+        Assert.Equal(manager.Versions.Count, source.PrepareCount);
+        Assert.Equal(manager.Versions.Count, source.PromotionCount);
+    }
+
+    [Theory]
+    [InlineData("<class xmlns=\"urn:redot\" name=\"Node\" />")]
+    [InlineData("<class name=\"Node\"><constants><constant name=\"READY\" /></constants></class>")]
+    public async Task StartAsync_DoesNotPromoteOrPublishMalformedClassData(string xml)
+    {
+        VersionManagerService manager = CreateVersionManager();
+        string classesPath = Path.Combine(_contentRootPath, "invalid-classes");
+        Directory.CreateDirectory(classesPath);
+        File.WriteAllText(Path.Combine(classesPath, "Node.xml"), xml);
+        var source = new TestSource(classesPath);
+        var catalog = new ClassDocumentationCatalog();
+        var existing = new ClassDocumentationSnapshot(manager.LatestStableVersion, "previous", DateTimeOffset.UtcNow,
+            new Dictionary<string, ClassDocumentationEntry> { ["Node"] = new() { Name = "Node" } });
+        catalog.Publish(existing);
+        using var service = CreateService(manager, source, catalog);
+
+        await service.StartAsync(CancellationToken.None);
+        await service.StopAsync(CancellationToken.None);
+
+        Assert.Equal(manager.Versions.Count, source.PrepareCount);
+        Assert.Equal(0, source.PromotionCount);
+        Assert.True(catalog.TryGetSnapshot(manager.LatestStableVersion.Slug, out var actual));
+        Assert.Same(existing, actual);
+        Assert.False(catalog.TryGetSnapshot(manager.NextPrereleaseVersion.Slug, out _));
+    }
+
+    private static ClassDocumentationSyncService CreateService(
+        VersionManagerService manager, IClassDocumentationSource source, ClassDocumentationCatalog catalog)
+        => new(manager, source, new ClassDocumentationParser(), catalog,
+            Options.Create(new ClassDocumentationOptions { RefreshInterval = TimeSpan.FromDays(1) }),
+            NullLogger<ClassDocumentationSyncService>.Instance);
+
+    private sealed class TestSource(string classesPath) : IClassDocumentationSource
+    {
+        public bool DenyCacheAccess { get; init; }
+        public int PrepareCount { get; private set; }
+        public int PromotionCount { get; private set; }
+
+        public bool TryGetCurrent(DocumentationVersion version, out ClassDocumentationCheckout? checkout)
+        {
+            checkout = null;
+            if (DenyCacheAccess)
+                throw new UnauthorizedAccessException("Cached checkout is inaccessible.");
+            return false;
+        }
+
+        public Task<ClassDocumentationCheckout> PrepareAsync(DocumentationVersion version, CancellationToken cancellationToken)
+        {
+            PrepareCount++;
+            return Task.FromResult(ClassDocumentationCheckout.Pending(version, "new-commit", classesPath, classesPath,
+                Path.Combine(classesPath, "unused-staging"), () => PromotionCount++));
+        }
+    }
+
     public void Dispose()
     {
         if (Directory.Exists(_contentRootPath))

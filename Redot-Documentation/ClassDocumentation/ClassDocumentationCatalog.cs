@@ -5,6 +5,9 @@ namespace Redot_Documentation.ClassDocumentation;
 /// <summary>Stores the active class-documentation snapshots.</summary>
 public sealed class ClassDocumentationCatalog
 {
+    /// <summary>Notifies subscribers after a version snapshot is published.</summary>
+    public event Action<string>? Changed;
+
     /// <summary>Synchronizes snapshot publication.</summary>
     private readonly object _gate = new();
 
@@ -25,6 +28,8 @@ public sealed class ClassDocumentationCatalog
             };
             Volatile.Write(ref _snapshots, new ReadOnlyDictionary<string, ClassDocumentationSnapshot>(updated));
         }
+
+        Changed?.Invoke(snapshot.Version.Slug);
     }
 
     /// <summary>Finds a snapshot by version slug.</summary>

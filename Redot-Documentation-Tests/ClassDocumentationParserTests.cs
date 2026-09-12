@@ -89,6 +89,32 @@ public sealed class ClassDocumentationParserTests : IDisposable
         Assert.IsType<System.Xml.XmlException>(exception.InnerException);
     }
 
+    [Theory]
+    [InlineData("<class xmlns=\"urn:redot\" name=\"Node\"><description>Lost text</description></class>")]
+    [InlineData("<api:class xmlns:api=\"urn:redot\" name=\"Node\" />")]
+    [InlineData("<class name=\"Node\"><constants><constant name=\"READY\" /></constants></class>")]
+    [InlineData("<class name=\"Node\"><constants><constant name=\"READY\" value=\"\" /></constants></class>")]
+    [InlineData("<class name=\"Node\"><constants><constant name=\"READY\" value=\"  \" /></constants></class>")]
+    public void ParseDirectory_RejectsIncompleteClassData(string xml)
+    {
+        Directory.CreateDirectory(_directory);
+        File.WriteAllText(Path.Combine(_directory, "Node.xml"), xml);
+
+        Assert.Throws<InvalidDataException>(() => new ClassDocumentationParser().ParseDirectory(_directory));
+    }
+
+    [Fact]
+    public void ParseDirectory_AcceptsUnnamespacedClassAndZeroConstant()
+    {
+        Directory.CreateDirectory(_directory);
+        File.WriteAllText(Path.Combine(_directory, "Node.xml"),
+            "<class xmlns=\"\" name=\"Node\"><constants><constant name=\"ZERO\" value=\"0\" /></constants></class>");
+
+        ClassDocumentationEntry entry = Assert.Single(new ClassDocumentationParser().ParseDirectory(_directory)).Value;
+
+        Assert.Equal("0", Assert.Single(entry.Constants).Value);
+    }
+
     [Fact]
     public void ParseFile_PreservesEmptyStatusAttributes()
     {

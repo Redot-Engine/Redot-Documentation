@@ -2,6 +2,7 @@
 @page "/en/{VersionSlug}/Classes/{ClassName}"
 @layout MainLayout
 @using Redot_Documentation.ClassDocumentation
+@implements IDisposable
 @inject ClassDocumentationCatalog Catalog
 @inject ClassDocumentationRenderer Renderer
 @inject IJSRuntime JS
@@ -84,6 +85,7 @@ else
     private ClassDocumentationSnapshot? _snapshot;
     private ClassDocumentationEntry? _classDocumentation;
     private string _searchText = string.Empty;
+    private bool _disposed;
 
     private string ClassesIndexPath => $"/en/{Uri.EscapeDataString(VersionSlug)}/Classes";
     private string ShortCommit => _snapshot is null
@@ -98,12 +100,35 @@ else
         .OrderBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase)
         .ToArray() ?? [];
 
-    protected override void OnParametersSet()
+    protected override void OnInitialized()
+        => Catalog.Changed += OnCatalogChanged;
+
+    protected override void OnParametersSet() => LoadSnapshot();
+
+    private void LoadSnapshot()
     {
         _classDocumentation = null;
         Catalog.TryGetSnapshot(VersionSlug, out _snapshot);
         if (_snapshot is not null && !string.IsNullOrWhiteSpace(ClassName))
             _snapshot.TryGetClass(ClassName, out _classDocumentation);
+    }
+
+    private void OnCatalogChanged(string versionSlug)
+    {
+        _ = InvokeAsync(() =>
+        {
+            if (_disposed || !string.Equals(versionSlug, VersionSlug, StringComparison.OrdinalIgnoreCase))
+                return;
+
+            LoadSnapshot();
+            StateHasChanged();
+        });
+    }
+
+    public void Dispose()
+    {
+        _disposed = true;
+        Catalog.Changed -= OnCatalogChanged;
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

@@ -6,6 +6,28 @@ namespace Redot_Documentation_Tests;
 public sealed class ClassDocumentationCatalogTests
 {
     [Fact]
+    public void Publish_NotifiesAfterSnapshotIsVisibleAndAllowsUnsubscription()
+    {
+        var catalog = new ClassDocumentationCatalog();
+        var observed = new List<ClassDocumentationSnapshot>();
+        void OnChanged(string slug)
+        {
+            Assert.True(catalog.TryGetSnapshot(slug, out var snapshot));
+            observed.Add(snapshot!);
+        }
+
+        catalog.Changed += OnChanged;
+        var first = CreateSnapshot("latest", "Node");
+        var replacement = CreateSnapshot("latest", "Object");
+        catalog.Publish(first);
+        catalog.Publish(replacement);
+        catalog.Changed -= OnChanged;
+        catalog.Publish(CreateSnapshot("26.1", "Other"));
+
+        Assert.Equal([first, replacement], observed);
+    }
+
+    [Fact]
     public void GetClassesAlphabetically_ReturnsOnlyTheRequestedVersionInNameOrder()
     {
         var catalog = new ClassDocumentationCatalog();

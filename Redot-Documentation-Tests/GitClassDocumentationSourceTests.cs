@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Text.Json;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -94,6 +95,83 @@ public sealed class GitClassDocumentationSourceTests : IDisposable
 
         Assert.True(recreated.IsPending);
         Assert.True(File.Exists(Path.Combine(recreated.ClassDocumentationPath, "Node.xml")));
+    }
+
+    [Theory]
+    [InlineData(true, 0)]
+    [InlineData(true, 1)]
+    [InlineData(true, 2)]
+    [InlineData(true, 3)]
+    [InlineData(false, 2)]
+    [InlineData(false, 3)]
+    public async Task InterruptedPromotion_RecoversMatchingCheckoutAndMetadata(bool hasPrevious, int phase)
+    {
+        string remote = CreateRemoteRepository(out string sourcePath);
+        var source = CreateSource(remote);
+        var version = CreateVersion();
+        string? previousCommit = null;
+        if (hasPrevious)
+        {
+            using var initial = await source.PrepareAsync(version, CancellationToken.None);
+            initial.Promote();
+            previousCommit = initial.CommitSha;
+        }
+
+        File.WriteAllText(Path.Combine(sourcePath, "doc", "classes", "Node.xml"),
+            "<class name=\"Node\"><brief_description>Updated node.</brief_description></class>");
+        RunGit(sourcePath, "add", ".");
+        RunGit(sourcePath, "commit", "-m", "Update class docs");
+        RunGit(sourcePath, "push", remote, "master");
+
+        using var candidate = await source.PrepareAsync(version, CancellationToken.None);
+        string versionRoot = Path.Combine(_root, "cache", version.Slug);
+        string active = Path.Combine(versionRoot, "repository");
+        string metadataPath = Path.Combine(versionRoot, "sync.json");
+
+        // Simulate process termination at each filesystem boundary, without running
+        // Promote's exception rollback or replacing the old metadata prematurely.
+        if (phase >= 1 && hasPrevious)
+            Directory.Move(active, Path.Combine(versionRoot, "repository.previous"));
+        if (phase >= 2)
+            Directory.Move(candidate.RepositoryPath, active);
+        if (phase >= 3)
+            File.Copy(Path.Combine(active, ".redot-class-doc-sync.json"), metadataPath, overwrite: true);
+
+        string expectedCommit = phase >= 2 ? candidate.CommitSha : previousCommit!;
+        var restarted = CreateSource(remote);
+        for (int attempt = 0; attempt < 2; attempt++)
+        {
+            Assert.True(restarted.TryGetCurrent(version, out var recovered));
+            using (recovered)
+            {
+                Assert.Equal(expectedCommit, recovered!.CommitSha);
+                var node = Assert.Single(new ClassDocumentationParser().ParseDirectory(recovered.ClassDocumentationPath)).Value;
+                Assert.Equal(phase >= 2 ? "Updated node." : "A node.", node.BriefDescription);
+            }
+            using var metadata = JsonDocument.Parse(File.ReadAllText(metadataPath));
+            Assert.Equal(expectedCommit, metadata.RootElement.GetProperty("CommitSha").GetString());
+        }
+
+        using var prepared = await restarted.PrepareAsync(version, CancellationToken.None);
+        Assert.Equal(phase < 2, prepared.IsPending);
+        Assert.Equal(candidate.CommitSha, prepared.CommitSha);
+    }
+
+    [Fact]
+    public async Task TryGetCurrent_SupportsLegacyMetadataButDoesNotFallBackFromCorruptCheckoutMetadata()
+    {
+        string remote = CreateRemoteRepository(out _);
+        var source = CreateSource(remote);
+        var version = CreateVersion();
+        using var initial = await source.PrepareAsync(version, CancellationToken.None);
+        initial.Promote();
+        string metadata = Path.Combine(_root, "cache", version.Slug, "repository", ".redot-class-doc-sync.json");
+        File.Delete(metadata);
+        Assert.True(source.TryGetCurrent(version, out var legacy));
+        legacy!.Dispose();
+
+        File.WriteAllText(metadata, "invalid metadata");
+        Assert.False(source.TryGetCurrent(version, out _));
     }
 
     private GitClassDocumentationSource CreateSource(string repositoryUrl)

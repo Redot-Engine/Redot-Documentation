@@ -56,8 +56,8 @@ public sealed class ClassDocumentationParser
             XElement root = document.Root
                 ?? throw new InvalidDataException($"Class XML '{filePath}' has no root element.");
 
-            if (!string.Equals(root.Name.LocalName, "class", StringComparison.Ordinal))
-                throw new InvalidDataException($"Class XML '{filePath}' must have a class root element.");
+            if (root.Name != XName.Get("class"))
+                throw new InvalidDataException($"Class XML '{filePath}' must have an unnamespaced class root element.");
 
             string name = RequiredAttribute(root, "name", filePath);
             return new ClassDocumentationEntry
@@ -166,7 +166,7 @@ public sealed class ClassDocumentationParser
         => container?.Elements("constant").Select(element => new ClassDocumentationConstant
         {
             Name = RequiredAttribute(element, "name", "constant"),
-            Value = Attribute(element, "value") ?? string.Empty,
+            Value = RequiredAttribute(element, "value", "constant"),
             Enum = Attribute(element, "enum"),
             IsBitField = ParseBooleanAttribute(element, "is_bitfield"),
             Description = DescriptionText(element),

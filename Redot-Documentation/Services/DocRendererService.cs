@@ -146,7 +146,8 @@ public class DocRendererService
         if (documentSlug.StartsWith("class_", StringComparison.OrdinalIgnoreCase))
         {
             linkUrl = ResolveClassSlug(documentSlug, versionProvider.Version.Slug);
-            if (!string.IsNullOrWhiteSpace(sectionReference))
+            // A resolved member anchor takes precedence over a page section reference.
+            if (!linkUrl.Contains('#') && !string.IsNullOrWhiteSpace(sectionReference))
             {
                 var sectionId = HeadingAnchor.FromReference(sectionReference);
                 linkUrl = $"{linkUrl}#{Uri.EscapeDataString(sectionId)}";

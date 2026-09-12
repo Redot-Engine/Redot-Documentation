@@ -49,6 +49,9 @@ public sealed class DocRendererServiceTests : IDisposable
 
     [Theory]
     [InlineData("class_Node", "/en/latest/Classes/Node")]
+    [InlineData("class_Node#description", "/en/latest/Classes/Node#description")]
+    [InlineData("class_Node_method_add_child#description", "/en/latest/Classes/Node#method-add-child")]
+    [InlineData("class_Node_property_name#Some%20Section", "/en/latest/Classes/Node#member-name")]
     [InlineData("class_Node_method_add_child", "/en/latest/Classes/Node#method-add-child")]
     [InlineData("class_Node_property_name", "/en/latest/Classes/Node#member-name")]
     [InlineData("class_Node_method_get_annotation_list", "/en/latest/Classes/Node#method-get-annotation-list")]

@@ -110,18 +110,19 @@ public sealed class ClassDocumentationSyncService : IHostedService, IDisposable
         foreach (DocumentationVersion version in _versionManager.Versions)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            if (!_source.TryGetCurrent(version, out ClassDocumentationCheckout? checkout))
-                continue;
-
+            ClassDocumentationCheckout? checkout = null;
             try
             {
+                if (!_source.TryGetCurrent(version, out checkout))
+                    continue;
+
                 Publish(checkout!);
                 _logger.LogInformation(
                     "Loaded cached class documentation for {Version} at {Commit}.",
                     version.Slug,
                     ShortCommit(checkout!.CommitSha));
             }
-            catch (Exception exception) when (exception is IOException or InvalidDataException)
+            catch (Exception exception) when (exception is IOException or InvalidDataException or UnauthorizedAccessException)
             {
                 _logger.LogWarning(exception, "Cached class documentation for {Version} is invalid.", version.Slug);
             }
