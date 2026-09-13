@@ -435,7 +435,13 @@ public sealed class GitClassDocumentationSource : IClassDocumentationSource
         if (!relativePaths.Contains(CoreDocumentationPath, StringComparer.Ordinal)
             || relativePaths.Any(path => path != CoreDocumentationPath && !IsModuleDocumentationPath(path)))
             return false;
-        paths = relativePaths.Select(path => Path.Combine(repositoryPath, path)).ToArray();
+        string[] discoveredPaths = DiscoverDocumentationPaths(repositoryPath);
+        var discoveredRelativePaths = discoveredPaths
+            .Select(path => Path.GetRelativePath(repositoryPath, path).Replace('\\', '/'));
+        if (!new HashSet<string>(relativePaths, StringComparer.Ordinal).SetEquals(discoveredRelativePaths))
+            return false;
+
+        paths = discoveredPaths;
         return paths.All(path => Directory.Exists(path) && Directory.EnumerateFiles(path, "*.xml").Any());
     }
 

@@ -218,6 +218,45 @@ public sealed class GitClassDocumentationSourceTests : IDisposable
         Assert.DoesNotContain("Alpha", classes.Keys);
     }
 
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public async Task CurrentSelection_WithOmittedModuleDirectory_IsRejectedAndRepaired(bool hasSecondModule)
+    {
+        string remote = CreateRemoteRepository(out string work);
+        AddModule(work, "alpha", "Alpha");
+        if (hasSecondModule)
+            AddModule(work, "beta", "Beta");
+        CommitAndPush(work, remote);
+        var source = CreateSource(remote);
+        var version = CreateVersion();
+        using (var initial = await source.PrepareAsync(version, CancellationToken.None))
+            initial.Promote();
+
+        string repository = Path.Combine(_root, "cache", "latest", "repository");
+        string marker = Path.Combine(repository, ".redot-class-doc-sync.json");
+        var metadata = System.Text.Json.Nodes.JsonNode.Parse(File.ReadAllText(marker))!.AsObject();
+        int revision = metadata["SelectionRevision"]!.GetValue<int>();
+        var directories = metadata["DocumentationDirectories"]!.AsArray();
+        directories.Remove(directories.Single(path => path!.GetValue<string>() == "modules/alpha/doc_classes"));
+        File.WriteAllText(marker, metadata.ToJsonString());
+
+        Assert.True(revision > 0);
+        Assert.True(Directory.Exists(Path.Combine(repository, "modules", "alpha", "doc_classes")));
+        Assert.False(source.TryGetCurrent(version, out _));
+
+        using var repair = await source.PrepareAsync(version, CancellationToken.None);
+        Assert.True(repair.IsPending);
+        Assert.Equal(metadata["CommitSha"]!.GetValue<string>(), repair.CommitSha);
+        Assert.Equal(hasSecondModule ? 3 : 2, repair.ClassDocumentationPaths.Count);
+        Assert.Contains("Alpha", new ClassDocumentationParser().ParseDirectories(repair.ClassDocumentationPaths).Keys);
+        repair.Promote();
+        using var current = await source.PrepareAsync(version, CancellationToken.None);
+        Assert.False(current.IsPending);
+        var repairedMetadata = System.Text.Json.Nodes.JsonNode.Parse(File.ReadAllText(marker))!;
+        Assert.Equal(revision, repairedMetadata["SelectionRevision"]!.GetValue<int>());
+    }
+
     [Fact]
     public async Task LegacyCoreOnlyCache_IsReadableButRefreshedAtTheSameCommit()
     {
