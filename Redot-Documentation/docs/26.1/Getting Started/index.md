@@ -2,7 +2,7 @@
 
 Learn the engine, build your first scenes, and make your first games.
 
-- [Introduction](/en/26.1/Getting%20Started/introduction/index)
-- [Step by step](/en/26.1/Getting%20Started/step_by_step/index)
-- [Your first 2D game](/en/26.1/Getting%20Started/first_2d_game/index)
-- [Your first 3D game](/en/26.1/Getting%20Started/first_3d_game/index)
+- [Introduction](doc_getting_started_introduction)
+- [Step by step](doc_getting_started_step_by_step)
+- [Your first 2D game](doc_getting_started_first_2d_game)
+- [Your first 3D game](doc_getting_started_first_3d_game)

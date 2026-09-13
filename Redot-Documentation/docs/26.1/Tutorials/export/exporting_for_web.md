@@ -66,7 +66,7 @@ platform. This **Sample** playback mode allows for low latency even when the
 project is exported without thread support, but it has several limitations:
 
 - AudioEffects are not supported.
-- [Reverberation and doppler ](doc_audio_streams_reverb_buses) effects are not supported.
+- [Reverberation and doppler ](doc_audio_streams#reverb-buses) effects are not supported.
 - Procedural audio generation is not supported.
 - Positional audio may not always work correctly depending on the node's properties.
 
@@ -116,7 +116,7 @@ performance. This also allows for low-latency audio playback
 when the playback type is set to **Stream** (instead of the default **Sample**
 that is used in web exports). Enabling this feature requires the use of
 cross-origin isolation headers, which are described in the
-[doc_exporting_for_web_serving_the_files](doc_exporting_for_web_serving_the_files) section below.
+[doc_exporting_for_web_serving_the_files](doc_exporting_for_web#serving-the-files) section below.
 
 If **Extensions Support** is enabled, [GDExtensions ](doc_what_is_gdextension)
 will be able to be loaded. Note that GDExtensions still need to be specifically
@@ -223,7 +223,7 @@ Apple's Safari team also posted additional information about their [Auto-Play Po
 
 :::warning
 Access to microphone requires a
-[secure context ](doc_javascript_secure_contexts).
+[secure context ](doc_exporting_for_web#limitations).
 
 :::
 
@@ -253,7 +253,7 @@ additionally, due to the API asynchronous nature might not be reliable when
 accessed from GDScript.
 
 :::warning
-Requires a :ref:`secure context <doc_javascript_secure_contexts>`.
+Requires a [secure context](doc_exporting_for_web#limitations).
 
 :::
 
@@ -266,7 +266,7 @@ does not provide a reliable way to detect the gamepad information necessary
 to remap them based on model/vendor/OS due to privacy considerations.
 
 :::warning
-Requires a :ref:`secure context <doc_javascript_secure_contexts>`.
+Requires a [secure context](doc_exporting_for_web#limitations).
 
 :::
 
@@ -284,10 +284,10 @@ used, see [doc_customizing_html5_shell](doc_customizing_html5_shell).
 
 :::warning
 
-If either [thread support or extension support ](doc_exporting_for_web_thread_extension_support)
+If either [thread support or extension support ](doc_exporting_for_web#thread-and-extension-support)
 are enabled, the exported project will require
 [SharedArrayBuffer ](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer).
-This requires a [secure context ](doc_javascript_secure_contexts),
+This requires a [secure context ](doc_exporting_for_web#limitations),
 while also requiring the following CORS headers to be set when serving the files:
 
 ```
@@ -377,7 +377,7 @@ nginx.
 
 ## Interacting with the browser and JavaScript
 
-See the [dedicated page ](doc_web_javascript_bridge) on how to interact
+See the [dedicated page ](doc_javascript_bridge) on how to interact
 with JavaScript and access some unique Web browser features.
 
 ## Environment variables

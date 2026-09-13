@@ -112,7 +112,7 @@ overridden the default layout yet.)
 :::
 
 Editor layouts are saved to a file named ``editor_layouts.cfg`` in
-the configuration path of the [doc_data_paths_editor_data_paths](doc_data_paths_editor_data_paths).
+the configuration path of the [doc_data_paths_editor_data_paths](doc_data_paths#editor-data-paths).
 
 ## Customizing editor settings
 

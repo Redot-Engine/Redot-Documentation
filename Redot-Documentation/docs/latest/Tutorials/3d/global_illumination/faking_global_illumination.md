@@ -23,7 +23,7 @@ are usually cheap enough to be used in conjunction with this fake GI approach.
 :::info
 
 Not sure if faking global illumination with lights is suited to your needs?
-See [doc_introduction_to_global_illumination_comparison](doc_introduction_to_global_illumination_comparison) for a
+See [doc_introduction_to_global_illumination_comparison](doc_introduction_to_global_illumination#which-global-illumination-technique-should-i-use) for a
 comparison of GI techniques available in Redot 4.
 
 :::

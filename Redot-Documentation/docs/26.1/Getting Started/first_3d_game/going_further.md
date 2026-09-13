@@ -25,11 +25,11 @@ information about 2D, 3D, physics, rendering and performance, and much more.
 
 Here are the sections we recommend you to explore next:
 
-1. Read the [Scripting section](/en/26.1/Tutorials/scripting/index) to learn essential programming features you'll use
+1. Read the [Scripting section](doc_scripting) to learn essential programming features you'll use
    in every project.
-2. The [3D](/en/26.1/Tutorials/3d/index) and [Physics](/en/26.1/Tutorials/physics/index) sections will teach you more about 3D game creation in the
+2. The [3D](doc_3d) and [Physics](doc_physics) sections will teach you more about 3D game creation in the
    engine.
-3. [Inputs](/en/26.1/Tutorials/inputs/index) is another important one for any game project.
+3. [Inputs](doc_inputs) is another important one for any game project.
 
 You can start with these or, if you prefer, look at the sidebar menu on the left
 and pick your options.

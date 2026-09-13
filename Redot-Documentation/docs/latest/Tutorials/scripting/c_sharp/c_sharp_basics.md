@@ -18,7 +18,7 @@ it is implemented with .NET 8.0.
     Projects written in C# using Redot 4 currently cannot be exported to the web
     platform. To use C# on the web platform, consider Redot 3 instead.
     Android and iOS platform support is available as of Redot 4.2, but is
-    experimental and [some limitations apply ](doc_c_sharp_platforms).
+    experimental and [some limitations apply ](doc_c_sharp#supported-platforms).
 
 :::note
 
@@ -353,7 +353,7 @@ You can read more about this error on the [C# language reference ](https://learn
 :::info
 
 For a performance comparison of the languages Redot supports,
-see [doc_faq_which_programming_language_is_fastest](doc_faq_which_programming_language_is_fastest).
+see [doc_faq_which_programming_language_is_fastest](abt_faq#which-programming-language-is-fastest).
 
 :::
 

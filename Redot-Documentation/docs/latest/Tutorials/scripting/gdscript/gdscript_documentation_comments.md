@@ -213,7 +213,7 @@ class/member, this is not recommended as it is against common conventions.
 ## BBCode and class reference
 
 Redot's class reference supports BBCode-like tags. They add nice formatting to the text which could also
-be used in the documentation. See also [class reference bbcode ](doc_class_reference_bbcode).
+be used in the documentation. See also [class reference bbcode ](doc_class_reference_primer#improve-formatting-with-bbcode-style-tags).
 Note that this is slightly different from the ``RichTextLabel`` [BBCode ](../../ui/bbcode_in_richtextlabel.md).
 
 Whenever you link to a member of another class, you need to specify the class name.
@@ -223,16 +223,16 @@ Here's the list of available tags:
 
 | Tag and Description | Example | Result |
 | --- | --- | --- |
-|  | ``[Class]`` Link to class | ``Move the [Sprite2D].`` | Move the :ref:`class_Sprite2D`. |
-|  | ``[annotation Class.name]`` Link to annotation | ``See [annotation @GDScript.@rpc].`` | See :ref:`@GDScript.@rpc &lt;class_@GDScript_annotation_@rpc&gt;`. |
-|  | ``[constant Class.name]`` Link to constant | ``See [constant Color.RED].`` | See :ref:`Color.RED &lt;class_Color_constant_RED&gt;`. |
-|  | ``[enum Class.name]`` Link to enum | ``See [enum Mesh.ArrayType].`` | See :ref:`Mesh.ArrayType &lt;enum_Mesh_ArrayType&gt;`. |
-|  | ``[member Class.name]`` Link to member (property) | ``Get [member Node2D.scale].`` | Get :ref:`Node2D.scale &lt;class_Node2D_property_scale&gt;`. |
-|  | ``[method Class.name]`` Link to method | ``Call [method Node3D.hide].`` | Call :ref:`Node3D.hide() &lt;class_Node3D_method_hide&gt;`. |
-|  | ``[constructor Class.name]`` Link to built-in constructor | ``Use [constructor Color.Color].`` | Use  :ref:`Color.Color &lt;class_Color_constructor_Color&gt;`. |
-|  | ``[operator Class.name]`` Link to built-in operator | ``Use [operator Color.operator *].`` | Use  :ref:`Color.operator * &lt;class_Color_operator_mul_int&gt;`. |
-|  | ``[signal Class.name]`` Link to signal | ``Emit [signal Node.renamed].`` | Emit :ref:`Node.renamed &lt;class_Node_signal_renamed&gt;`. |
-|  | ``[theme_item Class.name]`` Link to theme item | ``See [theme_item Label.font].`` | See :ref:`Label.font &lt;class_Label_theme_font_font&gt;`. |
+|  | ``[Class]`` Link to class | ``Move the [Sprite2D].`` | Move the [class_Sprite2D](class_Sprite2D). |
+|  | ``[annotation Class.name]`` Link to annotation | ``See [annotation @GDScript.@rpc].`` | See [@GDScript.@rpc](class_@GDScript_annotation_@rpc). |
+|  | ``[constant Class.name]`` Link to constant | ``See [constant Color.RED].`` | See [Color.RED](class_Color_constant_RED). |
+|  | ``[enum Class.name]`` Link to enum | ``See [enum Mesh.ArrayType].`` | See [Mesh.ArrayType](class_Mesh_enum_arraytype). |
+|  | ``[member Class.name]`` Link to member (property) | ``Get [member Node2D.scale].`` | Get [Node2D.scale](class_Node2D_property_scale). |
+|  | ``[method Class.name]`` Link to method | ``Call [method Node3D.hide].`` | Call [Node3D.hide()](class_Node3D_method_hide). |
+|  | ``[constructor Class.name]`` Link to built-in constructor | ``Use [constructor Color.Color].`` | Use  [Color.Color](class_Color_constructor_Color). |
+|  | ``[operator Class.name]`` Link to built-in operator | ``Use [operator Color.operator *].`` | Use  [Color.operator *](class_Color_operator_mul_int). |
+|  | ``[signal Class.name]`` Link to signal | ``Emit [signal Node.renamed].`` | Emit [Node.renamed](class_Node_signal_renamed). |
+|  | ``[theme_item Class.name]`` Link to theme item | ``See [theme_item Label.font].`` | See [Label.font](class_Label_theme_font_font). |
 |  | ``[param name]`` Parameter name (as code) | ``Takes [param size] for the size.`` | Takes ``size`` for the size. |
 |  | ``[br]`` Line break |  | ``Line 1.[br]`` ``Line 2.`` |  | Line 1. Line 2. |
 |  | ``[lb]`` ``[rb]`` ``[`` and ``]`` respectively | ``[lb]b[rb]text[lb]/b[rb]`` | [b]text[/b] |

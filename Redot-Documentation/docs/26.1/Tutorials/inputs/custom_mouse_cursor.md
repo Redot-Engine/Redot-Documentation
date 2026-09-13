@@ -107,5 +107,5 @@ documentation for more information on usage and platform-specific caveats.
 ## Cursor list
 
 There are multiple mouse cursors you can define, documented in the 
-[Input.CursorShape ](enum_Input_CursorShape) enum. Which ones you want to use
+[Input.CursorShape ](class_Input_enum_cursorshape) enum. Which ones you want to use
 depends on your use case.

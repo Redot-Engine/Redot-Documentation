@@ -10,7 +10,7 @@ or from the [Redot download page ](https://redotengine.org/download/preview/).
 
 :::note
 
-The XR editor is in early access, while we continue to refine the experience. See [doc_using_the_xr_editor_limitations](doc_using_the_xr_editor_limitations) below.
+The XR editor is in early access, while we continue to refine the experience. See [doc_using_the_xr_editor_limitations](doc_using_the_xr_editor#limitations-known-issues) below.
 
 :::
 
@@ -43,7 +43,7 @@ We are working to add support for more XR devices, including PCVR devices.
 **Input**
 
 - For the best experience and high level of productivity, connecting a bluetooth keyboard & mouse is recommended to interact with the XR editor.
-  The XR editor supports all of the [usual shortcuts and key mappings](/en/latest/Tutorials/editor/default_key_mapping).
+  The XR editor supports all of the [usual shortcuts and key mappings](doc_default_key_mapping).
 - When interacting with tracked controllers or tracked hands, you can toggle on the
   [interface/touchscreen/enable_long_press_as_right_click ](https://docs.redotengine.org/en/stable/classes/class_editorsettings.html#class-editorsettings-property-interface-touchscreen-enable-long-press-as-right-click) editor setting to enable right-click by long press.
 - When interacting with tracked controllers or tracked hands, you can increase the size of the scrollbar using the

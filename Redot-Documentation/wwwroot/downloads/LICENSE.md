@@ -1,0 +1,1 @@
+class_tree.zip is documentation material copied from docs/Contributing/Development/core_and_modules/files/class_tree.zip. Copyright: the Godot Engine documentation contributors. Licensed under Creative Commons Attribution 3.0 Unported; see ../../docs/LICENSE.txt and ../../../LICENSING.md for the license and repository attribution notices.

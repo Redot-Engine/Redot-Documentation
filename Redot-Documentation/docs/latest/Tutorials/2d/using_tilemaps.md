@@ -382,7 +382,7 @@ after loading a TileSet resource saved to an external file.
 
 To use terrains, the TileMapLayer node must feature at least one terrain set and a
 terrain within this terrain set. See
-[doc_using_tilesets_creating_terrain_sets](doc_using_tilesets_creating_terrain_sets) if you haven't created a terrain
+[doc_using_tilesets_creating_terrain_sets](doc_using_tilesets#creating-terrain-sets-autotiling) if you haven't created a terrain
 set for the TileSet yet.
 
 There are 3 kinds of painting modes available for terrain connections:

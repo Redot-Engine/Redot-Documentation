@@ -15,7 +15,7 @@ GDExtension is *not* a scripting language and has no relation to
 
 ## Differences between GDExtension and C++ modules
 
-You can use both GDExtension and [C++ modules ](../../../Contributing/Development/core_and_modules/custom_modules_in_cpp.md) to
+You can use both GDExtension and [C++ modules ](doc_custom_modules_in_cpp) to
 run C or C++ code in a Redot project.
 
 They also both allow you to integrate third-party libraries into Redot. The one
@@ -34,11 +34,11 @@ Unlike modules, GDExtension doesn't require compiling the engine's source code,
 making it easier to distribute your work. It gives you access to most of the API
 available to GDScript and C#, allowing you to code game logic with full control
 regarding performance. It's ideal if you need high-performance code you'd like
-to distribute as an add-on in the [asset library ](../../../Community/asset_library/what_is_assetlib.md).
+to distribute as an add-on in the [asset library ](doc_what_is_assetlib).
 
 Also:
 
-- GDExtension is not limited to C and C++. Thanks to [third-party bindings ](doc_what_is_gdnative_third_party_bindings), you can use it with many other
+- GDExtension is not limited to C and C++. Thanks to [third-party bindings ](doc_what_is_gdextension#supported-languages), you can use it with many other
   languages.
 - You can use the same compiled GDExtension library in the editor and exported
   project. With C++ modules, you have to recompile all the export templates you
@@ -50,7 +50,7 @@ Also:
 
 ### Advantages of C++ modules
 
-We recommend [C++ modules ](../../../Contributing/Development/core_and_modules/custom_modules_in_cpp.md) in cases where
+We recommend [C++ modules ](doc_custom_modules_in_cpp) in cases where
 GDExtension isn't enough:
 
 - C++ modules provide deeper integration into the engine. GDExtension's access
@@ -112,7 +112,7 @@ save you from needing to create multiple builds for different versions of Redot.
 However, GDExtension is currently *experimental*, which means that we may
 break compatibility in order to fix major bugs or include critical features.
 For example, GDExtensions created for Redot 4.0 aren't compatible with Redot
-4.1 (see [updating_your_gdextension_for_Redot_4_1](updating_your_gdextension_for_Redot_4_1)).
+4.1 (see [updating_your_gdextension_for_Redot_4_1](doc_upgrading_to_godot_4.1#updating-your-gdextension-for-4.1)).
 
 GDExtensions are also only compatible with engine builds that use the same
 level of floating-point precision the extension was compiled for. This means

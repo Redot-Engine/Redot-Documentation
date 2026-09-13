@@ -127,7 +127,7 @@ Run the binary located in the ``bin/`` folder and try to reproduce the bug.
 
 :::note
 
-[Double-check the output file name](doc_introduction_to_the_buildsystem#resulting_binary)
+[Double-check the output file name](doc_introduction_to_the_buildsystem#resulting-binary)
 in ``bin/`` to make sure you're actually running the binary you've just compiled.
 Different Redot versions will output binaries with different names.
 

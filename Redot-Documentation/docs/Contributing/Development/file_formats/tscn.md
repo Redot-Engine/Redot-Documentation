@@ -245,7 +245,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 The [AnimationPlayer](class_AnimationPlayer) node works with one or more animation libraries
 stored in [AnimationLibrary](class_AnimationLibrary) resources. An animation library is a
 collection of individual [Animation](class_Animation) resources, whose structure is
-documented [here](doc_tscn_animation).
+documented [here](doc_tscn#animation).
 
 <!-- TODO(Tekk): Keep godot link? -->
 This split between animations themselves and animation libraries was done in

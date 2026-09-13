@@ -24,7 +24,7 @@ together the screen-space reflections and reflections from reflection probes.
 :::info
 
 Not sure if ReflectionProbe is suited to your needs?
-See [doc_introduction_to_global_illumination_comparison](doc_introduction_to_global_illumination_comparison)
+See [doc_introduction_to_global_illumination_comparison](doc_introduction_to_global_illumination#which-global-illumination-technique-should-i-use)
 for a comparison of GI techniques available in Redot 4.
 
 :::

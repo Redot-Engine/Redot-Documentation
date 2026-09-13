@@ -39,7 +39,7 @@ to display itself. This is important to remember when implementing
 Even the Redot editor itself relies on the default theme. But it doesn't look the
 same as a Redot project, because it applies its own heavily customized theme on top
 of the default one. In principle, this works exactly like it would in your game
-as explained [below ](doc_gui_theme_in_project).
+as explained [below ](doc_gui_skinning#customizing-a-project).
 
 :::
 

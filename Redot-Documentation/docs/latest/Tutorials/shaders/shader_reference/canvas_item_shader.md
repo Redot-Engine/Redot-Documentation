@@ -35,7 +35,7 @@ Global built-ins are available everywhere, including custom functions.
 
 | Built-in | Description |
 | --- | --- |
-| in float **TIME** | Global time since the engine has started, in seconds. It repeats after every ``3,600`` seconds (which can  be changed with the :ref:`rollover&lt;class_ProjectSettings_property_rendering/limits/time/time_rollover_secs&gt;` setting). It's affected by :ref:`time_scale&lt;class_Engine_property_time_scale&gt;` but not by pausing. If you need a ``TIME`` variable that is not affected by time scale, add your own :ref:`global shader uniform&lt;doc_shading_language_global_uniforms&gt;` and update it each frame. |
+| in float **TIME** | Global time since the engine has started, in seconds. It repeats after every ``3,600`` seconds (which can  be changed with the [rollover](class_ProjectSettings_property_rendering/limits/time/time_rollover_secs) setting). It's affected by [time_scale](class_Engine_property_time_scale) but not by pausing. If you need a ``TIME`` variable that is not affected by time scale, add your own [global shader uniform](doc_shading_language#global-uniforms) and update it each frame. |
 | in float **PI** | A ``PI`` constant (``3.141592``). A ratio of a circle's circumference to its diameter and amount of radians in half turn. |
 | in float **TAU** | A ``TAU`` constant (``6.283185``). An equivalent of ``PI * 2`` and amount of radians in full turn. |
 | in float **E** | An ``E`` constant (``2.718281``). Euler's number and a base of the natural logarithm. |
@@ -80,7 +80,7 @@ is usually:
 | inout vec2 **VERTEX** | Vertex position, in local space. |
 | in int **VERTEX_ID** | The index of the current vertex in the vertex buffer. |
 | inout vec2 **UV** | Normalized texture coordinates. Range from ``0.0`` to ``1.0``. |
-| inout vec4 **COLOR** | Color from vertex primitive multiplied by CanvasItem's :ref:`modulate&lt;class_CanvasItem_property_modulate&gt;` multiplied by CanvasItem's :ref:`self_modulate&lt;class_CanvasItem_property_self_modulate&gt;`. |
+| inout vec4 **COLOR** | Color from vertex primitive multiplied by CanvasItem's [modulate](class_CanvasItem_property_modulate) multiplied by CanvasItem's [self_modulate](class_CanvasItem_property_self_modulate). |
 | inout float **POINT_SIZE** | Point size for point drawing. |
 | in vec4 **CUSTOM0** | Custom value from vertex primitive. |
 | in vec4 **CUSTOM1** | Custom value from vertex primitive. |
@@ -205,13 +205,13 @@ void light() {
 | in vec2 **TEXTURE_PIXEL_SIZE** | Normalized pixel size of ``TEXTURE``. For a Sprite2D with a ``TEXTURE`` of size ``64x32`` pixels, **TEXTURE_PIXEL_SIZE** = ``vec2(1/64, 1/32)`` |
 | in vec2 **SCREEN_UV** | Screen UV coordinate for current pixel. |
 | in vec2 **POINT_COORD** | UV for Point Sprite. |
-| in vec4 **LIGHT_COLOR** | :ref:`Color&lt;class_Light2D_property_color&gt;` of the :ref:`class_Light2D`. If the light is a :ref:`class_PointLight2D`, multiplied by the light's :ref:`texture&lt;class_PointLight2D_property_texture&gt;`. |
-| in float **LIGHT_ENERGY** | :ref:`Energy multiplier&lt;class_Light2D_property_energy&gt;` of the :ref:`class_Light2D`. |
-| in vec3 **LIGHT_POSITION** | Position of the :ref:`class_Light2D` in screen space. If using a :ref:`class_DirectionalLight2D` this is always ``(0.0, 0.0, 0.0)``. |
-| in vec3 **LIGHT_DIRECTION** | Direction of the :ref:`class_Light2D` in screen space. |
-| in bool **LIGHT_IS_DIRECTIONAL** | ``true`` if this pass is a :ref:`class_DirectionalLight2D`. |
+| in vec4 **LIGHT_COLOR** | [Color](class_Light2D_property_color) of the [class_Light2D](class_Light2D). If the light is a [class_PointLight2D](class_PointLight2D), multiplied by the light's [texture](class_PointLight2D_property_texture). |
+| in float **LIGHT_ENERGY** | [Energy multiplier](class_Light2D_property_energy) of the [class_Light2D](class_Light2D). |
+| in vec3 **LIGHT_POSITION** | Position of the [class_Light2D](class_Light2D) in screen space. If using a [class_DirectionalLight2D](class_DirectionalLight2D) this is always ``(0.0, 0.0, 0.0)``. |
+| in vec3 **LIGHT_DIRECTION** | Direction of the [class_Light2D](class_Light2D) in screen space. |
+| in bool **LIGHT_IS_DIRECTIONAL** | ``true`` if this pass is a [class_DirectionalLight2D](class_DirectionalLight2D). |
 | in vec3 **LIGHT_VERTEX** | Pixel position, in screen space as modified in the ``fragment()`` function. |
-| inout vec4 **LIGHT** | Output color for this :ref:`class_Light2D`. |
+| inout vec4 **LIGHT** | Output color for this [class_Light2D](class_Light2D). |
 | in vec4 **SPECULAR_SHININESS** | Specular shininess, as set in the object's texture. |
 | out vec4 **SHADOW_MODULATE** | Multiply shadows cast at this point by this color. |
 
@@ -224,7 +224,7 @@ as they called from supported functions.
 
 The signed distance field is generated from [class_LightOccluder2D](class_LightOccluder2D) nodes
 present in the scene with the **SDF Collision** property enabled (which is the
-default). See the [2D lights and shadows ](doc_2d_lights_and_shadows_setting_up_shadows)
+default). See the [2D lights and shadows ](doc_2d_lights_and_shadows#setting-up-shadows)
 documentation for more information.
 
 | Function | Description |

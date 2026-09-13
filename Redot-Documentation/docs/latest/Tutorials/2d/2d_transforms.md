@@ -11,7 +11,7 @@ The goal of this tutorial is to teach a way for feeding input events to the
 Input with a position in the correct coordinate system.
 
 A more extensive description of all coordinate systems and 2d transforms is
-available in [doc_2d_coordinate_systems](../../Contributing/Development/core_and_modules/2d_coordinate_systems.md).
+available in [doc_2d_coordinate_systems](doc_2d_coordinate_systems).
 
 ## Canvas transform
 

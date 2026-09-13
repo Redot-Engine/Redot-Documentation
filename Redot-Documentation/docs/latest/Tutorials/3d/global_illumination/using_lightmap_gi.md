@@ -34,7 +34,7 @@ oldest technique for global illumination in video games.
 :::info
 
 Not sure if LightmapGI is suited to your needs?
-See [doc_introduction_to_global_illumination_comparison](doc_introduction_to_global_illumination_comparison)
+See [doc_introduction_to_global_illumination_comparison](doc_introduction_to_global_illumination#which-global-illumination-technique-should-i-use)
 for a comparison of GI techniques available in Redot 4.
 
 :::
@@ -206,7 +206,7 @@ any modifications will be lost when the scene is reloaded.
 ### Generating UV2 for CSG nodes
 
 Since Redot 4.4, you can
-[convert a CSG node and its children to a MeshInstance3D ](doc_csg_tools_converting_to_mesh_instance_3d).
+[convert a CSG node and its children to a MeshInstance3D ](doc_csg_tools#converting-to-meshinstance3d).
 This can be used to bake lightmaps on a CSG node by following these steps:
 
 - Select the root CSG node and choose **CSG &gt; Bake Mesh Instance** at the top of the 3D editor viewport.
@@ -370,7 +370,7 @@ set to a high enough value.
   in the scene with the **Dynamic** global illumination mode will have its static shadows
   baked to a separate texture called a *shadowmask*. This can be used to allow distant
   static objects to cast shadows onto other static objects regardless of the distance
-  from the camera. See the [section on shadowmasking ](doc_using_lightmap_gi_shadowmask)
+  from the camera. See the [section on shadowmasking ](doc_using_lightmap_gi#using-shadowmasking-for-distant-directional-shadows)
   for further details.
 - **Interior:** If enabled, environment lighting will not be sourced. Use this
   for purely indoor scenes to avoid light leaks.
@@ -382,7 +382,7 @@ set to a high enough value.
 - **Use Denoiser:** If enabled, uses a denoising algorithm to make the lightmap
   significantly less noisy. This increases bake times and can occasionally
   introduce artifacts, but the result is often worth it. See
-  [doc_using_lightmap_gi_denoising](doc_using_lightmap_gi_denoising) for more information.
+  [doc_using_lightmap_gi_denoising](doc_using_lightmap_gi#denoising) for more information.
 - **Denoiser Strength:** The strength of denoising step applied to the generated
   lightmaps. Higher values are more effective at removing noise, but can reduce
   shadow detail for static shadows. Only effective if denoising is enabled and
@@ -402,8 +402,8 @@ set to a high enough value.
   avoid light leaks and speed up baking. This can also be set to **Custom Sky**
   or **Custom Color** to use environment lighting that differs from the actual
   scene's environment sky.
-- **Gen Probes &gt; Subdiv:** See [doc_using_lightmap_gi_dynamic_objects](doc_using_lightmap_gi_dynamic_objects).
-- **Data &gt; Light Data:** See [doc_using_lightmap_gi_data](doc_using_lightmap_gi_data).
+- **Gen Probes &gt; Subdiv:** See [doc_using_lightmap_gi_dynamic_objects](doc_using_lightmap_gi#dynamic-objects).
+- **Data &gt; Light Data:** See [doc_using_lightmap_gi_data](doc_using_lightmap_gi#lightmap-data).
 
 ## Using shadowmasking for distant directional shadows
 

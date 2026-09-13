@@ -28,7 +28,7 @@ Global built-ins are available everywhere, including in custom functions.
 
 | Built-in | Description |
 | --- | --- |
-| in float **TIME** | Global time since the engine has started, in seconds. It repeats after every ``3,600`` seconds (which can  be changed with the :ref:`rollover&lt;class_ProjectSettings_property_rendering/limits/time/time_rollover_secs&gt;` setting). It's affected by :ref:`time_scale&lt;class_Engine_property_time_scale&gt;` but not by pausing. If you need a ``TIME`` variable that is not affected by time scale, add your own :ref:`global shader uniform&lt;doc_shading_language_global_uniforms&gt;` and update it each frame. |
+| in float **TIME** | Global time since the engine has started, in seconds. It repeats after every ``3,600`` seconds (which can  be changed with the [rollover](class_ProjectSettings_property_rendering/limits/time/time_rollover_secs) setting). It's affected by [time_scale](class_Engine_property_time_scale) but not by pausing. If you need a ``TIME`` variable that is not affected by time scale, add your own [global shader uniform](doc_shading_language#global-uniforms) and update it each frame. |
 | in float **PI** | A ``PI`` constant (``3.141592``). A ratio of a circle's circumference to its diameter and amount of radians in half turn. |
 | in float **TAU** | A ``TAU`` constant (``6.283185``). An equivalent of ``PI * 2`` and amount of radians in full turn. |
 | in float **E** | An ``E`` constant (``2.718281``). Euler's number and a base of the natural logarithm. |
@@ -42,10 +42,10 @@ be drawn at once.
 | Built-in | Description |
 | --- | --- |
 | in vec3 **WORLD_POSITION** | Position of current froxel cell in world space. |
-| in vec3 **OBJECT_POSITION** | Position of the center of the current :ref:`FogVolume &lt;class_FogVolume&gt;` in world space. |
-| in vec3 **UVW** | 3-dimensional UV, used to map a 3D texture to the current :ref:`FogVolume &lt;class_FogVolume&gt;`. |
-| in vec3 **SIZE** | Size of the current :ref:`FogVolume &lt;class_FogVolume&gt;` when its :ref:`shape&lt;class_FogVolume_property_shape&gt;` has a size. |
-| in vec3 **SDF** | Signed distance field to the surface of the :ref:`FogVolume &lt;class_FogVolume&gt;`. Negative if inside volume, positive otherwise. |
+| in vec3 **OBJECT_POSITION** | Position of the center of the current [FogVolume](class_FogVolume) in world space. |
+| in vec3 **UVW** | 3-dimensional UV, used to map a 3D texture to the current [FogVolume](class_FogVolume). |
+| in vec3 **SIZE** | Size of the current [FogVolume](class_FogVolume) when its [shape](class_FogVolume_property_shape) has a size. |
+| in vec3 **SDF** | Signed distance field to the surface of the [FogVolume](class_FogVolume). Negative if inside volume, positive otherwise. |
 | out vec3 **ALBEDO** | Output base color value, interacts with light to produce final color. Only written to fog volume if used. |
 | out float **DENSITY** | Output density value. Can be negative to allow subtracting one volume from another. Density must be used for fog shader to write anything at all. |
 | out vec3 **EMISSION** | Output emission color value, added to color during light pass to produce final color. Only written to fog volume if used. |

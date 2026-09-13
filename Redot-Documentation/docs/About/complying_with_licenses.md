@@ -25,7 +25,7 @@ with the original one.
 
 This section covers compliance with licenses from a user perspective.
 If you are interested in licence compliance as a contributor, you can find
-guidelines [here ](doc_best_practices_for_engine_contributors_license_compliance).
+guidelines [here ](doc_best_practices_for_engine_contributors#dont-use-complex-canned-solutions-for-simple-problems).
 
 :::
 
@@ -72,7 +72,7 @@ SOFTWARE.
 ```
 
 Beside its own MIT license, Redot includes code from a number of third-party
-libraries. See [doc_complying_with_licenses_thirdparty](doc_complying_with_licenses_thirdparty) for details.
+libraries. See [doc_complying_with_licenses_thirdparty](abt_complying_with_licenses#third-party-licenses) for details.
 
 :::note
 

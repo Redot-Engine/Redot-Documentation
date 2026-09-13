@@ -6,7 +6,7 @@ This section contains tutorials and documentation about shaders in Redot Engine.
 
 - [Advanced post-processing](advanced_postprocessing)
 - [Using compute shaders](compute_shaders)
-- [Converting GLSL to Redot shaders](converting_glsl_to_Redot_shaders)
+- [Converting GLSL to Redot shaders](doc_converting_glsl_to_godot_shaders)
 - [Custom post-processing](custom_postprocessing)
 - [Introduction to shaders](introduction_to_shaders)
 - [Making trees](making_trees)

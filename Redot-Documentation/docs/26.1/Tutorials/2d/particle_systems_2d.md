@@ -99,7 +99,7 @@ to the number of columns and rows present in your flipbook texture:
 
    Configuring the CanvasItemMaterial for the example flipbook texture
 
-Once this is done, the [Animation section ](doc_particle_systems_2d_animation)
+Once this is done, the [Animation section ](doc_particle_systems_2d#animation)
 in ParticleProcessMaterial (for GPUParticles2D) or in the CPUParticles2D inspector
 will be effective.
 
@@ -337,7 +337,7 @@ randomness ratio.
 
 Particle flipbook animation is only effective if the CanvasItemMaterial used
 on the GPUParticles2D or CPUParticles2D node has been
-[configured accordingly ](doc_particle_systems_2d_using_flipbook).
+[configured accordingly ](doc_particle_systems_2d#using-an-animation-flipbook).
 
 :::
 

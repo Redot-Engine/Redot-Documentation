@@ -3,7 +3,7 @@
 
 Global classes (also known as named scripts) are types registered in Redot's
 editor so they can be used more conveniently.
-[In GDScript ](doc_gdscript_basics_class_name), this is achieved
+[In GDScript ](doc_gdscript_basics#registering-named-classes), this is achieved
 using the ``class_name`` keyword at the top of a script. This page describes how
 to achieve the same effect in C#.
 

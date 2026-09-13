@@ -7,7 +7,7 @@ Redot uses a shading language similar to GLSL ES 3.0. Most datatypes and
 functions are supported, and the few remaining ones will likely be added over
 time.
 
-If you are already familiar with GLSL, the [Redot Shader Migration Guide](doc_converting_glsl_to_Redot_shaders) is a resource that will help you
+If you are already familiar with GLSL, the [Redot Shader Migration Guide](doc_converting_glsl_to_godot_shaders) is a resource that will help you
 transition from regular GLSL to Redot's shading language.
 
 ## Data types
@@ -646,7 +646,7 @@ void sum2(int a, int b, inout int result) {
 ```
 
 Function overloading is supported. You can define multiple functions with the same
-name, but different arguments. Note that [implicit casting ](Casting_) in overloaded
+name, but different arguments. Note that [implicit casting ](#casting) in overloaded
 function calls is not allowed, such as from ``int`` to ``float`` (``1`` to ``1.0``).
 
 ```glsl
@@ -779,7 +779,7 @@ Passing values to shaders is possible with *uniforms*, which are defined in the
 global scope of the shader, outside of functions. When a shader is later
 assigned to a material, the uniforms will appear as editable parameters in the
 material's inspector. Uniforms can't be written from within the shader. Any
-[data type ](doc_shading_language_data_types) except for ``void`` can be a uniform.
+[data type ](doc_shading_language#data-types) except for ``void`` can be a uniform.
 
 ```glsl
 shader_type spatial;
@@ -791,7 +791,7 @@ uniform vec3 colors[3];
 ```
 
 You can set uniforms in the editor in the material's inspector. Alternately, you
-can set them [from code ](doc_shading_language_setting_uniforms_from_code).
+can set them [from code ](doc_shading_language#setting-uniforms-from-code).
 
 ### Uniform hints
 
@@ -1117,7 +1117,7 @@ table of the corresponding types:
 | **sampler3D** | **Texture3D** |  |
 | **isampler3D** | **Texture3D** |  |
 | **usampler3D** | **Texture3D** |  |
-| **samplerCube** | **Cubemap** | See :ref:`doc_importing_images_changing_import_type` for instructions on importing cubemaps for use in Redot. |
+| **samplerCube** | **Cubemap** | See [doc_importing_images_changing_import_type](doc_importing_images#changing-import-type) for instructions on importing cubemaps for use in Redot. |
 | **samplerCubeArray** | **CubemapArray** | Only supported in Forward+ and Mobile, not Compatibility. |
 | **samplerExternalOES** | **ExternalTexture** | Only supported in Compatibility/Android platform. |
 

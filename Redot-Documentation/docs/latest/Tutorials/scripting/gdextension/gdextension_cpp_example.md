@@ -21,7 +21,7 @@ There are a few prerequisites you'll need:
 - a copy of the `Redot-cpp
   repository <https://github.com/redot-engine/redot-cpp>.
 
-See also [Compiling ](toc-devel-compiling) as the build tools are identical
+See also [Compiling ](doc_introduction_to_the_buildsystem) as the build tools are identical
 to the ones you need to compile Redot from source.
 
 You can download the [Redot-cpp repository ](https://github.com/redot-engine/redot-cpp) from GitHub or let Git do the work for you.
@@ -50,7 +50,7 @@ should work just fine in Redot 4.2, but one targeting Redot 4.2 won't work in Re
 However, GDExtension is currently *experimental*, which means that we may break compatibility
 in order to fix major bugs or include critical features. For example, GDExtensions created
 for Redot 4.0 aren't compatible with Redot 4.1
-(see [updating_your_gdextension_for_Redot_4_1](updating_your_gdextension_for_Redot_4_1)).
+(see [updating_your_gdextension_for_Redot_4_1](doc_upgrading_to_godot_4.1#updating-your-gdextension-for-4.1)).
 
 :::
 

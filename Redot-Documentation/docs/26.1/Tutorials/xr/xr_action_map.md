@@ -379,7 +379,7 @@ Some runtimes might even permit users to edit the bindings themselves.
 A common approach for a runtime is to look for a matching interaction profile first.
 If this is not found it will check the most common profiles such as that of
 the "Touch controller" and do a conversion.
-If all else fails, it will check the generic ["Simple controller" ](doc_xr_action_map_simple).
+If all else fails, it will check the generic ["Simple controller" ](doc_xr_action_map#the-simple-controller).
 
 :::note
 

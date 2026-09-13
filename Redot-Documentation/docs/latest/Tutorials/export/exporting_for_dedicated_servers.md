@@ -185,7 +185,7 @@ The PCK's file structure for the server will look as follows:
 If both your client and server are part of the same Redot project, you will have
 to add a way to start the server directly using a command-line argument.
 
-If you [exported the project ](doc_exporting_for_dedicated_servers_exporting_project)
+If you [exported the project ](doc_exporting_for_dedicated_servers#exporting-a-project-for-a-dedicated-server)
 using the **Export as dedicated server** export mode (or have added
 ``dedicated_server`` as a custom feature tag), you can use the ``dedicated_server``
 feature tag to detect whether a dedicated server PCK is being used:

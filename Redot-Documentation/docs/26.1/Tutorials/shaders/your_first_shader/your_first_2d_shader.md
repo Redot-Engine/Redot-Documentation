@@ -13,7 +13,7 @@ fragment functions. This tutorial targets absolute beginners to shaders.
 
 :::note
 If you have experience writing shaders and are just looking for an
-overview of how shaders work in Redot, see the [Shading Reference ](toc-shading-reference).
+overview of how shaders work in Redot, see the [Shading Reference ](doc_shader_reference).
 
 :::
 
@@ -28,8 +28,7 @@ In order to use a shader it must be attached inside a [Material ](class_Material
 material, the material must be attached to each object.
 
 All objects derived from a [CanvasItem ](class_CanvasItem) have a material
-property. This includes all [GUI elements ](class_Control), [Sprite2Ds ](class_Sprite2D), [TileMapLayers ](class_TileMapLayer), :ref:`MeshInstance2Ds
-&lt;class_MeshInstance2D&gt;` etc. They also have an option to inherit their parent's
+property. This includes all [GUI elements ](class_Control), [Sprite2Ds ](class_Sprite2D), [TileMapLayers ](class_TileMapLayer), [MeshInstance2Ds](class_MeshInstance2D) etc. They also have an option to inherit their parent's
 material. This can be useful if you have a large number of nodes that you want
 to use the same material.
 

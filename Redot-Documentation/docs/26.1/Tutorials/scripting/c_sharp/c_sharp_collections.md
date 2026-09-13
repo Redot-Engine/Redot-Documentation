@@ -45,19 +45,19 @@ To choose which collection type to use for each situation, consider the followin
 * Does your collection need to interact with the Redot engine?
   (e.g.: the type of an exported property, calling a Redot method).
 
-   * If yes, since Redot only supports [c_sharp_variant_compatible_types](c_sharp_variant_compatible_types),
+   * If yes, since Redot only supports [c_sharp_variant_compatible_types](doc_c_sharp_variant#variant-compatible-types),
      use a Redot collection.
    * If not, consider [choosing an appropriate .NET collection ](https://learn.microsoft.com/en-us/dotnet/standard/collections/selecting-a-collection-class).
 
 * Do you need a Redot collection that represents a list or sequential set of data?
 
-   * Redot [arrays ](doc_c_sharp_collections_array) are similar to the C# collection ``List&lt;T&gt;``.
-   * Redot [packed arrays ](doc_c_sharp_collections_packedarray) are more memory-efficient arrays,
+   * Redot [arrays ](doc_c_sharp_collections#array) are similar to the C# collection ``List&lt;T&gt;``.
+   * Redot [packed arrays ](doc_c_sharp_collections#packedarray) are more memory-efficient arrays,
      in C# use one of the supported ``System.Array`` types.
 
 * Do you need a Redot collection that maps a set of keys to a set of values?
 
-   * Redot [dictionaries ](doc_c_sharp_collections_dictionary) store pairs of keys and values
+   * Redot [dictionaries ](doc_c_sharp_collections#dictionary) store pairs of keys and values
      and allow easy access to the values by their associated key.
 
 ## Redot collections
@@ -85,7 +85,7 @@ GDScript                C#
 ======================  ==============================================================
 
 Other C# arrays are not supported by the Redot C# API since a packed array equivalent
-does not exist. See the list of [c_sharp_variant_compatible_types](c_sharp_variant_compatible_types).
+does not exist. See the list of [c_sharp_variant_compatible_types](doc_c_sharp_variant#variant-compatible-types).
 
 ### Array
 
@@ -93,7 +93,7 @@ Redot arrays are implemented as an array of ``Variant`` and can contain several 
 of any type. In C#, the equivalent type is ``Godot.Collections.Array``.
 
 The generic ``Godot.Collections.Array&lt;T&gt;`` type allows restricting the element type to
-a [Variant-compatible type ](c_sharp_variant_compatible_types).
+a [Variant-compatible type ](doc_c_sharp_variant#variant-compatible-types).
 
 An untyped ``Godot.Collections.Array`` can be converted to a typed array using the
 ``Godot.Collections.Array&lt;T&gt;(Godot.Collections.Array)`` constructor.
@@ -111,22 +111,22 @@ List of Redot's Array methods and their equivalent in C#:
 =======================  ==============================================================
 GDScript                 C#
 =======================  ==============================================================
-all                      [System.Linq.Enumerable.All](System.Linq.Enumerable.All)
-any                      [System.Linq.Enumerable.Any](System.Linq.Enumerable.Any)
+all                      [System.Linq.Enumerable.All](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.all)
+any                      [System.Linq.Enumerable.Any](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.any)
 append                   Add
 append_array             AddRange
 assign                   Clear and AddRange
-back                     ``Array[^1]`` or [System.Linq.Enumerable.Last](System.Linq.Enumerable.Last) or [System.Linq.Enumerable.LastOrDefault](System.Linq.Enumerable.LastOrDefault)
+back                     ``Array[^1]`` or [System.Linq.Enumerable.Last](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.last) or [System.Linq.Enumerable.LastOrDefault](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.lastordefault)
 bsearch                  BinarySearch
 bsearch_custom           N/A
 clear                    Clear
-count                    [System.Linq.Enumerable.Count](System.Linq.Enumerable.Count)
+count                    [System.Linq.Enumerable.Count](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.count)
 duplicate                Duplicate
 erase                    Remove
 fill                     Fill
-filter                   Use [System.Linq.Enumerable.Where](System.Linq.Enumerable.Where)
+filter                   Use [System.Linq.Enumerable.Where](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.where)
 find                     IndexOf
-front                    ``Array[0]`` or [System.Linq.Enumerable.First](System.Linq.Enumerable.First) or [System.Linq.Enumerable.FirstOrDefault](System.Linq.Enumerable.FirstOrDefault)
+front                    ``Array[0]`` or [System.Linq.Enumerable.First](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.first) or [System.Linq.Enumerable.FirstOrDefault](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.firstordefault)
 get_typed_builtin        N/A
 get_typed_class_name     N/A
 get_typed_script         N/A
@@ -138,16 +138,16 @@ is_read_only             IsReadOnly
 is_same_typed            N/A
 is_typed                 N/A
 make_read_only           MakeReadOnly
-map                      [System.Linq.Enumerable.Select](System.Linq.Enumerable.Select)
+map                      [System.Linq.Enumerable.Select](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.select)
 max                      Max
 min                      Min
-pick_random              PickRandom (Consider using [System.Random](System.Random))
+pick_random              PickRandom (Consider using [System.Random](https://learn.microsoft.com/en-us/dotnet/api/system.random))
 pop_at                   ``Array[i]`` with ``RemoveAt(i)``
 pop_back                 ``Array[^1]`` with ``RemoveAt(Count - 1)``
 pop_front                ``Array[0]`` with ``RemoveAt(0)``
 push_back                ``Insert(Count, item)``
 push_front               ``Insert(0, item)``
-reduce                   [System.Linq.Enumerable.Aggregate](System.Linq.Enumerable.Aggregate)
+reduce                   [System.Linq.Enumerable.Aggregate](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.aggregate)
 remove_at                RemoveAt
 resize                   Resize
 reverse                  Reverse
@@ -156,7 +156,7 @@ shuffle                  Shuffle
 size                     Count
 slice                    Slice
 sort                     Sort
-sort_custom              [System.Linq.Enumerable.OrderBy](System.Linq.Enumerable.OrderBy)
+sort_custom              [System.Linq.Enumerable.OrderBy](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.orderby)
 operator !=              !RecursiveEqual
 operator +               operator +
 operator &lt;               N/A
@@ -173,7 +173,7 @@ Redot dictionaries are implemented as a dictionary with ``Variant`` keys and val
 In C#, the equivalent type is ``Godot.Collections.Dictionary``.
 
 The generic ``Godot.Collections.Dictionary&lt;TKey, TValue&gt;`` type allows restricting the key
-and value types to a [Variant-compatible type ](c_sharp_variant_compatible_types).
+and value types to a [Variant-compatible type ](doc_c_sharp_variant#variant-compatible-types).
 
 An untyped ``Godot.Collections.Dictionary`` can be converted to a typed dictionary using the
 ``Godot.Collections.Dictionary&lt;TKey, TValue&gt;(Godot.Collections.Dictionary)`` constructor.

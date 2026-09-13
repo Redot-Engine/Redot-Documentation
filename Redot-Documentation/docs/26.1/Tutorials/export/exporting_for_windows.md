@@ -5,7 +5,7 @@
 
 This page describes how to export a Redot project to Windows.
 If you're looking to compile editor or export template binaries from source instead,
-read [doc_compiling_for_windows](../../Contributing/Development/compiling/compiling_for_windows.md).
+read [doc_compiling_for_windows](doc_compiling_for_windows).
 
 :::
 

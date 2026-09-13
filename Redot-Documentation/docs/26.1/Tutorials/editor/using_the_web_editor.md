@@ -11,7 +11,7 @@ on new or existing projects.
 
 The web editor is in a preliminary stage. While its feature set may be
 sufficient for educational purposes, it is currently **not recommended for
-production work**. See [doc_using_the_web_editor_limitations](doc_using_the_web_editor_limitations) below.
+production work**. See [doc_using_the_web_editor_limitations](doc_using_the_web_editor#limitations) below.
 
 :::
 

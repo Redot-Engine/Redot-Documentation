@@ -145,7 +145,7 @@ There are 4 ``LIGHTX`` lights, accessed as ``LIGHT0``, ``LIGHT1``, ``LIGHT2``, a
 
 | Built-in | Description |
 | --- | --- |
-| in float **TIME** | Global time since the engine has started, in seconds. It repeats after every ``3,600`` seconds (which can  be changed with the :ref:`rollover&lt;class_ProjectSettings_property_rendering/limits/time/time_rollover_secs&gt;` setting). It's affected by :ref:`time_scale&lt;class_Engine_property_time_scale&gt;` but not by pausing. If you need a ``TIME`` variable that is not affected by time scale, add your own :ref:`global shader uniform&lt;doc_shading_language_global_uniforms&gt;` and update it each frame. |
+| in float **TIME** | Global time since the engine has started, in seconds. It repeats after every ``3,600`` seconds (which can  be changed with the [rollover](class_ProjectSettings_property_rendering/limits/time/time_rollover_secs) setting). It's affected by [time_scale](class_Engine_property_time_scale) but not by pausing. If you need a ``TIME`` variable that is not affected by time scale, add your own [global shader uniform](doc_shading_language#global-uniforms) and update it each frame. |
 | in vec3 **POSITION** | Camera position, in world space. |
 | samplerCube **RADIANCE** | Radiance cubemap. Can only be read from during background pass. Check ``!AT_CUBEMAP_PASS`` before using. |
 | in bool **AT_HALF_RES_PASS** | ``true`` when rendering to half resolution pass. |

@@ -283,7 +283,7 @@ public override void _Input(InputEvent @event)
 </Tabs>
 
 :::tip
-See :ref:`@GlobalScope_Key <enum_@GlobalScope_Key>` for a list of keycode
+See [@GlobalScope_Key](class_@GlobalScope_enum_key) for a list of keycode
 constants.
 
 :::
@@ -351,7 +351,7 @@ public override void _Input(InputEvent @event)
 </Tabs>
 
 :::tip
-See :ref:`@GlobalScope_Key <enum_@GlobalScope_Key>` for a list of keycode
+See [@GlobalScope_Key](class_@GlobalScope_enum_key) for a list of keycode
 constants.
 
 :::
@@ -365,7 +365,7 @@ means that all mouse events will contain a ``position`` property.
 
 ### Mouse buttons
 
-Capturing mouse buttons is very similar to handling key events. [@GlobalScope_MouseButton ](enum_@GlobalScope_MouseButton)
+Capturing mouse buttons is very similar to handling key events. [@GlobalScope_MouseButton ](class_@GlobalScope_enum_mousebutton)
 contains a list of ``MOUSE_BUTTON_*`` constants for each possible button, which will
 be reported in the event's ``button_index`` property. Note that the scrollwheel
 also counts as a button - two buttons, to be precise, with both

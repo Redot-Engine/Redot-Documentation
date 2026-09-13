@@ -419,5 +419,5 @@ flag set will be serialized. You can add a new usage flag to a property by overr
 [_get_property_list](class_Object_private_method__get_property_list)
 method in your class. You can also check how property usage is configured by
 calling ``Object._get_property_list``.
-See [PropertyUsageFlags](enum_@GlobalScope_PropertyUsageFlags) for the
+See [PropertyUsageFlags](class_@GlobalScope_enum_propertyusageflags) for the
 possible usage flags.

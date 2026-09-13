@@ -21,7 +21,7 @@ programming skills or a developer to port the game for you.
 The Redot team can't provide an open source console export due to the
 licensing terms imposed by console manufacturers. Regardless of the
 engine you use, though, releasing games on consoles is always a lot of
-work. You can read more on that here: [doc_consoles](/en/26.1/Tutorials/platform/consoles).
+work. You can read more on that here: [doc_consoles](doc_consoles).
 
 :::
 
@@ -67,9 +67,9 @@ Windows.
 
 Let's talk about the available programming languages.
 
-You can code your games using [GDScript](/en/26.1/Tutorials/scripting/gdscript/index), a
+You can code your games using [GDScript](doc_gdscript), a
 Redot-specific and tightly integrated language with a lightweight syntax, or
-[C#](/en/26.1/Tutorials/scripting/c_sharp/index), which is popular in the games industry.
+[C#](doc_c_sharp), which is popular in the games industry.
 These are the two main scripting languages we support.
 
 With the GDExtension technology, you can also write
@@ -103,6 +103,6 @@ skills you learn with one language transfer well to others.
 :::
 
 We will provide you with more Redot-specific learning resources in
-[doc_learning_new_features](/en/26.1/Getting%20Started/introduction/learning_new_features).
+[doc_learning_new_features](doc_learning_new_features).
 
 In the next part, you will get an overview of the engine's essential concepts.

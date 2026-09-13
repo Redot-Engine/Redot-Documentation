@@ -18,13 +18,13 @@ complex behavior can be expressed this way.
 
 The ``Lifetime Randomness`` property controls how much randomness to apply to each particle's
 lifetime. A value of ``0`` means there is no randomness at all and all particles live for
-the same amount of time, set by the [Lifetime ](doc_3d_particles_properties_time) property. A value of ``1`` means
+the same amount of time, set by the [Lifetime ](doc_properties#time-properties) property. A value of ``1`` means
 that a particle's lifetime is completely random within the range of [0.0, ``Lifetime``].
 
 ## Particle flags
 
 The ``Align Y`` property aligns each particle's Y-axis with its velocity. Enabling this
-property is the same as setting the [Transform Align ](doc_3d_particles_properties_draw) property to
+property is the same as setting the [Transform Align ](doc_properties#drawing-properties) property to
 ``Y to Velocity``.
 
 The [`Rotate Y`` property works with the properties in the `Angle ](#angle) and
@@ -36,7 +36,7 @@ rotate even without ``Rotate Y`` enabled.
 
 When the ``Disable Z`` property is enabled, particles will not move along the Z-axis.
 Whether that is going to be the particle system's local Z-axis or the world Z-axis is
-determined by the [Local Coords ](doc_3d_particles_properties_draw) property.
+determined by the [Local Coords ](doc_properties#drawing-properties) property.
 
 The ``Damping as Friction`` property changes the behavior of damping from a constant
 deceleration to a deceleration based on speed.
@@ -366,7 +366,7 @@ place instead of sliding all the way to the bottom, like snow falling on a mount
 A high ``Bounce`` value will make particles bounce off surfaces they collide with,
 like rubber balls on a solid floor.
 
-If the ``Use Scale`` property is enabled, the [collision base size ](doc_3d_particles_properties_collision)
+If the ``Use Scale`` property is enabled, the [collision base size ](doc_properties#collision-properties)
 is multiplied by the particle's [current scale ](#scale). You can use this to
 make sure that the rendered size and the collision size match for particles
 with random scale or scale that varies over time.

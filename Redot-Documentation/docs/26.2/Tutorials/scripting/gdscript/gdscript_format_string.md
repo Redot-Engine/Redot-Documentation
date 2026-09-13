@@ -96,7 +96,7 @@ conditions.
 | Integer | Set **padding**. Padded with spaces or with zeroes if integer starts with ``0`` in an integer or real number placeholder. The leading ``0`` is ignored if ``-`` is present. When used after ``.``, see ``.``. |
 | ``.`` | Before ``f`` or ``v``, set **precision** to 0 decimal places. Can be followed up with numbers to change. Padded with zeroes. |
 | ``-`` | **Pad to the right** rather than the left. |
-| ``*`` | **Dynamic padding**, expects additional integer parameter to set padding or precision after ``.``, see `dynamic padding`_. |
+| ``*`` | **Dynamic padding**, expects additional integer parameter to set padding or precision after ``.``, see [dynamic padding](#dynamic-padding). |
 
 ## Padding
 

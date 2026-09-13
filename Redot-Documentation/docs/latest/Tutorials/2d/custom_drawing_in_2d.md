@@ -76,7 +76,7 @@ in that same node and a new ``_draw()`` call will happen.
 
 Here is a little more complex example, where we have a texture variable
 that can be modified at any time, and using a
-[setter](doc_gdscript_basics_setters_getters), it forces a redraw
+[setter](doc_gdscript_basics#properties-setters-and-getters), it forces a redraw
 of the texture when modified:
 
 <Tabs>
@@ -291,9 +291,9 @@ Drawing your own nodes might also be desired while running them in the
 editor. This can be used as a preview or visualization of some feature or
 behavior.
 
-To do this, you can use the [tool annotation](doc_gdscript_tool_mode)
+To do this, you can use the [tool annotation](doc_gdscript_basics#tool-mode)
 on both GDScript and C#. See
-[the example below](doc_draw_show_drawing_while_editing_example) and
+[the example below](doc_custom_drawing_in_2d#show-the-drawing-while-editing) and
 [doc_running_code_in_the_editor](../plugins/running_code_in_the_editor.md) for more information.
 
 ## Example 1: drawing a custom shape
@@ -482,7 +482,7 @@ Note the lower part of the logo looks segmented- this is because a low
 amount of points were used to define that part. To simulate a smooth curve,
 we could add more points to our array, or maybe use a mathematical function to
 interpolate a curve and create a smooth shape from code (see
-[example 2](doc_draw_custom_example_2)).
+[example 2](doc_custom_drawing_in_2d#example-2-drawing-a-dynamic-line)).
 
 Polygons will always **connect its last defined point to its first
 one** in order to have a closed shape.
@@ -850,7 +850,7 @@ also like to show your custom Node2D or control on the editor, to position
 and scale it appropriately, like most other nodes do.
 
 To show the logo directly on the editor (without running it), you can use the
-[@tool](doc_gdscript_tool_mode) annotation to request the custom drawing
+[@tool](doc_gdscript_basics#tool-mode) annotation to request the custom drawing
 of the node to also appear while editing, like this:
 
 <Tabs>

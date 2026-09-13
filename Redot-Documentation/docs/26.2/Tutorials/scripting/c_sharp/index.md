@@ -18,3 +18,17 @@ This section contains tutorials and documentation about c# in Redot Engine.
 
 - [Diagnostics](./diagnostics/index)
 
+
+
+## Supported platforms
+
+C# projects support Windows, Linux, macOS, Android, and iOS. Android and iOS
+support is experimental. The official iOS simulator export templates support
+only the `x64` architecture, and exporting to iOS requires macOS.
+
+C# projects cannot currently be exported to the web.
+
+See the [system requirements](abt_system_requirements) for engine requirements.
+C# projects also require a compatible .NET runtime; check the
+[.NET supported operating systems](https://github.com/dotnet/core/tree/main/release-notes#supported-os)
+for the runtime version you use.

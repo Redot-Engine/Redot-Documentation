@@ -101,7 +101,7 @@ Comparison between alpha blending (left) and alpha scissor (right) transparency:
 :::warning
 
 Alpha-blended transparency has several
-[limitations](doc_3d_rendering_limitations_transparency_sorting):
+[limitations](doc_3d_rendering_limitations#transparency-sorting):
 
 - Alpha-blended materials are significantly slower to render, especially if
   they overlap.
@@ -132,8 +132,7 @@ This property is only visible when the transparency mode is
 
 While alpha scissor and alpha hash materials are faster to render than
 alpha-blended materials, they exhibit hard edges between opaque and transparent
-regions. While it's possible to use post-processing-based :ref:`antialiasing
-techniques &lt;doc_3d_antialiasing&gt;` such as FXAA and TAA, this is not always
+regions. While it's possible to use post-processing-based [antialiasing techniques](doc_3d_antialiasing) such as FXAA and TAA, this is not always
 desired as these techniques tend to make the final result look blurrier or
 exhibit ghosting artifacts.
 
@@ -497,7 +496,7 @@ Refraction is implemented as a screen-space effect and forces the material
 to be transparent. This makes the effect relatively fast, but this results
 in some limitations:
 
-- [Transparency sorting](doc_3d_rendering_limitations_transparency_sorting)
+- [Transparency sorting](doc_3d_rendering_limitations#transparency-sorting)
   issues may occur.
 - The refractive material cannot refract onto itself, or onto other
   transparent materials. A refractive material behind another transparent
@@ -608,7 +607,7 @@ faces the camera:
   face the camera's viewing plane.
 * **Y-Billboard:** The object's X axis will always be aligned with the camera's viewing plane.
 * **Particle Billboard:** Most suited for particle systems, because it allows
-  specifying [flipbook animation](doc_process_material_properties_animation).
+  specifying [flipbook animation](doc_process_material_properties#animation).
 
 ![Image](/img/Tutorials/3d/img/spatial_material9.webp)
 

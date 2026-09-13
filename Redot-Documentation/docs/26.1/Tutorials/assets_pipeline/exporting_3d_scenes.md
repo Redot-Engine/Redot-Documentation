@@ -30,7 +30,7 @@ There are several limitations with glTF export.
 :::info
 
 3D scenes can be saved at runtime using
-[runtime file loading and saving ](doc_runtime_file_loading_and_saving_3d_scenes),
+[runtime file loading and saving ](doc_runtime_file_loading_and_saving#d-scenes),
 including from an exported project.
 
 :::

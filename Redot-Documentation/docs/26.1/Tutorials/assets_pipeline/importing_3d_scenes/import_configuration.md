@@ -136,7 +136,7 @@ exported from other tools such as Maya.
 
 - **Path:** Path to an import script, which can run code *after*
   the import process has completed for custom processing.
-  See [doc_importing_3d_scenes_import_script](doc_importing_3d_scenes_import_script) for more information.
+  See [doc_importing_3d_scenes_import_script](doc_import_configuration#using-import-scripts-for-automation) for more information.
 
 **glTF**
 
@@ -261,12 +261,12 @@ The options are as follows:
   ``.tres`` is inefficient for writing large amounts of data.
 - **Generate &gt; Shadow Meshes:** Per-mesh override for the **Meshes &gt; Create
   Shadow Meshes** scene-wide import option described in
-  [doc_importing_3d_scenes_using_the_import_dock](doc_importing_3d_scenes_using_the_import_dock). **Default** will use the
+  [doc_importing_3d_scenes_using_the_import_dock](doc_import_configuration#using-the-import-dock). **Default** will use the
   scene-wide import option, while **Enable** or **Disable** can forcibly enable
   or disable this behavior on a specific mesh.
 - **Generate &gt; Lightmap UV:** Per-mesh override for the **Meshes &gt; Light
   Baking** scene-wide import option described in
-  [doc_importing_3d_scenes_using_the_import_dock](doc_importing_3d_scenes_using_the_import_dock). **Default** will use the
+  [doc_importing_3d_scenes_using_the_import_dock](doc_import_configuration#using-the-import-dock). **Default** will use the
   scene-wide import option, while **Enable** or **Disable** can forcibly enable
   or disable this behavior on a specific mesh.
   - Setting this to **Enable** on a scene with the **Static** light baking mode
@@ -275,7 +275,7 @@ The options are as follows:
   equivalent to configuring this mesh to use **Static** instead.
 - **Generate &gt; LODs:** Per-mesh override for the **Meshes &gt; Generate LODs**
   scene-wide import option described in
-  [doc_importing_3d_scenes_using_the_import_dock](doc_importing_3d_scenes_using_the_import_dock). **Default** will use the
+  [doc_importing_3d_scenes_using_the_import_dock](doc_import_configuration#using-the-import-dock). **Default** will use the
   scene-wide import option, while **Enable** or **Disable** can forcibly enable
   or disable this behavior on a specific mesh.
 - **LODs &gt; Normal Split Angle:** The minimum angle difference between two
@@ -410,7 +410,7 @@ glTF file will be imported as an [class_AnimationLibrary](class_AnimationLibrary
 
 The import options that are visible after changing the import mode to Animation
 Library act the same as when using the Scene import mode. See
-[doc_importing_3d_scenes_using_the_import_dock](doc_importing_3d_scenes_using_the_import_dock) for more information.
+[doc_importing_3d_scenes_using_the_import_dock](doc_import_configuration#using-the-import-dock) for more information.
 
 ### Filter script
 

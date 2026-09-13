@@ -63,7 +63,7 @@ use ``area_entered``. However, let's assume our player is a ``CharacterBody2D``
 ``body_entered`` signal.
 
 :::note
-If you're not familiar with using signals, see :ref:`doc_signals` for
+If you're not familiar with using signals, see [doc_signals](doc_signals) for
 an introduction.
 
 :::

@@ -141,7 +141,7 @@ The resulting templates will be located under the ``bin`` directory:
 
 <!-- TODO(Tekk): [Vulkan validation layers on Android] doesnt exist -->
 If you want to enable Vulkan validation layers, see
-[Vulkan validation layers on Android](doc_vulkan_validation_layers_android).
+[Vulkan validation layers on Android](doc_vulkan_validation_layers#android).
 
 :::
 
@@ -269,7 +269,7 @@ adb install ./bin/android_editor_builds/android_editor-release.apk
 Double-check that you've set the ``ANDROID_HOME``
 environment variable. This is required for the platform to appear in SCons'
 list of detected platforms.
-See [Setting up the buildsystem](doc_android_setting_up_the_buildsystem)
+See [Setting up the buildsystem](doc_compiling_for_android#setting-up-the-buildsystem)
 for more information.
 
 ### Application not installed

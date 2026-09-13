@@ -4,7 +4,7 @@
 For a detailed explanation of Variant in general, see the [Variant ](class_Variant) documentation page.
 
 ``Redot.Variant`` is used to represent Redot's native [Variant ](class_Variant) type. Any
-[Variant-compatible type ](c_sharp_variant_compatible_types) can be converted from/to it.
+[Variant-compatible type ](doc_c_sharp_variant#variant-compatible-types) can be converted from/to it.
 We recommend avoiding ``Redot.Variant`` unless it is necessary to interact with untyped engine APIs.
 Take advantage of C#'s type safety when possible.
 

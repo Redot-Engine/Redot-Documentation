@@ -252,7 +252,7 @@ changes are easy to review and understand long after they have been merged.
 If you have already created a merge commit without using ``rebase``, or
 have made any other changes that have resulted in undesired history, the best option
 is to use an *interactive rebase* on the upstream branch. See the
-[dedicated section](doc_pr_workflow#the_interactive_rebase) for instructions.
+[dedicated section](doc_pr_workflow#the-interactive-rebase) for instructions.
 
 :::tip
 

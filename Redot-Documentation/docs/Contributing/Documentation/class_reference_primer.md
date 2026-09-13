@@ -133,21 +133,21 @@ For links to the same class, the class name is optional and can be omitted.
 <!-- TODO(Tekk): Add the actual class docs and fix this -->
 | Tag and Description                                       | Example                              | Result                                                              |
 |-----------------------------------------------------------|--------------------------------------|---------------------------------------------------------------------|
-| ``[Class]`` Link to class                                 | ``Move the [Sprite2D].``             | Move the [class_Sprite2D](/en/latest/Classes/Sprite2D).             |
-| ``[annotation Class.name]`` Link to annotation            | ``See [annotation @GDScript.@rpc].`` | See [@GDScript.@rpc](/en/latest/Classes/@GDScript_annotation_@rpc). |
-| ``[constant Class.name]`` Link to constant                | ``See [constant Color.RED].``        | See [Color.RED](/en/latest/Classes/Color_constant_RED).             |
-| ``[enum Class.name]`` Link to enum                        | ``See [enum Mesh.ArrayType].``       | See [Mesh.ArrayType](enum_Mesh_ArrayType).                          |
-| ``[member Class.name]`` Link to member                    | ``Get [member Node2D.scale].``       | Get [Node2D.scale](/en/latest/Classes/Node2D_property_scale).       |
-| ``[method Class.name]`` Link to method                    | ``Call [method Node3D.hide].``       | Call [Node3D.hide()](/en/latest/Classes/Node3D_method_hide).        |
-| ``[constructor Class.name]`` Link to built-in constructor | ``Use [constructor Color.Color].``   | Use  [Color.Color](/en/latest/Classes/Color_constructor_Color).     |
-| ``[operator Class.name]`` Link to built-in operator       | ``Use [operator Color.operator *].`` | Use  [Color.operator *](/en/latest/Classes/Color_operator_mul_int). |
-| ``[signal Class.name]`` Link to signal                    | ``Emit [signal Node.renamed].``      | Emit [Node.renamed](/en/latest/Classes/Node_signal_renamed).        |
-| ``[theme_item Class.name]`` Link to theme item            | ``See [theme_item Label.font].``     | See [Label.font](/en/latest/Classes/Label_theme_font_font).         |
+| ``[Class]`` Link to class                                 | ``Move the [Sprite2D].``             | Move the [class_Sprite2D](class_Sprite2D).             |
+| ``[annotation Class.name]`` Link to annotation            | ``See [annotation @GDScript.@rpc].`` | See [@GDScript.@rpc](class_@GDScript_annotation_@rpc). |
+| ``[constant Class.name]`` Link to constant                | ``See [constant Color.RED].``        | See [Color.RED](class_Color_constant_RED).             |
+| ``[enum Class.name]`` Link to enum                        | ``See [enum Mesh.ArrayType].``       | See [Mesh.ArrayType](class_Mesh_enum_arraytype).                          |
+| ``[member Class.name]`` Link to member                    | ``Get [member Node2D.scale].``       | Get [Node2D.scale](class_Node2D_property_scale).       |
+| ``[method Class.name]`` Link to method                    | ``Call [method Node3D.hide].``       | Call [Node3D.hide()](class_Node3D_method_hide).        |
+| ``[constructor Class.name]`` Link to built-in constructor | ``Use [constructor Color.Color].``   | Use  [Color.Color](class_Color_constructor_Color).     |
+| ``[operator Class.name]`` Link to built-in operator       | ``Use [operator Color.operator *].`` | Use  [Color.operator *](class_Color_operator_mul_int). |
+| ``[signal Class.name]`` Link to signal                    | ``Emit [signal Node.renamed].``      | Emit [Node.renamed](class_Node_signal_renamed).        |
+| ``[theme_item Class.name]`` Link to theme item            | ``See [theme_item Label.font].``     | See [Label.font](class_Label_theme_font_font).         |
 | ``[param name]`` Parameter name (as code)                 | ``Takes [param size] for the size.`` | Takes ``size`` for the size.                                        |
 
 :::note
 
-Currently only [class_@GDScript](/en/latest/Classes/@GDScript) has annotations.
+Currently only [class_@GDScript](class_@GDScript) has annotations.
 
 :::
 

@@ -6,7 +6,7 @@ project of your own like the animated gif below.
 
 ![Image](/img/GettingStarted/first_3d_game/img/squash-the-creeps-final.gif)
 
-The game we'll code here is similar to [doc_your_first_2d_game](/en/latest/Getting%20Started/first_2d_game/index), with a twist:
+The game we'll code here is similar to [doc_your_first_2d_game](doc_getting_started_first_2d_game), with a twist:
 you can now jump and your goal is to squash the creeps. This way, you will both
 **recognize patterns** you learned in the previous tutorial and **build upon
 them** with new code and features.
@@ -50,13 +50,13 @@ nice animation. We'll wrap up with the score and the retry screen.
 
 ## In this section
 
-- [Setting up the game area](/en/latest/Getting%20Started/first_3d_game/01.game_setup)
-- [Player scene and input actions](/en/latest/Getting%20Started/first_3d_game/02.player_input)
-- [Moving the player with code](/en/latest/Getting%20Started/first_3d_game/03.player_movement_code)
-- [Designing the mob scene](/en/latest/Getting%20Started/first_3d_game/04.mob_scene)
-- [Spawning monsters](/en/latest/Getting%20Started/first_3d_game/05.spawning_mobs)
-- [Jumping and squashing monsters](/en/latest/Getting%20Started/first_3d_game/06.jump_and_squash)
-- [Killing the player](/en/latest/Getting%20Started/first_3d_game/07.killing_player)
-- [Score and replay](/en/latest/Getting%20Started/first_3d_game/08.score_and_replay)
-- [Character animation](/en/latest/Getting%20Started/first_3d_game/09.adding_animations)
-- [Going further](/en/latest/Getting%20Started/first_3d_game/going_further)
+- [Setting up the game area](doc_01.game_setup)
+- [Player scene and input actions](doc_02.player_input)
+- [Moving the player with code](doc_03.player_movement_code)
+- [Designing the mob scene](doc_04.mob_scene)
+- [Spawning monsters](doc_05.spawning_mobs)
+- [Jumping and squashing monsters](doc_06.jump_and_squash)
+- [Killing the player](doc_07.killing_player)
+- [Score and replay](doc_08.score_and_replay)
+- [Character animation](doc_09.adding_animations)
+- [Going further](doc_going_further)

@@ -16,7 +16,7 @@ how to get started with GDExtensions take a look at the [GDExtension C++ Example
 | **compatibility_minimum** | String | Minimum compatible version. This prevents older versions of Redot from loading extensions that depend on features from newer versions of Redot. **Only supported in Redot 4.1 or later** |
 | **compatibility_maximum** | String | Maximum compatible version. This prevents newer versions of Redot from loading the extension. **Only supported in Redot 4.3 or later** |
 | **reloadable** | Boolean | Reloads the extension upon recompilation. Reloading is supported for the Redot-cpp binding in Redot 4.2 or later. Other language bindings may or may not support it as well. This flag should be mainly used for developing or debugging an extension. |
-| **android_aar_plugin** | Boolean | The GDExtension is part of a :ref:`v2 Android plugin &lt;doc_android_plugin&gt;`. During export this flag will indicate to the editor that the GDExtension native shared libraries are exported by the Android plugin AAR binaries. |
+| **android_aar_plugin** | Boolean | The GDExtension is part of a [v2 Android plugin](doc_android_plugin). During export this flag will indicate to the editor that the GDExtension native shared libraries are exported by the Android plugin AAR binaries. |
 
 ## Libraries section
 
@@ -96,7 +96,7 @@ GDExample = "res://icons/gd_example.svg"
 
 ```
 
-The path should point to a 16 by 16 pixel SVG image. Read the guide for [creating icons ](../../../Contributing/Development/editor/creating_icons.md)
+The path should point to a 16 by 16 pixel SVG image. Read the guide for [creating icons ](doc_creating_icons)
 for more information.
 
 ## Dependencies section

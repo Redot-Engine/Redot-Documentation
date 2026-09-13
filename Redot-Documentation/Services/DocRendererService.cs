@@ -4,6 +4,8 @@ using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
 using Markdig;
+using Markdig.Syntax;
+using Markdig.Syntax.Inlines;
 using Redot_Documentation.ClassDocumentation;
 using Redot_Documentation.Versioning;
 
@@ -80,11 +82,18 @@ public class DocRendererService
         var transformedMarkdown = markdown;
         var htmlPlaceholders = new Dictionary<string, string>();
 
+        // Leave literal Markdown examples in fenced and inline code untouched.
+        var parsed = Markdown.Parse(markdown, MarkdownPipeline);
+        var codeSpans = parsed.Descendants()
+            .Where(node => node is FencedCodeBlock or CodeInline)
+            .Select(node => node.Span).ToArray();
+
         // Transform Links
         transformedMarkdown = Regex.Replace(
             transformedMarkdown,
             @"\[[^\]]*\]\([^)]+\)",
-            match => TransformLink(match.Value, versionProvider),
+            match => codeSpans.Any(span => match.Index >= span.Start && match.Index <= span.End)
+                ? match.Value : TransformLink(match.Value, versionProvider),
             RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
         // Parse callout blocks
@@ -160,7 +169,7 @@ public class DocRendererService
                 linkUrl = versionProvider.GetPathFromSlug(documentSlug);
                 if (!string.IsNullOrWhiteSpace(sectionReference))
                 {
-                    var sectionId = HeadingAnchor.FromReference(sectionReference);
+                    var sectionId = Uri.UnescapeDataString(sectionReference);
                     linkUrl = $"{linkUrl}#{Uri.EscapeDataString(sectionId)}";
                 }
             }
@@ -189,6 +198,7 @@ public class DocRendererService
             ("_constant_", "constant"),
             ("_constructor_", "constructor"),
             ("_enum_", "enum"),
+            ("_private_method_", "method"),
             ("_method_", "method"),
             ("_operator_", "operator"),
             ("_property_", "member"),

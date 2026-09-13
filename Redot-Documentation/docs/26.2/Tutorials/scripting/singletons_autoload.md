@@ -42,7 +42,7 @@ pattern. It may still be instanced more than once by the user if desired.
 :::tip
 
 If you're creating an autoload as part of an editor plugin, consider
-[registering it automatically in the Project Settings ](doc_making_plugins_autoload)
+[registering it automatically in the Project Settings ](doc_making_plugins#registering-autoloadssingletons-in-plugins)
 when the plugin is enabled.
 
 :::

@@ -182,5 +182,4 @@ exists as a function called inside the ``fragment()`` processor and typically
 operates on the material properties setup inside the ``fragment()`` function.
 
 The ``light()`` processor works differently in 2D than it does in 3D; for a
-description of how it works in each, see their documentation, [CanvasItem shaders ](shader_reference/canvas_item_shader.md) and :ref:`Spatial shaders
-&lt;doc_spatial_shader&gt;`, respectively.
+description of how it works in each, see their documentation, [CanvasItem shaders ](shader_reference/canvas_item_shader.md) and [Spatial shaders](doc_spatial_shader), respectively.

@@ -8,14 +8,14 @@ which takes up to five parameters. The first two are required, while the last th
 
 The first parameter is the ``PrimitiveType``, an OpenGL concept that instructs the GPU
 how to arrange the primitive based on the vertices given, i.e. whether they represent triangles,
-lines, points, etc. See [Mesh.PrimitiveType ](enum_Mesh_PrimitiveType) for the options available.
+lines, points, etc. See [Mesh.PrimitiveType ](class_Mesh_enum_primitivetype) for the options available.
 
 The second parameter, ``arrays``, is the actual Array that stores the mesh information. The array is a normal Redot array that
 is constructed with empty brackets ``[]``. It stores a ``Packed**Array`` (e.g. PackedVector3Array,
 PackedInt32Array, etc.) for each type of information that will be used to build the surface.
 
 Common elements of ``arrays`` are listed below, together with the position they must have within ``arrays``.
-See [Mesh.ArrayType ](enum_Mesh_ArrayType) for a full list.
+See [Mesh.ArrayType ](class_Mesh_enum_arraytype) for a full list.
 
 .. list-table::
     :class: wrap-normal

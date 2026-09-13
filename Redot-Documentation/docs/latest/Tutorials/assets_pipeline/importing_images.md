@@ -25,7 +25,7 @@ Redot can import the following image formats:
 - SVG (``.svg``)
   - SVGs are rasterized using [ThorVG ](https://www.thorvg.org/)
   when importing them. [Support is limited ](https://www.thorvg.org/about#:~:text=among%20the%20svg%20tiny%20specs%2C%20yet%20unsupported%20features%20in%20the%20thorvg%20are%20the%20following);
-  complex vectors may not render correctly. [Text must be converted to paths ](doc_importing_images_svg_text);
+  complex vectors may not render correctly. [Text must be converted to paths ](doc_importing_images#importing-svg-images-with-text);
   otherwise, it won't appear in the rasterized image.
   You can check whether ThorVG can render a certain vector correctly using its
   [web-based viewer ](https://www.thorvg.org/viewer).
@@ -111,15 +111,15 @@ of when a texture is used in a 3D scene (such as a texture in a
 [class_BaseMaterial3D](class_BaseMaterial3D)). If this happens, several import options are
 changed so the texture flags are friendlier to 3D. Mipmaps are enabled and the
 compression mode is changed to **VRAM Compressed** unless
-[doc_importing_images_detect_3d_compress_to](doc_importing_images_detect_3d_compress_to) is changed. The texture is
+[doc_importing_images_detect_3d_compress_to](doc_importing_images#detect-3d-compress-to) is changed. The texture is
 also reimported automatically.
 
 A message is printed to the Output panel when a texture is detected to be used in 3D.
 
 If you run into quality issues when a texture is detected to be used in 3D (e.g.
 for pixel art textures), change the
-[doc_importing_images_detect_3d_compress_to](doc_importing_images_detect_3d_compress_to) option before using the
-texture in 3D, or change [doc_importing_images_compress_mode](doc_importing_images_compress_mode) to
+[doc_importing_images_detect_3d_compress_to](doc_importing_images#detect-3d-compress-to) option before using the
+texture in 3D, or change [doc_importing_images_compress_mode](doc_importing_images#compress-mode) to
 **Lossless** after using the texture in 3D. This is preferable to disabling
 **Detect 3D**, as mipmap generation remains enabled to prevent textures from
 looking grainy at a distance.
@@ -133,7 +133,7 @@ in the import options.
 
 Instead, texture filter and repeat modes are changed in the CanvasItem
 properties in 2D (with a project setting acting as a default), and in a
-[per-material configuration in 3D ](doc_standard_material_3d_sampling).
+[per-material configuration in 3D ](doc_standard_material_3d#sampling).
 In custom shaders, filter and repeat mode is changed on the ``sampler2D``
 uniform using hints described in the [doc_shading_language](../shaders/shader_reference/shading_language.md)
 documentation.
@@ -439,7 +439,7 @@ usually can't display textures larger than 4096×4096).
 
 ### Detect 3D > Compress To
 
-This changes the [doc_importing_images_compress_mode](doc_importing_images_compress_mode) option that is used
+This changes the [doc_importing_images_compress_mode](doc_importing_images#compress-mode) option that is used
 when a texture is detected as being used in 3D.
 
 Changing this import option only has an effect if a texture is detected as being
@@ -470,7 +470,7 @@ should be left disabled otherwise.
 
 If checked, converts the imported image's colors to match the editor's icon and
 font color palette. This assumes the image uses the exact same colors as
-[Redot's own color palette for editor icons ](../../Contributing/Development/editor/creating_icons.md), with the
+[Redot's own color palette for editor icons ](doc_creating_icons), with the
 source file designed for a dark editor theme. This should be enabled for editor
 plugin icons and custom class icons, but should be left disabled otherwise.
 
@@ -558,7 +558,7 @@ worth exploring:
 :::info
 
 Images can be loaded and saved at runtime using
-[runtime file loading and saving ](doc_runtime_file_loading_and_saving_images),
+[runtime file loading and saving ](doc_runtime_file_loading_and_saving#images),
 including from an exported project.
 
 :::

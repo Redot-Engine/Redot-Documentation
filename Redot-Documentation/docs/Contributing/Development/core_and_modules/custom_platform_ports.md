@@ -147,13 +147,13 @@ games.
 - [Text-to-speech driver](https://github.com/redot-engine/redot-engine/blob/master/platform/linuxbsd/tts_linux.cpp)
   (for accessibility).
 - [Export handler](https://github.com/redot-engine/redot-engine/tree/master/platform/linuxbsd/export)
-  (for exporting from the editor, including [doc_one-click_deploy](../../../tutorials/export/one-click_deploy.md)).
+  (for exporting from the editor, including [doc_one-click_deploy](doc_one-click_deploy)).
   Not required if you intend to export only a PCK from the editor, then run the
   export template binary directly by renaming it to match the PCK file. See the
   [EditorExportPlatform header](https://github.com/redot-engine/redot-engine/blob/master/editor/export/editor_export_platform.h)
   for reference.
   ``run_icon.svg`` (16×16) should be present within the platform folder if
-  [doc_one-click_deploy](../../../tutorials/export/one-click_deploy.md) is implemented for the target platform. This icon
+  [doc_one-click_deploy](doc_one-click_deploy) is implemented for the target platform. This icon
   is displayed at the top of the editor when one-click deploy is set up for the
   target platform.
 

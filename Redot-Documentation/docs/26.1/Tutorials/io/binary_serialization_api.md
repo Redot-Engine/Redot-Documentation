@@ -80,13 +80,13 @@ precision.
 
 ### 0: null
 
-### 1: :ref:`bool<class_bool>`
+### 1: [bool](class_bool)
 
 | Offset | Len | Type | Description |
 | --- | --- | --- | --- |
 | 4 | 4 | Integer | 0 for False, 1 for True |
 
-### 2: :ref:`int<class_int>`
+### 2: [int](class_int)
 
 If no flags are set (flags == 0), the integer is sent as a 32 bit integer:
 
@@ -101,7 +101,7 @@ a 64-bit integer:
 | --- | --- | --- | --- |
 | 4 | 8 | Integer | 64-bit signed integer |
 
-### 3: :ref:`float<class_float>`
+### 3: [float](class_float)
 
 If no flags are set (flags == 0), the float is sent as a 32 bit single precision:
 
@@ -116,7 +116,7 @@ a 64-bit double precision number:
 | --- | --- | --- | --- |
 | 4 | 8 | Float | IEEE 754 double-precision float |
 
-### 4: :ref:`String<class_string>`
+### 4: [String](class_string)
 
 | Offset | Len | Type | Description |
 | --- | --- | --- | --- |
@@ -125,14 +125,14 @@ a 64-bit double precision number:
 
 This field is padded to 4 bytes.
 
-### 5: :ref:`Vector2<class_vector2>`
+### 5: [Vector2](class_vector2)
 
 | Offset | Len | Type | Description |
 | --- | --- | --- | --- |
 | 4 | 4 | Float | X coordinate |
 | 8 | 4 | Float | Y coordinate |
 
-### 6: :ref:`Rect2<class_rect2>`
+### 6: [Rect2](class_rect2)
 
 | Offset | Len | Type | Description |
 | --- | --- | --- | --- |
@@ -141,7 +141,7 @@ This field is padded to 4 bytes.
 | 12 | 4 | Float | X size |
 | 16 | 4 | Float | Y size |
 
-### 7: :ref:`Vector3<class_vector3>`
+### 7: [Vector3](class_vector3)
 
 | Offset | Len | Type | Description |
 | --- | --- | --- | --- |
@@ -149,7 +149,7 @@ This field is padded to 4 bytes.
 | 8 | 4 | Float | Y coordinate |
 | 12 | 4 | Float | Z coordinate |
 
-### 8: :ref:`Transform2D<class_transform2d>`
+### 8: [Transform2D](class_transform2d)
 
 | Offset | Len | Type | Description |
 | --- | --- | --- | --- |
@@ -160,7 +160,7 @@ This field is padded to 4 bytes.
 | 20 | 4 | Float | The X component of the origin vector, accessed via [2][0] |
 | 24 | 4 | Float | The Y component of the origin vector, accessed via [2][1] |
 
-### 9: :ref:`Plane<class_plane>`
+### 9: [Plane](class_plane)
 
 | Offset | Len | Type | Description |
 | --- | --- | --- | --- |
@@ -169,7 +169,7 @@ This field is padded to 4 bytes.
 | 12 | 4 | Float | Normal Z |
 | 16 | 4 | Float | Distance |
 
-### 10: :ref:`Quaternion<class_quaternion>`
+### 10: [Quaternion](class_quaternion)
 
 | Offset | Len | Type | Description |
 | --- | --- | --- | --- |
@@ -178,7 +178,7 @@ This field is padded to 4 bytes.
 | 12 | 4 | Float | Imaginary Z |
 | 16 | 4 | Float | Real W |
 
-### 11: :ref:`AABB<class_aabb>`
+### 11: [AABB](class_aabb)
 
 | Offset | Len | Type | Description |
 | --- | --- | --- | --- |
@@ -189,7 +189,7 @@ This field is padded to 4 bytes.
 | 20 | 4 | Float | Y size |
 | 24 | 4 | Float | Z size |
 
-### 12: :ref:`Basis<class_basis>`
+### 12: [Basis](class_basis)
 
 | Offset | Len | Type | Description |
 | --- | --- | --- | --- |
@@ -203,7 +203,7 @@ This field is padded to 4 bytes.
 | 32 | 4 | Float | The Y component of the Z column vector, accessed via [2][1] |
 | 36 | 4 | Float | The Z component of the Z column vector, accessed via [2][2] |
 
-### 13: :ref:`Transform3D<class_transform3d>`
+### 13: [Transform3D](class_transform3d)
 
 | Offset | Len | Type | Description |
 | --- | --- | --- | --- |
@@ -220,7 +220,7 @@ This field is padded to 4 bytes.
 | 44 | 4 | Float | The Y component of the origin vector, accessed via [3][1] |
 | 48 | 4 | Float | The Z component of the origin vector, accessed via [3][2] |
 
-### 14: :ref:`Color<class_color>`
+### 14: [Color](class_color)
 
 | Offset | Len | Type | Description |
 | --- | --- | --- | --- |
@@ -229,7 +229,7 @@ This field is padded to 4 bytes.
 | 12 | 4 | Float | Blue (typically 0..1, can be above 1 for overbright colors) |
 | 16 | 4 | Float | Alpha (0..1) |
 
-### 15: :ref:`NodePath<class_nodepath>`
+### 15: [NodePath](class_nodepath)
 
 | Offset | Len | Type | Description |
 | --- | --- | --- | --- |
@@ -259,9 +259,9 @@ For each Name and Sub-Name
 
 Every name string is padded to 4 bytes.
 
-### 16: :ref:`RID<class_rid>` (unsupported)
+### 16: [RID](class_rid) (unsupported)
 
-### 17: :ref:`Object<class_object>`
+### 17: [Object](class_object)
 
 An Object could be serialized in three different ways: as a null value, with
 ``full_objects = false``, or with ``full_objects = true``.
@@ -302,12 +302,12 @@ flag set will be serialized. You can add a new usage flag to a property by overr
 [_get_property_list](class_Object_private_method__get_property_list)
 method in your class. You can also check how property usage is configured by
 calling ``Object._get_property_list`` See
-[PropertyUsageFlags](enum_@GlobalScope_PropertyUsageFlags) for the
+[PropertyUsageFlags](class_@GlobalScope_enum_propertyusageflags) for the
 possible usage flags.
 
 :::
 
-### 18: :ref:`Dictionary<class_dictionary>`
+### 18: [Dictionary](class_dictionary)
 
 | Offset | Len | Type | Description |
 | --- | --- | --- | --- |
@@ -316,7 +316,7 @@ possible usage flags.
 Then what follows is, for amount of "elements", pairs of key and value,
 one after the other, using this same format.
 
-### 19: :ref:`Array<class_array>`
+### 19: [Array](class_array)
 
 | Offset | Len | Type | Description |
 | --- | --- | --- | --- |
@@ -325,7 +325,7 @@ one after the other, using this same format.
 Then what follows is, for amount of "elements", values one after the
 other, using this same format.
 
-### 20: :ref:`PackedByteArray<class_PackedByteArray>`
+### 20: [PackedByteArray](class_PackedByteArray)
 
 | Offset | Len | Type | Description |
 | --- | --- | --- | --- |
@@ -334,35 +334,35 @@ other, using this same format.
 
 The array data is padded to 4 bytes.
 
-### 21: :ref:`PackedInt32Array<class_PackedInt32Array>`
+### 21: [PackedInt32Array](class_PackedInt32Array)
 
 | Offset | Len | Type | Description |
 | --- | --- | --- | --- |
 | 4 | 4 | Integer | Array length (Integers) |
 | 8..8+length\*4 | 4 | Integer | 32-bit signed integer |
 
-### 22: :ref:`PackedInt64Array<class_PackedInt64Array>`
+### 22: [PackedInt64Array](class_PackedInt64Array)
 
 | Offset | Len | Type | Description |
 | --- | --- | --- | --- |
 | 4 | 8 | Integer | Array length (Integers) |
 | 8..8+length\*8 | 8 | Integer | 64-bit signed integer |
 
-### 23: :ref:`PackedFloat32Array<class_PackedFloat32Array>`
+### 23: [PackedFloat32Array](class_PackedFloat32Array)
 
 | Offset | Len | Type | Description |
 | --- | --- | --- | --- |
 | 4 | 4 | Integer | Array length (Floats) |
 | 8..8+length\*4 | 4 | Integer | 32-bit IEEE 754 single-precision float |
 
-### 24: :ref:`PackedFloat64Array<class_PackedFloat64Array>`
+### 24: [PackedFloat64Array](class_PackedFloat64Array)
 
 | Offset | Len | Type | Description |
 | --- | --- | --- | --- |
 | 4 | 4 | Integer | Array length (Floats) |
 | 8..8+length\*8 | 8 | Integer | 64-bit IEEE 754 double-precision float |
 
-### 25: :ref:`PackedStringArray<class_PackedStringArray>`
+### 25: [PackedStringArray](class_PackedStringArray)
 
 | Offset | Len | Type | Description |
 | --- | --- | --- | --- |
@@ -377,7 +377,7 @@ For each String:
 
 Every string is padded to 4 bytes.
 
-### 26: :ref:`PackedVector2Array<class_PackedVector2Array>`
+### 26: [PackedVector2Array](class_PackedVector2Array)
 
 | Offset | Len | Type | Description |
 | --- | --- | --- | --- |
@@ -385,7 +385,7 @@ Every string is padded to 4 bytes.
 | 8..8+length\*8 | 4 | Float | X coordinate |
 | 8..12+length\*8 | 4 | Float | Y coordinate |
 
-### 27: :ref:`PackedVector3Array<class_PackedVector3Array>`
+### 27: [PackedVector3Array](class_PackedVector3Array)
 
 | Offset | Len | Type | Description |
 | --- | --- | --- | --- |
@@ -394,7 +394,7 @@ Every string is padded to 4 bytes.
 | 8..12+length\*12 | 4 | Float | Y coordinate |
 | 8..16+length\*12 | 4 | Float | Z coordinate |
 
-### 28: :ref:`PackedColorArray<class_PackedColorArray>`
+### 28: [PackedColorArray](class_PackedColorArray)
 
 | Offset | Len | Type | Description |
 | --- | --- | --- | --- |

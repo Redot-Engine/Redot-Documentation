@@ -696,7 +696,7 @@ We also set the compatibility minimum to 4.2, since we are targeting this
 version. It should still work on later versions. If you are using a later Redot
 version and rely on the new features, you need to increase this value to a
 version number that has everything you use.
-See [doc_what_is_gdextension_version_compatibility](doc_what_is_gdextension_version_compatibility) for more information.
+See [doc_what_is_gdextension_version_compatibility](doc_what_is_gdextension#version-compatibility) for more information.
 
 In the ``[libraries]`` section we set up the paths to the shared library on
 different platforms. Here there's only the debug versions since that's what we
@@ -1178,7 +1178,7 @@ void destruct_property(GDExtensionPropertyInfo *info)
 
 The simple version of ``make_property()`` just calls the more complete one with a
 some default arguments. What those values mean exactly is out of the scope of
-this tutorial, check the page about the [Object class ](../../../Contributing/Development/core_and_modules/object_class.md)
+this tutorial, check the page about the [Object class ](doc_object_class)
 for more details about binding methods and properties.
 
 The complete version is more involved. First, it creates ``String``'s and

@@ -46,7 +46,7 @@ Redot has a preset called [class_skeletonprofilehumanoid](class_skeletonprofileh
 This tutorial proceeds with the assumption that you are using [class_skeletonprofilehumanoid](class_skeletonprofilehumanoid).
 
 :::note
-If you need a profile that is different from :ref:`class_skeletonprofilehumanoid`, you can export
+If you need a profile that is different from [class_skeletonprofilehumanoid](class_skeletonprofilehumanoid), you can export
 a [class_skeletonprofile](class_skeletonprofile) from the editor by selecting a Skeleton3D and using the **Skeleton3D** menu in the 3D viewport's toolbar.
 
 :::

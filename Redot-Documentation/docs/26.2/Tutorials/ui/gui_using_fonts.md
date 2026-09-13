@@ -230,7 +230,7 @@ exploring.
 
 :::note
 
-Antialiasing cannot be changed on [MSDF-rendered fonts ](doc_using_fonts_msdf)
+Antialiasing cannot be changed on [MSDF-rendered fonts ](doc_gui_using_fonts#msdf-font-rendering)
 – these are always rendered with grayscale antialiasing.
 
 :::
@@ -291,7 +291,7 @@ By default, fonts do not have mipmaps generated to reduce memory usage and speed
 up rasterization. However, this can cause downscaled fonts to become grainy. This
 can be especially noticeable with [doc_3d_text](../3d/3d_text.md) that doesn't have **Fixed
 Size** enabled. This can also occur when displaying text with a traditional rasterized
-(non-[MSDF ](doc_using_fonts_msdf)) font in a Control node that has its scale
+(non-[MSDF ](doc_gui_using_fonts#msdf-font-rendering)) font in a Control node that has its scale
 lower than ``(1, 1)``.
 
 After selecting a font in the FileSystem dock, you can enable the **Mipmaps** in
@@ -321,7 +321,7 @@ The downsides of MSDF font rendering are:
   lack of hinting.
 - Rendering new glyphs for the first time *at small font sizes* may be more
   expensive compared to traditional rasterized fonts.
-  [doc_using_fonts_font_prerendering](doc_using_fonts_font_prerendering) can be used to alleviate this.
+  [doc_using_fonts_font_prerendering](doc_gui_using_fonts#font-prerendering) can be used to alleviate this.
 - LCD subpixel optimization cannot be enabled for MSDF fonts.
 - Fonts with self-intersecting outlines will not render correctly in MSDF mode.
   If you notice rendering issues on fonts downloaded from websites such as
@@ -352,7 +352,7 @@ Redot has limited support for emoji fonts:
   uses SVG or PNG bitmap compression instead.
 
 For Redot to be able to display emoji, the font used (or one of its
-[fallbacks ](doc_using_fonts_font_fallbacks)) needs to include them.
+[fallbacks ](doc_gui_using_fonts#font-fallbacks)) needs to include them.
 Otherwise, emoji won't be displayed and placeholder "tofu" characters will
 appear instead:
 
@@ -369,7 +369,7 @@ you get the expected result:
    Correct appearance after adding an emoji font to the label
 
 To use a regular font alongside emoji, it's recommended to specify a
-[fallback font ](doc_using_fonts_font_fallbacks) that points to the
+[fallback font ](doc_gui_using_fonts#font-fallbacks) that points to the
 emoji font in the regular font's advanced import options. If you wish to use
 the default project font while displaying emoji, leave the **Base Font**
 property in FontVariation empty while adding a font fallback pointing to the
@@ -377,7 +377,7 @@ emoji font:
 
 :::tip
 
-Emoji fonts are quite large in size, so you may want to [load a system font ](doc_using_fonts_system_fonts) to provide emoji glyphs rather than
+Emoji fonts are quite large in size, so you may want to [load a system font ](doc_gui_using_fonts#system-fonts) to provide emoji glyphs rather than
 bundling it with your project. This allows providing full emoji support in
 your project without increasing the size of its exported PCK. The downside
 is that emoji will look different depending on the platform, and loading
@@ -415,7 +415,7 @@ pressing `Ctrl + C` (`Cmd + C` on macOS). Paste the character in the
 glyph in the inspector, but it should appear correctly in the 2D/3D viewport.
 
 To use an icon font alongside a traditional font in the same Control, you can
-specify the icon font as a [fallback ](doc_using_fonts_font_fallbacks).
+specify the icon font as a [fallback ](doc_gui_using_fonts#font-fallbacks).
 This works because icon fonts use the Unicode *private use area*, which is
 reserved for use by custom fonts and doesn't contain standard glyphs by design.
 
@@ -471,7 +471,7 @@ fallbacks.
 :::note
 
 Font fallbacks can also be defined on a local basis similar to
-[doc_using_fonts_opentype_font_features](doc_using_fonts_opentype_font_features), but this is not covered here
+[doc_using_fonts_opentype_font_features](doc_gui_using_fonts#opentype-font-features), but this is not covered here
 for brevity reasons.
 
 :::
@@ -548,7 +548,7 @@ a bold font, and certain glyphs' shapes may change entirely in italic variants
 (compare "a" and *"a"*).
 
 However, real bold and italic fonts require shipping more font files, which
-increases distribution size. A single [variable font ](doc_using_fonts_variable_fonts)
+increases distribution size. A single [variable font ](doc_gui_using_fonts#variable-fonts)
 file can also be used, but this file will be larger than a single non-variable font.
 While file size is usually not an issue for desktop projects, it can be a concern
 for mobile/web projects that strive to keep distribution size as low as possible.
@@ -636,7 +636,7 @@ Features** section on the sidebar on the right, click the
 **In a specific font usage (FontVariation)**
 
 To use a font feature, create a FontVariation resource like you would do for a
-[variable font ](doc_using_fonts_variable_fonts), then load a font file
+[variable font ](doc_gui_using_fonts#variable-fonts), then load a font file
 within the FontVariation resource:
 
 ![Image](/img/Tutorials/ui/img/using_fonts_font_variation_create.webp)
@@ -696,7 +696,7 @@ has 2 benefits:
 The engine automatically uses system fonts as fallback fonts, which makes it
 possible to display CJK characters and emoji without having to load a custom
 font. There are some restrictions that apply though, as mentioned in the
-[Using emoji ](doc_using_fonts_emoji) section.
+[Using emoji ](doc_gui_using_fonts#using-emoji) section.
 
 Create a [class_SystemFont](class_SystemFont) resource in the location where you desire to
 use the system font:
@@ -747,7 +747,7 @@ or alias.
 :::
 
 It is also possible to load fonts at runtime even if they aren't installed on the system.
-See [Runtime loading and saving ](doc_runtime_file_loading_and_saving_fonts)
+See [Runtime loading and saving ](doc_runtime_file_loading_and_saving#fonts)
 for details.
 
 ### Font prerendering
@@ -874,19 +874,19 @@ In the **GUI &gt; Theme** section of the advanced Project Settings, you can choo
 how the default font should be rendered:
 
 - **Default Font Antialiasing:** Controls the
-  [antialiasing ](doc_using_fonts_antialiasing) method used
+  [antialiasing ](doc_gui_using_fonts#antialiasing) method used
   for the default project font.
 - **Default Font Hinting:** Controls the
-  [hinting ](doc_using_fonts_hinting) method used for
+  [hinting ](doc_gui_using_fonts#hinting) method used for
   the default project font.
 - **Default Font Subpixel Positioning:** Controls the
-  [subpixel positioning ](doc_using_fonts_subpixel_positioning)
+  [subpixel positioning ](doc_gui_using_fonts#subpixel-positioning)
   method for the default project font.
 - **Default Font Multichannel Signed Distance Field:** If ``true``, makes the
-  default project font use [MSDF font rendering ](doc_using_fonts_msdf) instead
+  default project font use [MSDF font rendering ](doc_gui_using_fonts#msdf-font-rendering) instead
   of traditional rasterization.
 - **Default Font Generate Mipmaps:** If ``true``, enables
-  [mipmap ](doc_using_fonts_mipmaps) generation and
+  [mipmap ](doc_gui_using_fonts#mipmaps) generation and
   usage for the default project font.
 
 :::note

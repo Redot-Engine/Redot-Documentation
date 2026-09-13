@@ -144,7 +144,7 @@ A bezier curve track is similar to a property track, except it allows you to
 animate a property's value using a bezier curve.
 
 :::note
-Bezier curve track and property track cannot be blended in :ref:`AnimationPlayer <class_AnimationPlayer>` and :ref:`AnimationTree <class_AnimationTree>`.
+Bezier curve track and property track cannot be blended in [AnimationPlayer](class_AnimationPlayer) and [AnimationTree](class_AnimationTree).
 
 :::
 

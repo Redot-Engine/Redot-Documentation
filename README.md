@@ -96,3 +96,19 @@ Search runs inside ASP.NET using Lucene.NET and BM25, without a crawler or exter
 The background service indexes rendered Markdown sections and class-reference snapshots. Local indexes live under `App_Data/search/<version>/<content fingerprint>`; keep this writable directory on persistent storage to reuse indexes after restart. Fingerprints include source bytes, class revision, and a schema version. Class snapshot publication triggers a refresh; Markdown changes are picked up at application restart. Increment the search schema version when changing extraction or analysis. Index failures are logged and retain the previous searchable generation; first-time indexing displays a preparing state. Obsolete fingerprint directories are removed after the replacement reader and manifest are published. Cleanup failures are logged and retried after the next publication; temporary and unrelated directories are left untouched. Search logs section count, build duration, and disk size.
 
 Results use literal term queries, prefix matching, and a one-edit typo fallback when no stronger matches exist. Queries are limited to 200 characters and 12 terms; results are grouped by source page. Search snippets retain the source content's existing license.
+
+### Checking documentation links
+
+Use document slugs with optional section IDs, such as
+`[Transparency sorting](doc_3d_rendering_limitations#transparency-sorting)`.
+The renderer resolves the page within the selected version. Fragments must
+match the rendered heading ID, including punctuation and underscores.
+Headings through level six receive anchors; the page TOC lists levels one
+through three. `doc_class_reference` resolves to the selected version's class
+index.
+
+Run `dotnet test --filter FullyQualifiedName~DocumentationLinkTests` to render
+all configured documentation versions and check internal page and section
+destinations. The audit includes shared documentation in each version context.
+It does not check external website availability or class/member destinations
+from separately synchronized engine XML.

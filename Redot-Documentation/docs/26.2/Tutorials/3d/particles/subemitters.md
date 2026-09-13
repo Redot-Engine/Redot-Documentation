@@ -52,7 +52,7 @@ sub-emitter setup.
 
 When you assign a sub-emitter, you don't see it spawn right away. Emitting is disabled
 by default and needs to be enabled first. Set the ``Mode`` property in the ``Sub Emitter`` group
-of the [ParticleProcessMaterial ](doc_process_material_properties_subemitter) to something other than ``Disabled``.
+of the [ParticleProcessMaterial ](doc_process_material_properties#collision) to something other than ``Disabled``.
 
 The emitter mode also determines how many sub-emitter particles are spawned. ``Constant``
 spawns a single particle at a frequency set by the ``Frequency`` property. For ``At End``

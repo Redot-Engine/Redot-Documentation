@@ -98,7 +98,7 @@ you can see an explanation of vector usage in Redot at [doc_vector_math](../math
 
 If the code above does nothing when you press the keys, double-check that
 you've set up input actions correctly as described in the
-[doc_2d_movement_setup](doc_2d_movement_setup) part of this tutorial.
+[doc_2d_movement_setup](doc_2d_movement#setup) part of this tutorial.
 
 :::
 

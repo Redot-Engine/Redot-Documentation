@@ -182,7 +182,7 @@ your [NoiseTexture2D ](class_noisetexture2D) click beside where it says "Noise" 
 FastNoiseLite".
 
 :::note
-:ref:`FastNoiseLite <class_fastnoiselite>` is used by the NoiseTexture2D to
+[FastNoiseLite](class_fastnoiselite) is used by the NoiseTexture2D to
 generate a heightmap.
 
 :::

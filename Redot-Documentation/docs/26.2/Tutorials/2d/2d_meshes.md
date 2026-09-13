@@ -11,7 +11,7 @@ Redot's 2D engine is a pure two-dimensional engine, so it can't really display 3
 via ``Viewport`` and ``ViewportTexture``).
 
 :::info
-If you are interested in displaying 3D meshes on a 2D viewport, see the :ref:`doc_viewport_as_texture` tutorial.
+If you are interested in displaying 3D meshes on a 2D viewport, see the [doc_viewport_as_texture](doc_using_viewport_as_texture) tutorial.
 
 :::
 

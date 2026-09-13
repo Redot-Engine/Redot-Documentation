@@ -25,7 +25,7 @@ them visible and editable in the editor. This way, artists and game designers
 can modify values that later influence how the program runs. For this, a
 special export syntax is provided.
 
-Exporting can only be done with [c_sharp_variant_compatible_types](c_sharp_variant_compatible_types).
+Exporting can only be done with [c_sharp_variant_compatible_types](doc_c_sharp_variant#variant-compatible-types).
 
 :::note
 
@@ -121,7 +121,7 @@ if the default value can be explicitly specified, it can be overridden with the
 
 Any type of ``Resource`` or ``Node`` can be exported. The property editor shows
 a user-friendly assignment dialog for these types. This can be used instead of
-``GD.Load`` and ``GetNode``. See [Nodes and Resources ](doc_c_sharp_exports_nodes).
+``GD.Load`` and ``GetNode``. See [Nodes and Resources ](doc_c_sharp_exports#nodes).
 
 ```csharp
 [Export]
@@ -385,7 +385,7 @@ see [doc_c_sharp_global_classes](c_sharp_global_classes.md).
 
 It must be noted that even if the script is not being run while in the
 editor, the exported properties are still editable. This can be used
-in conjunction with a [script in "tool" mode ](doc_gdscript_tool_mode).
+in conjunction with a [script in "tool" mode ](doc_gdscript_basics#tool-mode).
 
 ## Exporting bit flags
 
@@ -608,7 +608,7 @@ public Godot.Collections.Dictionary<string, int> CharacterLives { get; set; } = 
 
 ### Exporting C# arrays
 
-C# arrays can exported as long as the element type is a [Variant-compatible type ](c_sharp_variant_compatible_types).
+C# arrays can exported as long as the element type is a [Variant-compatible type ](doc_c_sharp_variant#variant-compatible-types).
 
 ```csharp
 [Export]
@@ -634,7 +634,7 @@ public Vector3[] Vectors { get; set; } =
 ## Setting exported variables from a tool script
 
 When changing an exported variable's value from a script in
-[doc_gdscript_tool_mode](doc_gdscript_tool_mode), the value in the inspector won't be updated
+[doc_gdscript_tool_mode](doc_gdscript_basics#tool-mode), the value in the inspector won't be updated
 automatically. To update it, call
 [NotifyPropertyListChanged() ](class_Object_method_notify_property_list_changed)
 after setting the exported variable's value.
@@ -650,11 +650,11 @@ handled and how they can be customized with
 [_Set() ](class_Object_private_method__set),
 [_Get() ](class_Object_private_method__get), and
 [_GetPropertyList() ](class_Object_private_method__get_property_list) methods as
-described in [doc_accessing_data_or_logic_from_object](doc_accessing_data_or_logic_from_object).
+described in [doc_accessing_data_or_logic_from_object](doc_godot_interfaces#accessing-data-or-logic-from-an-object).
 
 :::info
 For binding properties using the above methods in C++, see
-[doc_binding_properties_using_set_get_property_list](doc_binding_properties_using_set_get_property_list).
+[doc_binding_properties_using_set_get_property_list](doc_object_class#binding-properties-using_set_get_get_property_list).
 
 :::
 

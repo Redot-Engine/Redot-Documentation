@@ -97,7 +97,7 @@ reduced to a value lower than or equal to the value specified here.
 
 This can decrease file size noticeably on certain sounds, without impacting
 quality depending on the actual sound's contents. See
-[doc_importing_audio_samples_best_practices](doc_importing_audio_samples_best_practices) for more information.
+[doc_importing_audio_samples_best_practices](doc_importing_audio_samples#best-practices) for more information.
 
 ## Edit > Trim
 
@@ -185,7 +185,7 @@ audio file.
 Only has an effect if **Loop** is enabled.
 
 A more convenient editor for **Loop Offset** is provided in the
-[Advanced import settings ](doc_importing_audio_samples_advanced_import_settings)
+[Advanced import settings ](doc_importing_audio_samples#advanced-import-settings-ogg-vorbis-and-mp3)
 dialog, as it lets you preview your changes without having to reimport the audio.
 
 ### BPM
@@ -196,7 +196,7 @@ make use of interactive music functionality, not sound
 effects.
 
 A more convenient editor for **BPM** is provided in the
-[Advanced import settings ](doc_importing_audio_samples_advanced_import_settings)
+[Advanced import settings ](doc_importing_audio_samples#advanced-import-settings-ogg-vorbis-and-mp3)
 dialog, as it lets you preview your changes without having to reimport the audio.
 
 ### Beat Count
@@ -206,7 +206,7 @@ to make use of interactive music functionality, not sound
 effects.
 
 A more convenient editor for **Beat Count** is provided in the
-[Advanced import settings ](doc_importing_audio_samples_advanced_import_settings)
+[Advanced import settings ](doc_importing_audio_samples#advanced-import-settings-ogg-vorbis-and-mp3)
 dialog, as it lets you preview your changes without having to reimport the audio.
 
 ### Bar Beats
@@ -216,7 +216,7 @@ relevant for music that wishes to make use of interactive music functionality
 , not sound effects.
 
 A more convenient editor for **Bar Beats** is provided in the
-[Advanced import settings ](doc_importing_audio_samples_advanced_import_settings)
+[Advanced import settings ](doc_importing_audio_samples#advanced-import-settings-ogg-vorbis-and-mp3)
 dialog, as it lets you preview your changes without having to reimport the audio.
 
 ## Advanced import settings (Ogg Vorbis and MP3)
@@ -283,7 +283,7 @@ added.
 :::info
 
 Audio samples can be loaded and saved at runtime using
-[runtime file loading and saving ](doc_runtime_file_loading_and_saving_audio_video_files),
+[runtime file loading and saving ](doc_runtime_file_loading_and_saving#audiovideo-files),
 including from an exported project.
 
 :::

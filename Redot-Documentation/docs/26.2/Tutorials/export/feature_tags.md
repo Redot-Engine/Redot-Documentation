@@ -88,7 +88,7 @@ Here is a list of most feature tags in Redot. Keep in mind they are **case-sensi
 | **etc** | Textures using ETC1 compression are supported |
 | **etc2** | Textures using ETC2 compression are supported |
 | **s3tc** | Textures using S3TC (DXT/BC) compression are supported |
-| **movie** | :ref:`Movie Maker mode &lt;doc_creating_movies&gt;` is active |
+| **movie** | [Movie Maker mode](doc_creating_movies) is active |
 
 :::warning
 

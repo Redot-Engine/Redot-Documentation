@@ -43,7 +43,7 @@ skills valuable.
 ## Array vs. Dictionary vs. Object
 
 Redot stores all variables in the scripting API in the
-[Variant ](../../Contributing/Development/core_and_modules/variant_class.md) class.
+[Variant ](doc_variant_class) class.
 Variants can store Variant-compatible data structures such as
 [Array ](class_Array) and [Dictionary ](class_Dictionary) as well
 as [Objects ](class_Object).
@@ -175,7 +175,7 @@ Objects query data sources when posed questions. For example, to answer
 the question, "do you have a property called, 'position'?", it might ask
 its [script ](class_Script) or the [ClassDB ](class_ClassDB).
 One can find more information about what objects are and how they work in
-the [doc_what_are_Redot_classes](doc_what_are_Redot_classes) article.
+the [doc_what_are_Redot_classes](doc_what_are_godot_classes) article.
 
 The important detail here is the complexity of the Object's task. Every time
 it performs one of these multi-source queries, it runs through *several*

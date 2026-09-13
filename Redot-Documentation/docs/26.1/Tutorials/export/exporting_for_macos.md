@@ -5,7 +5,7 @@
 
 This page describes how to export a Redot project to macOS.
 If you're looking to compile editor or export template binaries from source instead,
-read [doc_compiling_for_macos](../../Contributing/Development/compiling/compiling_for_macos.md).
+read [doc_compiling_for_macos](doc_compiling_for_macos).
 
 :::
 

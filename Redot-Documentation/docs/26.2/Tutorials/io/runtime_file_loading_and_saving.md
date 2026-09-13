@@ -140,7 +140,7 @@ If displaying the loaded image on a 3D surface, make sure to call
 [Image.generate_mipmaps ](class_Image_method_generate_mipmaps)
 so that the texture doesn't look grainy when viewed at a distance.
 This is also useful in 2D when following instructions on
-[reducing aliasing when downsampling ](doc_multiple_resolutions_reducing_aliasing_on_downsampling).
+[reducing aliasing when downsampling ](doc_multiple_resolutions#reducing-aliasing-on-downsampling).
 
 :::
 
@@ -376,7 +376,7 @@ On the other hand, [FontFile.load_bitmap_font ](class_FontFile_method_load_bitma
 the [BMFont ](https://www.angelcode.com/products/bmfont/) format (``.fnt`` or ``.font``).
 
 Additionally, it is possible to load any font that is installed on the system using
-Redot's support for [doc_using_fonts_system_fonts](doc_using_fonts_system_fonts).
+Redot's support for [doc_using_fonts_system_fonts](doc_gui_using_fonts#system-fonts).
 
 Example of loading a font file automatically according to its file extension,
 then adding it as a theme override to a [class_Label](class_Label) node:

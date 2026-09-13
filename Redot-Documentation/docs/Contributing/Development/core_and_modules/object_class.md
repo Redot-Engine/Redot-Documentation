@@ -250,10 +250,10 @@ ADD_SIGNAL(MethodInfo("been_killed"))
 ## Notifications
 
 <!-- TODO(Tekk): some methods start with `__`, how will the doc parser handle this? -->
-<!-- TODO(Tekk): doc_Redot_notifications doesnt exist -->
+<!-- TODO(Tekk): doc_redot_notifications doesnt exist -->
 All objects in Redot have a [__notification](class_Object_private_method__notification)
 method that allows it to respond to engine level callbacks that may relate to it.
-More information can be found on the [doc_Redot_notifications](doc_Redot_notifications) page.
+More information can be found on the [doc_redot_notifications](doc_redot_notifications) page.
 
 ## References
 

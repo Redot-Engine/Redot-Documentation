@@ -332,7 +332,7 @@ specific path structure on your machine.
 
 :::info
 
-[Introduction to the buildsystem - Custom modules build option](doc_buildsystem_custom_modules#custom-modules).
+[Introduction to the buildsystem - Custom modules build option](doc_introduction_to_the_buildsystem#custom-modules).
 
 :::
 
@@ -709,7 +709,7 @@ Similarly to how you can write self-contained documentation within a module,
 you can also create your own custom icons for classes to appear in the editor.
 
 For the actual process of creating editor icons to be integrated within the engine,
-please refer to [doc_editor_icons](doc_editor_icons) first.
+please refer to [doc_editor_icons](doc_creating_icons) first.
 
 Once you've created your icon(s), proceed with the following steps:
 

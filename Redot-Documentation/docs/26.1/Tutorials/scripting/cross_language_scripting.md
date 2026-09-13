@@ -103,7 +103,7 @@ instantiate nodes directly from the code.
 ### Instantiating C# nodes from GDScript
 
 Using C# from GDScript doesn't need much work. Once loaded
-(see [doc_gdscript_classes_as_resources](doc_gdscript_classes_as_resources)), the script can be instantiated
+(see [doc_gdscript_classes_as_resources](doc_gdscript_basics#classes-as-resources)), the script can be instantiated
 with [new() ](class_CSharpScript_method_new).
 
 ```gdscript
@@ -141,7 +141,7 @@ var myGDScriptNode = (RedotObject)myGDScript.New(); // This is a RedotObject.
 ```
 
 Here we are using an [class_Object](class_Object), but you can use type conversion like
-explained in [doc_c_sharp_features_type_conversion_and_casting](doc_c_sharp_features_type_conversion_and_casting).
+explained in [doc_c_sharp_features_type_conversion_and_casting](doc_c_sharp_features#type-conversion-and-casting).
 
 ## Accessing fields
 

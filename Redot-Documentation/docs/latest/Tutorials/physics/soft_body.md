@@ -38,7 +38,7 @@ To improve the simulation's result, increase the ``Simulation Precision``, this 
 Let's make a cloak in the Platformer3D demo.
 
 :::note
-You can download the Platformer3D demo on `GitHub <https://github.com/redot-engine/redot-demo-projects/tree/master/3d/platformer>`_ or `the Asset Library <https://godotengine.org/asset-library/asset/2748>`_.
+You can download the Platformer3D demo on [GitHub](https://github.com/redot-engine/redot-demo-projects/tree/master/3d/platformer) or [the Asset Library](https://godotengine.org/asset-library/asset/2748).
 
 :::
 

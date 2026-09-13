@@ -6,7 +6,7 @@ namespace Redot_Documentation.Services;
 public static class DocumentHeadings
 {
     private static readonly Regex HeadingRegex = new(
-        @"<h([1-3])(?<attributes>[^>]*)>(?<content>.*?)</h\1>",
+        @"<h([1-6])(?<attributes>[^>]*)>(?<content>.*?)</h\1>",
         RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
 
     private static readonly Regex IdRegex = new(
@@ -58,7 +58,8 @@ public static class DocumentHeadings
                 attributes = $" id=\"{id}\"{attributes}";
             }
 
-            tableOfContents.Add(new DocumentHeading(level, id, title));
+            if (level <= 3)
+                tableOfContents.Add(new DocumentHeading(level, id, title));
             return $"<h{level}{attributes}>{content}</h{level}>";
         });
     }

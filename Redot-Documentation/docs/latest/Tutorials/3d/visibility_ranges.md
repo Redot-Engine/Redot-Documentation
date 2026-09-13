@@ -121,7 +121,7 @@ choose from:
   Range &gt; Begin Margin** and **Visibility Range &gt; End Margin**. This mode forces
   transparent rendering on the object during its fade transition, so it has a
   performance impact. This mode is intended for hierarchical LOD systems using
-  [Visibility parent](doc_visibility_ranges_visibility_parent). It acts
+  [Visibility parent](doc_visibility_ranges#visibility-parent). It acts
   the same as **Self** if visibility ranges are used to perform non-hierarchical
   LOD.
 
@@ -173,7 +173,7 @@ Fade mode is automatically handled by the **Visibility Parent** property, so
 that the child nodes only become hidden once the parent node is fully faded out.
 This is done to minimize visible pop-in. Depending on your :abbr:`HLOD
 (Hierarchical Level of Detail)` setup, you may want to try both the **Self** and
-**Dependencies** [fade modes](doc_visibility_ranges_fade_mode).
+**Dependencies** [fade modes](doc_visibility_ranges#fade-mode).
 
 :::note
 
@@ -229,7 +229,7 @@ There are two advantages to using dithering over alpha blending for LOD transiti
 - Higher performance, as dithering transparency is faster to render compared to
   alpha blending.
 - No visual glitches due to
-  [transparency sorting issues](doc_3d_rendering_limitations_transparency_sorting)
+  [transparency sorting issues](doc_3d_rendering_limitations#transparency-sorting)
   during LOD transitions.
 
 The downside of dithering is that a "noisy" pattern is visible during LOD fade

@@ -218,7 +218,7 @@ which are currently implemented.
 | ``_BINDINGS_NAMESPACE_`` | The name of the Redot namespace (used in C# only). |
 | ``_CLASS_`` | The name of the new class. |
 | ``_BASE_`` | The base type a new script inherits from. |
-| ``_TS_`` | Indentation placeholder. The exact type and number of whitespace characters used for indentation is determined by the ``text_editor/indent/type`` and ``text_editor/indent/size`` settings in the :ref:`EditorSettings &lt;class_EditorSettings&gt;` respectively. Can be overridden by the ``meta-space-indent`` header on the template. |
+| ``_TS_`` | Indentation placeholder. The exact type and number of whitespace characters used for indentation is determined by the ``text_editor/indent/type`` and ``text_editor/indent/size`` settings in the [EditorSettings](class_EditorSettings) respectively. Can be overridden by the ``meta-space-indent`` header on the template. |
 
 ### Type placeholders
 

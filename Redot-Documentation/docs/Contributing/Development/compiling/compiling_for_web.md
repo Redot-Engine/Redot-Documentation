@@ -4,7 +4,7 @@
 :::info
 
 This page describes how to compile HTML5 editor and export template binaries from source.
-If you're looking to export your project to HTML5 instead, read [doc_exporting_for_web](../../../tutorials/export/exporting_for_web.md).
+If you're looking to export your project to HTML5 instead, read [doc_exporting_for_web](doc_exporting_for_web).
 
 :::
 
@@ -88,7 +88,7 @@ mv bin/Redot.web.template_debug.wasm32.zip bin/web_debug.zip
 <!-- TODO(Tekk): doc_javascript_export_options doesnt exist -->
 The default export templates do not include GDExtension support for
 performance and compatibility reasons. See the
-[export page](doc_javascript_export_options) for more info.
+[export page](doc_exporting_for_web#export-options) for more info.
 
 You can build the export templates using the option ``dlink_enabled=yes``
 to enable GDExtension support
@@ -126,7 +126,7 @@ Once finished, the resulting file will be placed in the ``bin`` subdirectory.
 Its name will be ``Redot.web.editor.wasm32.zip``. You can upload the
 zip content to your web server and visit it with your browser to use the editor.
 
-Refer to the [export page](doc_javascript_export_options) for the web
+Refer to the [export page](doc_exporting_for_web#export-options) for the web
 server requirements.
 
 :::tip

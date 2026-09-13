@@ -56,7 +56,7 @@ When the shape hits something, the camera will be placed at or near the collisio
 Let's add a spring arm camera setup to the platformer demo.
 
 :::note
-You can download the Platformer 3D demo on `GitHub <https://github.com/redot-engine/redot-demo-projects/tree/master/3d/platformer>`_ or using the `Asset Library <https://godotengine.org/asset-library/asset/2748>`_.
+You can download the Platformer 3D demo on [GitHub](https://github.com/redot-engine/redot-demo-projects/tree/master/3d/platformer) or using the [Asset Library](https://godotengine.org/asset-library/asset/2748).
 
 :::
 

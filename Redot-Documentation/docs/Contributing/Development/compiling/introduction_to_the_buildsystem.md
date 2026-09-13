@@ -1,6 +1,6 @@
 # Introduction to the buildsystem
 
-Redot is a primarily C++ project and it [uses the SCons build system.](doc_faq_why_scons)
+Redot is a primarily C++ project and it [uses the SCons build system.](abt_faq#why-does-redot-use-the-scons-build-system)
 We love SCons for how maintainable and easy to set up it makes our buildsystem. And thanks to
 that compiling Redot from source can be as simple as running
 
@@ -157,8 +157,7 @@ Redot provides two aliases for this purpose:
 
 - ``dev_mode=yes`` is an alias for ``verbose=yes warnings=extra werror=yes
   tests=yes``. This enables warnings-as-errors behavior (similar to Redot's
-  continuous integration setup) and also builds :ref:`unit tests
-  <doc_unit_testing>` so you can run them locally.
+  continuous integration setup) and also builds [unit tests](doc_unit_testing) so you can run them locally.
 - ``production=yes`` is an alias for ``use_static_cpp=yes debug_symbols=no
   lto=auto``. Statically linking libstdc++ allows for better binary portability
   when compiling for Linux. This alias also enables link-time optimization when

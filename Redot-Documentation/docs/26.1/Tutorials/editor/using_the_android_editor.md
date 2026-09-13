@@ -9,7 +9,7 @@ or from the [Google Play Store ](https://play.google.com/store/apps/details?id=o
 
 :::note
 
-The Android editor is in early access, while we continue to refine the experience. See [doc_using_the_android_editor_limitations](doc_using_the_android_editor_limitations) below.
+The Android editor is in early access, while we continue to refine the experience. See [doc_using_the_android_editor_limitations](doc_using_the_android_editor#limitations-known-issues) below.
 
 :::
 
@@ -34,7 +34,7 @@ The Android editor requires devices running Android 5 Lollipop or higher, with a
 **Input**
 
 - For the best experience and high level of productivity, connecting a bluetooth keyboard & mouse is recommended to interact with the Android editor.
-  The Android editor supports all of the [usual shortcuts and key mappings](/en/latest/Tutorials/editor/default_key_mapping).
+  The Android editor supports all of the [usual shortcuts and key mappings](doc_default_key_mapping).
 - When interacting with keyboard & mouse, you can decrease the size of the scrollbar using the [interface/touchscreen/increase_scrollbar_touch_area ](https://docs.redotengine.org/en/stable/classes/class_editorsettings.html#class-editorsettings-property-interface-touchscreen-increase-scrollbar-touch-area) editor setting.
 - For 2D projects, the [block coding plugin ](https://godotengine.org/asset-library/asset/3095) can provide a block-based visual alternative to composing scripts when lacking a connected hardware keyboard.
 

@@ -121,7 +121,7 @@ There is a list of generic shadow parameters, each also has a specific function:
   in softer shadows, which will also appear to be more temporally stable for
   moving objects. The downside of increasing shadow blur is that it will make
   the grainy pattern used for filtering more noticeable.
-  See also [doc_lights_and_shadows_shadow_filter_mode](doc_lights_and_shadows_shadow_filter_mode).
+  See also [doc_lights_and_shadows_shadow_filter_mode](doc_lights_and_shadows#shadow-filter-mode).
 - **Caster Mask:** Shadows are only cast by objects in these layers. Note that
   this mask does not affect which objects shadows are cast *onto*.
 
@@ -151,7 +151,7 @@ most shadow acne issues efficiently. The downside of increasing **Shadow Normal
 Bias** is that it can make shadows appear thinner for certain objects.
 
 Any sort of bias issues can be fixed by
-[increasing the shadow map resolution](doc_lights_and_shadows_balancing_performance_and_quality),
+[increasing the shadow map resolution](doc_lights_and_shadows#balancing-performance-and-quality),
 at the cost of decreased performance.
 
 :::note
@@ -195,7 +195,7 @@ affecting the sun's appearance in procedural sky materials. This is called a
 
 For reference, the angular distance of the Sun viewed from the Earth is
 approximately ``0.5``. This kind of shadow is expensive, so check the
-recommendations in [doc_lights_and_shadows_pcss_recommendations](doc_lights_and_shadows_pcss_recommendations) if setting
+recommendations in [doc_lights_and_shadows_pcss_recommendations](doc_lights_and_shadows#pcss-recommendations) if setting
 this value above ``0.0`` on lights with shadows enabled.
 
 ### Directional shadow mapping
@@ -280,7 +280,7 @@ will make the light fade out slower and shadows appear blurrier when far away
 from the caster. This can be used to simulate area lights to an extent. This is
 called a *contact-hardening* shadow (also known as PCSS). This kind of shadow is
 expensive, so check the recommendations in
-[doc_lights_and_shadows_pcss_recommendations](doc_lights_and_shadows_pcss_recommendations) if setting this value above
+[doc_lights_and_shadows_pcss_recommendations](doc_lights_and_shadows#pcss-recommendations) if setting this value above
 ``0.0`` on lights with shadows enabled.
 
 ![Image](/img/Tutorials/3d/img/lights_and_shadows_pcss.webp)
@@ -438,7 +438,7 @@ more realistic*. In most cases, this should be kept at its default value of
 
 If positional shadows become too blurry after decreasing the shadow map size,
 you can counteract this by adjusting the
-[shadow atlas](doc_lights_and_shadows_shadow_atlas) quadrants to contain
+[shadow atlas](doc_lights_and_shadows#shadow-atlas) quadrants to contain
 fewer shadows. This will allow each shadow to be rendered at a higher resolution.
 
 ### Shadow filter mode
@@ -449,8 +449,8 @@ textures, as the texture detail will help make the dithering pattern less notice
 
 However, in projects with less detailed textures, the shadow dithering pattern
 may be more visible. To hide this pattern, you can either enable
-[doc_3d_antialiasing_taa](doc_3d_antialiasing_taa), [doc_3d_antialiasing_fsr2](doc_3d_antialiasing_fsr2),
-[doc_3d_antialiasing_fxaa](doc_3d_antialiasing_fxaa), or increase the shadow filter quality to
+[doc_3d_antialiasing_taa](doc_3d_antialiasing#temporal-antialiasing-taa), [doc_3d_antialiasing_fsr2](doc_3d_antialiasing#amd-fidelityfx-super-resolution-2.2-fsr2),
+[doc_3d_antialiasing_fxaa](doc_3d_antialiasing#fast-approximate-antialiasing-fxaa), or increase the shadow filter quality to
 **Soft Medium** or higher.
 
 The **Soft Very Low** setting will automatically decrease shadow blur to make

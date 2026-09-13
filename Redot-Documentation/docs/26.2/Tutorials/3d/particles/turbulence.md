@@ -15,7 +15,7 @@ There are two things you have to do before turbulence has any effect on a partic
 add movement to the particle system. Turbulence modifies a particle's movement
 direction and speed, but it doesn't create any. It is enough to give the particle system some
 gravity, but you can just as well create a number of attractors if you want the particles
-to follow a more complex movement path. Second, you need to [enable turbulence in the particle process material ](doc_process_material_properties_turbulence).
+to follow a more complex movement path. Second, you need to [enable turbulence in the particle process material ](doc_process_material_properties#turbulence).
 Once enabled, you have access to all the turbulence properties.
 
 :::warning

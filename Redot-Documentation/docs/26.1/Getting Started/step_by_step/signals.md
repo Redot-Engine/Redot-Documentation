@@ -31,17 +31,17 @@ observer pattern. You can learn more about it in
 :::
 
 We will now use a signal to make our Redot icon from the previous lesson
-([doc_scripting_player_input](/en/26.1/Getting%20Started/step_by_step/scripting_player_input)) move and stop by pressing a button.
+([doc_scripting_player_input](doc_scripting_player_input)) move and stop by pressing a button.
 
 :::note
 For this project, we will be following the Redot naming conventions.
 - **GDScript**: Classes (nodes) use PascalCase, variables and
   functions use snake_case, and constants use ALL_CAPS (See
-  [doc_gdscript_styleguide](/en/26.1/Tutorials/scripting/gdscript/gdscript_styleguide)).
+  [doc_gdscript_styleguide](doc_gdscript_styleguide)).
 
 - **C#**: Classes, export variables and methods use PascalCase,
   private fields use _camelCase, local variables and parameters use
-  camelCase (See [doc_c_sharp_styleguide](/en/26.1/Tutorials/scripting/c_sharp/c_sharp_style_guide)). Be careful to type
+  camelCase (See [doc_c_sharp_styleguide](doc_c_sharp_style_guide)). Be careful to type
   the method names precisely when connecting signals.
 
 :::
@@ -50,7 +50,7 @@ For this project, we will be following the Redot naming conventions.
 
 To add a button to our game, we will create a new scene which will include
 both a [Button](class_Button) and the ``sprite_2d.tscn`` scene we created in
-the [doc_scripting_first_script](/en/26.1/Getting%20Started/step_by_step/scripting_first_script) lesson.
+the [doc_scripting_first_script](doc_scripting_first_script) lesson.
 
 Create a new scene by going to the menu Scene -&gt; New Scene.
 
@@ -163,8 +163,7 @@ Let's replace the line with the ``pass`` keyword with code that'll toggle the
 node's motion.
 
 Our Sprite2D moves thanks to code in the ``_process()`` function. Redot provides
-a method to toggle processing on and off: :ref:`Node.set_process()
-&lt;class_Node_method_set_process&gt;`. Another method of the Node class,
+a method to toggle processing on and off: [Node.set_process()](class_Node_method_set_process). Another method of the Node class,
 ``is_processing()``, returns ``true`` if idle processing is active. We can use
 the ``not`` keyword to invert the value.
 
@@ -689,5 +688,5 @@ For example, an [Area2D](class_Area2D) representing a coin emits a
 ``body_entered`` signal whenever the player's physics body enters its collision
 shape, allowing you to know when the player collected it.
 
-In the next section, [doc_your_first_2d_game](/en/26.1/Getting%20Started/first_2d_game/index), you'll create a complete 2D
+In the next section, [doc_your_first_2d_game](doc_getting_started_first_2d_game), you'll create a complete 2D
 game and put everything you learned so far into practice.

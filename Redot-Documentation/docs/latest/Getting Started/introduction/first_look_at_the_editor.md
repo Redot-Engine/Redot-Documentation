@@ -5,7 +5,7 @@ look at the different main screens and docks to help you situate yourself.
 
 :::info
 For a comprehensive breakdown of the editor's interface and how to
-use it, see the [Editor manual](/en/latest/Tutorials/editor/index).
+use it, see the [Editor manual](doc_editor).
 
 :::
 
@@ -36,7 +36,7 @@ scale, network mode, and also the directory naming convention.
 
 :::info
 To learn the Project Manager's ins and outs, read
-[doc_project_manager](/en/latest/Tutorials/editor/project_manager).
+[doc_project_manager](doc_project_manager).
 
 :::
 
@@ -52,7 +52,7 @@ buttons in the center (active workspace is highlighted), and **playtest** button
 
 ![Image](/img/GettingStarted/introduction/img/editor_intro_top_menus.webp)
 
-Just below the workspace buttons, the opened [scenes](/en/latest/Getting%20Started/introduction/key_concepts_overview)
+Just below the workspace buttons, the opened [scenes](doc_key_concepts_overview)
 as tabs are seen. The plus (+) button right next to the tabs will add a new scene to the project.
 With the button on the far right, distraction-free mode can be toggled, which maximizes or restores 
 the **viewport**'s size by hiding **docks** in the interface:
@@ -73,12 +73,12 @@ Below is the 3D one:
 ![Image](/img/GettingStarted/introduction/img/editor_intro_toolbar_3d.webp)
 
 :::info
-To learn more on workspaces, read [doc_intro_to_the_editor_interface_four_screens](/en/latest/Getting%20Started/introduction/first_look_at_the_editor).
+To learn more on workspaces, read [doc_intro_to_the_editor_interface_four_screens](doc_first_look_at_the_editor).
 
 :::
 
 :::info
-To learn more on the 3D viewport and 3D in general, read [doc_introduction_to_3d](/en/latest/Tutorials/3d/introduction_to_3d).
+To learn more on the 3D viewport and 3D in general, read [doc_introduction_to_3d](doc_introduction_to_3d).
 
 :::
 
@@ -99,12 +99,12 @@ The **Inspector** allows you to edit the properties of a selected node:
 ![Image](/img/GettingStarted/introduction/img/editor_intro_inspector_dock.webp)
 
 :::info
-To read more on inspector, see [doc_editor_inspector_dock](/en/latest/Tutorials/editor/inspector_dock).
+To read more on inspector, see [doc_editor_inspector_dock](doc_inspector_dock).
 
 :::
 
 :::info
-Docks can be customized. Read more on [doc_customizing_editor_moving_docks](/en/latest/Tutorials/editor/customizing_editor).
+Docks can be customized. Read more on [doc_customizing_editor_moving_docks](doc_customizing_editor).
 
 :::
 
@@ -137,7 +137,7 @@ In the **3D screen**, you can work with meshes, lights, and design levels for
 ![Image](/img/GettingStarted/introduction/img/editor_intro_workspace_3d.webp)
 
 :::note
-Read [doc_introduction_to_3d](/en/latest/Tutorials/3d/introduction_to_3d) for more detail about the **3D
+Read [doc_introduction_to_3d](doc_introduction_to_3d) for more detail about the **3D
 main screen**.
 
 :::
@@ -154,7 +154,7 @@ and assets to use in your projects.
 
 :::info
 You can learn more about the asset library in
-[doc_what_is_assetlib](/en/Community/asset_library/what_is_assetlib).
+[doc_what_is_assetlib](doc_what_is_assetlib).
 
 :::
 
