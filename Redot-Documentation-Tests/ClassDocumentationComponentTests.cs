@@ -21,6 +21,50 @@ public sealed class ClassDocumentationComponentTests : IDisposable
     private readonly string _root = Path.Combine(Path.GetTempPath(), $"redot-component-tests-{Guid.NewGuid():N}");
 
     [Theory]
+    [InlineData(null)]
+    [InlineData("Node")]
+    public async Task ClassReference_IncludesUpstreamMitAttribution(string? className)
+    {
+        using var services = CreateServices();
+        var manager = services.GetRequiredService<VersionManagerService>();
+        services.GetRequiredService<ClassDocumentationCatalog>().Publish(new(
+            manager.LatestStableVersion, "test-revision", DateTimeOffset.UtcNow,
+            new Dictionary<string, ClassDocumentationEntry> { ["Node"] = new() { Name = "Node" } }));
+        await using var renderer = new TestRenderer(services);
+        int id = await renderer.Dispatcher.InvokeAsync(() => renderer.RenderAsync(typeof(ClassDocViewer),
+            ParameterView.FromDictionary(new Dictionary<string, object?>
+            {
+                ["VersionSlug"] = "26.1",
+                ["ClassName"] = className
+            })));
+
+        string text = await renderer.Dispatcher.InvokeAsync(() => renderer.Text(id));
+        Assert.Contains("MIT license", text);
+        Assert.Contains("Godot Engine contributors", text);
+        Assert.Contains("Juan Linietsky, Ariel Manzur", text);
+        Assert.DoesNotContain("CC BY 3.0", text);
+        Assert.Empty(renderer.Errors);
+    }
+
+    [Fact]
+    public async Task Manual_IncludesCcAttributionAndModificationNotice()
+    {
+        using var services = CreateServices();
+        File.WriteAllText(Path.Combine(_root, "docs", "26.1", "example.md"), "# Example");
+        await using var renderer = new TestRenderer(services);
+        int id = await renderer.Dispatcher.InvokeAsync(() => renderer.RenderAsync(typeof(DocViewer),
+            ParameterView.FromDictionary(new Dictionary<string, object?> { ["DocumentPath"] = "26.1/example" })));
+
+        string text = await renderer.Dispatcher.InvokeAsync(() => renderer.Text(id));
+        Assert.Contains("CC BY 3.0", text);
+        Assert.Contains("Juan Linietsky, Ariel Manzur and the Godot community", text);
+        Assert.Contains("modified from", text);
+        Assert.Contains("Sphinx/reStructuredText", text);
+        Assert.DoesNotContain("MIT license", text);
+        Assert.Empty(renderer.Errors);
+    }
+
+    [Theory]
     [InlineData(typeof(NavMenu), null)]
     [InlineData(typeof(ClassDocViewer), null)]
     [InlineData(typeof(ClassDocViewer), "Node")]
@@ -78,6 +122,7 @@ public sealed class ClassDocumentationComponentTests : IDisposable
         var manager = new VersionManagerService(new TestEnvironment(_root));
         manager.LoadContent();
         return new ServiceCollection().AddLogging()
+            .AddSingleton<DocRendererService>(new DocRendererService(new TestEnvironment(_root)))
             .AddSingleton(manager)
             .AddSingleton<ClassDocumentationCatalog>()
             .AddSingleton<ClassDocumentationRenderer>()

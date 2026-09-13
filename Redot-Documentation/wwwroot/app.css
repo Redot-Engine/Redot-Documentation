@@ -346,6 +346,19 @@ li ul li
     height: auto;
 }
 
+.documentation-attribution {
+    margin-top: 2.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #555;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.documentation-attribution p:last-child {
+    margin-bottom: 0;
+}
+
 .doc-viewer-toc {
     position: sticky;
     top: 5rem;

@@ -1,0 +1,30 @@
+<footer class="documentation-attribution" aria-label="Documentation license">
+    @if (ClassReference)
+    {
+        <p>
+            Class reference from <a href="https://github.com/Redot-Engine/redot-engine">Redot Engine</a>,
+            licensed under the <a href="/licenses/REDOT-ENGINE-MIT.txt" rel="license">MIT license</a>.
+            Copyright © 2024-present Redot Engine contributors,
+            © 2014-present Godot Engine contributors, and
+            © 2007-2014 Juan Linietsky, Ariel Manzur.
+        </p>
+    }
+    else
+    {
+        <p>
+            Except where otherwise noted, documentation is licensed under
+            <a href="https://creativecommons.org/licenses/by/3.0/" rel="license">CC BY 3.0</a>.
+            Credit: the Redot community, modified from
+            <a href="https://docs.godotengine.org/">Godot Engine documentation</a>
+            by Juan Linietsky, Ariel Manzur and the Godot community.
+            Adapted for Redot, converted from Sphinx/reStructuredText through MDX to Markdown,
+            and edited for this site.
+        </p>
+    }
+    <p><a href="/licenses">Licenses, authors, and third-party notices</a></p>
+</footer>
+
+@code {
+    [Parameter]
+    public bool ClassReference { get; set; }
+}

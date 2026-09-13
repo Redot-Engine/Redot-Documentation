@@ -23,4 +23,13 @@
       <Folder Include="wwwroot\Icons\" />
     </ItemGroup>
 
+    <!-- Keep canonical license/author files available in both the site and publish output. -->
+    <ItemGroup>
+        <Content Include="../LICENSE.txt" Link="wwwroot/licenses/WEBSITE-MIT.txt" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+        <Content Include="docs/LICENSE.txt" Link="wwwroot/licenses/CC-BY-3.0.txt" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+        <Content Include="../GODOT_AUTHORS.md" Link="wwwroot/licenses/GODOT_AUTHORS.md" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+        <Content Include="../REDOT_AUTHORS.md" Link="wwwroot/licenses/REDOT_AUTHORS.md" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+        <Content Include="../LICENSING.md" Link="LICENSING.md" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    </ItemGroup>
+
 </Project>

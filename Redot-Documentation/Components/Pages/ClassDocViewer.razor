@@ -29,6 +29,7 @@ else if (!string.IsNullOrWhiteSpace(ClassName))
     {
         <div class="doc-viewer-content class-doc-viewer">
             @((MarkupString)Renderer.RenderPage(_classDocumentation, _snapshot))
+            <DocumentationAttribution ClassReference="true" />
         </div>
     }
 }
@@ -72,6 +73,7 @@ else
                 </section>
             }
         }
+        <DocumentationAttribution ClassReference="true" />
     </div>
 }
 

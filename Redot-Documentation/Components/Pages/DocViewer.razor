@@ -25,6 +25,7 @@ else
     <div class="doc-viewer-layout">
         <article class="doc-viewer-content">
             @((MarkupString)renderedHtml)
+            <DocumentationAttribution />
         </article>
 
         @if (tableOfContents.Count > 0)

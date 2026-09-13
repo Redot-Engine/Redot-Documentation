@@ -15,9 +15,11 @@ In short:
 * You are free to modify, distribute, redistribute, and remix Redot to your heart's content, for any reason,
   both non-commercially and commercially.
 
-All the contents of this accompanying documentation are published under the permissive Creative Commons
+Unless otherwise noted, the manual and tutorials are published under the permissive Creative Commons
 Attribution 3.0 ([CC BY 3.0 ](https://creativecommons.org/licenses/by/3.0/)) license, with attribution
-to "Juan Linietsky, Ariel Manzur and the Godot & Redot Engine community."
+to "the Redot community, modified from an original work by Juan Linietsky, Ariel Manzur and the Godot community".
+The generated class reference retains its upstream MIT license. The website implementation
+is separately licensed under MIT; see [Licenses and attribution](/licenses).
 
 Logos and icons are generally under the same Creative Commons license. Note
 that some third-party libraries included with Redot's source code may have

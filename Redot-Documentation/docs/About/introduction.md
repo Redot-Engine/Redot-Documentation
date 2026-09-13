@@ -108,7 +108,8 @@ on [Redot Contributors Chat ](https://chat.redotengine.org/).
 
 All documentation content is licensed under the permissive Creative Commons Attribution 3.0
 ([CC BY 3.0 ](https://creativecommons.org/licenses/by/3.0/)) license,
-with attribution to "*Juan Linietsky, Ariel Manzur, and the Redot Engine community*"
-unless otherwise noted.
+with attribution to "*the Redot community, modified from an original work by Juan Linietsky, Ariel Manzur and the Godot community*"
+unless otherwise noted. The generated class reference retains its upstream MIT license.
+The website implementation is separately licensed under MIT; see [Licenses and attribution](/licenses).
 
 *Have fun reading and making games with Redot Engine!*

@@ -1,0 +1,19 @@
+Images and videos in this directory tree are excluded from the website's MIT
+license. This includes img/, video/, Icons/, docs_logo.svg, and favicon.png.
+Their existing licenses and copyright notices remain in force.
+
+Media imported from Godot Engine documentation is CC BY 3.0 unless otherwise
+noted. Attribution: the Redot community, modified from an original work by
+Juan Linietsky, Ariel Manzur and the Godot community.
+Original work: https://docs.godotengine.org/
+Source: https://github.com/godotengine/godot-docs
+License: https://creativecommons.org/licenses/by/3.0/
+Redot adapted the documentation and its presentation; see repository history
+for changes. Keep all asset-specific credits and notices.
+
+Font Awesome Free icons in Icons/Font-Awesome/ are CC BY 4.0, not CC BY 3.0.
+See Icons/Font-Awesome/LICENSE.txt for their attribution and full notice.
+Other separately licensed media retain their own terms. This notice does not
+grant a new license to assets with missing or uncertain provenance.
+
+See /licenses on the site and LICENSING.md in the repository for full details.

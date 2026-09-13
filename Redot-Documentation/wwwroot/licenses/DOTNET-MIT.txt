@@ -1,6 +1,8 @@
-MIT License
+The MIT License (MIT)
 
-Copyright (c) Redot Engine contributors
+Copyright (c) .NET Foundation and Contributors
+
+All rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,21 +21,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-Scope of this license
----------------------
-This license applies to the original website implementation, tests, and build
-and configuration code, beginning with the revision that introduces this MIT
-license. It does not replace the licenses on earlier revisions or revoke any
-Creative Commons permissions already granted.
-
-The following are excluded from this MIT grant:
-- Redot-Documentation/docs/ (CC BY 3.0 unless otherwise noted).
-- Images and videos anywhere under Redot-Documentation/wwwroot/, including
-  img/, video/, Icons/, logos, and favicon.png (their existing licenses apply).
-- GODOT_AUTHORS.md and REDOT_AUTHORS.md (documentation attribution records).
-- Third-party code and assets, including wwwroot/lib/ and Font Awesome.
-- Synchronized engine class-reference content and caches (upstream licenses).
-
-See LICENSING.md for attribution, license locations, and contribution guidance.
-File-specific and third-party notices remain in force.

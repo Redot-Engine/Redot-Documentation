@@ -243,9 +243,12 @@ link markup:
 
 ## License
 
-This documentation and every page it contains is published under the terms of
+Unless otherwise noted, the manual and tutorials are published under the terms of
 the [Creative Commons Attribution 3.0 license (CC BY 3.0)](https://creativecommons.org/licenses/by/3.0/),
-with attribution to "Juan Linietsky, Ariel Manzur and the Redot community".
+with attribution to "the Redot community, modified from an original work by Juan Linietsky, Ariel Manzur and the Godot community".
 
-By contributing to the documentation on the GitHub repository, you agree that
-your changes are distributed under this license.
+By contributing to the manual on the GitHub repository, you agree that your changes
+are distributed under this license, unless the affected material has a more specific license.
+The website implementation and generated engine class reference are separately licensed
+under MIT. Images, videos, and third-party assets retain their existing licenses.
+See [Licenses and attribution](/licenses) for the scope and notices.

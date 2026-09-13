@@ -56,8 +56,18 @@ The included Dockerfile installs Git and declares `/app/App_Data/class-docs` as 
 
 ## License
 
-With the exception of the `classes/` folder, all the content of this repository is licensed under the Creative Commons Attribution
-3.0 Unported license ([CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)) and is to be attributed to "the Redot community, modified from an original work by Juan Linietsky, Ariel Manzur and the Godot community".
-See [LICENSE.txt](/LICENSE.txt) for details.
+The website implementation is licensed under [MIT](LICENSE.txt), beginning with
+the revision introducing this license change. Earlier revisions retain their
+existing licenses; previously granted CC permissions are not revoked.
 
-The files in the `classes/` folder are derived from [Redot's main source repository](https://github.com/redot-engine/redot) and are distributed under the MIT license, with the same authors as above.
+Documentation in `Redot-Documentation/docs/` remains **CC BY 3.0 unless otherwise
+noted**. Images and videos anywhere under `Redot-Documentation/wwwroot/` retain
+their existing licenses. These are excluded from the website's MIT grant, as are
+third-party libraries and assets.
+
+The class reference is synchronized from [Redot Engine](https://github.com/Redot-Engine/redot-engine)
+and retains its upstream MIT license and copyright notices.
+
+See [LICENSING.md](LICENSING.md) for the complete scope, attribution, bundled
+third-party notices, and contribution terms. The deployed site's `/licenses`
+page provides the same distinctions and links to full license texts.
