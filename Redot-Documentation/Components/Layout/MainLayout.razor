@@ -11,6 +11,7 @@
 <MudLayout Class="docs-shell">
     <a class="skip-link" href="@(new Uri(Navigation.Uri).AbsolutePath + "#main-content")">Skip to content</a>
     <MudAppBar Fixed="true" Elevation="0" Class="docs-appbar">
+        <div class="header-brand-group">
         @if (HasNavigation)
         {
             <MudIconButton Icon="@Icons.Material.Filled.Menu" OnClick="ToggleDrawer" aria-label="Toggle documentation navigation" Class="drawer-toggle" />
@@ -18,13 +19,16 @@
         <MudLink Href="/" Class="docs-brand" Underline="Underline.None">
             <span class="brand-icon" aria-hidden="true"></span><span>Redot <strong>Docs</strong></span>
         </MudLink>
-        <MudSpacer />
+        </div>
+        <HeaderSearch />
+        <div class="header-website-group">
         <nav class="header-links" aria-label="Redot websites">
             <MudLink Href="https://redotengine.org/">Engine</MudLink>
             <MudLink Href="https://redotengine.org/community">Community</MudLink>
             <MudLink Href="https://github.com/Redot-Engine/Redot-Documentation">Source</MudLink>
         </nav>
         <MudButton Href="https://redotengine.org/download" Color="Color.Primary" Variant="Variant.Filled" Size="Size.Small" Class="header-download">Download</MudButton>
+        </div>
     </MudAppBar>
     @if (HasNavigation)
     {

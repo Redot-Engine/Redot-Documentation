@@ -19,6 +19,9 @@ public class Program
         builder.Services.AddMudServices();
         builder.Services.AddScoped<DocRendererService>();
         builder.Services.AddSingleton<VersionManagerService>();
+        builder.Services.AddSingleton<Redot_Documentation.Search.DocumentationSearchService>();
+        builder.Services.AddSingleton<Redot_Documentation.Search.IDocumentationSearch>(sp => sp.GetRequiredService<Redot_Documentation.Search.DocumentationSearchService>());
+        builder.Services.AddHostedService(sp => sp.GetRequiredService<Redot_Documentation.Search.DocumentationSearchService>());
         builder.Services.Configure<ClassDocumentationOptions>(
             builder.Configuration.GetSection(ClassDocumentationOptions.SectionName));
         builder.Services.AddSingleton<ClassDocumentationCatalog>();

@@ -1,0 +1,11 @@
+@page "/search"
+<PageTitle>Search — Redot Docs</PageTitle>
+<div class="search-page">
+    <h1>Search documentation</h1>
+    <SearchPanel Query="@Query" Version="@Version" Kind="@Kind" FullPage="true" />
+</div>
+@code {
+    [SupplyParameterFromQuery(Name = "q")] public string? Query { get; set; }
+    [SupplyParameterFromQuery(Name = "version")] public string? Version { get; set; }
+    [SupplyParameterFromQuery(Name = "kind")] public string? Kind { get; set; }
+}

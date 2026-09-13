@@ -99,3 +99,5 @@ The home page adapts the layout and descriptive text of the earlier Redot
 Docusaurus documentation site. Its reused descriptive content and the imported
 Getting Started guides and media retain CC BY 3.0 unless otherwise noted. The
 new Razor implementation is MIT. The imported media retains its original notices.
+
+Search uses Lucene.NET and Lucene.NET.Analysis.Common (Apache-2.0), J2N (see its bundled notices), and Html Agility Pack (MIT). Their license texts and notices are included under `Redot-Documentation/wwwroot/licenses/` and linked from the site license page.

@@ -1,0 +1,41 @@
+@implements IAsyncDisposable
+@inject IDialogService Dialogs
+@inject NavigationManager Navigation
+@inject Redot_Documentation.Services.VersionManagerService Versions
+@inject IJSRuntime JS
+<MudButton id="documentation-search-trigger" Class="header-search" OnClick="Open" Variant="Variant.Outlined" aria-label="Search documentation">
+    <MudIcon Icon="@Icons.Material.Filled.Search" /><span class="search-placeholder">Search documentation…</span><kbd>Ctrl / ⌘ K</kbd>
+</MudButton>
+@code {
+    private IJSObjectReference? _module;
+    private DotNetObjectReference<HeaderSearch>? _reference;
+    private bool _open;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender) return;
+        _module = await JS.InvokeAsync<IJSObjectReference>("import", "./js/search.js");
+        _reference = DotNetObjectReference.Create(this);
+        await _module.InvokeVoidAsync("register", _reference);
+    }
+    [JSInvokable] public async Task Open()
+    {
+        if (_open) return;
+        _open = true;
+        try
+        {
+            string[] parts = Navigation.ToBaseRelativePath(Navigation.Uri).Split('/');
+            string version = parts.Length > 1 && string.Equals(parts[0], "en", StringComparison.OrdinalIgnoreCase) && Versions.TryGetVersionProvider(parts[1],out _) ? parts[1] : Versions.LatestStableVersion.Slug;
+            bool mobile = _module is not null && await _module.InvokeAsync<bool>("isMobile");
+            var dialog = await Dialogs.ShowAsync<SearchDialog>("Search",new DialogParameters { ["Version"] = version },new DialogOptions { FullWidth = true, MaxWidth = MaxWidth.Medium, FullScreen = mobile, CloseButton = true, CloseOnEscapeKey = true });
+            await dialog.Result;
+            if (_module is not null) await _module.InvokeVoidAsync("restoreFocus");
+        }
+        finally { _open = false; }
+    }
+    public async ValueTask DisposeAsync()
+    {
+        try { if (_module is not null) { await _module.InvokeVoidAsync("unregister"); await _module.DisposeAsync(); } }
+        catch (JSDisconnectedException) { }
+        _reference?.Dispose();
+    }
+}

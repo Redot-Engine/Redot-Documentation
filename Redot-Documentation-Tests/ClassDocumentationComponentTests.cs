@@ -1,4 +1,6 @@
 using System.Text.Json;
+using Redot_Documentation.Search;
+using Microsoft.AspNetCore.Components.Web;
 using MudBlazor.Services;
 using MudBlazor.Extensions;
 using Microsoft.AspNetCore.Components;
@@ -21,6 +23,73 @@ namespace Redot_Documentation_Tests;
 public sealed class ClassDocumentationComponentTests : IDisposable
 {
     private readonly string _root = Path.Combine(Path.GetTempPath(), $"redot-component-tests-{Guid.NewGuid():N}");
+
+    [Fact]
+    public async Task Search_KeepsResultsAndHighlighting_AndRejectsOutOfOrderResponses()
+    {
+        var search = new ControlledSearch();
+        await using var services = CreateServices(search);
+        await using var renderer = new TestRenderer(services);
+        int id = await renderer.Dispatcher.InvokeAsync(() => renderer.RenderAsync(typeof(SearchPanel),
+            ParameterView.FromDictionary(new Dictionary<string, object?> { ["Query"] = "alpha" })));
+        var input = await renderer.Dispatcher.InvokeAsync(() => renderer.FindComponent<MudBlazor.MudTextField<string>>(id));
+        Assert.NotNull(input);
+        Task oldRequest = renderer.Dispatcher.InvokeAsync(() => input.ValueChanged.InvokeAsync("slow"));
+        try
+        {
+            await search.Started.Task.WaitAsync(TimeSpan.FromSeconds(5));
+            string pendingText = await renderer.Dispatcher.InvokeAsync(() => renderer.Text(id));
+            Assert.Contains("alpha result", pendingText);
+            Assert.Contains("<mark>alpha</mark>", pendingText);
+            string before = services.GetRequiredService<NavigationManager>().Uri;
+            await renderer.Dispatcher.InvokeAsync(() => input.OnKeyDown.InvokeAsync(new KeyboardEventArgs { Key = "Enter" }));
+            Assert.Equal(before, services.GetRequiredService<NavigationManager>().Uri);
+            await renderer.Dispatcher.InvokeAsync(() => input.ValueChanged.InvokeAsync("beta"));
+            Assert.Contains("beta result", await renderer.Dispatcher.InvokeAsync(() => renderer.Text(id)));
+        }
+        finally { search.Release.Set(); }
+        await oldRequest;
+        string finalText = await renderer.Dispatcher.InvokeAsync(() => renderer.Text(id));
+        Assert.Contains("beta result", finalText);
+        Assert.DoesNotContain("slow result", finalText);
+        Assert.Contains("<mark>beta</mark>", finalText);
+        await renderer.Dispatcher.InvokeAsync(() => input.ValueChanged.InvokeAsync(""));
+        Assert.DoesNotContain("beta result", await renderer.Dispatcher.InvokeAsync(() => renderer.Text(id)));
+        Assert.Empty(renderer.Errors);
+    }
+
+    [Fact]
+    public async Task Search_UrlParameterEchoDoesNotRepeatCompletedQuery()
+    {
+        var search = new ControlledSearch();
+        await using var services = CreateServices(search);
+        await using var renderer = new TestRenderer(services);
+        ParameterView Parameters(string query) => ParameterView.FromDictionary(new Dictionary<string, object?>
+        { ["Query"] = query, ["Version"] = "26.1", ["Kind"] = "all", ["FullPage"] = true });
+        int id = await renderer.Dispatcher.InvokeAsync(() => renderer.RenderAsync(typeof(SearchPanel), Parameters("alpha")));
+        await renderer.Dispatcher.InvokeAsync(async () =>
+        {
+            var input = renderer.FindComponent<MudBlazor.MudTextField<string>>(id)!;
+            await input.ValueChanged.InvokeAsync("beta");
+            await renderer.UpdateAsync(id, Parameters("beta"));
+        });
+        Assert.Equal(2, search.Calls);
+        Assert.Contains("beta result", await renderer.Dispatcher.InvokeAsync(() => renderer.Text(id)));
+        Assert.Empty(renderer.Errors);
+    }
+
+    private sealed class ControlledSearch : IDocumentationSearch
+    {
+        public int Calls;
+        public TaskCompletionSource Started { get; } = new(TaskCreationOptions.RunContinuationsAsynchronously);
+        public ManualResetEventSlim Release { get; } = new(false);
+        public SearchResponse Search(string version, string query, string kind = "all", int limit = 30)
+        {
+            Interlocked.Increment(ref Calls);
+            if (query == "slow") { Started.TrySetResult(); Release.Wait(TimeSpan.FromSeconds(10)); }
+            return new(true, [new(query + " result", query, "/en/26.1/" + query, "guides", "alpha beta slow")]);
+        }
+    }
 
     [Fact]
     public async Task NavMenu_SelectsConfiguredVersionThroughMudSelect()
@@ -181,7 +250,7 @@ public sealed class ClassDocumentationComponentTests : IDisposable
         Assert.Empty(renderer.Errors);
     }
 
-    private ServiceProvider CreateServices()
+    private ServiceProvider CreateServices(IDocumentationSearch? search = null)
     {
         DocumentationVersion[] versions =
         [
@@ -194,6 +263,7 @@ public sealed class ClassDocumentationComponentTests : IDisposable
         var manager = new VersionManagerService(new TestEnvironment(_root));
         manager.LoadContent();
         return new ServiceCollection().AddLogging()
+            .AddSingleton<IDocumentationSearch>(search ?? new ControlledSearch())
             .AddMudServices(options => options.PopoverOptions.CheckForPopoverProvider = false)
             .AddSingleton<DocRendererService>(new DocRendererService(new TestEnvironment(_root)))
             .AddSingleton(manager)
@@ -219,6 +289,8 @@ public sealed class ClassDocumentationComponentTests : IDisposable
             await RenderRootComponentAsync(id, parameters);
             return id;
         }
+
+        public Task UpdateAsync(int id, ParameterView parameters) => RenderRootComponentAsync(id, parameters);
 
         public void Remove(int id) => RemoveRootComponent(id);
 
@@ -270,6 +342,7 @@ public sealed class ClassDocumentationComponentTests : IDisposable
     private sealed class TestNavigationManager : NavigationManager
     {
         public TestNavigationManager() => Initialize("http://localhost/", "http://localhost/en/26.1/Classes");
+        protected override void NavigateToCore(string uri, NavigationOptions options) => NavigateToCore(uri, options.ForceLoad);
         protected override void NavigateToCore(string uri, bool forceLoad)
         {
             Uri = ToAbsoluteUri(uri).AbsoluteUri;

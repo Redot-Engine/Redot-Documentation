@@ -1,0 +1,9 @@
+<MudDialog Class="documentation-search-dialog" DefaultFocus="DefaultFocus.None">
+    <TitleContent><MudText Typo="Typo.h6">Search documentation</MudText></TitleContent>
+    <DialogContent><SearchPanel Version="@Version" ResultChosen="Close" /></DialogContent>
+</MudDialog>
+@code {
+    [CascadingParameter] private IMudDialogInstance Dialog { get; set; } = null!;
+    [Parameter] public string Version { get; set; } = "";
+    private void Close() => Dialog.Close();
+}
