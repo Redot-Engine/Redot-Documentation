@@ -71,3 +71,20 @@ and retains its upstream MIT license and copyright notices.
 See [LICENSING.md](LICENSING.md) for the complete scope, attribution, bundled
 third-party notices, and contribution terms. The deployed site's `/licenses`
 page provides the same distinctions and links to full license texts.
+
+## Interface and theme
+
+The site uses MudBlazor 9.9.0 with a shared Interactive Server root and prerendered
+initial content. `Components/Layout/RedotTheme.cs` defines the Redot palette;
+`wwwroot/app.css` styles the responsive home page, documentation layout, and HTML
+produced by the Markdown and class-reference renderers. Bootstrap assets remain
+in the repository with their notices but are no longer loaded by the site.
+
+The home page uses the configured latest stable version for its guide and class
+links. Getting Started content is included for each configured version; its
+images live in `wwwroot/img/GettingStarted/`. Keep homepage links and imported
+content references valid when changing versions or moving documentation.
+
+MudBlazor providers live in `MainLayout`; nested navigation and viewer components
+inherit the root render mode. Rendered Markdown stays HTML, with CSS styling and
+small JavaScript helpers for code tabs and syntax highlighting.

@@ -1,0 +1,15 @@
+{
+  "Slug": "getting_started_first_3d_game",
+  "RankingPriorities": {
+    "01.game_setup.md": 0,
+    "02.player_input.md": 1,
+    "03.player_movement_code.md": 2,
+    "04.mob_scene.md": 3,
+    "05.spawning_mobs.md": 4,
+    "06.jump_and_squash.md": 5,
+    "07.killing_player.md": 6,
+    "08.score_and_replay.md": 7,
+    "09.adding_animations.md": 8,
+    "going_further.md": 9
+  }
+}

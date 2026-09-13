@@ -1,0 +1,12 @@
+{
+  "Slug": "getting_started_first_2d_game",
+  "RankingPriorities": {
+    "01.project_setup.md": 0,
+    "02.player_scene.md": 1,
+    "03.coding_the_player.md": 2,
+    "04.creating_the_enemy.md": 3,
+    "05.the_main_game_scene.md": 4,
+    "06.heads_up_display.md": 5,
+    "07.finishing-up.md": 6
+  }
+}

@@ -1,7 +1,98 @@
-﻿@page "/"
+@page "/"
+@inject Redot_Documentation.Services.VersionManagerService Versions
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Redot Documentation</PageTitle>
+<HeadContent><meta name="description" content="Official Redot Engine documentation, tutorials, class reference, and contribution guides." /></HeadContent>
 
-<h1>Hello, world!</h1>
+<div class="docs-home">
+    <section class="home-hero" aria-labelledby="home-title">
+        <MudContainer MaxWidth="MaxWidth.Large">
+            <MudGrid Spacing="6" Class="align-center">
+                <MudItem xs="12" md="6">
+                    <p class="eyebrow"><span class="brand-dot"></span> REDOT ENGINE · @Versions.LatestStableVersion.FriendlyName</p>
+                    <h1 id="home-title">Documentation</h1>
+                    <p class="home-lede">Learn the engine, find API details quickly, and move from first scene to shipped project with the official Redot docs.</p>
+                    <div class="home-actions">
+                        <MudButton Href="@Doc("Getting Started/introduction/index")" Color="Color.Primary" Variant="Variant.Filled" Size="Size.Large" EndIcon="@Icons.Material.Filled.ArrowForward">Start Reading</MudButton>
+                        <MudButton Href="@Doc("Classes")" Color="Color.Primary" Variant="Variant.Outlined" Size="Size.Large">Class Reference</MudButton>
+                    </div>
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudPaper Elevation="0" Class="hero-preview">
+                        <div class="preview-bar"><span>● <span>● ●</span></span><span>MADE WITH REDOT</span></div>
+                        <img src="/img/GettingStarted/introduction/img/editor_intro_workspace_3d.webp" alt="Redot editor showing a 3D workspace" width="1280" height="720" fetchpriority="high" />
+                        <div class="preview-caption">Your next idea starts here.</div>
+                    </MudPaper>
+                </MudItem>
+            </MudGrid>
+        </MudContainer>
+    </section>
 
-Welcome to your new app.
+    <MudContainer MaxWidth="MaxWidth.Large" Class="home-sections">
+        <section class="entry-section" aria-labelledby="entry-title">
+            <div class="section-heading"><h2 id="entry-title">Find the right entry point</h2><p>Jump straight to the material that matches what you are trying to do.</p></div>
+            <MudGrid Spacing="3">
+                @foreach (var entry in Entries)
+                {
+                    <MudItem xs="12" sm="6" lg="3">
+                        <MudCard Elevation="0" Class="entry-card">
+                            <MudCardContent>
+                                <span class="entry-icon"><MudIcon Icon="@entry.Icon" Size="Size.Medium" /></span>
+                                <h3>@entry.Title</h3><p>@entry.Description</p>
+                            </MudCardContent>
+                            <MudCardActions><MudButton Href="@entry.Href" Color="Color.Primary" EndIcon="@Icons.Material.Filled.ArrowForward">@entry.Action</MudButton></MudCardActions>
+                        </MudCard>
+                    </MudItem>
+                }
+            </MudGrid>
+        </section>
+
+        <section class="topic-band" aria-labelledby="topics-title">
+            <div><h2 id="topics-title">Popular topics</h2><p>Common routes through the documentation for building, scripting, extending, and shipping projects.</p></div>
+            <div class="topic-grid">
+                @foreach (var topic in Topics)
+                {
+                    <MudButton Href="@topic.Href" Variant="Variant.Outlined" Class="topic-link" EndIcon="@Icons.Material.Filled.NorthEast">@topic.Title</MudButton>
+                }
+            </div>
+        </section>
+
+        <section class="lookup-section" aria-labelledby="lookup-title">
+            <MudGrid Spacing="6" Class="align-center">
+                <MudItem xs="12" md="5"><MudPaper Elevation="0" Class="lookup-preview"><img src="/img/GettingStarted/introduction/img/editor_intro_search_help.webp" alt="Redot editor help search panel" loading="lazy" /></MudPaper></MudItem>
+                <MudItem xs="12" md="7">
+                    <p class="eyebrow">LESS SEARCHING. MORE CREATING.</p>
+                    <h2 id="lookup-title">Built for fast lookup</h2>
+                    <p>The docs are organized around the way Redot is used day to day: guided learning for new projects, focused tutorials for specific systems, and a generated class reference for exact API details.</p>
+                    <div class="lookup-actions">
+                        <MudButton Href="@Doc("Getting Started/step_by_step/nodes_and_scenes")" Variant="Variant.Outlined">Nodes and scenes</MudButton>
+                        <MudButton Href="@Doc("Tutorials/scripting/index")" Variant="Variant.Outlined">Scripting</MudButton>
+                        <MudButton Href="@Doc("Tutorials/export/index")" Variant="Variant.Outlined">Export workflow</MudButton>
+                    </div>
+                </MudItem>
+            </MudGrid>
+        </section>
+        <DocumentationAttribution />
+    </MudContainer>
+</div>
+
+@code {
+    private string Doc(string path) => $"/en/{Uri.EscapeDataString(Versions.LatestStableVersion.Slug)}/{string.Join('/', path.Split('/').Select(Uri.EscapeDataString))}";
+    private record Entry(string Title, string Description, string Action, string Href, string Icon);
+    private Entry[] Entries =>
+    [
+        new("Start Learning", "Learn the editor, scenes, nodes, scripting, and project workflow from the beginning.", "Open the guide", Doc("Getting Started/introduction/index"), Icons.Material.Outlined.School),
+        new("Class Reference", "Search engine APIs, node properties, methods, signals, constants, and examples.", "Browse classes", Doc("Classes"), Icons.Material.Outlined.DataObject),
+        new("Tutorials", "Build practical knowledge across 2D, 3D, animation, rendering, scripting, UI, and export.", "Explore tutorials", Doc("Tutorials/index"), Icons.Material.Outlined.AutoStories),
+        new("Contribute", "Improve the engine, docs, translations, examples, bug reports, and review workflow.", "Get involved", "/en/Contributing/how_to_contribute", Icons.Material.Outlined.Groups)
+    ];
+    private (string Title, string Href)[] Topics =>
+    [
+        ("First 2D Game", Doc("Getting Started/first_2d_game/index")),
+        ("First 3D Game", Doc("Getting Started/first_3d_game/index")),
+        ("GDScript", Doc("Tutorials/scripting/gdscript/gdscript_basics")),
+        ("Exporting", Doc("Tutorials/export/index")),
+        ("Editor Plugins", Doc("Tutorials/plugins/editor/index")),
+        ("Engine Development", "/en/Contributing/Development/index")
+    ];
+}

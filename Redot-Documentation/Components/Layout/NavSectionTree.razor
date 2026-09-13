@@ -1,51 +1,45 @@
 @using Redot_Documentation.Versioning
-@rendermode InteractiveServer
-<details class="nav-section" style="@GetLevelStyle(Level)">
-    <summary class="nav-section-summary">
-        <span class="nav-section-disclosure" aria-hidden="true">›</span>
-        @if (Section.IndexArticle != null)
-        {
-            <NavLink class="nav-link nav-section-link" href="@BuildArticleLink(Section.IndexArticle)">
-                @Section.DisplayName
-            </NavLink>
-        }
-        else
-        {
-            <span class="nav-link nav-section-link nav-section-no-index">@Section.DisplayName</span>
-        }
-    </summary>
+@inject NavigationManager Navigation
 
-    <div class="nav-section-children">
+<MudNavGroup Title="@Section.DisplayName" @bind-Expanded="_expanded">
+    @if (_expanded)
+    {
+        @if (Section.IndexArticle is not null)
+        {
+            <MudNavLink Href="@BuildArticleLink(Section.IndexArticle)" Match="NavLinkMatch.All">Overview</MudNavLink>
+        }
         @foreach (IRanking ranking in Section.GetSortedRankings())
         {
-            @if (ranking is Article article)
+            if (ranking is Article article)
             {
-                <NavLink class="nav-link nav-article-link" href="@BuildArticleLink(article)" style="@GetLevelStyle(Level + 1)">
-                    @NormalizeArticleName(article.DisplayName)
-                </NavLink>
+                <MudNavLink Href="@BuildArticleLink(article)" Match="NavLinkMatch.All">@article.DisplayName.Replace(".md", "").Replace('_', ' ')</MudNavLink>
             }
-            else if (ranking is Section subSection)
+            else if (ranking is Section child)
             {
-                <NavSectionTree Section="subSection" BuildArticleLink="BuildArticleLink" Level="@(Level + 1)" />
+                <NavSectionTree @key="child.Path" Section="child" BuildArticleLink="BuildArticleLink" Level="@(Level + 1)" />
             }
         }
-    </div>
-</details>
+    }
+</MudNavGroup>
 
 @code {
-    [Parameter, EditorRequired]
-    public Section Section { get; set; } = null!;
-
-    [Parameter, EditorRequired]
-    public Func<Article, string> BuildArticleLink { get; set; } = null!;
-
-    [Parameter]
-    public int Level { get; set; }
-
-    private static string GetLevelStyle(int level) => $"--section-level: {level};";
-
-    private static string NormalizeArticleName(string articleName)
-        => articleName.EndsWith(".md", StringComparison.OrdinalIgnoreCase)
-            ? articleName[..^3]
-            : articleName;
+    [Parameter, EditorRequired] public Section Section { get; set; } = null!;
+    [Parameter, EditorRequired] public Func<Article, string> BuildArticleLink { get; set; } = null!;
+    [Parameter] public int Level { get; set; }
+    private bool _expanded;
+    private string? _lastLocation;
+    protected override void OnParametersSet()
+    {
+        if (_lastLocation == Navigation.Uri) return;
+        _lastLocation = Navigation.Uri;
+        _expanded = ContainsCurrentArticle(Section);
+    }
+    private bool ContainsCurrentArticle(Section section)
+    {
+        string current = Uri.UnescapeDataString(new Uri(Navigation.Uri).AbsolutePath).TrimEnd('/');
+        if (current.EndsWith(".md", StringComparison.OrdinalIgnoreCase)) current = current[..^3];
+        bool Matches(Article article) => current.Equals(Uri.UnescapeDataString(BuildArticleLink(article)).TrimEnd('/'), StringComparison.OrdinalIgnoreCase);
+        return (section.IndexArticle is not null && Matches(section.IndexArticle))
+            || section.Articles.Any(Matches) || section.SubSections.Any(ContainsCurrentArticle);
+    }
 }

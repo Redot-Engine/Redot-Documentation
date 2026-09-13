@@ -1,0 +1,11 @@
+{
+  "Slug": "getting_started_introduction",
+  "RankingPriorities": {
+    "introduction_to_godot.md": 0,
+    "learn_to_code_with_gdscript.md": 1,
+    "key_concepts_overview.md": 2,
+    "first_look_at_the_editor.md": 3,
+    "learning_new_features.md": 4,
+    "godot_design_philosophy.md": 5
+  }
+}

@@ -1,79 +1,43 @@
-﻿@using Redot_Documentation.Services
+@using Redot_Documentation.Services
 @using Redot_Documentation.Versioning
 @using Redot_Documentation.ClassDocumentation
 @implements IDisposable
 @inject VersionManagerService VersionManagerService
 @inject NavigationManager NavigationManager
 @inject ClassDocumentationCatalog ClassDocumentationCatalog
-@rendermode InteractiveServer
 
-<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/">
-            <div class="horizontal-stack">
-                <div class="redot-logo-icon">Redot Docs</div>
-                Redot Docs
-            </div>
-            
-        </a>
-    </div>
-</div>
-
-<input type="checkbox" title="Navigation menu" class="navbar-toggler"/>
-
-<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-    <nav class="nav flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
-
-            <label class="version-label" for="version-selector">Version</label>
-            <select id="version-selector" class="version-select" @onchange="OnVersionChanged" value="@_selectedVersionSlug">
-                @foreach (DocumentationVersion version in _availableVersions)
-                {
-                    <option value="@version.Slug">@version.FriendlyName</option>
-                }
-            </select>
-
-            @foreach (IRanking ranking in _rankings)
+<div class="docs-nav">
+    <p class="nav-kicker">DOCUMENTATION</p>
+    <MudSelect T="string" Label="Version" Value="@_selectedVersionSlug" ValueChanged="OnVersionChanged" Variant="Variant.Outlined" Margin="Margin.Dense" Class="version-select">
+        @foreach (DocumentationVersion version in _availableVersions)
+        {
+            <MudSelectItem T="string" Value="@version.Slug">@version.FriendlyName</MudSelectItem>
+        }
+    </MudSelect>
+    <MudNavMenu Dense="true" aria-label="Documentation sections">
+        <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Home">Documentation home</MudNavLink>
+        @foreach (IRanking ranking in _rankings)
+        {
+            @if (ranking is Article article)
             {
-                @if (ranking is Article article)
+                <MudNavLink Href="@GetArticleLink(article)">@NormalizeArticleName(article.DisplayName)</MudNavLink>
+            }
+            else if (ranking is Section section)
+            {
+                <NavSectionTree @key="section.Path" Section="section" BuildArticleLink="GetArticleLink" />
+            }
+        }
+        <MudNavGroup Title="Classes" @bind-Expanded="_classesExpanded">
+            <MudNavLink Href="@GetClassesLink()" Match="NavLinkMatch.All">Browse all classes</MudNavLink>
+            @if (_classesExpanded)
+            {
+                @foreach (ClassDocumentationEntry entry in _classes)
                 {
-                    <NavLink class="nav-link nav-article-link" href="@GetArticleLink(article)">
-                        @NormalizeArticleName(article.DisplayName)
-                    </NavLink>
-                }
-                else if (ranking is Section section)
-                {
-                    <NavSectionTree Section="section" BuildArticleLink="GetArticleLink" Level="0" />
+                    <MudNavLink @key="entry.Name" Href="@ClassDocumentationRenderer.ClassPath(_selectedVersionSlug, entry.Name)" Match="NavLinkMatch.All">@entry.Name</MudNavLink>
                 }
             }
-
-            <details class="nav-section nav-classes-section" open="@IsClassesRoute()" style="--section-level: 0;">
-                <summary class="nav-section-summary">
-                    <span class="nav-section-disclosure" aria-hidden="true">›</span>
-                    <NavLink class="nav-link nav-section-link" href="@GetClassesLink()">
-                        Classes
-                    </NavLink>
-                </summary>
-
-                <div class="nav-section-children nav-classes-list">
-                    @foreach (ClassDocumentationEntry classDocumentation in _classes)
-                    {
-                        <a @key="classDocumentation.Name"
-                           class="nav-link nav-article-link nav-class-link"
-                           href="@ClassDocumentationRenderer.ClassPath(_selectedVersionSlug, classDocumentation.Name)"
-                           style="--section-level: 1;">
-                            @classDocumentation.Name
-                        </a>
-                    }
-                </div>
-            </details>
-        </div>
-
-
-    </nav>
+        </MudNavGroup>
+    </MudNavMenu>
 </div>
 
 @code {
@@ -83,6 +47,7 @@
     private IReadOnlyList<IRanking> _rankings = [];
     private IReadOnlyList<ClassDocumentationEntry> _classes = [];
     private bool _disposed;
+    private bool _classesExpanded;
 
     protected override void OnInitialized()
     {
@@ -98,9 +63,8 @@
         NavigationManager.LocationChanged += OnLocationChanged;
     }
 
-    private void OnVersionChanged(ChangeEventArgs changeEventArgs)
+    private void OnVersionChanged(string selectedVersion)
     {
-        string? selectedVersion = changeEventArgs.Value?.ToString();
         if (string.IsNullOrWhiteSpace(selectedVersion))
             return;
 
@@ -139,6 +103,7 @@
 
         _selectedVersionSlug = provider?.Version.Slug ?? VersionManagerService.LatestStableVersion.Slug;
         LoadRankings();
+        _classesExpanded = IsClassesRoute();
     }
 
     private string GetVersionLandingPath(VersionProvider provider)
@@ -189,6 +154,14 @@
             return $"/en/{Uri.EscapeDataString(provider.Version.Slug)}/Classes";
         }
 
+        if (segments.Length >= 3 && string.Equals(segments[0], "en", StringComparison.OrdinalIgnoreCase))
+        {
+            string document = Uri.UnescapeDataString(string.Join('/', segments.Skip(2)));
+            string candidate = Path.GetFullPath(Path.Combine(provider.VersionRoot, document.EndsWith(".md", StringComparison.OrdinalIgnoreCase) ? document : document + ".md"));
+            if (candidate.StartsWith(provider.VersionRoot + Path.DirectorySeparatorChar, StringComparison.Ordinal)
+                && File.Exists(candidate))
+                return provider.GetReferentialPath(candidate)[..^3] + new Uri(NavigationManager.Uri).Fragment;
+        }
         return GetVersionLandingPath(provider);
     }
 

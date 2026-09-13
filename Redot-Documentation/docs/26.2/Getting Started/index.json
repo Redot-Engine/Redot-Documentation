@@ -1,0 +1,9 @@
+{
+  "Slug": "getting_started",
+  "RankingPriorities": {
+    "introduction": 0,
+    "step_by_step": 1,
+    "first_2d_game": 2,
+    "first_3d_game": 3
+  }
+}

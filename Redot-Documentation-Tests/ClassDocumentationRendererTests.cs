@@ -88,7 +88,7 @@ public sealed class ClassDocumentationRendererTests
 
         string html = renderer.RenderPage(node, snapshot with { Classes = classes });
 
-        string[] panelIds = Regex.Matches(html, "id=\"(?<id>class-doc-tab-[^\"]+)\"")
+        string[] panelIds = Regex.Matches(html, "<div id=\"(?<id>class-doc-tab-[^\"]+)\"")
             .Select(match => match.Groups["id"].Value)
             .ToArray();
         string[] targets = Regex.Matches(html, "data-tab-target=\"#(?<id>class-doc-tab-[^\"]+)\"")
@@ -98,6 +98,7 @@ public sealed class ClassDocumentationRendererTests
         Assert.Equal(4, panelIds.Length);
         Assert.Equal(panelIds.Length, panelIds.Distinct(StringComparer.Ordinal).Count());
         Assert.Equal(panelIds.Order(), targets.Order());
+        TabMarkupAssertions.AssertAccessibleTabs(html, 4);
     }
 
     [Fact]

@@ -6,16 +6,15 @@
 @inject ClassDocumentationCatalog Catalog
 @inject ClassDocumentationRenderer Renderer
 @inject IJSRuntime JS
-@rendermode InteractiveServer
 
 <PageTitle>@PageTitleText</PageTitle>
 
 @if (_snapshot is null)
 {
     <h1>Classes</h1>
-    <div class="class-status class-status-warning">
+    <MudAlert Severity="Severity.Info" Variant="Variant.Outlined">
         Class documentation is not available for this version.
-    </div>
+    </MudAlert>
 }
 else if (!string.IsNullOrWhiteSpace(ClassName))
 {
@@ -40,13 +39,11 @@ else
         <h1>Classes</h1>
         <p>API reference synchronized from Redot Engine revision <code>@ShortCommit</code>.</p>
 
-        <label for="class-search">Find a class</label>
-        <input id="class-search"
-               class="class-search"
-               type="search"
-               placeholder="Search @(_snapshot.Classes.Count) classes"
-               @bind="_searchText"
-               @bind:event="oninput" />
+        <MudTextField T="string" @bind-Value="_searchText" Label="Find a class"
+                      Placeholder="@($"Search {_snapshot.Classes.Count} classes")"
+                      Variant="Variant.Outlined" Adornment="Adornment.Start"
+                      AdornmentIcon="@Icons.Material.Filled.Search" Immediate="true"
+                      Clearable="true" Class="class-search-field" />
 
         @if (FilteredClasses.Count == 0)
         {

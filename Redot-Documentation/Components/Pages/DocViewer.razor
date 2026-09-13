@@ -9,38 +9,33 @@
 @inject IJSRuntime JS
 
 
-<PageTitle>Introduction</PageTitle>
+<PageTitle>@(tableOfContents.FirstOrDefault()?.Title ?? "Documentation") — Redot Docs</PageTitle>
 
 @if (isLoading)
 {
-    <p>Loading...</p>
+    <MudProgressLinear Color="Color.Primary" Indeterminate="true" aria-label="Loading documentation" />
 }
 else if (errorMessage is not null)
 {
-    <h3>Unable to load document</h3>
-    <p>@errorMessage</p>
+    <MudAlert Severity="Severity.Error">Unable to load document: @errorMessage</MudAlert>
 }
 else
 {
     <div class="doc-viewer-layout">
         <article class="doc-viewer-content">
+            @if (tableOfContents.Count > 0)
+            {
+                <MudExpansionPanels Class="mobile-toc" Elevation="0" Outlined="true">
+                    <MudExpansionPanel Text="On this page"><DocumentToc Items="tableOfContents" BuildHref="BuildTableOfContentsHref" /></MudExpansionPanel>
+                </MudExpansionPanels>
+            }
             @((MarkupString)renderedHtml)
             <DocumentationAttribution />
         </article>
 
         @if (tableOfContents.Count > 0)
         {
-            <aside class="doc-viewer-toc" aria-label="Quick navigation">
-                <h4>On this page</h4>
-                <ul>
-                    @foreach (var item in tableOfContents)
-                    {
-                        <li class="toc-level-@(item.Level)">
-                            <a href="@BuildTableOfContentsHref(item.Id)">@item.Title</a>
-                        </li>
-                    }
-                </ul>
-            </aside>
+            <div class="desktop-toc"><DocumentToc Items="tableOfContents" BuildHref="BuildTableOfContentsHref" /></div>
         }
     </div>
 }
@@ -68,7 +63,7 @@ else
     private bool isLoading = true;
     private string renderedHtml = string.Empty;
     private string? errorMessage;
-    private List<TableOfContentsItem> tableOfContents = [];
+    private List<DocumentHeading> tableOfContents = [];
 
     protected override async Task OnParametersSetAsync()
     {
@@ -100,7 +95,7 @@ else
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender)
+        if (!isLoading && errorMessage is null)
             await JS.InvokeVoidAsync("highlightCode");
     }
 
@@ -161,7 +156,7 @@ else
                 attributes = $" id=\"{id}\"{attributes}";
             }
 
-            tableOfContents.Add(new TableOfContentsItem(level, id, title));
+            tableOfContents.Add(new DocumentHeading(level, id, title));
             return $"<h{level}{attributes}>{content}</h{level}>";
         });
     }
@@ -205,5 +200,4 @@ else
         return $"{pagePath}#{Uri.EscapeDataString(id)}";
     }
 
-    private sealed record TableOfContentsItem(int Level, string Id, string Title);
 }

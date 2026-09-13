@@ -11,9 +11,10 @@
 
     <ItemGroup>
         <InternalsVisibleTo Include="Redot-Documentation-Tests" />
-        <ProjectReference Include="..\Redot-Documentation.Client\Redot-Documentation.Client.csproj"/>
-        <PackageReference Include="Markdig" Version="0.41.3"/>
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.7"/>
+        <PackageReference Include="MudBlazor" Version="9.9.0" />
+        <ProjectReference Include="..\Redot-Documentation.Client\Redot-Documentation.Client.csproj" />
+        <PackageReference Include="Markdig" Version="0.41.3" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.7" />
     </ItemGroup>
     <ItemGroup>
         <None Update="docs/**" CopyToOutputDirectory="PreserveNewest">

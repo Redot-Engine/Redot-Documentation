@@ -1,5 +1,6 @@
 
 using Redot_Documentation.Components;
+using MudBlazor.Services;
 using Redot_Documentation.ClassDocumentation;
 using Redot_Documentation.Services;
 
@@ -15,6 +16,7 @@ public class Program
         builder.Services.AddRazorComponents()
             .AddInteractiveServerComponents()
             .AddInteractiveWebAssemblyComponents();
+        builder.Services.AddMudServices();
         builder.Services.AddScoped<DocRendererService>();
         builder.Services.AddSingleton<VersionManagerService>();
         builder.Services.Configure<ClassDocumentationOptions>(

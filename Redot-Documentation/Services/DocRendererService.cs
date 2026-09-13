@@ -324,17 +324,17 @@ public class DocRendererService
                 value = $"tab-{i + 1}";
             }
 
-            var panelId = $"doc-tab-{tabsIndex}-{SanitizeIdentifier(value)}";
+            var panelId = $"doc-tab-{tabsIndex}-{SanitizeIdentifier(value)}-{i}";
             var isActive = i == 0;
             var activeClass = isActive ? " active" : string.Empty;
 
             tabButtonsMarkup.Add(
-                $"<button class=\"doc-tab-button{activeClass}\" type=\"button\" role=\"tab\" data-tab-target=\"#{panelId}\" aria-selected=\"{isActive.ToString().ToLowerInvariant()}\">{WebUtility.HtmlEncode(label)}</button>");
+                $"<button class=\"doc-tab-button{activeClass}\" type=\"button\" role=\"tab\" id=\"{panelId}-tab\" aria-controls=\"{panelId}\" tabindex=\"{(isActive ? 0 : -1)}\" data-tab-target=\"#{panelId}\" aria-selected=\"{isActive.ToString().ToLowerInvariant()}\">{WebUtility.HtmlEncode(label)}</button>");
 
             var panelHtml = Markdown.ToHtml(body, MarkdownPipeline).Trim();
 
             tabPanelsMarkup.Add(
-                $"<div id=\"{panelId}\" class=\"doc-tab-panel{activeClass}\" role=\"tabpanel\" data-value=\"{WebUtility.HtmlEncode(value)}\" data-label=\"{WebUtility.HtmlEncode(label)}\">{panelHtml}</div>");
+                $"<div id=\"{panelId}\" class=\"doc-tab-panel{activeClass}\" role=\"tabpanel\" aria-labelledby=\"{panelId}-tab\" data-value=\"{WebUtility.HtmlEncode(value)}\" data-label=\"{WebUtility.HtmlEncode(label)}\">{panelHtml}</div>");
         }
 
         var tabsMarkup =

@@ -554,11 +554,15 @@ public sealed class ClassDocumentationRenderer
             string panelId = $"class-doc-tab-{id}-{index}";
             string activeClass = index == 0 ? " active" : string.Empty;
             buttons.Append("<button class=\"doc-tab-button").Append(activeClass)
-                .Append("\" type=\"button\" role=\"tab\" data-tab-target=\"#").Append(panelId)
+                .Append("\" type=\"button\" role=\"tab\" id=\"").Append(panelId).Append("-tab")
+                .Append("\" aria-controls=\"").Append(panelId)
+                .Append("\" tabindex=\"").Append(index == 0 ? "0" : "-1")
+                .Append("\" data-tab-target=\"#").Append(panelId)
                 .Append("\" aria-selected=\"").Append(index == 0 ? "true" : "false").Append("\">")
                 .Append(label).Append("</button>");
             panels.Append("<div id=\"").Append(panelId).Append("\" class=\"doc-tab-panel").Append(activeClass)
-                .Append("\" role=\"tabpanel\">").Append(RenderCodeBlock(match.Groups["body"].Value, language))
+                .Append("\" role=\"tabpanel\" aria-labelledby=\"").Append(panelId).Append("-tab\">")
+                .Append(RenderCodeBlock(match.Groups["body"].Value, language))
                 .Append("</div>");
         }
 

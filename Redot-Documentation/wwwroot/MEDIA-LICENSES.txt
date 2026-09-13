@@ -17,3 +17,7 @@ Other separately licensed media retain their own terms. This notice does not
 grant a new license to assets with missing or uncertain provenance.
 
 See /licenses on the site and LICENSING.md in the repository for full details.
+
+Getting Started media, including the two homepage editor screenshots, was
+imported from the earlier Redot Docusaurus documentation site. The documentation
+attribution and CC BY 3.0 terms above apply unless the asset has its own notice.

@@ -98,6 +98,23 @@ public sealed class DocRendererServiceTests : IDisposable
         Assert.DoesNotContain("<TabItem", html);
     }
 
+    [Fact]
+    public async Task RenderToHtmlAsync_GivesCollidingTabValuesUniqueAccessibleIds()
+    {
+        Directory.CreateDirectory(Path.Combine(contentRootPath, "docs"));
+        await File.WriteAllTextAsync(Path.Combine(contentRootPath, "docs", "source.md"),
+            """
+            <Tabs>
+            <TabItem value="C#" label="C#">First sample.</TabItem>
+            <TabItem value="C++" label="C++">Second sample.</TabItem>
+            <TabItem value="C#" label="Repeated">Third sample.</TabItem>
+            </Tabs>
+            """);
+        var renderer = new DocRendererService(new TestWebHostEnvironment(contentRootPath));
+        string html = await renderer.RenderToHtmlAsync("source.md", CreateVersionProvider());
+        TabMarkupAssertions.AssertAccessibleTabs(html, 3);
+    }
+
     [Theory]
     [InlineData("Some Section", "some_section")]
     [InlineData("Some_Section", "some%5Fsection")]

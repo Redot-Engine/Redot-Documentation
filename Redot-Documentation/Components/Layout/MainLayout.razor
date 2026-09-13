@@ -1,23 +1,74 @@
-﻿@inherits LayoutComponentBase
+@inherits LayoutComponentBase
+@implements IDisposable
+@inject NavigationManager Navigation
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu/>
-    </div>
+<MudThemeProvider Theme="RedotTheme.Theme" IsDarkMode="true" />
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+<MudBreakpointProvider OnBreakpointChanged="OnBreakpointChanged" />
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://www.redotengine.org/" target="_blank">About</a>
-        </div>
-
-        <article class="content px-4">
+<MudLayout Class="docs-shell">
+    <a class="skip-link" href="@(new Uri(Navigation.Uri).AbsolutePath + "#main-content")">Skip to content</a>
+    <MudAppBar Fixed="true" Elevation="0" Class="docs-appbar">
+        @if (HasNavigation)
+        {
+            <MudIconButton Icon="@Icons.Material.Filled.Menu" OnClick="ToggleDrawer" aria-label="Toggle documentation navigation" Class="drawer-toggle" />
+        }
+        <MudLink Href="/" Class="docs-brand" Underline="Underline.None">
+            <span class="brand-icon" aria-hidden="true"></span><span>Redot <strong>Docs</strong></span>
+        </MudLink>
+        <MudSpacer />
+        <nav class="header-links" aria-label="Redot websites">
+            <MudLink Href="https://redotengine.org/">Engine</MudLink>
+            <MudLink Href="https://redotengine.org/community">Community</MudLink>
+            <MudLink Href="https://github.com/Redot-Engine/Redot-Documentation">Source</MudLink>
+        </nav>
+        <MudButton Href="https://redotengine.org/download" Color="Color.Primary" Variant="Variant.Filled" Size="Size.Small" Class="header-download">Download</MudButton>
+    </MudAppBar>
+    @if (HasNavigation)
+    {
+        <MudDrawer @bind-Open="_drawerOpen" Variant="@(IsDocumentation ? DrawerVariant.Responsive : DrawerVariant.Temporary)" ClipMode="DrawerClipMode.Always" Breakpoint="Breakpoint.Md" Elevation="0" Class="docs-drawer">
+            <NavMenu />
+        </MudDrawer>
+    }
+    <MudMainContent Class="@(IsDocumentation ? "docs-main" : "landing-main")">
+        <main id="main-content" tabindex="-1" class="@(IsDocumentation ? "article-container" : "landing-container")">
             @Body
-        </article>
-    </main>
+        </main>
+        <SiteFooter />
+    </MudMainContent>
+</MudLayout>
+<div id="blazor-error-ui" data-nosnippet>
+    Connection interrupted. <a href="" class="reload">Reload</a><span class="dismiss">×</span>
 </div>
 
-<div id="blazor-error-ui" data-nosnippet>
-    An unhandled error has occurred.
-    <a href="." class="reload">Reload</a>
-    <span class="dismiss">🗙</span>
-</div>
+@code {
+    private bool _drawerOpen;
+    private bool _smallScreen;
+    private bool _wasDocumentation;
+    private bool IsDocumentation => Navigation.ToBaseRelativePath(Navigation.Uri).StartsWith("en/", StringComparison.OrdinalIgnoreCase);
+    private bool HasNavigation => IsDocumentation || new Uri(Navigation.Uri).AbsolutePath.Trim('/') == string.Empty;
+    protected override void OnInitialized()
+    {
+        _drawerOpen = _wasDocumentation = IsDocumentation;
+        Navigation.LocationChanged += OnLocationChanged;
+    }
+    private void ToggleDrawer() => _drawerOpen = !_drawerOpen;
+    private void OnBreakpointChanged(Breakpoint breakpoint)
+    {
+        _smallScreen = breakpoint < Breakpoint.Md;
+        _drawerOpen = IsDocumentation && !_smallScreen;
+    }
+    private void OnLocationChanged(object? sender, LocationChangedEventArgs args)
+        => _ = InvokeAsync(() =>
+        {
+            if (_smallScreen || !IsDocumentation)
+                _drawerOpen = false;
+            else if (!_wasDocumentation)
+                _drawerOpen = true;
+            _wasDocumentation = IsDocumentation;
+            StateHasChanged();
+        });
+    public void Dispose() => Navigation.LocationChanged -= OnLocationChanged;
+}

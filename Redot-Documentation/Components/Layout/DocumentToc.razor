@@ -1,0 +1,14 @@
+<aside class="doc-viewer-toc" aria-label="On this page">
+    <h4>On this page</h4>
+    <ul>
+        @foreach (var item in Items)
+        {
+            <li class="toc-level-@(item.Level)"><a href="@BuildHref(item.Id)">@item.Title</a></li>
+        }
+    </ul>
+</aside>
+
+@code {
+    [Parameter, EditorRequired] public IReadOnlyList<DocumentHeading> Items { get; set; } = [];
+    [Parameter, EditorRequired] public Func<string, string> BuildHref { get; set; } = null!;
+}

@@ -1,4 +1,6 @@
 using System.Text.Json;
+using MudBlazor.Services;
+using MudBlazor.Extensions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.RenderTree;
 using Microsoft.AspNetCore.Hosting;
@@ -20,12 +22,82 @@ public sealed class ClassDocumentationComponentTests : IDisposable
 {
     private readonly string _root = Path.Combine(Path.GetTempPath(), $"redot-component-tests-{Guid.NewGuid():N}");
 
+    [Fact]
+    public async Task NavMenu_SelectsConfiguredVersionThroughMudSelect()
+    {
+        await using var services = CreateServices();
+        await using var renderer = new TestRenderer(services);
+        int id = await renderer.Dispatcher.InvokeAsync(() => renderer.RenderAsync(typeof(NavMenu), ParameterView.Empty));
+        await renderer.Dispatcher.InvokeAsync(async () =>
+        {
+            var select = renderer.FindComponent<MudBlazor.MudSelect<string>>(id);
+            var item = renderer.FindComponent<MudBlazor.MudSelectItem<string>>(id);
+            Assert.NotNull(select);
+            Assert.NotNull(item);
+            Assert.Equal("26.1", select.GetState(x => x.Value));
+            Assert.Equal("latest", item.Value);
+            await select.ValueChanged.InvokeAsync(item.Value);
+            Assert.Equal("latest", select.GetState(x => x.Value));
+        });
+        Assert.EndsWith("/en/latest/Classes", services.GetRequiredService<NavigationManager>().Uri);
+        Assert.Empty(renderer.Errors);
+    }
+
+    [Fact]
+    public async Task Home_LinksToExistingStableDocumentation()
+    {
+        await using var services = CreateServices();
+        await using var renderer = new TestRenderer(services);
+        int id = await renderer.Dispatcher.InvokeAsync(() => renderer.RenderAsync(typeof(Home), ParameterView.Empty));
+        string[] links = await renderer.Dispatcher.InvokeAsync(() => renderer.Hrefs(id).Where(h => h.StartsWith("/en/")).Distinct().ToArray());
+        Assert.True(links.Length >= 10);
+        DirectoryInfo? repository = new(AppContext.BaseDirectory);
+        while (repository is not null && !File.Exists(Path.Combine(repository.FullName, "Redot-Documentation.sln")))
+            repository = repository.Parent;
+        Assert.NotNull(repository);
+        foreach (string href in links)
+        {
+            Assert.DoesNotContain("/latest/", href);
+            if (href.EndsWith("/Classes")) continue;
+            string path = Path.Combine(repository.FullName, "Redot-Documentation", "docs", Uri.UnescapeDataString(href[4..]) + ".md");
+            Assert.True(File.Exists(path), $"Homepage destination is missing: {href}");
+        }
+        Assert.Empty(renderer.Errors);
+    }
+
+    [Fact]
+    public async Task ClassSearch_FiltersResultsThroughMudInput()
+    {
+        await using var services = CreateServices();
+        var manager = services.GetRequiredService<VersionManagerService>();
+        services.GetRequiredService<ClassDocumentationCatalog>().Publish(new(
+            manager.LatestStableVersion, "test-revision", DateTimeOffset.UtcNow,
+            new Dictionary<string, ClassDocumentationEntry>
+            {
+                ["Node"] = new() { Name = "Node" },
+                ["Resource"] = new() { Name = "Resource" }
+            }));
+        await using var renderer = new TestRenderer(services);
+        int id = await renderer.Dispatcher.InvokeAsync(() => renderer.RenderAsync(typeof(ClassDocViewer),
+            ParameterView.FromDictionary(new Dictionary<string, object?> { ["VersionSlug"] = "26.1" })));
+        await renderer.Dispatcher.InvokeAsync(async () =>
+        {
+            var input = renderer.FindComponent<MudBlazor.MudTextField<string>>(id);
+            Assert.NotNull(input);
+            await input.ValueChanged.InvokeAsync("Resource");
+        });
+        string text = await renderer.Dispatcher.InvokeAsync(() => renderer.Text(id));
+        Assert.Contains("Resource", text);
+        Assert.DoesNotContain("Node", text);
+        Assert.Empty(renderer.Errors);
+    }
+
     [Theory]
     [InlineData(null)]
     [InlineData("Node")]
     public async Task ClassReference_IncludesUpstreamMitAttribution(string? className)
     {
-        using var services = CreateServices();
+        await using var services = CreateServices();
         var manager = services.GetRequiredService<VersionManagerService>();
         services.GetRequiredService<ClassDocumentationCatalog>().Publish(new(
             manager.LatestStableVersion, "test-revision", DateTimeOffset.UtcNow,
@@ -49,7 +121,7 @@ public sealed class ClassDocumentationComponentTests : IDisposable
     [Fact]
     public async Task Manual_IncludesCcAttributionAndModificationNotice()
     {
-        using var services = CreateServices();
+        await using var services = CreateServices();
         File.WriteAllText(Path.Combine(_root, "docs", "26.1", "example.md"), "# Example");
         await using var renderer = new TestRenderer(services);
         int id = await renderer.Dispatcher.InvokeAsync(() => renderer.RenderAsync(typeof(DocViewer),
@@ -70,7 +142,7 @@ public sealed class ClassDocumentationComponentTests : IDisposable
     [InlineData(typeof(ClassDocViewer), "Node")]
     public async Task CatalogPublication_RefreshesExistingComponentsAndStopsAfterDisposal(Type componentType, string? className)
     {
-        using var services = CreateServices();
+        await using var services = CreateServices();
         var catalog = services.GetRequiredService<ClassDocumentationCatalog>();
         var manager = services.GetRequiredService<VersionManagerService>();
         await using var renderer = new TestRenderer(services);
@@ -122,6 +194,7 @@ public sealed class ClassDocumentationComponentTests : IDisposable
         var manager = new VersionManagerService(new TestEnvironment(_root));
         manager.LoadContent();
         return new ServiceCollection().AddLogging()
+            .AddMudServices(options => options.PopoverOptions.CheckForPopoverProvider = false)
             .AddSingleton<DocRendererService>(new DocRendererService(new TestEnvironment(_root)))
             .AddSingleton(manager)
             .AddSingleton<ClassDocumentationCatalog>()
@@ -149,6 +222,29 @@ public sealed class ClassDocumentationComponentTests : IDisposable
 
         public void Remove(int id) => RemoveRootComponent(id);
 
+        public IEnumerable<string> Hrefs(int id)
+        {
+            var frames = GetCurrentRenderTreeFrames(id);
+            foreach (var frame in frames.Array.Take(frames.Count))
+            {
+                if (frame.FrameType == RenderTreeFrameType.Attribute && frame.AttributeName == "href" && frame.AttributeValue is string href)
+                    yield return href;
+                if (frame.FrameType == RenderTreeFrameType.Component)
+                    foreach (string childHref in Hrefs(frame.ComponentId)) yield return childHref;
+            }
+        }
+
+        public T? FindComponent<T>(int id) where T : class
+        {
+            var frames = GetCurrentRenderTreeFrames(id);
+            foreach (var frame in frames.Array.Take(frames.Count).Where(f => f.FrameType == RenderTreeFrameType.Component))
+            {
+                if (frame.Component is T component) return component;
+                if (FindComponent<T>(frame.ComponentId) is T child) return child;
+            }
+            return null;
+        }
+
         public string Text(int id)
         {
             var frames = GetCurrentRenderTreeFrames(id);
@@ -174,6 +270,11 @@ public sealed class ClassDocumentationComponentTests : IDisposable
     private sealed class TestNavigationManager : NavigationManager
     {
         public TestNavigationManager() => Initialize("http://localhost/", "http://localhost/en/26.1/Classes");
+        protected override void NavigateToCore(string uri, bool forceLoad)
+        {
+            Uri = ToAbsoluteUri(uri).AbsoluteUri;
+            NotifyLocationChanged(false);
+        }
     }
 
     private sealed class TestJsRuntime : IJSRuntime
