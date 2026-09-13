@@ -1,0 +1,398 @@
+
+# Command line tutorial
+
+.. highlight:: shell
+
+Some developers like using the command line extensively. Redot is
+designed to be friendly to them, so here are the steps for working
+entirely from the command line. Given the engine relies on almost no
+external libraries, initialization times are pretty fast, making it
+suitable for this workflow.
+
+:::note
+
+On Windows and Linux, you can run a Redot binary in a terminal by specifying
+its relative or absolute path.
+
+On macOS, the process is different due to Redot being contained within an
+``.app`` bundle (which is a *folder*, not a file). To run a Redot binary
+from a terminal on macOS, you have to ``cd`` to the folder where the Redot
+application bundle is located, then run ``Redot.app/Contents/MacOS/Redot``
+followed by any command line arguments. If you've renamed the application
+bundle from ``Redot`` to another name, make sure to edit this command line
+accordingly.
+
+:::
+
+## Command line reference
+
+**Legend**
+
+- |release| Available in editor builds, debug export templates and release export templates.
+- |debug| Available in editor builds and debug export templates only.
+- |editor| Only available in editor builds.
+
+Note that unknown command line arguments have no effect whatsoever. The engine
+will **not** warn you when using a command line argument that doesn't exist with a
+given build type.
+
+**General options**
+
+| Command | Description |
+| --- | --- |
+| ``-h``, ``--help`` |  | release | Display the list of command line options. |
+| ``--version`` |  | release | Display the version string. |
+| ``-v``, ``--verbose`` |  | release | Use verbose stdout mode. |
+| ``-q``, ``--quiet`` |  | release | Quiet mode, silences stdout messages. Errors are still displayed. |
+
+**Run options**
+
+| Command | Description |
+| --- | --- |
+| ``--``, ``++`` |  | release | Separator for user-provided arguments. Following arguments are not used by the engine, but can be read from ``OS.get_cmdline_user_args()``. |
+| ``-e``, ``--editor`` |  | editor | Start the editor instead of running the scene. |
+| ``-p``, ``--project-manager`` |  | editor | Start the Project Manager, even if a project is auto-detected. |
+| ``--debug-server &lt;uri&gt;`` |  | editor | Start the editor debug server (``&lt;protocol&gt;://&lt;host/IP&gt;[:&lt;port&gt;]``, e.g. ``tcp://127.0.0.1:6007``) |
+| ``--quit`` |  | release | Quit after the first iteration. |
+| ``--quit-after`` |  | release | Quit after the given number of iterations. Set to 0 to disable. |
+| ``-l``, ``--language &lt;locale&gt;`` |  lowercase and the rest is optional. See :ref:`doc_locales` for more details. | release | Use a specific locale. ``&lt;locale&gt;`` follows the format ``language_Script_COUNTRY_VARIANT`` where language is a 2 or 3-letter language code in |
+| ``--path &lt;directory&gt;`` |  | release | Path to a project (``&lt;directory&gt;`` must contain a 'project.Redot' file). |
+| ``-u``, ``--upwards`` |  | release | Scan folders upwards for 'project.Redot' file. |
+| ``--main-pack &lt;file&gt;`` |  | release | Path to a pack (.pck) file to load. |
+| ``--render-thread &lt;mode&gt;`` |  for more details. | release | Render thread mode ('unsafe', 'safe', 'separate'). See :ref:`Thread Model &lt;class_ProjectSettings_property_rendering/driver/threads/thread_model&gt;` |
+| ``--remote-fs &lt;address&gt;`` |  | release | Remote filesystem (``&lt;host/IP&gt;[:&lt;port&gt;]`` address). |
+| ``--remote-fs-password &lt;password&gt;`` |  | release | Password for remote filesystem. |
+| ``--audio-driver &lt;driver&gt;`` |  | release | Audio driver. Use ``--help`` first to display the list of available drivers. |
+| ``--display-driver &lt;driver&gt;`` |  | release | Display driver (and rendering driver). Use ``--help`` first to display the list of available drivers. |
+| ``--rendering-method &lt;renderer&gt;`` |  | release | Renderer name. Requires driver support. |
+| ``--rendering-driver &lt;driver&gt;`` |  | release | Rendering driver (depends on display driver). Use ``--help`` first to display the list of available drivers. |
+| ``--gpu-index &lt;device_index&gt;`` |  | release | Use a specific GPU (run with ``--verbose`` to get available device list). |
+| ``--text-driver &lt;driver&gt;`` |  | release | Text driver (Fonts, BiDi, shaping). |
+| ``--tablet-driver &lt;driver&gt;`` |  | release | Pen tablet input driver. |
+| ``--headless`` |  | release | Enable headless mode (``--display-driver headless --audio-driver Dummy``). Useful for servers and with ``--script``. |
+| ``--write-movie &lt;file&gt;`` |  ``--fixed-fps`` is forced when enabled, but can be used to change movie FPS. ``--disable-vsync`` can speed up movie writing but makes interaction more difficult. ``--quit-after`` can be used to specify the number of frames to write. | release | Run the engine in a way that a movie is written (usually with .avi or .png extension). |
+
+**Display options**
+
+| Command | Description |
+| --- | --- |
+| ``-f``, ``--fullscreen`` |  | release | Request fullscreen mode. |
+| ``-m``, ``--maximized`` |  | release | Request a maximized window. |
+| ``-w``, ``--windowed`` |  | release | Request windowed mode. |
+| ``-t``, ``--always-on-top`` |  | release | Request an always-on-top window. |
+| ``--resolution &lt;W&gt;x&lt;H&gt;`` |  | release | Request window resolution. |
+| ``--position &lt;X&gt;,&lt;Y&gt;`` |  | release | Request window position. |
+| ``--screen &lt;N&gt;`` |  | release | Request window screen. |
+| ``--single-window`` |  | release | Use a single window (no separate subwindows). |
+| ``--xr-mode &lt;mode&gt;`` |  | release | Select XR mode ('default', 'off', 'on'). |
+
+**Debug options**
+
+| Command | Description |
+| --- | --- |
+| ``-d``, ``--debug`` |  | release | Debug (local stdout debugger). |
+| ``-b``, ``--breakpoints`` |  | release | Breakpoint list as source::line comma-separated pairs, no spaces (use ``%20`` instead). |
+| ``--profiling`` |  | release | Enable profiling in the script debugger. |
+| ``--gpu-profile`` |  | release | Show a GPU profile of the tasks that took the most time during frame rendering. |
+| ``--gpu-validation`` |  | release | Enable graphics API :ref:`validation layers &lt;doc_vulkan_validation_layers&gt;` for debugging. |
+| ``--gpu-abort`` |  | debug | Abort on GPU errors (usually validation layer errors), may help see the problem if your system freezes. |
+| ``--remote-debug &lt;uri&gt;`` |  | release | Remote debug (``&lt;protocol&gt;://&lt;host/IP&gt;[:&lt;port&gt;]``, e.g. ``tcp://127.0.0.1:6007``). |
+| ``--single-threaded-scene`` |  | release | Scene tree runs in single-threaded mode. Sub-thread groups are disabled and run on the main thread. |
+| ``--debug-collisions`` |  | debug | Show collision shapes when running the scene. |
+| ``--debug-paths`` |  | debug | Show path lines when running the scene. |
+| ``--debug-navigation`` |  | debug | Show navigation polygons when running the scene. |
+| ``--debug-avoidance`` |  | debug | Show navigation avoidance debug visuals when running the scene. |
+| ``--debug-stringnames`` |  | debug | Print all StringName allocations to stdout when the engine quits. |
+| ``--frame-delay &lt;ms&gt;`` |  | release | Simulate high CPU load (delay each frame by &lt;ms&gt; milliseconds). |
+| ``--time-scale &lt;scale&gt;`` |  | release | Force time scale (higher values are faster, 1.0 is normal speed). |
+| ``--disable-vsync`` |  Does not override driver-level V-Sync enforcement. | release | Forces disabling of vertical synchronization, even if enabled in the project settings. |
+| ``--disable-render-loop`` |  | release | Disable render loop so rendering only occurs when called explicitly from script. |
+| ``--disable-crash-handler`` |  | release | Disable crash handler when supported by the platform code. |
+| ``--fixed-fps &lt;fps&gt;`` |  | release | Force a fixed number of frames per second. This setting disables real-time synchronization. |
+| ``--delta-smoothing &lt;enable&gt;`` |  | release | Enable or disable frame delta smoothing ('enable', 'disable'). |
+| ``--print-fps`` |  | release | Print the frames per second to the stdout. |
+
+**Standalone tools**
+
+| Command | Description |
+| --- | --- |
+| ``-s``, ``--script &lt;script&gt;`` |  or an absolute filesystem path (for example on Windows ``C:/tmp/myscript.gd``) | release | Run a script. ``&lt;script&gt;`` must be a resource path relative to the project (``myscript.gd`` will be interpreted as ``res://myscript.gd``) |
+| ``--check-only`` |  | release | Only parse for errors and quit (use with ``--script``). |
+| ``--import`` |  | editor | Starts the editor, waits for any resources to be imported, and then quits. Implies ``--editor`` and ``--quit``. |
+| ``--export-release &lt;preset&gt; &lt;path&gt;`` |  ``&lt;path&gt;`` should be absolute or relative to the project directory, and include the filename for the binary (e.g. 'builds/game.exe'). The target directory should exist. Implies ``--import``. | editor | Export the project using the given preset and matching release template. The preset name should match one defined in export_presets.cfg. |
+| ``--export-debug &lt;preset&gt; &lt;path&gt;`` |  | editor | Like ``--export-release``, but use debug template. Implies ``--import``. |
+| ``--export-pack &lt;preset&gt; &lt;path&gt;`` |  or ZIP format. Implies ``--import``. | editor | Like ``--export-release``, but only export the game pack for the given preset. The ``&lt;path&gt;`` extension determines whether it will be in PCK |
+| ``--convert-3to4 [&lt;max_file_kb&gt;] [&lt;max_line_size&gt;]`` |  | editor | Convert project from Redot 3.x to Redot 4.x. |
+| ``--validate-conversion-3to4 [&lt;max_file_kb&gt;] [&lt;max_line_size&gt;]`` |  | editor | Show what elements will be renamed when converting project from Redot 3.x to Redot 4.x. |
+| ``--doctool [&lt;path&gt;]`` |  | editor | Dump the engine API reference to the given ``&lt;path&gt;`` in XML format, merging if existing files are found. |
+| ``--no-docbase`` |  | editor | Disallow dumping the base types (used with ``--doctool``). |
+| ``--gdscript-docs &lt;path&gt;`` |  (used with ``--doctool``). | editor | Rather than dumping the engine API, generate API reference from the inline documentation in the GDScript files found in &lt;path&gt; |
+| ``--build-solutions`` |  | editor | Build the scripting solutions (e.g. for C# projects). Implies ``--editor`` and requires a valid project to edit. |
+| ``--dump-gdextension-interface`` |  | editor | Generate GDExtension header file 'gdnative_interface.h' in the current folder. This file is the base file required to implement a GDExtension. |
+| ``--dump-extension-api`` |  | editor | Generate JSON dump of the Redot API for GDExtension bindings named 'extension_api.json' in the current folder. |
+| ``--validate-extension-api &lt;path&gt;`` |  If incompatibilities or errors are detected, the return code will be non-zero. | editor | Validate an extension API file dumped (with the option above) from a previous version of the engine to ensure API compatibility. |
+| ``--benchmark`` |  | editor | Benchmark the run time and print it to console. |
+| ``--benchmark-file &lt;path&gt;`` |  | editor | Benchmark the run time and save it to a given file in JSON format. The path should be absolute. |
+
+## Path
+
+It is recommended to place your Redot editor binary in your ``PATH`` environment
+variable, so it can be executed easily from any place by typing ``Redot``.
+You can do so on Linux by placing the Redot binary in ``/usr/local/bin`` and
+making sure it is called ``Redot`` (case-sensitive).
+
+To achieve this on Windows or macOS easily, you can install Redot using
+[Scoop ](https://scoop.sh) (on Windows) or [Homebrew ](https://brew.sh)
+(on macOS). This will automatically make the copy of Redot installed
+available in the ``PATH``:
+
+<Tabs>
+
+<TabItem value="windows" label="Windows">
+
+```sh
+# Add "Extras" bucket
+scoop bucket add extras
+
+# Standard editor:
+scoop install Redot
+
+# Editor with C# support (will be available as `Redot-mono` in `PATH`):
+scoop install Redot-mono
+
+```
+
+</TabItem>
+
+<TabItem value="macos" label="macOS">
+
+```sh
+# Standard editor:
+brew install Redot
+
+# Editor with C# support (will be available as `Redot-mono` in `PATH`):
+brew install Redot-mono
+
+```
+
+</TabItem>
+
+</Tabs>
+
+## Setting the project path
+
+Depending on where your Redot binary is located and what your current
+working directory is, you may need to set the path to your project
+for any of the following commands to work correctly.
+
+When running the editor, this can be done by giving the path to the ``project.Redot`` file
+of your project as either the first argument, like this:
+
+```
+Redot path_to_your_project/project.Redot [other] [commands] [and] [args]
+
+```
+
+For all commands, this can be done by using the ``--path`` argument:
+
+```
+Redot --path path_to_your_project [other] [commands] [and] [args]
+
+```
+
+For example, the full command for exporting your game (as explained below) might look like this:
+
+```
+Redot --headless --path path_to_your_project --export-release my_export_preset_name game.exe
+
+```
+
+When starting from a subdirectory of your project, use the ``--upwards`` argument for Redot to
+automatically find the ``project.Redot`` file by recursively searching the parent directories.
+
+For example, running a scene (as explained below) nested in a subdirectory might look like this
+when your working directory is in the same path:
+
+```
+Redot --upwards nested_scene.tscn
+
+```
+
+## Creating a project
+
+Creating a project from the command line can be done by navigating the
+shell to the desired place and making a ``project.Redot`` file.
+
+```
+mkdir newgame
+cd newgame
+touch project.Redot
+
+```
+
+The project can now be opened with Redot.
+
+## Running the editor
+
+Running the editor is done by executing Redot with the ``-e`` flag. This
+must be done from within the project directory or by setting the project path as explained above,
+otherwise the command is ignored and the Project Manager appears.
+
+```
+Redot -e
+
+```
+
+When passing in the full path to the ``project.Redot`` file, the ``-e`` flag may be omitted.
+
+If a scene has been created and saved, it can be edited later by running
+the same code with that scene as argument.
+
+```
+Redot -e scene.tscn
+
+```
+
+## Erasing a scene
+
+Redot is friends with your filesystem and will not create extra metadata files.
+Use ``rm`` to erase a scene file. Make sure nothing references that scene.
+Otherwise, an error will be thrown upon opening the project.
+
+```
+rm scene.tscn
+
+```
+
+## Running the game
+
+To run the game, execute Redot within the project directory or with the project path as explained above.
+
+```
+Redot
+
+```
+
+Note that passing in the ``project.Redot`` file will always run the editor instead of running the game.
+
+When a specific scene needs to be tested, pass that scene to the command line.
+
+```
+Redot scene.tscn
+
+```
+
+## Debugging
+
+Catching errors in the command line can be a difficult task because they
+scroll quickly. For this, a command line debugger is provided by adding
+``-d``. It works for running either the game or a single scene.
+
+```
+Redot -d
+
+```
+
+```
+Redot -d scene.tscn
+
+```
+
+## Exporting
+
+Exporting the project from the command line is also supported. This is
+especially useful for continuous integration setups.
+
+:::note
+
+Using the ``--headless`` command line argument is **required** on platforms
+that do not have GPU access (such as continuous integration). On platforms
+with GPU access, ``--headless`` prevents a window from spawning while the
+project is exporting.
+
+:::
+
+```
+# `Redot` must be a Redot editor binary, not an export template.
+# Also, export templates must be installed for the editor
+# (or a valid custom export template must be defined in the export preset).
+Redot --headless --export-release "Linux/X11" /var/builds/project
+Redot --headless --export-release Android /var/builds/project.apk
+
+```
+
+The preset name must match the name of an export preset defined in the
+project's ``export_presets.cfg`` file. If the preset name contains spaces or
+special characters (such as "Windows Desktop"), it must be surrounded with quotes.
+
+To export a debug version of the game, use the ``--export-debug`` switch instead
+of ``--export-release``. Their parameters and usage are the same.
+
+To export only a PCK file, use the ``--export-pack`` option followed by the
+preset name and output path, with the file extension, instead of
+``--export-release`` or ``--export-debug``. The output path extension determines
+the package's format, either PCK or ZIP.
+
+:::warning
+
+When specifying a relative path as the path for ``--export-release``, ``--export-debug``
+or ``--export-pack``, the path will be relative to the directory containing
+the ``project.Redot`` file, **not** relative to the current working directory.
+
+:::
+
+## Running a script
+
+It is possible to run a ``.gd`` script from the command line.
+This feature is especially useful in large projects, e.g. for batch
+conversion of assets or custom import/export.
+
+The script must inherit from ``SceneTree`` or ``MainLoop``.
+
+Here is an example ``sayhello.gd``, showing how it works:
+
+```python
+#!/usr/bin/env -S Redot -s
+extends SceneTree
+
+func _init():
+    print("Hello!")
+    quit()
+
+```
+
+And how to run it:
+
+```
+# Prints "Hello!" to standard output.
+Redot -s sayhello.gd
+
+```
+
+If no ``project.Redot`` exists at the path, current path is assumed to be the
+current working directory (unless ``--path`` is specified).
+
+The script path will be interpreted as a resource path relative to
+the project, here ``res://sayhello.gd``. You can also use an absolute
+filesystem path instead, which is useful if the script is located
+outside of the project directory.
+
+The first line of ``sayhello.gd`` above is commonly referred to as
+a *shebang*. If the Redot binary is in your ``PATH`` as ``Redot``,
+it allows you to run the script as follows in modern Linux
+distributions, as well as macOS:
+
+```
+# Mark script as executable.
+chmod +x sayhello.gd
+# Prints "Hello!" to standard output.
+./sayhello.gd
+
+```
+
+If the above doesn't work in your current version of Linux or macOS, you can
+always have the shebang run Redot straight from where it is located as follows:
+
+```
+#!/usr/bin/Redot -s
+```

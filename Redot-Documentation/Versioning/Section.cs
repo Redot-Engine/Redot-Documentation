@@ -53,6 +53,8 @@ public sealed class Section : IRanking
             rankingPriorities = configData.RankingPriorities;
             excludedItems = configData.ExcludedItems;
             SlugPrefix = configData.SlugPrefix;
+            if (!string.IsNullOrWhiteSpace(configData.Slug))
+                Slug = configData.Slug;
             IntermingleArticles = configData.IntermingleArticles;
         }
         else

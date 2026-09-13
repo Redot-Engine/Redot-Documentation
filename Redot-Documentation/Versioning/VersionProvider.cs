@@ -80,7 +80,7 @@ public class VersionProvider
                 ParseSlugs(subSection, slugLookupTable);
             else
             {
-                slugLookupTable.Add(ranking.Slug, GetReferentialPath(ranking.Path));
+                AddSlug(ranking, slugLookupTable);
             }
         }
 
@@ -101,14 +101,24 @@ public class VersionProvider
     private void ParseSlugs(Section section, IDictionary<string, string> slugLookupTable)
     {
         if (section.IndexArticle != null)
-            slugLookupTable.Add(section.IndexArticle.Slug, GetReferentialPath(section.IndexArticle.Path));
+            AddSlug(section.IndexArticle, slugLookupTable);
         foreach (IRanking ranking in section.GetSortedRankings())
         {
             if (ranking is Section subSection)
                 ParseSlugs(subSection, slugLookupTable);
             else
-                slugLookupTable.Add(ranking.Slug, GetReferentialPath(ranking.Path));
+                AddSlug(ranking, slugLookupTable);
         }
+    }
+
+    private void AddSlug(IRanking ranking, IDictionary<string, string> slugLookupTable)
+    {
+        string path = GetReferentialPath(ranking.Path);
+        if (slugLookupTable.TryGetValue(ranking.Slug, out string? existingPath))
+            throw new InvalidOperationException(
+                $"Duplicate documentation slug '{ranking.Slug}' in version '{Version.Slug}': '{existingPath}' and '{path}'.");
+
+        slugLookupTable.Add(ranking.Slug, path);
     }
 
     public string GetPathFromSlug(string slug)

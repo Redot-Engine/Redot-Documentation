@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.FileProviders;
 using Redot_Documentation.Services;
 using Redot_Documentation.Versioning;
+using System.Text.RegularExpressions;
 
 namespace Redot_Documentation_Tests;
 
@@ -67,6 +68,34 @@ public sealed class DocRendererServiceTests : IDisposable
         string html = await renderer.RenderToHtmlAsync("source.md", CreateVersionProvider());
 
         Assert.Contains($"href=\"{expectedHref}\"", html);
+    }
+
+    [Fact]
+    public async Task RenderToHtmlAsync_RendersNestedTabsFromInnermostBlockOutward()
+    {
+        Directory.CreateDirectory(Path.Combine(contentRootPath, "docs"));
+        await File.WriteAllTextAsync(
+            Path.Combine(contentRootPath, "docs", "source.md"),
+            """
+            <Tabs>
+            <TabItem value="outer" label="Outer">
+            <Tabs>
+            <TabItem value="inner" label="Inner">
+            Nested content.
+            </TabItem>
+            </Tabs>
+            </TabItem>
+            </Tabs>
+            """);
+
+        var renderer = new DocRendererService(new TestWebHostEnvironment(contentRootPath));
+
+        string html = await renderer.RenderToHtmlAsync("source.md", CreateVersionProvider());
+
+        Assert.Equal(2, Regex.Matches(html, "class=\"doc-tabs\"").Count);
+        Assert.Contains("Nested content.", html);
+        Assert.DoesNotContain("<Tabs>", html);
+        Assert.DoesNotContain("<TabItem", html);
     }
 
     [Theory]

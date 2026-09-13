@@ -341,6 +341,11 @@ li ul li
     min-width: 85%;
 }
 
+.doc-viewer-content img {
+    max-width: 100%;
+    height: auto;
+}
+
 .doc-viewer-toc {
     position: sticky;
     top: 5rem;

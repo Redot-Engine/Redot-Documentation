@@ -7,10 +7,17 @@
     "IsNextPrerelease": true
   },
   {
+    "Slug": "26.2",
+    "FriendlyName": "Redot 26.2",
+    "BranchName": "26.2",
+    "IsLatestStable": true,
+    "IsNextPrerelease": false
+  },
+  {
     "Slug": "26.1",
     "FriendlyName": "Redot 26.1",
     "BranchName": "26.1",
-    "IsLatestStable": true,
+    "IsLatestStable": false,
     "IsNextPrerelease": false
   }
 ]

@@ -245,16 +245,53 @@ public class DocRendererService
     private static string TransformTabsBlocks(string markdown, Dictionary<string, string> htmlPlaceholders)
     {
         var tabsIndex = 0;
-        return Regex.Replace(
-            markdown,
-            @"<Tabs>(.*?)</Tabs>",
-            match => TransformSingleTabsBlock(match, tabsIndex++, htmlPlaceholders),
-            RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        while (TryFindInnermostTabsBlock(markdown, out var startIndex, out var endIndex, out var contentStartIndex))
+        {
+            var tabsContent = markdown[contentStartIndex..endIndex];
+            var transformedTabs = TransformSingleTabsBlock(tabsContent, tabsIndex++, htmlPlaceholders);
+            markdown = string.Concat(
+                markdown.AsSpan(0, startIndex),
+                transformedTabs,
+                markdown.AsSpan(endIndex + "</Tabs>".Length));
+        }
+
+        return markdown;
     }
 
-    private static string TransformSingleTabsBlock(Match tabsBlockMatch, int tabsIndex, Dictionary<string, string> htmlPlaceholders)
+    private static bool TryFindInnermostTabsBlock(
+        string markdown,
+        out int startIndex,
+        out int endIndex,
+        out int contentStartIndex)
     {
-        var tabsContent = tabsBlockMatch.Groups[1].Value;
+        var openings = new Stack<Match>();
+        foreach (Match tag in Regex.Matches(markdown, @"</?Tabs\b[^>]*>", RegexOptions.IgnoreCase))
+        {
+            if (tag.Value.StartsWith("</", StringComparison.Ordinal))
+            {
+                if (openings.Count == 0)
+                {
+                    continue;
+                }
+
+                var opening = openings.Pop();
+                startIndex = opening.Index;
+                endIndex = tag.Index;
+                contentStartIndex = opening.Index + opening.Length;
+                return true;
+            }
+
+            openings.Push(tag);
+        }
+
+        startIndex = -1;
+        endIndex = -1;
+        contentStartIndex = -1;
+        return false;
+    }
+
+    private static string TransformSingleTabsBlock(string tabsContent, int tabsIndex, Dictionary<string, string> htmlPlaceholders)
+    {
         var tabItemMatches = Regex.Matches(
             tabsContent,
             @"<TabItem\b([^>]*)>(.*?)</TabItem>",
@@ -262,7 +299,7 @@ public class DocRendererService
 
         if (tabItemMatches.Count == 0)
         {
-            return tabsBlockMatch.Value;
+            return $"<Tabs>{tabsContent}</Tabs>";
         }
 
         var tabButtonsMarkup = new List<string>(tabItemMatches.Count);

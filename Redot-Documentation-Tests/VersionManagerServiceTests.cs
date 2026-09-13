@@ -44,6 +44,50 @@ public sealed class VersionManagerServiceTests : IDisposable
     }
 
     [Fact]
+    public void LoadContent_RepositoryDocumentationHasUniqueSlugs()
+    {
+        DirectoryInfo? repository = new(AppContext.BaseDirectory);
+        while (repository != null && !File.Exists(Path.Combine(repository.FullName, "Redot-Documentation.sln")))
+            repository = repository.Parent;
+
+        Assert.NotNull(repository);
+        var manager = new VersionManagerService(
+            new TestWebHostEnvironment(Path.Combine(repository.FullName, "Redot-Documentation")));
+
+        manager.LoadContent();
+
+        VersionProvider provider = manager.GetVersionProvider("latest");
+        Assert.Equal("/en/Community/tutorials.md", provider.GetPathFromSlug("doc_tutorials"));
+        Assert.Equal("/en/latest/Tutorials/index.md", provider.GetPathFromSlug("doc_tutorials_overview"));
+        Assert.Equal("/en/latest/Tutorials/math/interpolation.md", provider.GetPathFromSlug("doc_interpolation"));
+        Assert.Equal("/en/latest/Tutorials/physics/interpolation/index.md", provider.GetPathFromSlug("doc_physics_interpolation"));
+        Assert.Equal("/en/latest/Tutorials/editor/index.md", provider.GetPathFromSlug("doc_editor"));
+        Assert.Equal("/en/latest/Tutorials/plugins/editor/index.md", provider.GetPathFromSlug("doc_editor_plugins"));
+        Assert.Equal("/en/latest/Tutorials/plugins/editor/making_plugins.md", provider.GetPathFromSlug("doc_making_plugins"));
+    }
+
+    [Fact]
+    public void LoadContent_DuplicateArticleAndSectionSlugsIdentifyBothPaths()
+    {
+        DocumentationVersion[] versions =
+        [
+            CreateVersion("latest", "Latest development", "master", isNextPrerelease: true),
+            CreateVersion("26.1", "Redot 26.1", "26.1", isLatestStable: true)
+        ];
+        var (manager, contentRootPath) = CreateManager(versions);
+        string versionRoot = Path.Combine(contentRootPath, "docs", "latest");
+        Directory.CreateDirectory(Path.Combine(versionRoot, "example"));
+        File.WriteAllText(Path.Combine(versionRoot, "example.md"), "# Example");
+        File.WriteAllText(Path.Combine(versionRoot, "example", "index.md"), "# Example section");
+
+        InvalidOperationException exception = Assert.Throws<InvalidOperationException>(manager.LoadContent);
+
+        Assert.Contains("Duplicate documentation slug 'doc_example' in version 'latest'", exception.Message);
+        Assert.Contains("/en/latest/example.md", exception.Message);
+        Assert.Contains("/en/latest/example/index.md", exception.Message);
+    }
+
+    [Fact]
     public void LoadContent_RejectsLegacyStringArray()
     {
         var manager = CreateManager("""
