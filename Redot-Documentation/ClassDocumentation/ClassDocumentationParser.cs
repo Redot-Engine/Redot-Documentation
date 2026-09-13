@@ -15,20 +15,34 @@ public sealed class ClassDocumentationParser
     /// <exception cref="IOException">A class file cannot be read.</exception>
     /// <exception cref="UnauthorizedAccessException">A class file cannot be accessed.</exception>
     public IReadOnlyDictionary<string, ClassDocumentationEntry> ParseDirectory(string classDocumentationPath)
-    {
-        if (!Directory.Exists(classDocumentationPath))
-            throw new DirectoryNotFoundException($"Class documentation directory was not found: {classDocumentationPath}");
+        => ParseDirectories([classDocumentationPath]);
 
+    /// <summary>Parses and merges core and module directories into one class namespace.</summary>
+    public IReadOnlyDictionary<string, ClassDocumentationEntry> ParseDirectories(IEnumerable<string> paths)
+    {
         var classes = new Dictionary<string, ClassDocumentationEntry>(StringComparer.OrdinalIgnoreCase);
-        foreach (string filePath in Directory.EnumerateFiles(classDocumentationPath, "*.xml", SearchOption.TopDirectoryOnly))
+        var sources = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        foreach (string directory in paths.Distinct(StringComparer.Ordinal).Order(StringComparer.Ordinal))
         {
-            ClassDocumentationEntry entry = ParseFile(filePath);
-            if (!classes.TryAdd(entry.Name, entry))
-                throw new InvalidDataException($"Duplicate class documentation entry '{entry.Name}'.");
+            if (!Directory.Exists(directory))
+                throw new DirectoryNotFoundException($"Class documentation directory was not found: {directory}");
+
+            string[] files = Directory.GetFiles(directory, "*.xml", SearchOption.TopDirectoryOnly);
+            if (files.Length == 0)
+                throw new InvalidDataException($"No class XML files were found in '{directory}'.");
+
+            foreach (string filePath in files.Order(StringComparer.Ordinal))
+            {
+                ClassDocumentationEntry entry = ParseFile(filePath);
+                if (!classes.TryAdd(entry.Name, entry))
+                    throw new InvalidDataException(
+                        $"Duplicate class documentation entry '{entry.Name}' in '{sources[entry.Name]}' and '{filePath}'.");
+                sources.Add(entry.Name, filePath);
+            }
         }
 
         if (classes.Count == 0)
-            throw new InvalidDataException($"No class XML files were found in '{classDocumentationPath}'.");
+            throw new InvalidDataException("No class documentation directories were supplied.");
 
         return new ReadOnlyDictionary<string, ClassDocumentationEntry>(classes);
     }

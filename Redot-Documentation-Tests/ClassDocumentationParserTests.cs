@@ -128,6 +128,22 @@ public sealed class ClassDocumentationParserTests : IDisposable
         Assert.Equal(string.Empty, entry.Deprecated);
     }
 
+    [Fact]
+    public void ParseDirectories_ReportsBothFilesForDuplicateClasses()
+    {
+        string core = Path.Combine(_directory, "core");
+        string module = Path.Combine(_directory, "module");
+        Directory.CreateDirectory(core);
+        Directory.CreateDirectory(module);
+        string first = Path.Combine(core, "Node.xml");
+        string second = Path.Combine(module, "Node.xml");
+        File.WriteAllText(first, "<class name=\"Node\" />");
+        File.WriteAllText(second, "<class name=\"node\" />");
+        var error = Assert.Throws<InvalidDataException>(() => new ClassDocumentationParser().ParseDirectories([core, module]));
+        Assert.Contains(first, error.Message);
+        Assert.Contains(second, error.Message);
+    }
+
     public void Dispose()
     {
         if (Directory.Exists(_directory))

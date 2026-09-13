@@ -119,6 +119,7 @@ public sealed class GitClassDocumentationSourceTests : IDisposable
 
         File.WriteAllText(Path.Combine(sourcePath, "doc", "classes", "Node.xml"),
             "<class name=\"Node\"><brief_description>Updated node.</brief_description></class>");
+        AddModule(sourcePath, "alpha", "Alpha");
         RunGit(sourcePath, "add", ".");
         RunGit(sourcePath, "commit", "-m", "Update class docs");
         RunGit(sourcePath, "push", remote, "master");
@@ -145,7 +146,9 @@ public sealed class GitClassDocumentationSourceTests : IDisposable
             using (recovered)
             {
                 Assert.Equal(expectedCommit, recovered!.CommitSha);
-                var node = Assert.Single(new ClassDocumentationParser().ParseDirectory(recovered.ClassDocumentationPath)).Value;
+                var classes = new ClassDocumentationParser().ParseDirectories(recovered.ClassDocumentationPaths);
+                Assert.Equal(phase >= 2, classes.ContainsKey("Alpha"));
+                var node = classes["Node"];
                 Assert.Equal(phase >= 2 ? "Updated node." : "A node.", node.BriefDescription);
             }
             using var metadata = JsonDocument.Parse(File.ReadAllText(metadataPath));
@@ -172,6 +175,136 @@ public sealed class GitClassDocumentationSourceTests : IDisposable
 
         File.WriteAllText(metadata, "invalid metadata");
         Assert.False(source.TryGetCurrent(version, out _));
+    }
+
+    [Fact]
+    public async Task Modules_AreDiscoveredAcrossUpdatesAndMissingCachedDirectoriesAreRepaired()
+    {
+        string remote = CreateRemoteRepository(out string work);
+        AddModule(work, "alpha", "Alpha");
+        File.WriteAllText(Path.Combine(work, "modules", "alpha", "source.cpp"), "not documentation");
+        File.WriteAllText(Path.Combine(work, "modules", "alpha", "unrelated.xml"), "<not-a-class />");
+        CommitAndPush(work, remote);
+        var source = CreateSource(remote);
+        var version = CreateVersion();
+        var parser = new ClassDocumentationParser();
+        using (var candidate = await source.PrepareAsync(version, CancellationToken.None))
+        {
+            Assert.Equal(2, candidate.ClassDocumentationPaths.Count);
+            Assert.Equal(2, parser.ParseDirectories(candidate.ClassDocumentationPaths).Count);
+            Assert.False(File.Exists(Path.Combine(candidate.RepositoryPath, "modules", "alpha", "source.cpp")));
+            Assert.False(File.Exists(Path.Combine(candidate.RepositoryPath, "modules", "alpha", "unrelated.xml")));
+            candidate.Promote();
+        }
+        Assert.True(source.TryGetCurrent(version, out var cached));
+        using (cached)
+            Assert.Contains("Alpha", parser.ParseDirectories(cached!.ClassDocumentationPaths).Keys);
+
+        Directory.Delete(Path.Combine(_root, "cache", "latest", "repository", "modules", "alpha", "doc_classes"), true);
+        Assert.False(source.TryGetCurrent(version, out _));
+        using (var repair = await source.PrepareAsync(version, CancellationToken.None))
+        {
+            Assert.True(repair.IsPending);
+            Assert.Contains("Alpha", parser.ParseDirectories(repair.ClassDocumentationPaths).Keys);
+            repair.Promote();
+        }
+
+        Directory.Delete(Path.Combine(work, "modules", "alpha"), true);
+        AddModule(work, "new_module", "NewModule");
+        CommitAndPush(work, remote);
+        using var updated = await source.PrepareAsync(version, CancellationToken.None);
+        var classes = parser.ParseDirectories(updated.ClassDocumentationPaths);
+        Assert.Contains("NewModule", classes.Keys);
+        Assert.DoesNotContain("Alpha", classes.Keys);
+    }
+
+    [Fact]
+    public async Task LegacyCoreOnlyCache_IsReadableButRefreshedAtTheSameCommit()
+    {
+        string remote = CreateRemoteRepository(out string work);
+        AddModule(work, "alpha", "Alpha");
+        CommitAndPush(work, remote);
+        var source = CreateSource(remote);
+        var version = CreateVersion();
+        using (var initial = await source.PrepareAsync(version, CancellationToken.None))
+            initial.Promote();
+        string root = Path.Combine(_root, "cache", "latest");
+        string marker = Path.Combine(root, "repository", ".redot-class-doc-sync.json");
+        var metadata = System.Text.Json.Nodes.JsonNode.Parse(File.ReadAllText(marker))!.AsObject();
+        metadata.Remove("SelectionRevision");
+        metadata.Remove("CoreDocumentationPath");
+        metadata.Remove("DocumentationDirectories");
+        File.WriteAllText(marker, metadata.ToJsonString());
+        Directory.Delete(Path.Combine(root, "repository", "modules"), true);
+
+        Assert.True(source.TryGetCurrent(version, out var cached));
+        using (cached)
+            Assert.Single(cached!.ClassDocumentationPaths);
+        using var upgrade = await source.PrepareAsync(version, CancellationToken.None);
+        Assert.True(upgrade.IsPending);
+        Assert.Equal(metadata["CommitSha"]!.GetValue<string>(), upgrade.CommitSha);
+        Assert.Contains("Alpha", new ClassDocumentationParser().ParseDirectories(upgrade.ClassDocumentationPaths).Keys);
+        upgrade.Promote();
+        using var current = await source.PrepareAsync(version, CancellationToken.None);
+        Assert.False(current.IsPending);
+    }
+
+    [Theory]
+    [InlineData("<not-a-class />")]
+    [InlineData("<class name=\"Node\" />")]
+    public async Task InvalidModule_LeavesPreviousSnapshotAvailable(string xml)
+    {
+        string remote = CreateRemoteRepository(out string work);
+        var source = CreateSource(remote);
+        var version = CreateVersion();
+        using (var initial = await source.PrepareAsync(version, CancellationToken.None))
+            initial.Promote();
+        AddModule(work, "bad", "Bad");
+        File.WriteAllText(Path.Combine(work, "modules", "bad", "doc_classes", "Bad.xml"), xml);
+        CommitAndPush(work, remote);
+        using (var candidate = await source.PrepareAsync(version, CancellationToken.None))
+            Assert.Throws<InvalidDataException>(() => new ClassDocumentationParser().ParseDirectories(candidate.ClassDocumentationPaths));
+        Assert.True(source.TryGetCurrent(version, out var cached));
+        using (cached)
+            Assert.Single(new ClassDocumentationParser().ParseDirectories(cached!.ClassDocumentationPaths));
+    }
+
+    [Fact]
+    public async Task Versions_DiscoverTheirOwnModules()
+    {
+        string remote = CreateRemoteRepository(out string work);
+        RunGit(work, "push", remote, "HEAD:refs/heads/26.1");
+        AddModule(work, "new_feature", "NewFeature");
+        CommitAndPush(work, remote);
+        var source = CreateSource(remote);
+        var stableVersion = new DocumentationVersion { Slug = "26.1", FriendlyName = "Stable", BranchName = "26.1" };
+        using var stable = await source.PrepareAsync(stableVersion, CancellationToken.None);
+        using var latest = await source.PrepareAsync(CreateVersion(), CancellationToken.None);
+        var parser = new ClassDocumentationParser();
+        Assert.Single(parser.ParseDirectories(stable.ClassDocumentationPaths));
+        var latestClasses = parser.ParseDirectories(latest.ClassDocumentationPaths);
+        Assert.Contains("NewFeature", latestClasses.Keys);
+        var snapshot = new ClassDocumentationSnapshot(latest.Version, latest.CommitSha, latest.SynchronizedAt, latestClasses);
+        var catalog = new ClassDocumentationCatalog();
+        catalog.Publish(snapshot);
+        Assert.Contains(catalog.GetClassesAlphabetically("latest"), entry => entry.Name == "NewFeature");
+        Assert.True(catalog.TryGetClass("latest", "NewFeature", out var module));
+        string html = new ClassDocumentationRenderer().RenderPage(module!, snapshot);
+        Assert.Contains("/en/latest/Classes/Node", html);
+    }
+
+    private static void AddModule(string work, string module, string name)
+    {
+        string path = Path.Combine(work, "modules", module, "doc_classes");
+        Directory.CreateDirectory(path);
+        File.WriteAllText(Path.Combine(path, name + ".xml"), $"<class name=\"{name}\" inherits=\"Node\" />");
+    }
+
+    private static void CommitAndPush(string work, string remote)
+    {
+        RunGit(work, "add", ".");
+        RunGit(work, "commit", "-m", "Update modules");
+        RunGit(work, "push", remote, "master");
     }
 
     private GitClassDocumentationSource CreateSource(string repositoryUrl)

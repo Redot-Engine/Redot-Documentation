@@ -262,7 +262,7 @@ public sealed class ClassDocumentationSyncService : IHostedService, IDisposable
             checkout.Version,
             checkout.CommitSha,
             checkout.SynchronizedAt,
-            _parser.ParseDirectory(checkout.ClassDocumentationPath));
+            _parser.ParseDirectories(checkout.ClassDocumentationPaths));
 
     /// <summary>Shortens a commit identifier for logging.</summary>
     /// <param name="commitSha">The full commit identifier.</param>

@@ -37,9 +37,13 @@ Exactly one entry must be marked as the latest stable version and exactly one as
 
 ### Class reference synchronization
 
-The Classes section is generated from the XML class reference in the Redot Engine repository. At startup, the application loads valid cached snapshots and starts a shallow, partial Git checkout of `doc/classes` for every branch configured in `Versions.json` in the background. Snapshots are cached under `Redot-Documentation/App_Data/class-docs` and checked for upstream changes every 24 hours. If Git is temporarily unavailable, the application continues with the last valid cache; without a cache, class documentation remains unavailable until a synchronization succeeds.
+The Classes section is generated from the XML class reference in the Redot Engine repository. At startup, the application loads valid cached snapshots and starts a shallow, partial Git checkout of `doc/classes/*.xml` and `modules/*/doc_classes/*.xml` for every branch configured in `Versions.json` in the background. Snapshots are cached under `Redot-Documentation/App_Data/class-docs` and checked for upstream changes every 24 hours. If Git is temporarily unavailable, the application continues with the last valid cache; without a cache, class documentation remains unavailable until a synchronization succeeds.
 
 The repository URL, source path, cache path, refresh interval, and Git timeout are configured in the `ClassDocumentation` section of `Redot-Documentation/appsettings.json`. Set `ClassDocumentation__Enabled=false` to disable synchronization for an offline development session. Git must be installed on the host.
+
+Module class documentation is discovered automatically using wildcard sparse checkout; no per-module configuration or engine build is required. Core and module classes share the existing Classes index, search, and URLs. Only immediate `doc_classes/*.xml` files under each module are included, not unrelated XML or module source code. All selected XML is validated together before publication; duplicate class names or invalid module XML retain the last valid snapshot.
+
+Existing core-only caches remain available while a one-time staged refresh adds module documentation, even if the engine commit is unchanged. Cache metadata records the selection revision and documentation directories so a missing module documentation directory triggers a repair. `ClassDocumentation:RepositoryPath` continues to configure the core XML directory; module discovery always uses `modules/*/doc_classes`.
 
 `/health/class-docs` reports the active commit and class count for each documentation version and returns HTTP 503 if any configured version has no usable snapshot.
 

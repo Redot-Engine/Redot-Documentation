@@ -85,6 +85,34 @@ public sealed class ClassDocumentationSyncServiceTests : IDisposable
         Assert.False(catalog.TryGetSnapshot(manager.NextPrereleaseVersion.Slug, out _));
     }
 
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public async Task StartAsync_ValidatesCoreAndModulesBeforePublishingTogether(bool invalidModule)
+    {
+        var manager = CreateVersionManager();
+        string core = Path.Combine(_contentRootPath, "core");
+        string module = Path.Combine(_contentRootPath, "module");
+        Directory.CreateDirectory(core);
+        Directory.CreateDirectory(module);
+        File.WriteAllText(Path.Combine(core, "Node.xml"), "<class name=\"Node\" />");
+        File.WriteAllText(Path.Combine(module, "ModuleClass.xml"), invalidModule ? "<invalid />" : "<class name=\"ModuleClass\" />");
+        var source = new TestSource(core) { DocumentationPaths = [core, module] };
+        var catalog = new ClassDocumentationCatalog();
+        using var service = CreateService(manager, source, catalog);
+
+        await service.StartAsync(CancellationToken.None);
+        await service.StopAsync(CancellationToken.None);
+
+        Assert.Equal(invalidModule ? 0 : manager.Versions.Count, source.PromotionCount);
+        foreach (var version in manager.Versions)
+        {
+            Assert.Equal(!invalidModule, catalog.TryGetSnapshot(version.Slug, out var snapshot));
+            if (!invalidModule)
+                Assert.Equal(["ModuleClass", "Node"], snapshot!.Classes.Keys.Order(StringComparer.Ordinal));
+        }
+    }
+
     private static ClassDocumentationSyncService CreateService(
         VersionManagerService manager, IClassDocumentationSource source, ClassDocumentationCatalog catalog)
         => new(manager, source, new ClassDocumentationParser(), catalog,
@@ -94,6 +122,7 @@ public sealed class ClassDocumentationSyncServiceTests : IDisposable
     private sealed class TestSource(string classesPath) : IClassDocumentationSource
     {
         public bool DenyCacheAccess { get; init; }
+        public IReadOnlyList<string>? DocumentationPaths { get; init; }
         public int PrepareCount { get; private set; }
         public int PromotionCount { get; private set; }
 
@@ -109,7 +138,7 @@ public sealed class ClassDocumentationSyncServiceTests : IDisposable
         {
             PrepareCount++;
             return Task.FromResult(ClassDocumentationCheckout.Pending(version, "new-commit", classesPath, classesPath,
-                Path.Combine(classesPath, "unused-staging"), () => PromotionCount++));
+                Path.Combine(classesPath, "unused-staging"), () => PromotionCount++, DocumentationPaths));
         }
     }
 

@@ -35,6 +35,9 @@ public sealed class GitClassDocumentationSource : IClassDocumentationSource
     /// <summary>Defines the synchronization metadata file name.</summary>
     private const string MetadataFileName = "sync.json";
 
+    /// <summary>Identifies the core-and-module sparse selection stored in cache metadata.</summary>
+    private const int SelectionRevision = 1;
+
     /// <summary>Stores metadata inside the checkout so it is promoted with the repository.</summary>
     private const string RepositoryMetadataFileName = ".redot-class-doc-sync.json";
 
@@ -87,13 +90,16 @@ public sealed class GitClassDocumentationSource : IClassDocumentationSource
         string activeClassDocumentationPath = GetClassDocumentationPath(activeRepositoryPath);
         if (string.Equals(currentCommit, remoteCommit, StringComparison.OrdinalIgnoreCase)
             && Directory.Exists(Path.Combine(activeRepositoryPath, ".git"))
-            && Directory.Exists(activeClassDocumentationPath))
+            && HasCurrentSelection(currentMetadata!)
+            && TryGetDocumentationPaths(activeRepositoryPath, currentMetadata!, out var activePaths))
         {
             return ClassDocumentationCheckout.Current(
                 version,
                 remoteCommit,
                 activeRepositoryPath,
-                activeClassDocumentationPath);
+                activeClassDocumentationPath,
+                currentMetadata!.SynchronizedAt,
+                activePaths);
         }
 
         string versionRoot = GetVersionRoot(version);
@@ -108,7 +114,7 @@ public sealed class GitClassDocumentationSource : IClassDocumentationSource
                     "clone",
                     "--depth", "1",
                     "--filter=blob:none",
-                    "--sparse",
+                    "--no-checkout",
                     "--single-branch",
                     "--no-tags",
                     "--branch", version.BranchName,
@@ -120,10 +126,19 @@ public sealed class GitClassDocumentationSource : IClassDocumentationSource
                 cancellationToken);
 
             await _git.RunAsync(
-                ["-C", stagingRepositoryPath, "sparse-checkout", "set", "--cone", "--", _options.RepositoryPath],
+                ["-C", stagingRepositoryPath, "sparse-checkout", "set", "--no-cone", "--",
+                    $"/{EscapeSparsePattern(CoreDocumentationPath)}/*.xml", "/modules/*/doc_classes/*.xml"],
                 versionRoot,
                 _options.GitTimeout,
                 cancellationToken);
+
+            await _git.RunAsync(
+                ["-C", stagingRepositoryPath, "checkout", "--detach", "HEAD"],
+                versionRoot,
+                _options.GitTimeout,
+                cancellationToken);
+
+            string[] documentationPaths = DiscoverDocumentationPaths(stagingRepositoryPath);
 
             GitCommandResult commitResult = await _git.RunAsync(
                 ["-C", stagingRepositoryPath, "rev-parse", "HEAD"],
@@ -137,7 +152,10 @@ public sealed class GitClassDocumentationSource : IClassDocumentationSource
                     commitResult.StandardOutput,
                     version.BranchName,
                     _options.RepositoryUrl,
-                    DateTimeOffset.UtcNow));
+                    DateTimeOffset.UtcNow,
+                    SelectionRevision,
+                    CoreDocumentationPath,
+                    documentationPaths.Select(path => Path.GetRelativePath(stagingRepositoryPath, path).Replace('\\', '/')).ToArray()));
 
             return ClassDocumentationCheckout.Pending(
                 version,
@@ -145,7 +163,8 @@ public sealed class GitClassDocumentationSource : IClassDocumentationSource
                 stagingRepositoryPath,
                 GetClassDocumentationPath(stagingRepositoryPath),
                 stagingRoot,
-                () => Promote(version, stagingRepositoryPath, stagingRoot));
+                () => Promote(version, stagingRepositoryPath, stagingRoot),
+                documentationPaths);
         }
         catch
         {
@@ -163,7 +182,8 @@ public sealed class GitClassDocumentationSource : IClassDocumentationSource
         ClassDocumentationSyncMetadata? metadata = ReadMetadata(version);
         string repositoryPath = GetActiveRepositoryPath(version);
         string classDocumentationPath = GetClassDocumentationPath(repositoryPath);
-        if (!IsMetadataCompatible(metadata, version) || !Directory.Exists(classDocumentationPath))
+        if (!IsMetadataCompatible(metadata, version)
+            || !TryGetDocumentationPaths(repositoryPath, metadata!, out var documentationPaths))
         {
             checkout = null;
             return false;
@@ -174,7 +194,8 @@ public sealed class GitClassDocumentationSource : IClassDocumentationSource
             metadata!.CommitSha,
             repositoryPath,
             classDocumentationPath,
-            metadata.SynchronizedAt);
+            metadata.SynchronizedAt,
+            documentationPaths);
         return true;
     }
 
@@ -298,7 +319,8 @@ public sealed class GitClassDocumentationSource : IClassDocumentationSource
         {
             ClassDocumentationSyncMetadata? metadata = ReadMetadataFile(repositoryMetadataPath, version);
             if (metadata is not null
-                && metadata != ReadMetadataFile(Path.Combine(versionRoot, MetadataFileName), version))
+                && JsonSerializer.Serialize(metadata) != JsonSerializer.Serialize(
+                    ReadMetadataFile(Path.Combine(versionRoot, MetadataFileName), version)))
                 WriteMetadata(version, metadata);
         }
     }
@@ -368,6 +390,69 @@ public sealed class GitClassDocumentationSource : IClassDocumentationSource
             && string.Equals(metadata.BranchName, version.BranchName, StringComparison.Ordinal)
             && string.Equals(metadata.RepositoryUrl, _options.RepositoryUrl, StringComparison.Ordinal);
 
+    /// <summary>Gets the normalized core directory used by Git and cache metadata.</summary>
+    private string CoreDocumentationPath => _options.RepositoryPath.Replace('\\', '/').TrimEnd('/');
+
+    /// <summary>Checks whether a checkout includes the current documentation selection.</summary>
+    private bool HasCurrentSelection(ClassDocumentationSyncMetadata metadata)
+        => metadata.SelectionRevision == SelectionRevision
+            && string.Equals(metadata.CoreDocumentationPath, CoreDocumentationPath, StringComparison.Ordinal)
+            && metadata.DocumentationDirectories is { Length: > 0 };
+
+    /// <summary>Discovers module XML directories without executing module configuration.</summary>
+    private string[] DiscoverDocumentationPaths(string repositoryPath)
+    {
+        var paths = new List<string> { GetClassDocumentationPath(repositoryPath) };
+        string modulesPath = Path.Combine(repositoryPath, "modules");
+        if (Directory.Exists(modulesPath))
+        {
+            paths.AddRange(Directory.EnumerateDirectories(modulesPath)
+                .Select(module => Path.Combine(module, "doc_classes"))
+                .Where(path => Directory.Exists(path) && Directory.EnumerateFiles(path, "*.xml").Any())
+                .Order(StringComparer.Ordinal));
+        }
+        return paths.Distinct(StringComparer.Ordinal).ToArray();
+    }
+
+    /// <summary>Validates recorded directories before reusing a cached snapshot.</summary>
+    private bool TryGetDocumentationPaths(string repositoryPath, ClassDocumentationSyncMetadata metadata,
+        out string[] paths)
+    {
+        paths = [];
+        // Legacy core-only caches remain readable while a new staged checkout is prepared.
+        if (metadata.SelectionRevision == 0)
+        {
+            string core = GetClassDocumentationPath(repositoryPath);
+            if (!Directory.Exists(core))
+                return false;
+            paths = [core];
+            return true;
+        }
+        if (!HasCurrentSelection(metadata))
+            return false;
+
+        var relativePaths = metadata.DocumentationDirectories!;
+        if (!relativePaths.Contains(CoreDocumentationPath, StringComparer.Ordinal)
+            || relativePaths.Any(path => path != CoreDocumentationPath && !IsModuleDocumentationPath(path)))
+            return false;
+        paths = relativePaths.Select(path => Path.Combine(repositoryPath, path)).ToArray();
+        return paths.All(path => Directory.Exists(path) && Directory.EnumerateFiles(path, "*.xml").Any());
+    }
+
+    private static bool IsModuleDocumentationPath(string? path)
+    {
+        if (string.IsNullOrEmpty(path))
+            return false;
+        string[] parts = path.Split('/');
+        return parts.Length == 3 && parts[0] == "modules" && parts[2] == "doc_classes"
+            && parts[1].Length > 0 && parts[1] is not "." and not ".." && !parts[1].Contains('\\');
+    }
+
+    /// <summary>Keeps the configured core directory literal in a Git sparse-checkout pattern.</summary>
+    private static string EscapeSparsePattern(string path)
+        => path.Replace("\\", "\\\\").Replace("*", "\\*").Replace("?", "\\?")
+            .Replace("[", "\\[").Replace("]", "\\]");
+
     /// <summary>Gets and creates a version cache root.</summary>
     /// <param name="version">The documentation version.</param>
     /// <returns>The absolute version root.</returns>
@@ -395,7 +480,7 @@ public sealed class GitClassDocumentationSource : IClassDocumentationSource
     /// <exception cref="InvalidOperationException">The configured path escapes the checkout.</exception>
     private string GetClassDocumentationPath(string repositoryPath)
     {
-        string path = Path.GetFullPath(Path.Combine(repositoryPath, _options.RepositoryPath));
+        string path = Path.GetFullPath(Path.Combine(repositoryPath, CoreDocumentationPath));
         string repositoryPathWithSeparator = Path.GetFullPath(repositoryPath).TrimEnd(Path.DirectorySeparatorChar)
             + Path.DirectorySeparatorChar;
         if (!path.StartsWith(repositoryPathWithSeparator, StringComparison.Ordinal))
@@ -411,6 +496,9 @@ public sealed class GitClassDocumentationSource : IClassDocumentationSource
             throw new InvalidOperationException("ClassDocumentation:RepositoryUrl is required.");
         if (string.IsNullOrWhiteSpace(_options.RepositoryPath) || Path.IsPathRooted(_options.RepositoryPath))
             throw new InvalidOperationException("ClassDocumentation:RepositoryPath must be a relative repository path.");
+        if (CoreDocumentationPath.Split('/').Any(part => part.Length == 0 || part is "." or "..")
+            || CoreDocumentationPath.Contains('\n') || CoreDocumentationPath.Contains('\r'))
+            throw new InvalidOperationException("ClassDocumentation:RepositoryPath must contain normalized path segments.");
         if (_options.RefreshInterval <= TimeSpan.Zero)
             throw new InvalidOperationException("ClassDocumentation:RefreshInterval must be greater than zero.");
         if (_options.GitTimeout <= TimeSpan.Zero)
@@ -431,12 +519,18 @@ public sealed class GitClassDocumentationSource : IClassDocumentationSource
     /// <param name="CommitSha">The source commit identifier.</param>
     /// <param name="BranchName">The source branch name.</param>
     /// <param name="RepositoryUrl">The source repository URL.</param>
-    /// <param name="SynchronizedAt">The promotion time.</param>
+    /// <param name="SynchronizedAt">The checkout preparation time.</param>
+    /// <param name="SelectionRevision">The sparse selection revision; zero denotes a legacy core-only cache.</param>
+    /// <param name="CoreDocumentationPath">The configured core directory for this checkout.</param>
+    /// <param name="DocumentationDirectories">The selected repository-relative XML directories.</param>
     private sealed record ClassDocumentationSyncMetadata(
         string CommitSha,
         string BranchName,
         string RepositoryUrl,
-        DateTimeOffset SynchronizedAt);
+        DateTimeOffset SynchronizedAt,
+        int SelectionRevision = 0,
+        string? CoreDocumentationPath = null,
+        string[]? DocumentationDirectories = null);
 }
 
 /// <summary>Represents a current or pending class-documentation checkout.</summary>
@@ -460,6 +554,7 @@ public sealed class ClassDocumentationCheckout : IDisposable
     /// <param name="synchronizedAt">The synchronization time.</param>
     /// <param name="stagingRoot">The optional staging root.</param>
     /// <param name="promote">The optional promotion action.</param>
+    /// <param name="classDocumentationPaths">All selected XML directories, or the core directory by default.</param>
     private ClassDocumentationCheckout(
         DocumentationVersion version,
         string commitSha,
@@ -468,12 +563,14 @@ public sealed class ClassDocumentationCheckout : IDisposable
         bool isPending,
         DateTimeOffset synchronizedAt,
         string? stagingRoot,
-        Action? promote)
+        Action? promote,
+        IReadOnlyList<string>? classDocumentationPaths)
     {
         Version = version;
         CommitSha = commitSha;
         RepositoryPath = repositoryPath;
         ClassDocumentationPath = classDocumentationPath;
+        ClassDocumentationPaths = classDocumentationPaths ?? [classDocumentationPath];
         IsPending = isPending;
         SynchronizedAt = synchronizedAt;
         _stagingRoot = stagingRoot;
@@ -491,6 +588,9 @@ public sealed class ClassDocumentationCheckout : IDisposable
 
     /// <summary>Gets the class-documentation path.</summary>
     public string ClassDocumentationPath { get; }
+
+    /// <summary>Gets all core and module class-documentation directories.</summary>
+    public IReadOnlyList<string> ClassDocumentationPaths { get; }
 
     /// <summary>Gets whether the checkout awaits promotion.</summary>
     public bool IsPending { get; }
@@ -525,6 +625,7 @@ public sealed class ClassDocumentationCheckout : IDisposable
     /// <param name="classDocumentationPath">The class-documentation path.</param>
     /// <param name="stagingRoot">The staging root.</param>
     /// <param name="promote">The promotion action.</param>
+    /// <param name="classDocumentationPaths">All selected XML directories.</param>
     /// <returns>The pending checkout.</returns>
     internal static ClassDocumentationCheckout Pending(
         DocumentationVersion version,
@@ -532,7 +633,8 @@ public sealed class ClassDocumentationCheckout : IDisposable
         string repositoryPath,
         string classDocumentationPath,
         string stagingRoot,
-        Action promote)
+        Action promote,
+        IReadOnlyList<string>? classDocumentationPaths = null)
         => new(
             version,
             commitSha,
@@ -541,7 +643,8 @@ public sealed class ClassDocumentationCheckout : IDisposable
             isPending: true,
             DateTimeOffset.UtcNow,
             stagingRoot,
-            promote);
+            promote,
+            classDocumentationPaths);
 
     /// <summary>Creates an active checkout.</summary>
     /// <param name="version">The documentation version.</param>
@@ -549,13 +652,15 @@ public sealed class ClassDocumentationCheckout : IDisposable
     /// <param name="repositoryPath">The active repository path.</param>
     /// <param name="classDocumentationPath">The class-documentation path.</param>
     /// <param name="synchronizedAt">The optional synchronization time.</param>
+    /// <param name="classDocumentationPaths">All selected XML directories.</param>
     /// <returns>The active checkout.</returns>
     internal static ClassDocumentationCheckout Current(
         DocumentationVersion version,
         string commitSha,
         string repositoryPath,
         string classDocumentationPath,
-        DateTimeOffset? synchronizedAt = null)
+        DateTimeOffset? synchronizedAt = null,
+        IReadOnlyList<string>? classDocumentationPaths = null)
         => new(
             version,
             commitSha,
@@ -564,5 +669,6 @@ public sealed class ClassDocumentationCheckout : IDisposable
             isPending: false,
             synchronizedAt ?? DateTimeOffset.UtcNow,
             null,
-            null);
+            null,
+            classDocumentationPaths);
 }
