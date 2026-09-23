@@ -18,20 +18,27 @@ public sealed class DocumentationLinkTests
         var environment = new AuditEnvironment { ContentRootPath = root };
         var versions = new VersionManagerService(environment);
         versions.LoadContent();
-        var renderer = new DocRendererService(environment);
+        var paths = new DocumentPathResolver(environment, versions);
+        var renderer = new DocRendererService(paths);
         var pages = new Dictionary<(string Version, string Route), HtmlDocument>();
         foreach (var version in versions.Versions)
         {
             var provider = versions.GetVersionProvider(version.Slug);
-            foreach (var file in Directory.EnumerateFiles(Path.Combine(root, "docs"), "*.md", SearchOption.AllDirectories))
+            foreach (var file in DocumentPathResolver.EnumerateMarkdownFiles(Path.Combine(root, "docs")))
             {
                 var relative = Path.GetRelativePath(Path.Combine(root, "docs"), file).Replace('\\', '/');
                 if (!relative.StartsWith(version.Slug + "/") &&
                     !new[] { "About/", "Community/", "Contributing/" }.Any(relative.StartsWith))
                     continue;
+                var resolved = paths.ResolveRoute(relative, versions);
+                Assert.NotNull(resolved);
+                Assert.Equal(Path.GetFullPath(file), resolved.FullPath);
+                // Verify legacy aliases against the merged documentation corpus as well.
+                foreach (var suffix in new[] { "", ".MD", ".HTML" })
+                    Assert.Equal(resolved, paths.ResolveRoute(relative[..^3].ToUpperInvariant() + suffix, versions));
                 var document = new HtmlDocument();
-                document.LoadHtml(DocumentHeadings.Apply(await renderer.RenderToHtmlAsync(relative, provider), []));
-                pages.Add((version.Slug, "/en/" + relative[..^3]), document);
+                document.LoadHtml(DocumentHeadings.Apply(await renderer.RenderToHtmlAsync(resolved, provider), []));
+                pages.Add((version.Slug, resolved.PublicUrl), document);
             }
         }
 
@@ -45,10 +52,11 @@ public sealed class DocumentationLinkTests
                     continue;
                 var target = new Uri(new Uri("https://audit.invalid" + key.Route), href);
                 var path = Uri.UnescapeDataString(target.AbsolutePath);
-                if (path.EndsWith(".md")) path = path[..^3];
                 // Class references come from separately synchronized engine XML, not this documentation corpus.
                 if (path.Split('/').Contains("Classes") || !path.StartsWith("/en/"))
                     continue;
+                var resolved = paths.ResolveRoute(path[4..], versions);
+                path = resolved?.PublicUrl ?? path;
                 if (!pages.TryGetValue((key.Version, path), out var destination))
                     destination = pages.FirstOrDefault(p => p.Key.Route == path).Value;
                 var fragment = Uri.UnescapeDataString(target.Fragment.TrimStart('#'));
