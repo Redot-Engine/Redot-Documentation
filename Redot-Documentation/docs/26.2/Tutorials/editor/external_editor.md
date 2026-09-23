@@ -6,7 +6,7 @@ This page explains how to code using an external text editor.
 :::note
 
 To code C# in an external editor, see
-[the C# guide to configure an external editor ](doc_c_sharp_setup_external_editor).
+[the C# guide to configure an external editor ](doc_c_sharp_basics#configuring-an-external-editor).
 
 :::
 
@@ -59,7 +59,7 @@ enable **Editor &gt; Editor Settings &gt; Text Editor &gt; Behavior &gt; Auto Re
 ## Using External Editor in Debugger
 
 Using external editor in debugger is determined by a separate option in settings.
-For details, see [Script editor debug tools and options ](doc_debugger_tools_and_options).
+For details, see [Script editor debug tools and options ](doc_overview_of_debugging_tools#script-editor-debug-tools-and-options).
 
 ## Official editor plugins
 

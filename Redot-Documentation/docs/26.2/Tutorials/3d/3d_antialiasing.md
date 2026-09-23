@@ -57,7 +57,7 @@ transparency aliasing for materials using the **Alpha Scissor** transparency
 mode (1-bit transparency). MSAA is also ineffective on specular aliasing.
 
 To mitigate aliasing on alpha scissor materials,
-[alpha antialiasing](doc_standard_material_3d_alpha_antialiasing)
+[alpha antialiasing](doc_standard_material_3d#alpha-antialiasing)
 (also called *alpha to coverage*) can be enabled on specific materials in the
 StandardMaterial3D or ORMMaterial3D properties. Alpha to coverage has a
 moderate performance cost, but it's effective at reducing aliasing on

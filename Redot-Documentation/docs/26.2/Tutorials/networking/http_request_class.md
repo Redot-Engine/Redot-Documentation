@@ -22,8 +22,8 @@ So HTTP may be useful for your game's login system, lobby browser,
 to retrieve some information from the web or to download game assets.
 
 This tutorial assumes some familiarity with Redot and the Redot Editor.
-Refer to the [Introduction ](toc-learn-introduction) and the
-[Step by step ](toc-learn-step_by_step) tutorial, especially its
+Refer to the [Introduction ](doc_getting_started_introduction) and the
+[Step by step ](doc_getting_started_step_by_step) tutorial, especially its
 [Nodes and Scenes ](../../Getting Started/step_by_step/nodes_and_scenes.md) and
 [Creating your first script ](../../Getting Started/step_by_step/scripting_first_script.md) pages if needed.
 

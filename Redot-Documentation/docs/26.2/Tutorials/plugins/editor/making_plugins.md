@@ -179,7 +179,7 @@ custom behavior.
 
 Nodes added via an EditorPlugin are "CustomType" nodes. While they work
 with any scripting language, they have fewer features than
-[the Script Class system ](doc_gdscript_basics_class_name). If you
+[the Script Class system ](doc_gdscript_basics#registering-named-classes). If you
 are writing GDScript or NativeScript, we recommend using Script Classes instead.
 
 :::
@@ -249,7 +249,7 @@ don't have one, you can grab the default one from the engine and save it in your
 
 SVG images that are used as custom node icons should have the
 **Editor &gt; Scale With Editor Scale** and **Editor &gt; Convert Colors With Editor Theme**
-[import options ](doc_importing_images_editor_import_options) enabled. This allows
+[import options ](doc_importing_images#editor-scale-with-editor-scale) enabled. This allows
 icons to follow the editor's scale and theming settings if the icons are designed with
 the same color palette as Redot's own icons.
 
@@ -373,7 +373,7 @@ script="CustomDock.cs"
 </Tabs>
 
 Then create the script ``custom_dock.gd`` in the same folder. Fill it with the
-[template we've seen before ](doc_making_plugins_template_code) to get a
+[template we've seen before ](doc_making_plugins#the-script-file) to get a
 good start.
 
 Since we're trying to add a new custom dock, we need to create the contents of

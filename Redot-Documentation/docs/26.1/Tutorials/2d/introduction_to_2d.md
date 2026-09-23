@@ -16,7 +16,7 @@ flexibility, provide a solid foundation for creating engaging 2D games.
 This page will show you the 2D workspace and how you can get to know it.
 
 :::tip
-If you would like to get an introduction to 3D, see :ref:`doc_introduction_to_3d`.
+If you would like to get an introduction to 3D, see [doc_introduction_to_3d](doc_introduction_to_3d).
 
 :::
 
@@ -31,7 +31,7 @@ or use the workspace selector located at the top edge of the editor:
 
 Similar to 3D, you can use the tabs below the workspace selector to change between currently 
 opened scenes or create a new one using the plus (+) button. The left and right docks should 
-be familiar from [editor introduction ](toc-editor-interface).
+be familiar from [editor introduction ](doc_editor).
 
 Below the scene selector is the main toolbar, and beneath the main toolbar
 is the 2D viewport.
@@ -66,11 +66,11 @@ from left to right:
   selected, only movement and rotation are possible. In this mode, rotation and scaling 
   will not use the snapping options if snapping is enabled.
 - **Move Mode** (`W`): Enables move (or translate) mode for the selected nodes. See 
-  [doc_introduction_to_2d_the_viewport](doc_introduction_to_2d_the_viewport) for more details.
+  [doc_introduction_to_2d_the_viewport](doc_introduction_to_2d#d-viewport) for more details.
 - **Rotate Mode** (`E`): Enables rotation mode for the selected nodes. See 
-  [doc_introduction_to_2d_the_viewport](doc_introduction_to_2d_the_viewport) for more details.
+  [doc_introduction_to_2d_the_viewport](doc_introduction_to_2d#d-viewport) for more details.
 - **Scale Mode** (`S`): Enables scaling and displays scaling gizmos in both 
-  axes for the selected node(s). See [doc_introduction_to_2d_the_viewport](doc_introduction_to_2d_the_viewport) for more details.
+  axes for the selected node(s). See [doc_introduction_to_2d_the_viewport](doc_introduction_to_2d#d-viewport) for more details.
 - **Show list of selectable nodes at position clicked**: As the description suggests, 
   this provides a list of selectable nodes at the clicked position as a context menu, if 
   there is more than one node in the clicked area.
@@ -163,7 +163,7 @@ Use the three-dot menu for this:
   - Make Bone2D Node(s) from Node(s): Converts selected node(s) into Bone2D. 
 
 :::info
-To learn more about Skeletons, see :ref:`doc_cutout_animation`.
+To learn more about Skeletons, see [doc_cutout_animation](doc_cutout_animation).
 
 :::
 
@@ -172,7 +172,7 @@ To learn more about Skeletons, see :ref:`doc_cutout_animation`.
   you to move freely and inspect the level's different parts, while the game is running.
   
 - **View** menu: Provides options to control the viewport view. Since its options 
-  depend heavily on the viewport, it is covered in the [doc_introduction_to_2d_the_viewport](doc_introduction_to_2d_the_viewport) 
+  depend heavily on the viewport, it is covered in the [doc_introduction_to_2d_the_viewport](doc_introduction_to_2d#d-viewport)
   section.
 
 Next to the View menu, additional buttons may be visible. In the toolbar image
@@ -271,9 +271,9 @@ Viewport has a **View** menu which provides several options to change the look o
   transform properties (position, scaling, or rotation) if a transform operation has been 
   initiated. For `Control` nodes, it also shows the sizing parameters. Useful to see the deltas.
 - **Show Rulers**: Toggles the visibility of horizontal and vertical rulers. See 
-  [doc_introduction_to_2d_the_viewport](doc_introduction_to_2d_the_viewport) more on rulers.
+  [doc_introduction_to_2d_the_viewport](doc_introduction_to_2d#d-viewport) more on rulers.
 - **Show Guides**: Toggles the visibility of created guides. See 
-  [doc_introduction_to_2d_the_viewport](doc_introduction_to_2d_the_viewport) for on how to create them.
+  [doc_introduction_to_2d_the_viewport](doc_introduction_to_2d#d-viewport) for on how to create them.
 - **Show Origin**: Toggles the display of the green and red origin lines drawn at ``x: 0, y: 0``.
 - **Show Viewport**: Toggles the visibility of the game's default 
   viewport, indicated by an indigo-colored rectangle. It is also the default window size on desktop 
@@ -309,6 +309,6 @@ Then, you can drag a 3D scene as a child of the SubViewport:
 ![Image](/img/Tutorials/2d/img/3d_in_2d_demo_editor.webp)
 
 :::info
-You can check the demo on: `3D in 2D Viewport demo <https://godotengine.org/asset-library/asset/2804>`__.
+You can check the demo on: [3D in 2D Viewport demo](https://godotengine.org/asset-library/asset/2804).
 
 :::

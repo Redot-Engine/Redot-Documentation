@@ -150,7 +150,7 @@ every scene is instanced individually for every placed tile.
 
 It's recommended to only use scene tiles when necessary. To draw sprites in a
 tile without any kind of advanced manipulation,
-[use atlases instead ](doc_creating_tilesets_using_tilesheet).
+[use atlases instead ](doc_using_tilesets#using-a-tilesheet).
 
 :::
 
@@ -323,7 +323,7 @@ individually could take a lot of time. This is especially true as TileMaps
 tend to have many tiles with common collision patterns (such as solid blocks
 or 45-degree slopes). To apply a similar collision shape to several tiles
 quickly, use functionality to
-[assign properties to multiple tiles at once ](doc_using_tilemaps_assigning_properties_to_multiple_tiles).
+[assign properties to multiple tiles at once ](doc_using_tilesets#assigning-properties-to-multiple-tiles-at-once).
 
 :::
 
@@ -336,7 +336,7 @@ destroyed using a weapon.
 
 The data is associated with the tile in the TileSet: all instances of the placed
 tile will use the same custom data. If you need to create a variant of a tile
-that has different custom data, this can be done by [creating an alternative tile ](doc_using_tilesets_creating_alternative_tiles) and changing
+that has different custom data, this can be done by [creating an alternative tile ](doc_using_tilesets#creating-alternative-tiles) and changing
 the custom data for the alternative tile only.
 
 ![Image](/img/Tutorials/2d/img/using_tilesets_create_custom_data_layer.webp)
@@ -358,7 +358,7 @@ to ``false``:
 
    Editing custom data in the TileSet editor while in Select mode
 
-[Tile property painting ](doc_using_tilemaps_using_tile_property_painting)
+[Tile property painting ](doc_using_tilesets#using-tile-property-painting)
 can also be used for custom data:
 
 ![Image](/img/Tutorials/2d/img/using_tilesets_paint_custom_data.webp)

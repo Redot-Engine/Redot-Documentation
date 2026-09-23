@@ -86,7 +86,7 @@ Both Forward+ and Mobile renderers support variable rate
 shading. VRS can be used in both pancake (non-XR) and XR display modes.
 
 The Compatibility renderer does **not** support variable rate shading.
-For XR, you can use [foveation level](doc_openxr_settings_foveation_level)
+For XR, you can use [foveation level](doc_openxr_settings#foveation-level)
 as an alternative.
 
 :::
@@ -171,7 +171,7 @@ aspect ratio in your project (such as 16:9).
 :::tip
 
 When using variable rate shading, you can use a negative
-[texture mipmap LOD bias](doc_resolution_scaling_mipmap_bias)
+[texture mipmap LOD bias](doc_resolution_scaling#mipmap-bias)
 to reduce blurriness in areas with reduced shading rate.
 
 Note that the texture LOD bias is set globally, so this will also affect

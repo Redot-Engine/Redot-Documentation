@@ -28,7 +28,7 @@ after enabling the **Advanced** toggle in the project settings dialog:
 
 ![Image](/img/Tutorials/i18n/img/pseudolocalization_settings.webp)
 
-Pseudolocalization can also be [toggled at runtime from a script ](doc_pseudolocalization_runtime).
+Pseudolocalization can also be [toggled at runtime from a script ](doc_pseudolocalization#configuring-pseudolocalization-at-runtime).
 
 ## Pseudolocalization configurations
 

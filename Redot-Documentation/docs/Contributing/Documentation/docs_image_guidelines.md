@@ -184,7 +184,7 @@ use a resolution of 1280×720.
 <!-- TODO: update movie maker link. Requires a functional versioned tutorial section -->
 :::note
 
-Redot's [Movie Maker mode](../../tutorials/animation/creating_movies.md) can be used to record
+Redot's [Movie Maker mode](doc_creating_movies) can be used to record
 the output of a running project, including its audio. This doesn't require
 installing any third-party software and avoids any frame drops (even when
 recording on a slow device), but it's less flexible.

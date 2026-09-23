@@ -55,11 +55,11 @@ given build type.
 | ``--debug-server &lt;uri&gt;`` |  | editor | Start the editor debug server (``&lt;protocol&gt;://&lt;host/IP&gt;[:&lt;port&gt;]``, e.g. ``tcp://127.0.0.1:6007``) |
 | ``--quit`` |  | release | Quit after the first iteration. |
 | ``--quit-after`` |  | release | Quit after the given number of iterations. Set to 0 to disable. |
-| ``-l``, ``--language &lt;locale&gt;`` |  lowercase and the rest is optional. See :ref:`doc_locales` for more details. | release | Use a specific locale. ``&lt;locale&gt;`` follows the format ``language_Script_COUNTRY_VARIANT`` where language is a 2 or 3-letter language code in |
+| ``-l``, ``--language &lt;locale&gt;`` |  lowercase and the rest is optional. See [doc_locales](doc_locales) for more details. | release | Use a specific locale. ``&lt;locale&gt;`` follows the format ``language_Script_COUNTRY_VARIANT`` where language is a 2 or 3-letter language code in |
 | ``--path &lt;directory&gt;`` |  | release | Path to a project (``&lt;directory&gt;`` must contain a 'project.Redot' file). |
 | ``-u``, ``--upwards`` |  | release | Scan folders upwards for 'project.Redot' file. |
 | ``--main-pack &lt;file&gt;`` |  | release | Path to a pack (.pck) file to load. |
-| ``--render-thread &lt;mode&gt;`` |  for more details. | release | Render thread mode ('unsafe', 'safe', 'separate'). See :ref:`Thread Model &lt;class_ProjectSettings_property_rendering/driver/threads/thread_model&gt;` |
+| ``--render-thread &lt;mode&gt;`` |  for more details. | release | Render thread mode ('unsafe', 'safe', 'separate'). See [Thread Model](class_ProjectSettings_property_rendering/driver/threads/thread_model) |
 | ``--remote-fs &lt;address&gt;`` |  | release | Remote filesystem (``&lt;host/IP&gt;[:&lt;port&gt;]`` address). |
 | ``--remote-fs-password &lt;password&gt;`` |  | release | Password for remote filesystem. |
 | ``--audio-driver &lt;driver&gt;`` |  | release | Audio driver. Use ``--help`` first to display the list of available drivers. |
@@ -94,7 +94,7 @@ given build type.
 | ``-b``, ``--breakpoints`` |  | release | Breakpoint list as source::line comma-separated pairs, no spaces (use ``%20`` instead). |
 | ``--profiling`` |  | release | Enable profiling in the script debugger. |
 | ``--gpu-profile`` |  | release | Show a GPU profile of the tasks that took the most time during frame rendering. |
-| ``--gpu-validation`` |  | release | Enable graphics API :ref:`validation layers &lt;doc_vulkan_validation_layers&gt;` for debugging. |
+| ``--gpu-validation`` |  | release | Enable graphics API [validation layers](doc_vulkan_validation_layers) for debugging. |
 | ``--gpu-abort`` |  | debug | Abort on GPU errors (usually validation layer errors), may help see the problem if your system freezes. |
 | ``--remote-debug &lt;uri&gt;`` |  | release | Remote debug (``&lt;protocol&gt;://&lt;host/IP&gt;[:&lt;port&gt;]``, e.g. ``tcp://127.0.0.1:6007``). |
 | ``--single-threaded-scene`` |  | release | Scene tree runs in single-threaded mode. Sub-thread groups are disabled and run on the main thread. |

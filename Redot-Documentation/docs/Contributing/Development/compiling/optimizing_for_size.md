@@ -269,7 +269,7 @@ module_zip_enabled = "no"
 :::info
 
 <!-- TODO(Tekk): overriding_build_options.md doesnt exist -->
-[doc_overriding_build_options](doc_overriding_build_options).
+[doc_overriding_build_options](doc_introduction_to_the_buildsystem#overriding-the-build-options).
 
 :::
 
@@ -321,4 +321,4 @@ files when they exist. When supported, Brotli should be preferred over gzip as
 it has a greater potential for file size reduction.
 
 <!-- TODO(Tekk): doc_exporting_for_web_serving_the_files doesnt exist -->
-See [doc_exporting_for_web_serving_the_files](doc_exporting_for_web_serving_the_files) for instructions.
+See [doc_exporting_for_web_serving_the_files](doc_exporting_for_web#serving-the-files) for instructions.

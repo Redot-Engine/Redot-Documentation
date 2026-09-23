@@ -14,7 +14,7 @@ GDScript is entirely independent from Python and is not based on it.
 :::note
 
 Documentation about GDScript's history has been moved to the
-[Frequently Asked Questions ](doc_faq_what_is_gdscript).
+[Frequently Asked Questions ](abt_faq#what-is-gdscript-and-why-should-i-use-it).
 
 :::
 
@@ -133,25 +133,25 @@ in case you want to take a look under the hood.
 
 | Keyword | Description |
 | --- | --- |
-| if | See `if/else/elif`_. |
-| elif | See `if/else/elif`_. |
-| else | See `if/else/elif`_. |
+| if | See [if/else/elif](#ifelseelif). |
+| elif | See [if/else/elif](#ifelseelif). |
+| else | See [if/else/elif](#ifelseelif). |
 | for | See for_. |
 | while | See while_. |
 | match | See match_. |
-| when | Used by `pattern guards &lt;Pattern guards_&gt;`_ in ``match`` statements. |
+| when | Used by [pattern guards](#pattern-guards) in ``match`` statements. |
 | break | Exits the execution of the current ``for`` or ``while`` loop. |
 | continue | Immediately skips to the next iteration of the ``for`` or ``while`` loop. |
 | pass | Used where a statement is required syntactically but execution of code is undesired, e.g. in empty functions. |
 | return | Returns a value from a function. |
-| class | Defines an inner class. See `Inner classes`_. |
-| class_name | Defines the script as a globally accessible class with the specified name. See `Registering named classes`_. |
+| class | Defines an inner class. See [Inner classes](#inner-classes). |
+| class_name | Defines the script as a globally accessible class with the specified name. See [Registering named classes](#registering-named-classes). |
 | extends | Defines what class to extend with the current class. |
 | is | Tests whether a variable extends a given class, or is of a given built-in type. |
 | in | Tests whether a value is within a string, array, range, dictionary, or node. When used with ``for``, it iterates through them instead of testing. |
 | as | Cast the value to a given type if possible. |
-| self | Refers to current class instance. See `self`_. |
-| super | Resolves the scope of the parent method. See `Inheritance`_. |
+| self | Refers to current class instance. See [self](#self). |
+| super | Resolves the scope of the parent method. See [Inheritance](#inheritance). |
 | signal | Defines a signal. |
 | func | Defines a function. |
 | static | Defines a static function or a static member variable. |
@@ -159,10 +159,10 @@ in case you want to take a look under the hood.
 | enum | Defines an enum. |
 | var | Defines a variable. |
 | breakpoint | Editor helper for debugger breakpoints. Unlike breakpoints created by clicking in the gutter, ``breakpoint`` is stored in the script itself. This makes it persistent across different machines when using version control. |
-| preload | Preloads a class or variable. See `Classes as resources`_. |
-| await | Waits for a signal or a coroutine to finish. See `Awaiting signals or coroutines`_. |
+| preload | Preloads a class or variable. See [Classes as resources](#classes-as-resources). |
+| await | Waits for a signal or a coroutine to finish. See [Awaiting signals or coroutines](#awaiting-signals-or-coroutines). |
 | yield | Previously used for coroutines. Kept as keyword for transition. |
-| assert | Asserts a condition, logs error on failure. Ignored in non-debug builds. See `Assert keyword`_. |
+| assert | Asserts a condition, logs error on failure. Ignored in non-debug builds. See [Assert keyword](#assert-keyword). |
 | void | Used to represent that a function does not return any value. |
 | PI | PI constant. |
 | TAU | TAU constant. |
@@ -181,12 +181,12 @@ example ``2 ** (2 ** 3)``. The ternary ``if/else`` operator is right-associative
 | ``x[index]`` | Subscription |
 | ``x.attribute`` | Attribute reference |
 | ``foo()`` | Function call |
-| ``await x`` | `Awaiting signals or coroutines`_ |
-|  | ``x is Node`` ``x is not Node`` See also :ref:`is_instance_of() &lt;class_@GDScript_method_is_instance_of&gt;` function. | Type checking |
-| ``x ** y`` | Power Multiplies ``x`` by itself ``y`` times, similar to calling :ref:`pow() &lt;class_@GlobalScope_method_pow&gt;` function. |
+| ``await x`` | [Awaiting signals or coroutines](#awaiting-signals-or-coroutines) |
+|  | ``x is Node`` ``x is not Node`` See also [is_instance_of()](class_@GDScript_method_is_instance_of) function. | Type checking |
+| ``x ** y`` | Power Multiplies ``x`` by itself ``y`` times, similar to calling [pow()](class_@GlobalScope_method_pow) function. |
 | ``~x`` | Bitwise NOT |
 |  | ``+x`` ``-x`` | Identity / Negation |
-|  | ``x * y`` ``x / y`` ``x % y`` :ref:`format strings &lt;doc_gdscript_printf&gt;`. **Note:** These operators have the same behavior as C++, which may be unexpected for users coming from Python, JavaScript, etc. See a detailed note after the table. | Multiplication / Division / Remainder The ``%`` operator is additionally used for |
+|  | ``x * y`` ``x / y`` ``x % y`` [format strings](doc_gdscript_format_string). **Note:** These operators have the same behavior as C++, which may be unexpected for users coming from Python, JavaScript, etc. See a detailed note after the table. | Multiplication / Division / Remainder The ``%`` operator is additionally used for |
 |  | ``x + y`` ``x - y`` | Addition (or Concatenation) / Subtraction |
 |  | ``x &lt;&lt; y`` ``x &gt;&gt; y`` | Bit shifting |
 | ``x & y`` | Bitwise AND |
@@ -194,11 +194,11 @@ example ``2 ** (2 ** 3)``. The ternary ``if/else`` operator is right-associative
 | ``x | y`` | Bitwise OR |
 |  | ``x == y`` ``x != y`` ``x &lt; y`` ``x &gt; y`` ``x &lt;= y`` ``x &gt;= y`` | Comparison See a detailed note after the table. |
 |  | ``x in y`` ``x not in y`` ``in`` is also used with the for_ keyword as part of the syntax. | Inclusion checking |
-|  | ``not x`` ``!x`` | Boolean NOT and its :ref:`unrecommended &lt;boolean_operators&gt;` alias |
-|  | ``x and y`` ``x && y`` | Boolean AND and its :ref:`unrecommended &lt;boolean_operators&gt;` alias |
-|  | ``x or y`` ``x | Boolean OR and its :ref:`unrecommended &lt;boolean_operators&gt;` alias | y`` |  |
+|  | ``not x`` ``!x`` | Boolean NOT and its [unrecommended](doc_gdscript_styleguide#boolean-operators) alias |
+|  | ``x and y`` ``x && y`` | Boolean AND and its [unrecommended](doc_gdscript_styleguide#boolean-operators) alias |
+|  | ``x or y`` ``x | Boolean OR and its [unrecommended](doc_gdscript_styleguide#boolean-operators) alias | y`` |  |
 | ``true_expr if cond else false_expr`` | Ternary if/else |
-| ``x as Node`` | `Type casting &lt;casting_&gt;`_ |
+| ``x as Node`` | [Type casting](#casting) |
 |  | ``x = y`` ``x += y`` ``x -= y`` ``x *= y`` ``x /= y`` ``x **= y`` ``x %= y`` ``x &= y`` ``x ``x ^= y`` ``x &lt;&lt;= y`` ``x &gt;&gt;= y`` | Assignment (lowest priority) You cannot use an assignment operator inside an expression. = y`` |  |
 
 :::note
@@ -232,8 +232,8 @@ The behavior of some operators may differ from what you expect:
 | ``"""Hello"""``, ``'''Hi'''`` | Triple-quoted regular strings |
 | ``r"Hello"``, ``r'Hi'`` | Raw strings |
 | ``r"""Hello"""``, ``r'''Hi'''`` | Triple-quoted raw strings |
-| ``&"name"`` | :ref:`StringName &lt;class_StringName&gt;` |
-| ``^"Node/Label"`` | :ref:`NodePath &lt;class_NodePath&gt;` |
+| ``&"name"`` | [StringName](class_StringName) |
+| ``^"Node/Label"`` | [NodePath](class_NodePath) |
 
 There are also two constructs that look like literals, but actually are not:
 
@@ -572,36 +572,36 @@ be assigned any other value.
 
 Only types that inherit from Object can have a ``null`` value
 (Object is therefore called a "nullable" type).
-[Variant types ](../../../Contributing/Development/core_and_modules/variant_class.md) must have a valid value at all times,
+[Variant types ](doc_variant_class) must have a valid value at all times,
 and therefore cannot have a ``null`` value.
 
-#### :ref:`bool <class_bool>`
+#### [bool](class_bool)
 
 Short for "boolean", it can only contain ``true`` or ``false``.
 
-#### :ref:`int <class_int>`
+#### [int](class_int)
 
 Short for "integer", it stores whole numbers (positive and negative).
 It is stored as a 64-bit value, equivalent to ``int64_t`` in C++.
 
-#### :ref:`float <class_float>`
+#### [float](class_float)
 
 Stores real numbers, including decimals, using floating-point values.
 It is stored as a 64-bit value, equivalent to ``double`` in C++.
 Note: Currently, data structures such as ``Vector2``, ``Vector3``, and
 ``PackedFloat32Array`` store 32-bit single-precision ``float`` values.
 
-#### :ref:`String <class_String>`
+#### [String](class_String)
 
 A sequence of characters in [Unicode format ](https://en.wikipedia.org/wiki/Unicode).
 
-#### :ref:`StringName <class_StringName>`
+#### [StringName](class_StringName)
 
 An immutable string that allows only one instance of each name. They are slower to
 create and may result in waiting for locks when multithreading. In exchange, they're
 very fast to compare, which makes them good candidates for dictionary keys.
 
-#### :ref:`NodePath <class_NodePath>`
+#### [NodePath](class_NodePath)
 
 A pre-parsed path to a node or a node property.  It can be
 easily assigned to, and from, a String. They are useful to interact with
@@ -609,80 +609,80 @@ the tree to get a node, or affecting properties like with [Tweens ](class_Tween)
 
 ### Vector built-in types
 
-#### :ref:`Vector2 <class_Vector2>`
+#### [Vector2](class_Vector2)
 
 2D vector type containing ``x`` and ``y`` fields. Can also be
 accessed as an array.
 
-#### :ref:`Vector2i <class_Vector2i>`
+#### [Vector2i](class_Vector2i)
 
 Same as a Vector2 but the components are integers. Useful for representing
 items in a 2D grid.
 
-#### :ref:`Rect2 <class_Rect2>`
+#### [Rect2](class_Rect2)
 
 2D Rectangle type containing two vectors fields: ``position`` and ``size``.
 Also contains an ``end`` field which is ``position + size``.
 
-#### :ref:`Vector3 <class_Vector3>`
+#### [Vector3](class_Vector3)
 
 3D vector type containing ``x``, ``y`` and ``z`` fields. This can also
 be accessed as an array.
 
-#### :ref:`Vector3i <class_Vector3i>`
+#### [Vector3i](class_Vector3i)
 
 Same as Vector3 but the components are integers. Can be use for indexing items
 in a 3D grid.
 
-#### :ref:`Transform2D <class_Transform2D>`
+#### [Transform2D](class_Transform2D)
 
 3×2 matrix used for 2D transforms.
 
-#### :ref:`Plane <class_Plane>`
+#### [Plane](class_Plane)
 
 3D Plane type in normalized form that contains a ``normal`` vector field
 and a ``d`` scalar distance.
 
-#### :ref:`Quaternion <class_Quaternion>`
+#### [Quaternion](class_Quaternion)
 
 Quaternion is a datatype used for representing a 3D rotation. It's
 useful for interpolating rotations.
 
-#### :ref:`AABB <class_AABB>`
+#### [AABB](class_AABB)
 
 Axis-aligned bounding box (or 3D box) contains 2 vectors fields: ``position``
 and ``size``. Also contains an ``end`` field which is
 ``position + size``.
 
-#### :ref:`Basis <class_Basis>`
+#### [Basis](class_Basis)
 
 3x3 matrix used for 3D rotation and scale. It contains 3 vector fields
 (``x``, ``y`` and ``z``) and can also be accessed as an array of 3D
 vectors.
 
-#### :ref:`Transform3D <class_Transform3D>`
+#### [Transform3D](class_Transform3D)
 
 3D Transform contains a Basis field ``basis`` and a Vector3 field
 ``origin``.
 
 ### Engine built-in types
 
-#### :ref:`Color <class_Color>`
+#### [Color](class_Color)
 
 Color data type contains ``r``, ``g``, ``b``, and ``a`` fields. It can
 also be accessed as ``h``, ``s``, and ``v`` for hue/saturation/value.
 
-#### :ref:`RID <class_RID>`
+#### [RID](class_RID)
 
 Resource ID (RID). Servers use generic RIDs to reference opaque data.
 
-#### :ref:`Object <class_Object>`
+#### [Object](class_Object)
 
 Base class for anything that is not a built-in type.
 
 ### Container built-in types
 
-#### :ref:`Array <class_Array>`
+#### [Array](class_Array)
 
 Generic sequence of arbitrary object types, including other arrays or dictionaries (see below).
 The array can resize dynamically. Arrays are indexed starting from index ``0``.
@@ -728,7 +728,7 @@ that it can reference to. Therefore, you **cannot** assign an array with a diffe
 even if the type is a subtype of the required type.
 
 If you want to *convert* a typed array, you can create a new array and use the
-:ref:`Array.assign() <class_Array_method_assign>` method
+[Array.assign()](class_Array_method_assign) method
 
 ```
 var a: Array[Node2D] = [Node2D.new()]
@@ -784,7 +784,7 @@ performance in iteration and modification compared to an untyped Array.
 - [PackedVector4Array ](class_PackedVector4Array): An array of [Vector4 ](class_Vector4) values.
 - [PackedColorArray ](class_PackedColorArray): An array of [Color ](class_Color) values.
 
-#### :ref:`Dictionary <class_Dictionary>`
+#### [Dictionary](class_Dictionary)
 
 Associative container which contains values referenced by unique keys.
 
@@ -842,14 +842,14 @@ this, use the [Object.get() ](class_Object_method_get) and
 
 :::
 
-#### :ref:`Signal <class_Signal>`
+#### [Signal](class_Signal)
 
 A signal is a message that can be emitted by an object to those who want to
 listen to it. The Signal type can be used for passing the emitter around.
 
 Signals are better used by getting them from actual objects, e.g. ``$Button.button_up``.
 
-#### :ref:`Callable <class_Callable>`
+#### [Callable](class_Callable)
 
 Contains an object and a function, which is useful for passing functions as
 values (e.g. when connecting to signals).
@@ -1225,10 +1225,10 @@ or ``0`` if it is the first entry in the enum. Multiple keys with the same value
 
 ## Functions
 
-Functions always belong to a [class ](Classes_). The scope priority for
+Functions always belong to a [class ](#classes). The scope priority for
 variable look-up is: local → class member → global. The ``self`` variable is
 always available and is provided as an option for accessing class members
-(see [self](self)), but is not always required (and should *not* be sent as the
+(see [self](#self)), but is not always required (and should *not* be sent as the
 function's first argument, unlike Python).
 
 ```
@@ -1341,7 +1341,7 @@ var lambda = func (x):
 
 ```
 
-To call the created lambda you can use the :ref:`call() <class_Callable_method_call>` method
+To call the created lambda you can use the [call()](class_Callable_method_call) method
 
 ```
 lambda.call(42) # Prints `42`.
@@ -1709,7 +1709,7 @@ The special ``continue`` behavior in ``match`` supported in 3.x was removed in R
 The following pattern types are available:
 
 - Literal pattern
-Matches a `literal <Literals_>`_
+Matches a [literal](#literals)
 
 ```
 match x:
@@ -1903,7 +1903,7 @@ extends Node
 
 SVG images that are used as custom node icons should have the
 **Editor &gt; Scale With Editor Scale** and **Editor &gt; Convert Icons With Editor Theme**
-[import options ](doc_importing_images_editor_import_options) enabled. This allows
+[import options ](doc_importing_images#editor-scale-with-editor-scale) enabled. This allows
 icons to follow the editor's scale and theming settings if the icons are designed with
 the same color palette as Redot's own icons.
 
@@ -2399,7 +2399,7 @@ interface separate from the player in our scene tree.
 In our ``character.gd`` script, we define a ``health_changed`` signal and emit
 it with [Signal.emit() ](class_Signal_method_emit), and from
 a ``Game`` node higher up our scene tree, we connect it to the ``Lifebar`` using
-the :ref:`Signal.connect() <class_Signal_method_connect>` method
+the [Signal.connect()](class_Signal_method_connect) method
 
 ```
 # character.gd

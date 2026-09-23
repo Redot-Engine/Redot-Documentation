@@ -13,7 +13,7 @@ affect you. Changes are grouped by areas/systems.
 :::warning
 
 The GDExtension API completely breaks compatibility in 4.1, so it's not included
-in the table below. See the [updating_your_gdextension_for_Redot_4_1](updating_your_gdextension_for_Redot_4_1) section
+in the table below. See the [updating_your_gdextension_for_Redot_4_1](doc_upgrading_to_godot_4.1#updating-your-gdextension-for-4.1) section
 for more information.
 
 :::
@@ -32,15 +32,15 @@ the C# breaking change is *binary compatible* or *source compatible*:
 Change                                                                                                                    GDScript Compatible  C# Binary Compatible  C# Source Compatible  Introduced
 ========================================================================================================================  ===================  ====================  ====================  ===========
 **Basis**
-Method ``looking_at`` adds a new ``use_model_front`` optional parameter                                                   |✔️|                 |✔️|                  |✔️|                  [GH-76082](GH-76082)
+Method ``looking_at`` adds a new ``use_model_front`` optional parameter                                                   |✔️|                 |✔️|                  |✔️|                  [GH-76082](https://github.com/godotengine/godot/pull/76082)
 **Object**
-Method ``get_meta_list`` changes return type from ``PackedStringArray`` to ``Array[StringName]``                          |✔️|                 |❌|                  |❌|                  [GH-76418](GH-76418)
+Method ``get_meta_list`` changes return type from ``PackedStringArray`` to ``Array[StringName]``                          |✔️|                 |❌|                  |❌|                  [GH-76418](https://github.com/godotengine/godot/pull/76418)
 **Transform3D**
-Method ``looking_at`` adds a new ``use_model_front`` optional parameter                                                   |✔️|                 |✔️|                  |✔️|                  [GH-76082](GH-76082)
+Method ``looking_at`` adds a new ``use_model_front`` optional parameter                                                   |✔️|                 |✔️|                  |✔️|                  [GH-76082](https://github.com/godotengine/godot/pull/76082)
 **UndoRedo**
-Method ``create_action`` adds a new ``backward_undo_ops`` optional parameter                                              |✔️|                 |✔️ with compat|      |✔️|                  [GH-76688](GH-76688)
+Method ``create_action`` adds a new ``backward_undo_ops`` optional parameter                                              |✔️|                 |✔️ with compat|      |✔️|                  [GH-76688](https://github.com/godotengine/godot/pull/76688)
 **WorkerThreadPool**
-Method ``wait_for_task_completion`` changes return type from ``void`` to ``Error``                                        |✔️|                 |❌|                  |✔️|                  [GH-77143](GH-77143)
+Method ``wait_for_task_completion`` changes return type from ``void`` to ``Error``                                        |✔️|                 |❌|                  |✔️|                  [GH-77143](https://github.com/godotengine/godot/pull/77143)
 ========================================================================================================================  ===================  ====================  ====================  ===========
 
 ### Animation
@@ -49,11 +49,11 @@ Method ``wait_for_task_completion`` changes return type from ``void`` to ``Error
 Change                                                                                                                    GDScript Compatible  C# Binary Compatible  C# Source Compatible  Introduced
 ========================================================================================================================  ===================  ====================  ====================  ===========
 **AnimationNode**
-Method ``_process`` adds a new ``test_only`` parameter                                                                    |❌|                 |❌|                  |❌|                  [GH-75759](GH-75759)
-Method ``blend_input`` adds a new ``test_only`` optional parameter                                                        |✔️|                 |✔️ with compat|      |✔️|                  [GH-75759](GH-75759)
-Method ``blend_node`` adds a new ``test_only`` optional parameter                                                         |✔️|                 |✔️ with compat|      |✔️|                  [GH-75759](GH-75759)
+Method ``_process`` adds a new ``test_only`` parameter                                                                    |❌|                 |❌|                  |❌|                  [GH-75759](https://github.com/godotengine/godot/pull/75759)
+Method ``blend_input`` adds a new ``test_only`` optional parameter                                                        |✔️|                 |✔️ with compat|      |✔️|                  [GH-75759](https://github.com/godotengine/godot/pull/75759)
+Method ``blend_node`` adds a new ``test_only`` optional parameter                                                         |✔️|                 |✔️ with compat|      |✔️|                  [GH-75759](https://github.com/godotengine/godot/pull/75759)
 **AnimationNodeStateMachinePlayback**
-Method ``get_travel_path`` changes return type from ``PackedStringArray`` to ``Array[StringName]``                        |✔️|                 |❌|                  |❌|                  [GH-76418](GH-76418)
+Method ``get_travel_path`` changes return type from ``PackedStringArray`` to ``Array[StringName]``                        |✔️|                 |❌|                  |❌|                  [GH-76418](https://github.com/godotengine/godot/pull/76418)
 ========================================================================================================================  ===================  ====================  ====================  ===========
 
 ### 2D nodes
@@ -62,7 +62,7 @@ Method ``get_travel_path`` changes return type from ``PackedStringArray`` to ``A
 Change                                                                                                                    GDScript Compatible  C# Binary Compatible  C# Source Compatible  Introduced
 ========================================================================================================================  ===================  ====================  ====================  ===========
 **PathFollow2D**
-Property ``lookahead`` removed                                                                                            |❌|                 |❌|                  |❌|                  [GH-72842](GH-72842)
+Property ``lookahead`` removed                                                                                            |❌|                 |❌|                  |❌|                  [GH-72842](https://github.com/godotengine/godot/pull/72842)
 ========================================================================================================================  ===================  ====================  ====================  ===========
 
 ### 3D nodes
@@ -71,12 +71,12 @@ Property ``lookahead`` removed                                                  
 Change                                                                                                                    GDScript Compatible  C# Binary Compatible  C# Source Compatible  Introduced
 ========================================================================================================================  ===================  ====================  ====================  ===========
 **Geometry3D**
-Method ``segment_intersects_convex`` changes ``planes`` parameter type from untyped ``Array`` to ``Array[Plane]``         |✔️|                 |✔️ with compat|      |❌|                  [GH-76418](GH-76418)
+Method ``segment_intersects_convex`` changes ``planes`` parameter type from untyped ``Array`` to ``Array[Plane]``         |✔️|                 |✔️ with compat|      |❌|                  [GH-76418](https://github.com/godotengine/godot/pull/76418)
 **MeshInstance3D**
-Method ``create_multiple_convex_collisions`` adds a new ``settings`` optional parameter                                   |✔️|                 |✔️ with compat|      |✔️|                  [GH-72152](GH-72152)
+Method ``create_multiple_convex_collisions`` adds a new ``settings`` optional parameter                                   |✔️|                 |✔️ with compat|      |✔️|                  [GH-72152](https://github.com/godotengine/godot/pull/72152)
 **Node3D**
-Method ``look_at`` adds a new ``use_model_front`` optional parameter                                                      |✔️|                 |✔️ with compat|      |✔️|                  [GH-76082](GH-76082)
-Method ``look_at_from_position`` adds a new ``use_model_front`` optional parameter                                        |✔️|                 |✔️ with compat|      |✔️|                  [GH-76082](GH-76082)
+Method ``look_at`` adds a new ``use_model_front`` optional parameter                                                      |✔️|                 |✔️ with compat|      |✔️|                  [GH-76082](https://github.com/godotengine/godot/pull/76082)
+Method ``look_at_from_position`` adds a new ``use_model_front`` optional parameter                                        |✔️|                 |✔️ with compat|      |✔️|                  [GH-76082](https://github.com/godotengine/godot/pull/76082)
 ========================================================================================================================  ===================  ====================  ====================  ===========
 
 ### GUI nodes
@@ -85,13 +85,13 @@ Method ``look_at_from_position`` adds a new ``use_model_front`` optional paramet
 Change                                                                                                                    GDScript Compatible  C# Binary Compatible  C# Source Compatible  Introduced
 ========================================================================================================================  ===================  ====================  ====================  ===========
 **CodeEdit**
-Method ``add_code_completion_option`` adds a new ``location`` optional parameter                                          |✔️|                 |✔️ with compat|      |✔️|                  [GH-75746](GH-75746)
+Method ``add_code_completion_option`` adds a new ``location`` optional parameter                                          |✔️|                 |✔️ with compat|      |✔️|                  [GH-75746](https://github.com/godotengine/godot/pull/75746)
 **RichTextLabel**
-Method ``push_list`` adds a new ``bullet`` optional parameter                                                             |✔️|                 |✔️ with compat|      |✔️|                  [GH-75017](GH-75017)
-Method ``push_paragraph`` adds a new ``justification_flags`` optional parameter                                           |✔️|                 |✔️ with compat|      |✔️|                  [GH-75250](GH-75250)
-Method ``push_paragraph`` adds a new ``tab_stops`` optional parameter                                                     |✔️|                 |✔️ with compat|      |✔️|                  [GH-76401](GH-76401)
+Method ``push_list`` adds a new ``bullet`` optional parameter                                                             |✔️|                 |✔️ with compat|      |✔️|                  [GH-75017](https://github.com/godotengine/godot/pull/75017)
+Method ``push_paragraph`` adds a new ``justification_flags`` optional parameter                                           |✔️|                 |✔️ with compat|      |✔️|                  [GH-75250](https://github.com/godotengine/godot/pull/75250)
+Method ``push_paragraph`` adds a new ``tab_stops`` optional parameter                                                     |✔️|                 |✔️ with compat|      |✔️|                  [GH-76401](https://github.com/godotengine/godot/pull/76401)
 **Tree**
-Method ``edit_selected`` adds a new ``force_edit`` optional parameter                                                     |✔️|                 |✔️ with compat|      |✔️|                  [GH-76794](GH-76794)
+Method ``edit_selected`` adds a new ``force_edit`` optional parameter                                                     |✔️|                 |✔️ with compat|      |✔️|                  [GH-76794](https://github.com/godotengine/godot/pull/76794)
 ========================================================================================================================  ===================  ====================  ====================  ===========
 
 ### Physics
@@ -100,13 +100,13 @@ Method ``edit_selected`` adds a new ``force_edit`` optional parameter           
 Change                                                                                                                    GDScript Compatible  C# Binary Compatible  C# Source Compatible  Introduced
 ========================================================================================================================  ===================  ====================  ====================  ===========
 **Area2D**
-Property ``priority`` changes type from ``float`` to ``int``                                                              |❌|                 |❌|                  |❌|                  [GH-72749](GH-72749)
+Property ``priority`` changes type from ``float`` to ``int``                                                              |❌|                 |❌|                  |❌|                  [GH-72749](https://github.com/godotengine/godot/pull/72749)
 **Area3D**
-Property ``priority`` changes type from ``float`` to ``int``                                                              |❌|                 |❌|                  |❌|                  [GH-72749](GH-72749)
+Property ``priority`` changes type from ``float`` to ``int``                                                              |❌|                 |❌|                  |❌|                  [GH-72749](https://github.com/godotengine/godot/pull/72749)
 **PhysicsDirectSpaceState2D**
-Method ``collide_shape`` changes return type from ``Array[PackedVector2Array]`` to ``Array[Vector2]``                     |❌|                 |❌|                  |❌|                  [GH-75260](GH-75260)
+Method ``collide_shape`` changes return type from ``Array[PackedVector2Array]`` to ``Array[Vector2]``                     |❌|                 |❌|                  |❌|                  [GH-75260](https://github.com/godotengine/godot/pull/75260)
 **PhysicsDirectSpaceState3D**
-Method ``collide_shape`` changes return type from ``Array[PackedVector3Array]`` to ``Array[Vector3]``                     |❌|                 |❌|                  |❌|                  [GH-75260](GH-75260)
+Method ``collide_shape`` changes return type from ``Array[PackedVector3Array]`` to ``Array[Vector3]``                     |❌|                 |❌|                  |❌|                  [GH-75260](https://github.com/godotengine/godot/pull/75260)
 ========================================================================================================================  ===================  ====================  ====================  ===========
 
 ### Rendering
@@ -115,13 +115,13 @@ Method ``collide_shape`` changes return type from ``Array[PackedVector3Array]`` 
 Change                                                                                                                    GDScript Compatible  C# Binary Compatible  C# Source Compatible  Introduced
 ========================================================================================================================  ===================  ====================  ====================  ===========
 **RDShaderFile**
-Method ``get_version_list`` changes return type from ``PackedStringArray`` to ``Array[StringName]``                       |✔️|                 |❌|                  |❌|                  [GH-76418](GH-76418)
+Method ``get_version_list`` changes return type from ``PackedStringArray`` to ``Array[StringName]``                       |✔️|                 |❌|                  |❌|                  [GH-76418](https://github.com/godotengine/godot/pull/76418)
 **RenderingDevice**
-Method ``draw_list_begin`` changes ``storage_textures`` parameter type from untyped ``Array`` to ``Array[RID]``           |✔️|                 |✔️ with compat|      |❌|                  [GH-76418](GH-76418)
+Method ``draw_list_begin`` changes ``storage_textures`` parameter type from untyped ``Array`` to ``Array[RID]``           |✔️|                 |✔️ with compat|      |❌|                  [GH-76418](https://github.com/godotengine/godot/pull/76418)
 **RenderingServer**
-Method ``global_shader_parameter_get_list`` changes return type from ``PackedStringArray`` to ``Array[StringName]``       |✔️|                 |❌|                  |❌|                  [GH-76418](GH-76418)
+Method ``global_shader_parameter_get_list`` changes return type from ``PackedStringArray`` to ``Array[StringName]``       |✔️|                 |❌|                  |❌|                  [GH-76418](https://github.com/godotengine/godot/pull/76418)
 **SurfaceTool**
-Method ``add_triangle_fan`` changes ``tangents`` parameter type from untyped ``Array`` to ``Array[Plane]``                |✔️|                 |✔️ with compat|      |❌|                  [GH-76418](GH-76418)
+Method ``add_triangle_fan`` changes ``tangents`` parameter type from untyped ``Array`` to ``Array[Plane]``                |✔️|                 |✔️ with compat|      |❌|                  [GH-76418](https://github.com/godotengine/godot/pull/76418)
 ========================================================================================================================  ===================  ====================  ====================  ===========
 
 ### Navigation
@@ -130,27 +130,27 @@ Method ``add_triangle_fan`` changes ``tangents`` parameter type from untyped ``A
 Change                                                                                                                    GDScript Compatible  C# Binary Compatible  C# Source Compatible  Introduced
 ========================================================================================================================  ===================  ====================  ====================  ===========
 **NavigationAgent2D**
-Method ``set_velocity`` replaced with ``velocity`` property                                                               |✔️|                 |❌|                  |❌|                  [GH-69988](GH-69988)
-Property ``time_horizon`` split into ``time_horizon_agents`` and ``time_horizon_obstacles``                               |❌|                 |❌|                  |❌|                  [GH-69988](GH-69988)
+Method ``set_velocity`` replaced with ``velocity`` property                                                               |✔️|                 |❌|                  |❌|                  [GH-69988](https://github.com/godotengine/godot/pull/69988)
+Property ``time_horizon`` split into ``time_horizon_agents`` and ``time_horizon_obstacles``                               |❌|                 |❌|                  |❌|                  [GH-69988](https://github.com/godotengine/godot/pull/69988)
 **NavigationAgent3D**
-Property ``agent_height_offset`` renamed to ``path_height_offset``                                                        |❌|                 |❌|                  |❌|                  [GH-69988](GH-69988)
-Property ``ignore_y`` removed                                                                                             |❌|                 |❌|                  |❌|                  [GH-69988](GH-69988)
-Method ``set_velocity`` replaced with ``velocity`` property                                                               |✔️|                 |❌|                  |❌|                  [GH-69988](GH-69988)
-Property ``time_horizon`` split into ``time_horizon_agents`` and ``time_horizon_obstacles``                               |❌|                 |❌|                  |❌|                  [GH-69988](GH-69988)
+Property ``agent_height_offset`` renamed to ``path_height_offset``                                                        |❌|                 |❌|                  |❌|                  [GH-69988](https://github.com/godotengine/godot/pull/69988)
+Property ``ignore_y`` removed                                                                                             |❌|                 |❌|                  |❌|                  [GH-69988](https://github.com/godotengine/godot/pull/69988)
+Method ``set_velocity`` replaced with ``velocity`` property                                                               |✔️|                 |❌|                  |❌|                  [GH-69988](https://github.com/godotengine/godot/pull/69988)
+Property ``time_horizon`` split into ``time_horizon_agents`` and ``time_horizon_obstacles``                               |❌|                 |❌|                  |❌|                  [GH-69988](https://github.com/godotengine/godot/pull/69988)
 **NavigationObstacle2D**
-Property ``estimate_radius`` removed                                                                                      |❌|                 |❌|                  |❌|                  [GH-69988](GH-69988)
-Method ``get_rid`` renamed to ``get_agent_rid``                                                                           |❌|                 |❌|                  |❌|                  [GH-69988](GH-69988)
+Property ``estimate_radius`` removed                                                                                      |❌|                 |❌|                  |❌|                  [GH-69988](https://github.com/godotengine/godot/pull/69988)
+Method ``get_rid`` renamed to ``get_agent_rid``                                                                           |❌|                 |❌|                  |❌|                  [GH-69988](https://github.com/godotengine/godot/pull/69988)
 **NavigationObstacle3D**
-Property ``estimate_radius`` removed                                                                                      |❌|                 |❌|                  |❌|                  [GH-69988](GH-69988)
-Method ``get_rid`` renamed to ``get_agent_rid``                                                                           |❌|                 |❌|                  |❌|                  [GH-69988](GH-69988)
+Property ``estimate_radius`` removed                                                                                      |❌|                 |❌|                  |❌|                  [GH-69988](https://github.com/godotengine/godot/pull/69988)
+Method ``get_rid`` renamed to ``get_agent_rid``                                                                           |❌|                 |❌|                  |❌|                  [GH-69988](https://github.com/godotengine/godot/pull/69988)
 **NavigationServer2D**
-Method ``agent_set_callback`` renamed to ``agent_set_avoidance_callback``                                                 |❌|                 |❌|                  |❌|                  [GH-69988](GH-69988)
-Method ``agent_set_target_velocity`` removed                                                                              |❌|                 |❌|                  |❌|                  [GH-69988](GH-69988)
-Method ``agent_set_time_horizon`` split into ``agent_set_time_horizon_agents`` and ``agent_set_time_horizon_obstacles``   |❌|                 |❌|                  |❌|                  [GH-69988](GH-69988)
+Method ``agent_set_callback`` renamed to ``agent_set_avoidance_callback``                                                 |❌|                 |❌|                  |❌|                  [GH-69988](https://github.com/godotengine/godot/pull/69988)
+Method ``agent_set_target_velocity`` removed                                                                              |❌|                 |❌|                  |❌|                  [GH-69988](https://github.com/godotengine/godot/pull/69988)
+Method ``agent_set_time_horizon`` split into ``agent_set_time_horizon_agents`` and ``agent_set_time_horizon_obstacles``   |❌|                 |❌|                  |❌|                  [GH-69988](https://github.com/godotengine/godot/pull/69988)
 **NavigationServer3D**
-Method ``agent_set_callback`` renamed to ``agent_set_avoidance_callback``                                                 |❌|                 |❌|                  |❌|                  [GH-69988](GH-69988)
-Method ``agent_set_target_velocity`` removed                                                                              |❌|                 |❌|                  |❌|                  [GH-69988](GH-69988)
-Method ``agent_set_time_horizon`` split into ``agent_set_time_horizon_agents`` and ``agent_set_time_horizon_obstacles``   |❌|                 |❌|                  |❌|                  [GH-69988](GH-69988)
+Method ``agent_set_callback`` renamed to ``agent_set_avoidance_callback``                                                 |❌|                 |❌|                  |❌|                  [GH-69988](https://github.com/godotengine/godot/pull/69988)
+Method ``agent_set_target_velocity`` removed                                                                              |❌|                 |❌|                  |❌|                  [GH-69988](https://github.com/godotengine/godot/pull/69988)
+Method ``agent_set_time_horizon`` split into ``agent_set_time_horizon_agents`` and ``agent_set_time_horizon_obstacles``   |❌|                 |❌|                  |❌|                  [GH-69988](https://github.com/godotengine/godot/pull/69988)
 ========================================================================================================================  ===================  ====================  ====================  ===========
 
 ### Networking
@@ -159,7 +159,7 @@ Method ``agent_set_time_horizon`` split into ``agent_set_time_horizon_agents`` a
 Change                                                                                                                    GDScript Compatible  C# Binary Compatible  C# Source Compatible  Introduced
 ========================================================================================================================  ===================  ====================  ====================  ===========
 **WebRTCPeerConnectionExtension**
-Method ``_create_data_channel`` changes return type from ``Object`` to ``WebRTCDataChannel``                              |✔️|                 |❌|                  |✔️|                  [GH-78237](GH-78237)
+Method ``_create_data_channel`` changes return type from ``Object`` to ``WebRTCDataChannel``                              |✔️|                 |❌|                  |✔️|                  [GH-78237](https://github.com/godotengine/godot/pull/78237)
 ========================================================================================================================  ===================  ====================  ====================  ===========
 
 ### Editor plugins
@@ -168,16 +168,16 @@ Method ``_create_data_channel`` changes return type from ``Object`` to ``WebRTCD
 Change                                                                                                                    GDScript Compatible  C# Binary Compatible  C# Source Compatible  Introduced
 ========================================================================================================================  ===================  ====================  ====================  ===========
 **AnimationTrackEditPlugin**
-Type ``AnimationTrackEditPlugin`` removed                                                                                 |❌|                 |❌|                  |❌|                  [GH-76413](GH-76413)
+Type ``AnimationTrackEditPlugin`` removed                                                                                 |❌|                 |❌|                  |❌|                  [GH-76413](https://github.com/godotengine/godot/pull/76413)
 **EditorInterface**
-Type ``EditorInterface`` changes inheritance from ``Node`` to ``Object``                                                  |✔️|                 |❌|                  |❌|                  [GH-76176](GH-76176)
-Method ``set_movie_maker_enabled`` replaced with ``movie_maker_enabled`` property                                         |✔️|                 |❌|                  |❌|                  [GH-76176](GH-76176)
-Method ``is_movie_maker_enabled`` replaced with ``movie_maker_enabled`` property                                          |✔️|                 |❌|                  |❌|                  [GH-76176](GH-76176)
+Type ``EditorInterface`` changes inheritance from ``Node`` to ``Object``                                                  |✔️|                 |❌|                  |❌|                  [GH-76176](https://github.com/godotengine/godot/pull/76176)
+Method ``set_movie_maker_enabled`` replaced with ``movie_maker_enabled`` property                                         |✔️|                 |❌|                  |❌|                  [GH-76176](https://github.com/godotengine/godot/pull/76176)
+Method ``is_movie_maker_enabled`` replaced with ``movie_maker_enabled`` property                                          |✔️|                 |❌|                  |❌|                  [GH-76176](https://github.com/godotengine/godot/pull/76176)
 **EditorResourcePreviewGenerator**
-Method ``_generate`` adds a new ``metadata`` parameter                                                                    |❌|                 |❌|                  |❌|                  [GH-64628](GH-64628)
-Method ``_generate_from_path`` adds a new ``metadata`` parameter                                                          |❌|                 |❌|                  |❌|                  [GH-64628](GH-64628)
+Method ``_generate`` adds a new ``metadata`` parameter                                                                    |❌|                 |❌|                  |❌|                  [GH-64628](https://github.com/godotengine/godot/pull/64628)
+Method ``_generate_from_path`` adds a new ``metadata`` parameter                                                          |❌|                 |❌|                  |❌|                  [GH-64628](https://github.com/godotengine/godot/pull/64628)
 **EditorUndoRedoManager**
-Method ``create_action`` adds a new ``backward_undo_ops`` optional parameter                                              |✔️|                 |✔️ with compat|      |✔️|                  [GH-76688](GH-76688)
+Method ``create_action`` adds a new ``backward_undo_ops`` optional parameter                                              |✔️|                 |✔️ with compat|      |✔️|                  [GH-76688](https://github.com/godotengine/godot/pull/76688)
 ========================================================================================================================  ===================  ====================  ====================  ===========
 
 ## Behavior changes
@@ -188,10 +188,10 @@ In 4.1 some behavior changes have been introduced, which might require you to ad
 Change                                                                                                                                                                                              Introduced
 ==================================================================================================================================================================================================  ===========
 **SubViewportContainer**
-When input events should reach SubViewports and their children, ``SubViewportContainer.mouse_filter`` now needs to be ``MOUSE_FILTER_STOP`` or ``MOUSE_FILTER_PASS``. See [GH-79271](GH-79271) for details.  [GH-57894](upgrading_to_godot_4.1.md)
-Multiple layered ``SubViewportContainer`` nodes, that should all receive mouse input events, now need to be replaced by ``Area2D`` nodes. See [GH-79128](GH-79128) for details.                              [GH-57894](upgrading_to_godot_4.1.md)
+When input events should reach SubViewports and their children, ``SubViewportContainer.mouse_filter`` now needs to be ``MOUSE_FILTER_STOP`` or ``MOUSE_FILTER_PASS``. See [GH-79271](https://github.com/godotengine/godot/issues/79271) for details.  [GH-57894](upgrading_to_godot_4.1.md)
+Multiple layered ``SubViewportContainer`` nodes, that should all receive mouse input events, now need to be replaced by ``Area2D`` nodes. See [GH-79128](https://github.com/godotengine/godot/issues/79128) for details.                              [GH-57894](upgrading_to_godot_4.1.md)
 **Viewport**
-``Viewport`` nodes, that have Physics Picking enabled, now automatically set InputEvents as handled. See [GH-79897](GH-79897) for workarounds.                                                               [GH-77595](GH-77595)
+``Viewport`` nodes, that have Physics Picking enabled, now automatically set InputEvents as handled. See [GH-79897](https://github.com/godotengine/godot/issues/79897) for workarounds.                                                               [GH-77595](https://github.com/godotengine/godot/pull/77595)
 ==================================================================================================================================================================================================  ===========
 
 ## Updating your GDExtension for 4.1

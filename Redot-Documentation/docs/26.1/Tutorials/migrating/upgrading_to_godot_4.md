@@ -14,12 +14,12 @@ upgrading gives the following advantages:
 
 - Many bugs are fixed in 4.0, but cannot be resolved in 3.x for various reasons
   (such as graphics API differences or backwards compatibility).
-- 4.x will enjoy a longer [support period ](doc_release_policy). Redot 3.x
+- 4.x will enjoy a longer [support period ](abt_release_policy). Redot 3.x
   will continue to be supported for some time after 4.0 is released, but it will
   eventually stop receiving support.
 
-See [doc_docs_changelog](doc_docs_changelog) for a list of pages documenting new features in
-Redot 4.0, and [doc_list_of_features](doc_list_of_features) for a list of all features in Redot.
+See [doc_docs_changelog](abt_docs_changelog) for a list of pages documenting new features in
+Redot 4.0, and [doc_list_of_features](abt_list_of_features) for a list of all features in Redot.
 
 ### Disadvantages of upgrading
 
@@ -40,7 +40,7 @@ Redot 3.x for the following reasons:
   implementation of some core optimizations.
 - Since Redot 4 includes more features than Redot 3, Redot 4's binary size for
   exported projects is larger. While this can be mitigated by
-  [optimizing a build for size ](../../Contributing/Development/compiling/optimizing_for_size.md), a 4.0 build with
+  [optimizing a build for size ](doc_optimizing_for_size), a 4.0 build with
   a given set of enabled modules will remain larger compared to a 3.x build with
   the same modules. This can be an issue for
   [exporting to the Web ](../export/exporting_for_web.md), as binary size directly
@@ -69,7 +69,7 @@ in future Redot releases:
 - By default, rendering in 2D is no longer performed in HDR, which means
   "overbright" modulate values have no visible effect. Since Redot 4.2, you can
   enable the project setting [HDR 2D](class_ProjectSettings_property_rendering/viewport/hdr_2d)
-  to perform 2D rendering in HDR. See also [doc_environment_and_post_processing_using_glow_in_2d](doc_environment_and_post_processing_using_glow_in_2d).
+  to perform 2D rendering in HDR. See also [doc_environment_and_post_processing_using_glow_in_2d](doc_environment_and_post_processing#using-glow-in-2d).
 - While rendering still happens in HDR in 3D when using the Forward+ or Mobile
   renderers, Viewports cannot return HDR data anymore. This is planned to be 
   restored at some point in the future.
@@ -474,10 +474,10 @@ The most notable examples of this are:
   ``is_same("example", &"example")`` returns ``false``. Although in most cases
   they are interchangeable (``"example" == &"example"`` returns ``true``),
   sometimes you may have to replace ``"example"`` with ``&"example"``.
-- [GDScript setter and getter syntax ](doc_gdscript_basics_setters_getters)
+- [GDScript setter and getter syntax ](doc_gdscript_basics#properties-setters-and-getters)
   was changed, but it's only partially converted by the conversion tool. In most
   cases, manual changes are required to make setters and getters working again.
-- [GDScript signal connection syntax ](doc_gdscript_signals) was changed.
+- [GDScript signal connection syntax ](doc_gdscript_basics#signals) was changed.
   The conversion tool will use the string-based syntax which is still present in
   Redot 4, but it's recommended to switch to the [class_Signal](class_Signal)-based syntax
   described on the linked page. This way, strings are no longer involved,
@@ -555,22 +555,22 @@ converter doesn't support updating existing setups:
 | Removed node | Closest approximation | Comment |
 | --- | --- | --- |
 | AnimationTreePlayer | AnimationTree | AnimationTreePlayer was deprecated since Redot 3.1. |
-| BakedLightmap | LightmapGI | See :ref:`doc_using_lightmap_gi`. |
+| BakedLightmap | LightmapGI | See [doc_using_lightmap_gi](doc_using_lightmap_gi). |
 | BakedLightmapData | LightmapGIData |  |
-| BitmapFont | FontFile | See :ref:`doc_gui_using_fonts`. |
+| BitmapFont | FontFile | See [doc_gui_using_fonts](doc_gui_using_fonts). |
 | DynamicFont | FontFile |  |
 | DynamicFontData | FontFile |  |
-| Navigation2D | Node2D | Replaced by :ref:`other 2D Navigation nodes &lt;doc_navigation_overview_2d&gt;`. |
-| Navigation3D | Node3D | Replaced by :ref:`other 3D Navigation nodes &lt;doc_navigation_overview_3d&gt;`. |
+| Navigation2D | Node2D | Replaced by [other 2D Navigation nodes](doc_navigation_introduction_2d). |
+| Navigation3D | Node3D | Replaced by [other 3D Navigation nodes](doc_navigation_introduction_3d). |
 | OpenSimplexNoise | FastNoiseLite | Has different parameters and more noise types such as cellular. No support for 4D noise as it's absent from the FastNoiseLite library. |
 | ToolButton | Button | ToolButton was Button with the **Flat** property enabled by default. |
 | YSort | Node2D or Control | CanvasItem has a new **Y Sort Enabled** property in 4.0. |
-| ProximityGroup | Node3D | :ref:`class_VisibleOnScreenNotifier3D` can act as a replacement. |
-| Portal | Node3D | Portal and room occlusion culling was replaced by raster :ref:`occlusion culling &lt;doc_occlusion_culling&gt;` (OccluderInstance3D node), which requires a different setup process. |
+| ProximityGroup | Node3D | [class_VisibleOnScreenNotifier3D](class_VisibleOnScreenNotifier3D) can act as a replacement. |
+| Portal | Node3D | Portal and room occlusion culling was replaced by raster [occlusion culling](doc_occlusion_culling) (OccluderInstance3D node), which requires a different setup process. |
 | Room | Node3D |  |
 | RoomManager | Node3D |  |
 | RoomGroup | Node3D |  |
-| Occluder | Node3D | Geometry occlusion culling was replaced by raster :ref:`occlusion culling &lt;doc_occlusion_culling&gt;` (OccluderInstance3D node), which requires a different setup process. |
+| Occluder | Node3D | Geometry occlusion culling was replaced by raster [occlusion culling](doc_occlusion_culling) (OccluderInstance3D node), which requires a different setup process. |
 | OccluderShapeSphere | Resource |  |
 
 If loading an old project, the node will be replaced with its
@@ -612,7 +612,7 @@ ArrayMesh resource again.
 
 The [editor/renames_map_3_to_4.cpp ](https://github.com/redot-engine/redot-engine/blob/master/editor/renames_map_3_to_4.cpp)
 source file lists all automatic renames performed by the project upgrade tool.
-Lines that are commented out refer to API renames that [cannot be performed automatically ](doc_upgrading_to_Redot_4_manual_rename).
+Lines that are commented out refer to API renames that [cannot be performed automatically ](doc_upgrading_to_godot_4#manually-renaming-methods-properties-signals-and-constants).
 
 ## Porting editor settings
 
@@ -620,7 +620,7 @@ Redot 3.x and 4.0 use different editor settings files. This means their settings
 can be changed independently from each other.
 
 If you wish to port over your Redot 3.x settings to Redot 4, open the
-[editor settings folder ](doc_data_paths_editor_data_paths) and copy
+[editor settings folder ](doc_data_paths#editor-data-paths) and copy
 ``editor_settings-3.tres`` to ``editor_settings-4.tres`` while the Redot 4
 editor is closed.
 

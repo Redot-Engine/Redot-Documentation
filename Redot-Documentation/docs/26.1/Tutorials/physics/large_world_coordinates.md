@@ -157,7 +157,7 @@ you can skip the compilation of debug export templates. In any case, you'll need
 to compile an editor build so you can test your large precision world without
 having to export the project every time.
 
-See the [Compiling ](toc-devel-compiling) section for compiling
+See the [Compiling ](doc_introduction_to_the_buildsystem) section for compiling
 instructions for each target platform. You will need to add the ``precision=double``
 SCons option when compiling the editor and export templates.
 
@@ -198,7 +198,7 @@ some limitations when it comes to 3D rendering precision:
 
 - Shaders using the ``skip_vertex_transform`` or ``world_vertex_coords`` don't
   benefit from increased precision.
-- [Triplanar mapping ](doc_standard_material_3d_triplanar_mapping) doesn't
+- [Triplanar mapping ](doc_standard_material_3d#triplanar-mapping) doesn't
   benefit from increased precision. Materials using triplanar mapping will exhibit
   visible jittering when far away from the world origin.
 - In double-precision builds, world space coordinates in a shader ``fragment()``
@@ -210,7 +210,7 @@ vec3 world = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
 ```
 
   Instead, calculate the world space coordinates in the ``vertex()`` function and
-  pass them using a [varying](doc_shading_language_varyings), for example:
+  pass them using a [varying](doc_shading_language#varyings), for example:
 
 ```glsl
 varying vec3 world;

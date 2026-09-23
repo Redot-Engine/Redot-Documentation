@@ -358,5 +358,5 @@ to do was add a bit of math!
 ![Image](/img/Tutorials/shaders/your_first_shader/img/wave3.png)
 
 For more information about Spatial shaders read the [Shading Language ](../shader_reference/shading_language.md) doc and the [Spatial Shaders ](../shader_reference/spatial_shader.md)
-doc. Also look at more advanced tutorials in the [Shading section ](toc-learn-features-shading) and the [3D ](toc-learn-features-3d)
+doc. Also look at more advanced tutorials in the [Shading section ](doc_shaders) and the [3D ](doc_3d)
 sections.

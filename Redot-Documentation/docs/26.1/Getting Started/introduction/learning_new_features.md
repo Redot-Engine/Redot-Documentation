@@ -25,7 +25,7 @@ from within the Redot editor. To do so, go to Help -&gt; Search Help or press
 
 ![Image](/img/GettingStarted/introduction/img/manual_class_reference_search.webp)
 
-To browse it online, head to the manual's [Class Reference](/en/26.1/Classes)
+To browse it online, head to the manual's [Class Reference](doc_class_reference)
 section.
 
 A class reference's page tells you:
@@ -141,4 +141,4 @@ This manual aims to provide a comprehensive reference of Redot's features. Aside
 from the 2D and 3D getting started series, it does not contain tutorials to
 implement specific game genres. If you're looking for a tutorial about creating
 a role-playing game, a platformer, or other, please see
-[doc_community_tutorials](/en/Community/tutorials), which lists content made by the Redot community.
+[doc_community_tutorials](doc_tutorials), which lists content made by the Redot community.

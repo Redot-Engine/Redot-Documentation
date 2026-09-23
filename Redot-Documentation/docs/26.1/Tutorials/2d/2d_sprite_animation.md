@@ -39,7 +39,7 @@ with the following nodes:
 ![Image](/img/Tutorials/2d/img/2d_animation_tree1.webp)
 
 :::note
-The root node could also be :ref:`Area2D <class_Area2D>` or
+The root node could also be [Area2D](class_Area2D) or
 [RigidBody2D ](class_RigidBody2D). The animation will still be
 made in the same way. Once the animation is completed, you can
 assign a shape to the CollisionShape2D. See
@@ -190,7 +190,7 @@ setting up your scene tree:
 ![Image](/img/Tutorials/2d/img/2d_animation_tree2.webp)
 
 :::note
-The root node could also be :ref:`Area2D <class_Area2D>` or
+The root node could also be [Area2D](class_Area2D) or
 [RigidBody2D ](class_RigidBody2D). The animation will still be
 made in the same way. Once the animation is completed, you can
 assign a shape to the CollisionShape2D. See

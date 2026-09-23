@@ -50,7 +50,7 @@ There are several methods of measuring performance, including:
 
 - Putting a start/stop timer around code of interest.
 - Using the [Redot profiler ](../scripting/debug/the_profiler.md).
-- Using [external CPU profilers ](../../Contributing/Development/debugging/using_cpp_profilers.md).
+- Using [external CPU profilers ](doc_using_cpp_profilers).
 - Using external GPU profilers/debuggers such as
   [NVIDIA Nsight Graphics ](https://developer.nvidia.com/nsight-graphics),
   [Radeon GPU Profiler ](https://gpuopen.com/rgp/),

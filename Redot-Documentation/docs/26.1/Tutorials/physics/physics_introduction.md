@@ -181,7 +181,7 @@ pow(2, 1-1) + pow(2, 3-1) + pow(2, 4-1)
 ```
 
 You can also set bits independently by calling ``set_collision_layer_value(layer_number, value)``
-or ``set_collision_mask_value(layer_number, value)`` on any given :ref:`CollisionObject2D <class_CollisionObject2D>` as follows
+or ``set_collision_mask_value(layer_number, value)`` on any given [CollisionObject2D](class_CollisionObject2D) as follows
 
 ```
 # Example: Setting mask value to enable layers 1, 3, and 4.
@@ -200,7 +200,7 @@ Export annotations can be used to export bitmasks in the editor with a user-frie
 
 ```
 
-Additional export annotations are available for render and navigation layers, in both 2D and 3D. See [doc_gdscript_exports_exporting_bit_flags](doc_gdscript_exports_exporting_bit_flags).
+Additional export annotations are available for render and navigation layers, in both 2D and 3D. See [doc_gdscript_exports_exporting_bit_flags](doc_gdscript_exports#exporting-bit-flags).
 
 ## Area2D
 
@@ -377,7 +377,7 @@ After a collision, you may want the body to bounce, to slide along a wall,
 or to alter the properties of the object it hit. The way you handle collision
 response depends on which method you used to move the CharacterBody2D.
 
-#### :ref:`move_and_collide <class_PhysicsBody2D_method_move_and_collide>`
+#### [move_and_collide](class_PhysicsBody2D_method_move_and_collide)
 
 When using ``move_and_collide()``, the function returns a
 [KinematicCollision2D ](class_KinematicCollision2D) object, which contains
@@ -473,7 +473,7 @@ public partial class Body : PhysicsBody2D
 
 </Tabs>
 
-#### :ref:`move_and_slide <class_CharacterBody2D_method_move_and_slide>`
+#### [move_and_slide](class_CharacterBody2D_method_move_and_slide)
 
 Sliding is a common collision response; imagine a player moving along walls
 in a top-down game or running up and down slopes in a platformer. While it's

@@ -9,7 +9,7 @@
 
 This documentation is for contributions to the game engine, and not using
 JetBrains Rider as a C# or GDScript editor. To code C# or GDScript in an external editor, see
-[the C# guide to configure an external editor](doc_c_sharp_setup_external_editor).
+[the C# guide to configure an external editor](doc_c_sharp_basics#configuring-an-external-editor).
 
 :::
 

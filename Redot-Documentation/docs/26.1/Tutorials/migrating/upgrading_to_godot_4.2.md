@@ -53,7 +53,7 @@ the C# breaking change is *binary compatible* or *source compatible*:
 Change                                                                                                                    GDScript Compatible  C# Binary Compatible  C# Source Compatible  Introduced
 ========================================================================================================================  ===================  ====================  ====================  ===========
 **Node**
-Constant ``NOTIFICATION_NODE_RECACHE_REQUESTED`` removed                                                                  |❌|                 |✔️|                  |❌|                  [GH-84419](GH-84419)
+Constant ``NOTIFICATION_NODE_RECACHE_REQUESTED`` removed                                                                  |❌|                 |✔️|                  |❌|                  [GH-84419](https://github.com/godotengine/godot/pull/84419)
 ========================================================================================================================  ===================  ====================  ====================  ===========
 
 ### Animation
@@ -62,49 +62,49 @@ Constant ``NOTIFICATION_NODE_RECACHE_REQUESTED`` removed                        
 Change                                                                                                                    GDScript Compatible  C# Binary Compatible  C# Source Compatible  Introduced
 ========================================================================================================================  ===================  ====================  ====================  ===========
 **AnimationPlayer**
-Method ``_post_process_key_value`` moved to base class ``AnimationMixer``                                                 |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Method ``add_animation_library`` moved to base class ``AnimationMixer``                                                   |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Method ``advance`` moved to base class ``AnimationMixer``                                                                 |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Signal ``animation_finished`` moved to base class ``AnimationMixer``                                                      |✔️|                 |❌|                  |❌|                  [GH-80813](GH-80813)
-Signal ``animation_started`` moved to base class ``AnimationMixer``                                                       |✔️|                 |❌|                  |❌|                  [GH-80813](GH-80813)
-Signal ``animation_libraries_updated`` moved to base class ``AnimationMixer``                                             |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Signal ``animation_list_changed`` moved to base class ``AnimationMixer``                                                  |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Property ``audio_max_polyphony`` moved to base class ``AnimationMixer``                                                   |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Signal ``caches_cleared`` moved to base class ``AnimationMixer``                                                          |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Method ``clear_caches`` moved to base class ``AnimationMixer``                                                            |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Method ``find_animation`` moved to base class ``AnimationMixer``                                                          |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Method ``find_animation_library`` moved to base class ``AnimationMixer``                                                  |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Method ``get_animation`` moved to base class ``AnimationMixer``                                                           |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Method ``get_animation_library`` moved to base class ``AnimationMixer``                                                   |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Method ``get_animation_library_list`` moved to base class ``AnimationMixer``                                              |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Method ``get_animation_list`` moved to base class ``AnimationMixer``                                                      |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Method ``has_animation`` moved to base class ``AnimationMixer``                                                           |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Method ``has_animation_library`` moved to base class ``AnimationMixer``                                                   |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Property ``method_call_mode`` renamed to ``callback_mode_method`` and moved to base class ``AnimationMixer``              |✔️|                 |✔️ with compat|      |✔️ with compat|      [GH-80813](GH-80813)
-Property ``playback_active`` renamed to ``active`` and moved to base class ``AnimationMixer``                             |✔️|                 |✔️ with compat|      |✔️ with compat|      [GH-80813](GH-80813)
-Property ``playback_process_mode`` renamed to ``callback_mode_process`` and moved to base class ``AnimationMixer``        |✔️|                 |✔️ with compat|      |✔️ with compat|      [GH-80813](GH-80813)
-Method ``remove_animation_library`` moved to base class ``AnimationMixer``                                                |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Method ``rename_animation_library`` moved to base class ``AnimationMixer``                                                |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Property ``reset_on_save`` moved to base class ``AnimationMixer``                                                         |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Property ``root_node`` moved to base class ``AnimationMixer``                                                             |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Method ``set_reset_on_save_enabled`` moved to base class ``AnimationMixer``                                               |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Method ``seek`` adds a new ``update_only`` optional parameter                                                             |✔️|                 |✔️ with compat|      |✔️|                  [GH-80813](GH-80813)
+Method ``_post_process_key_value`` moved to base class ``AnimationMixer``                                                 |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Method ``add_animation_library`` moved to base class ``AnimationMixer``                                                   |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Method ``advance`` moved to base class ``AnimationMixer``                                                                 |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Signal ``animation_finished`` moved to base class ``AnimationMixer``                                                      |✔️|                 |❌|                  |❌|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Signal ``animation_started`` moved to base class ``AnimationMixer``                                                       |✔️|                 |❌|                  |❌|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Signal ``animation_libraries_updated`` moved to base class ``AnimationMixer``                                             |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Signal ``animation_list_changed`` moved to base class ``AnimationMixer``                                                  |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Property ``audio_max_polyphony`` moved to base class ``AnimationMixer``                                                   |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Signal ``caches_cleared`` moved to base class ``AnimationMixer``                                                          |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Method ``clear_caches`` moved to base class ``AnimationMixer``                                                            |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Method ``find_animation`` moved to base class ``AnimationMixer``                                                          |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Method ``find_animation_library`` moved to base class ``AnimationMixer``                                                  |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Method ``get_animation`` moved to base class ``AnimationMixer``                                                           |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Method ``get_animation_library`` moved to base class ``AnimationMixer``                                                   |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Method ``get_animation_library_list`` moved to base class ``AnimationMixer``                                              |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Method ``get_animation_list`` moved to base class ``AnimationMixer``                                                      |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Method ``has_animation`` moved to base class ``AnimationMixer``                                                           |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Method ``has_animation_library`` moved to base class ``AnimationMixer``                                                   |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Property ``method_call_mode`` renamed to ``callback_mode_method`` and moved to base class ``AnimationMixer``              |✔️|                 |✔️ with compat|      |✔️ with compat|      [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Property ``playback_active`` renamed to ``active`` and moved to base class ``AnimationMixer``                             |✔️|                 |✔️ with compat|      |✔️ with compat|      [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Property ``playback_process_mode`` renamed to ``callback_mode_process`` and moved to base class ``AnimationMixer``        |✔️|                 |✔️ with compat|      |✔️ with compat|      [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Method ``remove_animation_library`` moved to base class ``AnimationMixer``                                                |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Method ``rename_animation_library`` moved to base class ``AnimationMixer``                                                |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Property ``reset_on_save`` moved to base class ``AnimationMixer``                                                         |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Property ``root_node`` moved to base class ``AnimationMixer``                                                             |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Method ``set_reset_on_save_enabled`` moved to base class ``AnimationMixer``                                               |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Method ``seek`` adds a new ``update_only`` optional parameter                                                             |✔️|                 |✔️ with compat|      |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
 **AnimationTree**
-Method ``_post_process_key_value`` moved to base class ``AnimationMixer``                                                 |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Property ``active`` moved to base class ``AnimationMixer``                                                                |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Method ``advance`` moved to base class ``AnimationMixer``                                                                 |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Signal ``animation_finished`` moved to base class ``AnimationMixer``                                                      |✔️|                 |❌|                  |❌|                  [GH-80813](GH-80813)
-Signal ``animation_started`` moved to base class ``AnimationMixer``                                                       |✔️|                 |❌|                  |❌|                  [GH-80813](GH-80813)
-Property ``audio_max_polyphony`` moved to base class ``AnimationMixer``                                                   |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Method ``get_root_motion_position`` moved to base class ``AnimationMixer``                                                |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Method ``get_root_motion_position_accumulator`` moved to base class ``AnimationMixer``                                    |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Method ``get_root_motion_rotation`` moved to base class ``AnimationMixer``                                                |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Method ``get_root_motion_rotation_accumulator`` moved to base class ``AnimationMixer``                                    |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Method ``get_root_motion_scale`` moved to base class ``AnimationMixer``                                                   |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Method ``get_root_motion_scale_accumulator`` moved to base class ``AnimationMixer``                                       |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Property ``process_callback`` renamed to ``callback_mode_process`` and moved to base class ``AnimationMixer``             |✔️|                 |✔️ with compat|      |✔️ with compat|      [GH-80813](GH-80813)
-Property ``root_motion_track``  moved to base class ``AnimationMixer``                                                    |✔️|                 |✔️|                  |✔️|                  [GH-80813](GH-80813)
-Property ``tree_root`` changes type from ``AnimationNode`` to ``AnimationRootNode``                                       |✔️|                 |❌|                  |❌|                  [GH-80813](GH-80813)
+Method ``_post_process_key_value`` moved to base class ``AnimationMixer``                                                 |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Property ``active`` moved to base class ``AnimationMixer``                                                                |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Method ``advance`` moved to base class ``AnimationMixer``                                                                 |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Signal ``animation_finished`` moved to base class ``AnimationMixer``                                                      |✔️|                 |❌|                  |❌|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Signal ``animation_started`` moved to base class ``AnimationMixer``                                                       |✔️|                 |❌|                  |❌|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Property ``audio_max_polyphony`` moved to base class ``AnimationMixer``                                                   |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Method ``get_root_motion_position`` moved to base class ``AnimationMixer``                                                |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Method ``get_root_motion_position_accumulator`` moved to base class ``AnimationMixer``                                    |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Method ``get_root_motion_rotation`` moved to base class ``AnimationMixer``                                                |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Method ``get_root_motion_rotation_accumulator`` moved to base class ``AnimationMixer``                                    |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Method ``get_root_motion_scale`` moved to base class ``AnimationMixer``                                                   |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Method ``get_root_motion_scale_accumulator`` moved to base class ``AnimationMixer``                                       |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Property ``process_callback`` renamed to ``callback_mode_process`` and moved to base class ``AnimationMixer``             |✔️|                 |✔️ with compat|      |✔️ with compat|      [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Property ``root_motion_track``  moved to base class ``AnimationMixer``                                                    |✔️|                 |✔️|                  |✔️|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
+Property ``tree_root`` changes type from ``AnimationNode`` to ``AnimationRootNode``                                       |✔️|                 |❌|                  |❌|                  [GH-80813](https://github.com/godotengine/godot/pull/80813)
 ========================================================================================================================  ===================  ====================  ====================  ===========
 
 ### GUI nodes
@@ -115,9 +115,9 @@ Change                                                                          
 **PopupMenu**
 Method ``add_icon_shortcut`` adds a new ``allow_echo`` optional parameter                                                 |✔️|                 |✔️ with compat|      |✔️ with compat|      [GH-36493](upgrading_to_godot_4.2.md)
 Method ``add_shortcut`` adds a new ``allow_echo`` optional parameter                                                      |✔️|                 |✔️ with compat|      |✔️ with compat|      [GH-36493](upgrading_to_godot_4.2.md)
-Method ``clear`` adds a new ``free_submenus`` optional parameter                                                          |✔️|                 |✔️ with compat|      |✔️ with compat|      [GH-79965](GH-79965)
+Method ``clear`` adds a new ``free_submenus`` optional parameter                                                          |✔️|                 |✔️ with compat|      |✔️ with compat|      [GH-79965](https://github.com/godotengine/godot/pull/79965)
 **RichTextLabel**
-Method ``add_image`` adds new ``key``, ``pad``, ``tooltip``, and ``size_in_percent`` optional parameters                   |✔️|                 |✔️ with compat|      |✔️|                  [GH-80410](GH-80410)
+Method ``add_image`` adds new ``key``, ``pad``, ``tooltip``, and ``size_in_percent`` optional parameters                   |✔️|                 |✔️ with compat|      |✔️|                  [GH-80410](https://github.com/godotengine/godot/pull/80410)
 ========================================================================================================================  ===================  ====================  ====================  ===========
 
 ### Rendering
@@ -126,19 +126,19 @@ Method ``add_image`` adds new ``key``, ``pad``, ``tooltip``, and ``size_in_perce
 Change                                                                                                                    GDScript Compatible  C# Binary Compatible  C# Source Compatible  Introduced
 ========================================================================================================================  ===================  ====================  ====================  ===========
 **ImporterMesh**
-Method ``add_surface`` changes ``flags`` parameter type from ``uint32`` to ``uint64``                                     |✔️|                 |✔️ with compat|      |✔️ with compat|      [GH-81138](GH-81138)
-Method ``get_surface_format`` changes return type from ``uint32`` to ``uint64``                                           |✔️|                 |❌|                  |❌|                  [GH-81138](GH-81138)
+Method ``add_surface`` changes ``flags`` parameter type from ``uint32`` to ``uint64``                                     |✔️|                 |✔️ with compat|      |✔️ with compat|      [GH-81138](https://github.com/godotengine/godot/pull/81138)
+Method ``get_surface_format`` changes return type from ``uint32`` to ``uint64``                                           |✔️|                 |❌|                  |❌|                  [GH-81138](https://github.com/godotengine/godot/pull/81138)
 **MeshDataTool**
-Method ``commit_to_surface`` adds a new ``compression_flags`` optional parameter                                          |✔️|                 |✔️ with compat|      |✔️|                  [GH-81138](GH-81138)
-Method ``get_format`` changes return type from ``uint32`` to ``uint64``                                                   |✔️|                 |❌|                  |❌|                  [GH-81138](GH-81138)
+Method ``commit_to_surface`` adds a new ``compression_flags`` optional parameter                                          |✔️|                 |✔️ with compat|      |✔️|                  [GH-81138](https://github.com/godotengine/godot/pull/81138)
+Method ``get_format`` changes return type from ``uint32`` to ``uint64``                                                   |✔️|                 |❌|                  |❌|                  [GH-81138](https://github.com/godotengine/godot/pull/81138)
 **RenderingDevice**
-Enum field ``BarrierMask.BARRIER_MASK_RASTER`` changes value from ``1`` to ``9``                                          |✔️|                 |✔️|                  |✔️|                  [GH-79911](GH-79911)
-Enum field ``BarrierMask.BARRIER_MASK_ALL_BARRIERS`` changes value from ``7`` to ``32767``                                |✔️|                 |✔️|                  |✔️|                  [GH-79911](GH-79911)
-Enum field ``BarrierMask.BARRIER_MASK_NO_BARRIER`` changes value from ``8`` to ``32768``                                  |✔️|                 |✔️|                  |✔️|                  [GH-79911](GH-79911)
-Method ``shader_create_from_bytecode`` adds a new ``placeholder_rid`` optional parameter                                  |✔️|                 |✔️ with compat|      |✔️|                  [GH-79606](GH-79606)
-Method ``shader_get_vertex_input_attribute_ask`` changes return type from ``uint32`` to ``uint64``                        |✔️|                 |❌|                  |❌|                  [GH-81138](GH-81138)
+Enum field ``BarrierMask.BARRIER_MASK_RASTER`` changes value from ``1`` to ``9``                                          |✔️|                 |✔️|                  |✔️|                  [GH-79911](https://github.com/godotengine/godot/pull/79911)
+Enum field ``BarrierMask.BARRIER_MASK_ALL_BARRIERS`` changes value from ``7`` to ``32767``                                |✔️|                 |✔️|                  |✔️|                  [GH-79911](https://github.com/godotengine/godot/pull/79911)
+Enum field ``BarrierMask.BARRIER_MASK_NO_BARRIER`` changes value from ``8`` to ``32768``                                  |✔️|                 |✔️|                  |✔️|                  [GH-79911](https://github.com/godotengine/godot/pull/79911)
+Method ``shader_create_from_bytecode`` adds a new ``placeholder_rid`` optional parameter                                  |✔️|                 |✔️ with compat|      |✔️|                  [GH-79606](https://github.com/godotengine/godot/pull/79606)
+Method ``shader_get_vertex_input_attribute_ask`` changes return type from ``uint32`` to ``uint64``                        |✔️|                 |❌|                  |❌|                  [GH-81138](https://github.com/godotengine/godot/pull/81138)
 **SurfaceTool**
-Method ``commit`` changes ``flags`` parameter type from ``uint32`` to ``uint64``                                          |✔️|                 |✔️ with compat|      |✔️ with compat|      [GH-81138](GH-81138)
+Method ``commit`` changes ``flags`` parameter type from ``uint32`` to ``uint64``                                          |✔️|                 |✔️ with compat|      |✔️ with compat|      [GH-81138](https://github.com/godotengine/godot/pull/81138)
 ========================================================================================================================  ===================  ====================  ====================  ===========
 
 ### Text
@@ -147,9 +147,9 @@ Method ``commit`` changes ``flags`` parameter type from ``uint32`` to ``uint64``
 Change                                                                                                                                GDScript Compatible  C# Binary Compatible  C# Source Compatible  Introduced
 ====================================================================================================================================  ===================  ====================  ====================  ===========
 **Font**
-Method ``set_fallbacks`` replaced with ``fallbacks`` property                                                                         |✔️|                 |❌|                  |❌|                  [GH-78266](GH-78266)
-Method ``get_fallbacks`` replaced with ``fallbacks`` property                                                                         |✔️|                 |❌|                  |❌|                  [GH-78266](GH-78266)
-Method ``find_variation`` adds new ``spacing_top``, ``spacing_bottom``, ``spacing_space``, and ``spacing_glyph`` optional parameters   |✔️|                 |✔️ with compat|      |✔️|                  [GH-80954](GH-80954)
+Method ``set_fallbacks`` replaced with ``fallbacks`` property                                                                         |✔️|                 |❌|                  |❌|                  [GH-78266](https://github.com/godotengine/godot/pull/78266)
+Method ``get_fallbacks`` replaced with ``fallbacks`` property                                                                         |✔️|                 |❌|                  |❌|                  [GH-78266](https://github.com/godotengine/godot/pull/78266)
+Method ``find_variation`` adds new ``spacing_top``, ``spacing_bottom``, ``spacing_space``, and ``spacing_glyph`` optional parameters   |✔️|                 |✔️ with compat|      |✔️|                  [GH-80954](https://github.com/godotengine/godot/pull/80954)
 ====================================================================================================================================  ===================  ====================  ====================  ===========
 
 ### GraphEdit
@@ -158,41 +158,41 @@ Method ``find_variation`` adds new ``spacing_top``, ``spacing_bottom``, ``spacin
 Change                                                                                                                    GDScript Compatible  C# Binary Compatible  C# Source Compatible  Introduced
 ========================================================================================================================  ===================  ====================  ====================  ===========
 **GraphEdit**
-Property ``arrange_nodes_button_hidden`` renamed to ``show_arrange_button``                                               |❌|                 |✔️ with compat|      |✔️ with compat|      [GH-81582](GH-81582)
-Method ``get_zoom_hbox`` renamed to ``get_menu_hbox``                                                                     |❌|                 |✔️ with compat|      |✔️ with compat|      [GH-79308](GH-79308)
-Property ``snap_distance`` renamed to ``snapping_distance``                                                               |❌|                 |✔️ with compat|      |✔️ with compat|      [GH-79308](GH-79308)
-Property ``use_snap`` renamed to ``snapping_enabled``                                                                     |❌|                 |✔️ with compat|      |✔️ with compat|      [GH-79308](GH-79308)
+Property ``arrange_nodes_button_hidden`` renamed to ``show_arrange_button``                                               |❌|                 |✔️ with compat|      |✔️ with compat|      [GH-81582](https://github.com/godotengine/godot/pull/81582)
+Method ``get_zoom_hbox`` renamed to ``get_menu_hbox``                                                                     |❌|                 |✔️ with compat|      |✔️ with compat|      [GH-79308](https://github.com/godotengine/godot/pull/79308)
+Property ``snap_distance`` renamed to ``snapping_distance``                                                               |❌|                 |✔️ with compat|      |✔️ with compat|      [GH-79308](https://github.com/godotengine/godot/pull/79308)
+Property ``use_snap`` renamed to ``snapping_enabled``                                                                     |❌|                 |✔️ with compat|      |✔️ with compat|      [GH-79308](https://github.com/godotengine/godot/pull/79308)
 **GraphNode**
-Property ``comment`` removed                                                                                              |❌|                 |❌|                  |❌|                  [GH-79307](GH-79307)
-Signal ``close_request`` renamed to ``delete_request`` and moved to base class ``GraphElement``                           |❌|                 |✔️ with compat|      |✔️ with compat|      [GH-79311](GH-79311)
-Property ``draggable`` moved to base class ``GraphElement``                                                               |✔️|                 |✔️|                  |✔️|                  [GH-79311](GH-79311)
-Property ``draggable`` moved to base class ``GraphElement``                                                               |✔️|                 |✔️|                  |✔️|                  [GH-79311](GH-79311)
-Signal ``dragged`` moved to base class ``GraphElement``                                                                   |✔️|                 |❌|                  |❌|                  [GH-79311](GH-79311)
-Method ``get_connection_input_color`` removed                                                                             |❌|                 |❌|                  |❌|                  [GH-79311](GH-79311)
-Method ``get_connection_input_count`` removed                                                                             |❌|                 |❌|                  |❌|                  [GH-79311](GH-79311)
-Method ``get_connection_input_height`` removed                                                                            |❌|                 |❌|                  |❌|                  [GH-79311](GH-79311)
-Method ``get_connection_input_position`` removed                                                                          |❌|                 |❌|                  |❌|                  [GH-79311](GH-79311)
-Method ``get_connection_input_slot`` removed                                                                              |❌|                 |❌|                  |❌|                  [GH-79311](GH-79311)
-Method ``get_connection_input_type`` removed                                                                              |❌|                 |❌|                  |❌|                  [GH-79311](GH-79311)
-Method ``get_connection_output_color`` removed                                                                            |❌|                 |❌|                  |❌|                  [GH-79311](GH-79311)
-Method ``get_connection_output_count`` removed                                                                            |❌|                 |❌|                  |❌|                  [GH-79311](GH-79311)
-Method ``get_connection_output_height`` removed                                                                           |❌|                 |❌|                  |❌|                  [GH-79311](GH-79311)
-Method ``get_connection_output_position`` removed                                                                         |❌|                 |❌|                  |❌|                  [GH-79311](GH-79311)
-Method ``get_connection_output_slot`` removed                                                                             |❌|                 |❌|                  |❌|                  [GH-79311](GH-79311)
-Method ``get_connection_output_type`` removed                                                                             |❌|                 |❌|                  |❌|                  [GH-79311](GH-79311)
-Property ``language`` removed                                                                                             |❌|                 |❌|                  |❌|                  [GH-79311](GH-79311)
-Signal ``node_deselected`` moved to base class ``GraphElement``                                                           |✔️|                 |✔️|                  |✔️|                  [GH-79311](GH-79311)
-Signal ``node_selected`` moved to base class ``GraphElement``                                                             |✔️|                 |✔️|                  |✔️|                  [GH-79311](GH-79311)
-Property ``overlay`` removed                                                                                              |❌|                 |❌|                  |❌|                  [GH-79311](GH-79311)
-Property ``position_offset`` moved to base class ``GraphElement``                                                         |✔️|                 |✔️|                  |✔️|                  [GH-79311](GH-79311)
-Signal ``position_offset_changed`` moved to base class ``GraphElement``                                                   |✔️|                 |✔️|                  |✔️|                  [GH-79311](GH-79311)
-Signal ``raise_request`` moved to base class ``GraphElement``                                                             |✔️|                 |✔️|                  |✔️|                  [GH-79311](GH-79311)
-Property ``resizable`` moved to base class ``GraphElement``                                                               |✔️|                 |✔️|                  |✔️|                  [GH-79311](GH-79311)
-Signal ``resize_request`` moved to base class ``GraphElement``                                                            |✔️|                 |❌|                  |❌|                  [GH-79311](GH-79311)
-Property ``selectable`` moved to base class ``GraphElement``                                                              |✔️|                 |✔️|                  |✔️|                  [GH-79311](GH-79311)
-Property ``selected`` moved to base class ``GraphElement``                                                                |✔️|                 |✔️|                  |✔️|                  [GH-79311](GH-79311)
-Property ``show_close`` removed                                                                                           |❌|                 |❌|                  |❌|                  [GH-79311](GH-79311)
-Property ``text_direction`` removed                                                                                       |❌|                 |❌|                  |❌|                  [GH-79311](GH-79311)
+Property ``comment`` removed                                                                                              |❌|                 |❌|                  |❌|                  [GH-79307](https://github.com/godotengine/godot/pull/79307)
+Signal ``close_request`` renamed to ``delete_request`` and moved to base class ``GraphElement``                           |❌|                 |✔️ with compat|      |✔️ with compat|      [GH-79311](https://github.com/godotengine/godot/pull/79311)
+Property ``draggable`` moved to base class ``GraphElement``                                                               |✔️|                 |✔️|                  |✔️|                  [GH-79311](https://github.com/godotengine/godot/pull/79311)
+Property ``draggable`` moved to base class ``GraphElement``                                                               |✔️|                 |✔️|                  |✔️|                  [GH-79311](https://github.com/godotengine/godot/pull/79311)
+Signal ``dragged`` moved to base class ``GraphElement``                                                                   |✔️|                 |❌|                  |❌|                  [GH-79311](https://github.com/godotengine/godot/pull/79311)
+Method ``get_connection_input_color`` removed                                                                             |❌|                 |❌|                  |❌|                  [GH-79311](https://github.com/godotengine/godot/pull/79311)
+Method ``get_connection_input_count`` removed                                                                             |❌|                 |❌|                  |❌|                  [GH-79311](https://github.com/godotengine/godot/pull/79311)
+Method ``get_connection_input_height`` removed                                                                            |❌|                 |❌|                  |❌|                  [GH-79311](https://github.com/godotengine/godot/pull/79311)
+Method ``get_connection_input_position`` removed                                                                          |❌|                 |❌|                  |❌|                  [GH-79311](https://github.com/godotengine/godot/pull/79311)
+Method ``get_connection_input_slot`` removed                                                                              |❌|                 |❌|                  |❌|                  [GH-79311](https://github.com/godotengine/godot/pull/79311)
+Method ``get_connection_input_type`` removed                                                                              |❌|                 |❌|                  |❌|                  [GH-79311](https://github.com/godotengine/godot/pull/79311)
+Method ``get_connection_output_color`` removed                                                                            |❌|                 |❌|                  |❌|                  [GH-79311](https://github.com/godotengine/godot/pull/79311)
+Method ``get_connection_output_count`` removed                                                                            |❌|                 |❌|                  |❌|                  [GH-79311](https://github.com/godotengine/godot/pull/79311)
+Method ``get_connection_output_height`` removed                                                                           |❌|                 |❌|                  |❌|                  [GH-79311](https://github.com/godotengine/godot/pull/79311)
+Method ``get_connection_output_position`` removed                                                                         |❌|                 |❌|                  |❌|                  [GH-79311](https://github.com/godotengine/godot/pull/79311)
+Method ``get_connection_output_slot`` removed                                                                             |❌|                 |❌|                  |❌|                  [GH-79311](https://github.com/godotengine/godot/pull/79311)
+Method ``get_connection_output_type`` removed                                                                             |❌|                 |❌|                  |❌|                  [GH-79311](https://github.com/godotengine/godot/pull/79311)
+Property ``language`` removed                                                                                             |❌|                 |❌|                  |❌|                  [GH-79311](https://github.com/godotengine/godot/pull/79311)
+Signal ``node_deselected`` moved to base class ``GraphElement``                                                           |✔️|                 |✔️|                  |✔️|                  [GH-79311](https://github.com/godotengine/godot/pull/79311)
+Signal ``node_selected`` moved to base class ``GraphElement``                                                             |✔️|                 |✔️|                  |✔️|                  [GH-79311](https://github.com/godotengine/godot/pull/79311)
+Property ``overlay`` removed                                                                                              |❌|                 |❌|                  |❌|                  [GH-79311](https://github.com/godotengine/godot/pull/79311)
+Property ``position_offset`` moved to base class ``GraphElement``                                                         |✔️|                 |✔️|                  |✔️|                  [GH-79311](https://github.com/godotengine/godot/pull/79311)
+Signal ``position_offset_changed`` moved to base class ``GraphElement``                                                   |✔️|                 |✔️|                  |✔️|                  [GH-79311](https://github.com/godotengine/godot/pull/79311)
+Signal ``raise_request`` moved to base class ``GraphElement``                                                             |✔️|                 |✔️|                  |✔️|                  [GH-79311](https://github.com/godotengine/godot/pull/79311)
+Property ``resizable`` moved to base class ``GraphElement``                                                               |✔️|                 |✔️|                  |✔️|                  [GH-79311](https://github.com/godotengine/godot/pull/79311)
+Signal ``resize_request`` moved to base class ``GraphElement``                                                            |✔️|                 |❌|                  |❌|                  [GH-79311](https://github.com/godotengine/godot/pull/79311)
+Property ``selectable`` moved to base class ``GraphElement``                                                              |✔️|                 |✔️|                  |✔️|                  [GH-79311](https://github.com/godotengine/godot/pull/79311)
+Property ``selected`` moved to base class ``GraphElement``                                                                |✔️|                 |✔️|                  |✔️|                  [GH-79311](https://github.com/godotengine/godot/pull/79311)
+Property ``show_close`` removed                                                                                           |❌|                 |❌|                  |❌|                  [GH-79311](https://github.com/godotengine/godot/pull/79311)
+Property ``text_direction`` removed                                                                                       |❌|                 |❌|                  |❌|                  [GH-79311](https://github.com/godotengine/godot/pull/79311)
 ========================================================================================================================  ===================  ====================  ====================  ===========
 
 ### TileMap
@@ -201,7 +201,7 @@ Property ``text_direction`` removed                                             
 Change                                                                                                                    GDScript Compatible  C# Binary Compatible  C# Source Compatible  Introduced
 ========================================================================================================================  ===================  ====================  ====================  ===========
 **TileMap**
-Property ``cell_quadrant_size`` renamed to ``rendering_quadrant_size``                                                    |❌|                 |✔️ with compat|      |✔️ with compat|      [GH-81070](GH-81070)
+Property ``cell_quadrant_size`` renamed to ``rendering_quadrant_size``                                                    |❌|                 |✔️ with compat|      |✔️ with compat|      [GH-81070](https://github.com/godotengine/godot/pull/81070)
 ========================================================================================================================  ===================  ====================  ====================  ===========
 
 ### XR
@@ -210,7 +210,7 @@ Property ``cell_quadrant_size`` renamed to ``rendering_quadrant_size``          
 Change                                                                                                                    GDScript Compatible  C# Binary Compatible  C# Source Compatible  Introduced
 ========================================================================================================================  ===================  ====================  ====================  ===========
 **XRInterface**
-Property ``environment_blend_mode`` added                                                                                 |✔️|                 |❌|                  |❌|                  [GH-81561](GH-81561)
+Property ``environment_blend_mode`` added                                                                                 |✔️|                 |❌|                  |❌|                  [GH-81561](https://github.com/godotengine/godot/pull/81561)
 ========================================================================================================================  ===================  ====================  ====================  ===========
 
 :::note

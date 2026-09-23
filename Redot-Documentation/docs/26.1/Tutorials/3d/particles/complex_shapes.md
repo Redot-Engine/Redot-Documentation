@@ -4,7 +4,7 @@
 ![Image](/img/Tutorials/3d/particles/img/particle_complex_emission.webp)
 
 When it is not enough to emit particles from one of the simple shapes available
-in the [process material ](doc_process_material_properties_shapes), Redot provides
+in the [process material ](doc_process_material_properties#emission-shape), Redot provides
 a way to emit particles from arbitrary, complex shapes. The shapes are generated from
 meshes in the scene and stored as textures in the particle process material. This is a
 very versatile workflow that has allowed users to use particle systems for things that

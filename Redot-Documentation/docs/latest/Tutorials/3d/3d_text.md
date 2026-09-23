@@ -65,12 +65,12 @@ Cut**, at the cost of less smooth text rendering. The **Opaque Pre-Pass**
 transparency mode can preserve text smoothness while allowing the Label3D to
 cast shadows, but some transparency sorting issues will remain.
 
-See [Transparency sorting](doc_3d_rendering_limitations_transparency_sorting)
+See [Transparency sorting](doc_3d_rendering_limitations#transparency-sorting)
 section in the 3D rendering limitations page for more information.
 
 Text rendering quality can also suffer when the Label3D is viewed at a distance. To improve
-text rendering quality, [enable mipmaps on the font](doc_using_fonts_mipmaps) or
-[switch the font to use MSDF rendering](doc_using_fonts_msdf).
+text rendering quality, [enable mipmaps on the font](doc_gui_using_fonts#mipmaps) or
+[switch the font to use MSDF rendering](doc_gui_using_fonts#msdf-font-rendering).
 
 ## TextMesh
 

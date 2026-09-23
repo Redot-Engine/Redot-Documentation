@@ -155,7 +155,7 @@ render on the active layers in the bake mask contribute to particle collision.
 
 ### Troubleshooting
 
-For particle collision to work, the particle's [visibility AABB ](doc_3d_particles_properties_draw)
+For particle collision to work, the particle's [visibility AABB ](doc_properties#drawing-properties)
 must overlap with the collider's AABB. If collisions appear to be not working
 despite colliders being set up, generate an updated visibility AABB by selecting
 the GPUParticles3D node and choosing **GPUParticles3D &gt; Generate Visibility AABB…**

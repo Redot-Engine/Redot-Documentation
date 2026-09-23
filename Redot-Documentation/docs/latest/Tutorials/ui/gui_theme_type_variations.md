@@ -31,7 +31,7 @@ a combination of both types giving priority to the type variation.
 :::note
 
 The way controls resolve what theme items they use from each type and each
-theme is better described in the [Customizing a project ](doc_gui_theme_in_project)
+theme is better described in the [Customizing a project ](doc_gui_skinning#customizing-a-project)
 section of the "Introduction to GUI skinning" article.
 
 :::

@@ -10,7 +10,7 @@ This section contains tutorials and documentation about scripting in Redot Engin
 - [Evaluating expressions](evaluating_expressions)
 - [File system](filesystem)
 - [Groups](groups)
-- [How to read the Redot API](how_to_read_the_Redot_api)
+- [How to read the Redot API](doc_how_to_read_the_godot_api)
 - [Idle and Physics Processing](idle_and_physics_processing)
 - [Instancing with signals](instancing_with_signals)
 - [Nodes and scene instances](nodes_and_scene_instances)

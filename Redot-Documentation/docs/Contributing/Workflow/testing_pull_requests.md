@@ -19,7 +19,7 @@ depending on whether you have a GitHub account or not.
 Due to a GitHub Actions limitation, builds are only available for 90 days
 after the pull request was last updated. If you still wish to try a
 pull request locally, you can
-[compile the pull request branch from source](doc_testing_pull_requests_compile)
+[compile the pull request branch from source](doc_testing_pull_requests#compiling-a-pull-request-branch-from-source)
 instead.
 
 :::
@@ -128,4 +128,4 @@ git checkout editor_file_dialog_filter_sort
 
 ```
 
-- And follow the [compiling](toc-devel-compiling) instructions for your operating system.
+- And follow the [compiling](doc_introduction_to_the_buildsystem) instructions for your operating system.

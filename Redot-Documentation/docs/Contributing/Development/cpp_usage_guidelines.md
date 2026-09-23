@@ -22,7 +22,7 @@ purpose, such as improving code readability or performance.
 <!-- TODO(Tekk): doc_faq_why_not_stl doesnt exist -->
 We don't allow using the [STL](https://en.wikipedia.org/wiki/Standard_Template_Library)
 as Redot provides its own data types (among other things).
-See [doc_faq_why_not_stl](doc_faq_why_not_stl) for more information.
+See [doc_faq_why_not_stl](abt_faq#why-does-redot-not-use-stl-standard-template-library) for more information.
 
 This means that pull requests should **not** use ``std::string``,
 ``std::vector`` and the like. Instead, use Redot's datatypes as described below:

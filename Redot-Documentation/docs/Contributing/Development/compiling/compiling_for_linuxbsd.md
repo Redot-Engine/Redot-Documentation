@@ -311,7 +311,7 @@ lightweight but less effective form of LTO.
 
 If you want to use separate editor settings for your own Redot builds
 and official releases, you can enable
-[doc_data_paths_self_contained_mode](doc_data_paths_self_contained_mode) by creating a file called
+[doc_data_paths_self_contained_mode](doc_data_paths#self-contained-mode) by creating a file called
 ``._sc_`` or ``_sc_`` in the ``bin/`` folder.
 
 :::
@@ -334,7 +334,7 @@ And then use the ``--headless`` command line argument
 ```
 
 To compile a debug *server* build which can be used with
-:ref:`remote debugging tools <doc_command_line_tutorial>`, use
+[remote debugging tools](doc_command_line_tutorial), use
 
 ```
 scons platform=linuxbsd target=template_debug
@@ -582,7 +582,7 @@ tested).
 
 <!-- TODO(Tekk): doc_compiling_for_linuxbsd_oneliners doesnt exist. is this a heading in this document? -->
 To compile Redot with system libraries, install these dependencies **on top** of the ones
-listed in the [doc_compiling_for_linuxbsd_oneliners](doc_compiling_for_linuxbsd_oneliners):
+listed in the [doc_compiling_for_linuxbsd_oneliners](doc_compiling_for_linuxbsd#distro-specific-one-liners):
 
 <Tabs>
 

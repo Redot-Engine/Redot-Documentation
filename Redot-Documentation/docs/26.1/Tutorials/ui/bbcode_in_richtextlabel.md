@@ -20,9 +20,9 @@ control's size. The scrollbar can be disabled by unchecking the
 
 Note that the BBCode tags can also be used to some extent for other use cases:
 
-- BBCode can be used to [format comments in the XML source of the class reference ](doc_class_reference_bbcode).
-- BBCode can be used in [GDScript documentation comments ](doc_gdscript_documentation_comments_bbcode_and_class_reference).
-- BBCode can be used when [printing rich text to the Output bottom panel ](doc_output_panel_printing_rich_text).
+- BBCode can be used to [format comments in the XML source of the class reference ](doc_class_reference_primer#improve-formatting-with-bbcode-style-tags).
+- BBCode can be used in [GDScript documentation comments ](doc_gdscript_documentation_comments#bbcode-and-class-reference).
+- BBCode can be used when [printing rich text to the Output bottom panel ](doc_output_panel#printing-rich-text).
 
 :::info
 
@@ -152,7 +152,7 @@ does not support BBCode (such as a tooltip):
 Removing BBCode tags entirely isn't advised for user input, as it can
 modify the displayed text without users understanding why part of their
 message was removed.
-[Escaping user input ](doc_bbcode_in_richtextlabel_handling_user_input_safely)
+[Escaping user input ](doc_bbcode_in_richtextlabel#handling-user-input-safely)
 should be preferred instead.
 
 :::
@@ -224,7 +224,7 @@ functions.
 
 *Some* of these BBCode tags can be used in tooltips for ``@export`` script
 variables as well as in the XML source of the class reference. For more
-information, see [Class reference BBCode ](doc_class_reference_bbcode).
+information, see [Class reference BBCode ](doc_class_reference_primer#improve-formatting-with-bbcode-style-tags).
 
 :::
 
@@ -268,7 +268,7 @@ information, see [Class reference BBCode ](doc_class_reference_bbcode).
 
   * - | **p**
       | Adds new paragraph with ``{text}``. Supports configuration options,
-        see [doc_bbcode_in_richtextlabel_paragraph_options](doc_bbcode_in_richtextlabel_paragraph_options).
+        see [doc_bbcode_in_richtextlabel_paragraph_options](doc_bbcode_in_richtextlabel#paragraph-options).
 
     - | ``[p]{text}[/p]``
       | ``[p {options}]{text}[/p]``
@@ -306,7 +306,7 @@ information, see [Class reference BBCode ](doc_class_reference_bbcode).
   * - | **url**
       | Creates a hyperlink (underlined and clickable text). Can contain optional
         ``{text}`` or display ``{link}`` as is.
-      | **Must be handled with the "meta_clicked" signal to have an effect,** see [doc_bbcode_in_richtextlabel_handling_url_tag_clicks](doc_bbcode_in_richtextlabel_handling_url_tag_clicks).
+      | **Must be handled with the "meta_clicked" signal to have an effect,** see [doc_bbcode_in_richtextlabel_handling_url_tag_clicks](doc_bbcode_in_richtextlabel#handling-url-tag-clicks).
 
     - | ``[url]{link}[/url]``
       | ``[url={link}]{text}[/url]``
@@ -324,8 +324,8 @@ information, see [Class reference BBCode ](doc_class_reference_bbcode).
         to that size.
       | Add ``%`` to the end of ``{width}`` or ``{height}`` value to specify it as percentages of the control width instead of pixels.
       | If ``{valign}`` configuration is provided, the image will try to align to the
-        surrounding text, see [doc_bbcode_in_richtextlabel_image_and_table_alignment](doc_bbcode_in_richtextlabel_image_and_table_alignment).
-      | Supports configuration options, see [doc_bbcode_in_richtextlabel_image_options](doc_bbcode_in_richtextlabel_image_options).
+        surrounding text, see [doc_bbcode_in_richtextlabel_image_and_table_alignment](doc_bbcode_in_richtextlabel#image-and-table-vertical-alignment).
+      | Supports configuration options, see [doc_bbcode_in_richtextlabel_image_options](doc_bbcode_in_richtextlabel#image-options).
 
     - | ``[img]{path}[/img]``
       | ``[img={width}]{path}[/img]``
@@ -335,7 +335,7 @@ information, see [Class reference BBCode ](doc_class_reference_bbcode).
 
   * - | **font**
       | Makes ``{text}`` use a font resource from the ``{path}``.
-      | Supports configuration options, see [doc_bbcode_in_richtextlabel_font_options](doc_bbcode_in_richtextlabel_font_options).
+      | Supports configuration options, see [doc_bbcode_in_richtextlabel_font_options](doc_bbcode_in_richtextlabel#font-options).
 
     - | ``[font={path}]{text}[/font]``
       | ``[font {options}]{text}[/font]``
@@ -366,17 +366,12 @@ information, see [Class reference BBCode ](doc_class_reference_bbcode).
 
   * - | **lang**
       | Overrides the language for ``{text}`` that is set by the **BiDi &gt; Language** property
-        in [class_RichTextLabel`. ``{code}`` must be an ISO :ref:`language code ](../i18n/locales.md).
-        This can be used to enforce the use of a specific script for a language without
-        starting a new paragraph. Some font files may contain script-specific substitutes,
-        in which case they will be used.
-
-    - ``[lang={code}]{text}[/lang]``
+        in [class_RichTextLabel`. ``{code}`` must be an ISO [language code \](../i18n/locales.md). This can be used to enforce the use of a specific script for a language without starting a new paragraph. Some font files may contain script-specific substitutes, in which case they will be used. -](language code ](../i18n/locales.md). This can be used to enforce the use of a specific script for a language without starting a new paragraph. Some font files may contain script-specific substitutes, in which case they will be used. -)`[lang={code}]{text}[/lang]``
 
   * - | **color**
       | Changes the color of ``{text}``. Color must be provided by a common name (see
-        [doc_bbcode_in_richtextlabel_named_colors](doc_bbcode_in_richtextlabel_named_colors)) or using the HEX format (e.g.
-        ``#ff00ff``, see [doc_bbcode_in_richtextlabel_hex_colors](doc_bbcode_in_richtextlabel_hex_colors)).
+        [doc_bbcode_in_richtextlabel_named_colors](doc_bbcode_in_richtextlabel#named-colors)) or using the HEX format (e.g.
+        ``#ff00ff``, see [doc_bbcode_in_richtextlabel_hex_colors](doc_bbcode_in_richtextlabel#hexadecimal-color-codes)).
 
     - ``[color={code/name}]{text}[/color]``
 
@@ -410,7 +405,7 @@ information, see [Class reference BBCode ](doc_class_reference_bbcode).
       | Creates a table with the ``{number}`` of columns. Use the ``cell`` tag to define
         table cells.
       | If ``{valign}`` configuration is provided, the table will try to align to the
-        surrounding text, see [doc_bbcode_in_richtextlabel_image_and_table_alignment](doc_bbcode_in_richtextlabel_image_and_table_alignment).
+        surrounding text, see [doc_bbcode_in_richtextlabel_image_and_table_alignment](doc_bbcode_in_richtextlabel#image-and-table-vertical-alignment).
       | If baseline alignment is used, the table is aligned to the baseline of the row with index ``{alignment_row}`` (zero-based).
 
     - | ``[table={number}]{cells}[/table]``
@@ -421,7 +416,7 @@ information, see [Class reference BBCode ](doc_class_reference_bbcode).
       | Adds a cell with ``{text}`` to the table.
       | If ``{ratio}`` is provided, the cell will try to expand to that value proportionally
         to other cells and their ratio values.
-      | Supports configuration options, see [doc_bbcode_in_richtextlabel_cell_options](doc_bbcode_in_richtextlabel_cell_options).
+      | Supports configuration options, see [doc_bbcode_in_richtextlabel_cell_options](doc_bbcode_in_richtextlabel#cell-options).
 
     - | ``[cell]{text}[/cell]``
       | ``[cell={ratio}]{text}[/cell]``
@@ -431,13 +426,13 @@ information, see [Class reference BBCode ](doc_class_reference_bbcode).
       | Adds an unordered list. List ``{items}`` must be provided by putting one item per
         line of text.
       | The bullet point can be customized using the ``{bullet}`` parameter,
-        see [doc_bbcode_in_richtextlabel_unordered_list_bullet](doc_bbcode_in_richtextlabel_unordered_list_bullet).
+        see [doc_bbcode_in_richtextlabel_unordered_list_bullet](doc_bbcode_in_richtextlabel#unordered-list-bullet).
 
     - | ``[ul]{items}[/ul]``
       | ``[ul bullet={bullet}]{items}[/ul]``
 
   * - | **ol**
-      | Adds an ordered (numbered) list of the given ``{type}`` (see [doc_bbcode_in_richtextlabel_list_types](doc_bbcode_in_richtextlabel_list_types)).
+      | Adds an ordered (numbered) list of the given ``{type}`` (see [doc_bbcode_in_richtextlabel_list_types](doc_bbcode_in_richtextlabel#ordered-list-types)).
         List ``{items}`` must be provided by putting one item per line of text.
 
     - ``[ol type={type}]{items}[/ol]``
@@ -513,7 +508,7 @@ Options can be skipped for all tags.
 
 - **language**, **lang**
 
-| `Values` | ISO language codes. See :ref:`doc_locales` |
+| `Values` | ISO language codes. See [doc_locales](doc_locales) |
 | --- | --- |
 | `Default` | Inherit |
 

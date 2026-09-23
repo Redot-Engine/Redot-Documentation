@@ -155,7 +155,7 @@ There are several background modes available:
   from it.
 - **Canvas** displays the 2D scene as a background to the 3D scene. This can be used
   to make environment effects visible on 2D rendering, such as
-  [glow in 2D](doc_environment_and_post_processing_using_glow_in_2d).
+  [glow in 2D](doc_environment_and_post_processing#using-glow-in-2d).
 - **Keep** does not draw any sky, keeping what was present on previous frames
   instead. This improves performance in purely indoor scenes, but creates a
   "hall of mirrors" visual glitch if the sky is visible at any time.
@@ -305,7 +305,7 @@ In practice, it makes light stand out more across the fog.
 :::note
 
 Fog can cause banding to appear on the viewport, especially at
-higher density levels. See [doc_3d_rendering_limitations_color_banding](doc_3d_rendering_limitations_color_banding)
+higher density levels. See [doc_3d_rendering_limitations_color_banding](doc_3d_rendering_limitations#color-banding)
 for guidance on reducing banding.
 
 :::
@@ -604,7 +604,7 @@ The **Blend Mode** of the effect can also be changed:
 - **Softlight** is the default and weakest one, producing only a subtle color
   disturbance around the objects. This mode works best on dark scenes.
 - **Replace** can be used to
-  [blur the whole screen](doc_environment_and_post_processing_using_glow_to_blur_the_screen)
+  [blur the whole screen](doc_environment_and_post_processing#using-glow-to-blur-the-screen)
   or debug the effect. It only shows the glow effect without the image below.
 - **Mix** mixes the glow effect with the main image. This can be used for
   greater artistic control. The mix factor is controlled by the **Mix** property
@@ -863,7 +863,7 @@ multiplier (on the Light itself). To make it consistent, the **Sky** usually
 needs to use the energy multiplier too, to match with the directional light.
 Normally, values between 3.0 and 6.0 are enough to simulate indoor-outdoor conditions.
 
-By combining Auto Exposure with [doc_environment_and_post_processing_glow](doc_environment_and_post_processing_glow)
+By combining Auto Exposure with [doc_environment_and_post_processing_glow](doc_environment_and_post_processing#glow)
 post-processing, pixels that go over the tonemap **White** will bleed to the
 glow buffer, creating the typical bloom effect in photography.
 

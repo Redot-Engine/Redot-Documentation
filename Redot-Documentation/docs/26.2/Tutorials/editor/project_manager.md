@@ -41,7 +41,7 @@ To create a new project:
 :::note
 You can optionally choose a version control system. Currently, only
 [git ](https://git-scm.com) is supported and it needs the Redot Git Plugin to be installed, 
-either manually or using the [Asset Library ](../../Community/asset_library/using_assetlib.md). To learn more about the Redot Git Plugin, see its [wiki ](https://github.com/redot-engine/redot-git-plugin/wiki).
+either manually or using the [Asset Library ](doc_using_assetlib). To learn more about the Redot Git Plugin, see its [wiki ](https://github.com/redot-engine/redot-git-plugin/wiki).
 
 :::
 
@@ -90,7 +90,7 @@ When the folder path is correct, you'll see a green checkmark.
 ## Downloading demos and templates
 
 From the **Asset Library** tab you can download open source project
-templates and demos from the [Asset Library ](toc-learn-features-assetlib) to help
+templates and demos from the [Asset Library ](doc_what_is_assetlib) to help
 you get started faster.
 
 The first time you open this tab you'll notice that it's asking you to go online.

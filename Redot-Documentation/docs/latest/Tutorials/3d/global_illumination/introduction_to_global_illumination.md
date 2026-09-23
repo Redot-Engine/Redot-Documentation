@@ -56,7 +56,7 @@ it when targeting low-end hardware.
 Indirect diffuse lighting may be a source of color banding in scenes with no
 detailed textures. This results in light gradients not being smooth, but
 having a visible "stepping" effect instead. See the
-[doc_3d_rendering_limitations_color_banding](doc_3d_rendering_limitations_color_banding) section in the 3D rendering
+[doc_3d_rendering_limitations_color_banding](doc_3d_rendering_limitations#color-banding) section in the 3D rendering
 limitations documentation for ways to reduce this effect.
 
 :::
@@ -320,7 +320,7 @@ If you are unsure about which GI technique to use:
   enable SSIL in your game's settings.
 - For mobile games, [LightmapGI ](doc_using_lightmap_gi) and
   [ReflectionProbes ](doc_reflection_probes) are the only supported options.
-  See also [doc_introduction_to_global_illumination_alternatives](doc_introduction_to_global_illumination_alternatives).
+  See also [doc_introduction_to_global_illumination_alternatives](doc_introduction_to_global_illumination#alternatives-to-gi-techniques).
 
 :::info
 

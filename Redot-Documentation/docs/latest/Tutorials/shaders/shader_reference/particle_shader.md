@@ -48,7 +48,7 @@ Global built-ins are available everywhere, including custom functions.
 
 | Built-in | Description |
 | --- | --- |
-| in float **TIME** | Global time since the engine has started, in seconds. It repeats after every ``3,600`` seconds (which can  be changed with the :ref:`rollover&lt;class_ProjectSettings_property_rendering/limits/time/time_rollover_secs&gt;` setting). It's affected by :ref:`time_scale&lt;class_Engine_property_time_scale&gt;` but not by pausing. If you need a ``TIME`` variable that is not affected by time scale, add your own :ref:`global shader uniform&lt;doc_shading_language_global_uniforms&gt;` and update it each frame. |
+| in float **TIME** | Global time since the engine has started, in seconds. It repeats after every ``3,600`` seconds (which can  be changed with the [rollover](class_ProjectSettings_property_rendering/limits/time/time_rollover_secs) setting). It's affected by [time_scale](class_Engine_property_time_scale) but not by pausing. If you need a ``TIME`` variable that is not affected by time scale, add your own [global shader uniform](doc_shading_language#global-uniforms) and update it each frame. |
 | in float **PI** | A ``PI`` constant (``3.141592``). A ratio of a circle's circumference to its diameter and amount of radians in half turn. |
 | in float **TAU** | A ``TAU`` constant (``6.283185``). An equivalent of ``PI * 2`` and amount of radians in full turn. |
 | in float **E** | An ``E`` constant (``2.718281``). Euler's number and a base of the natural logarithm. |
@@ -77,9 +77,9 @@ These properties can be accessed from both the ``start()`` and ``process()`` fun
 | in uint **FLAG_EMIT_VELOCITY** | A flag for using on the last argument of ``emit_subparticle()`` function to assign a velocity to a new particle. |
 | in uint **FLAG_EMIT_COLOR** | A flag for using on the last argument of ``emit_subparticle()`` function to assign a color to a new particle. |
 | in uint **FLAG_EMIT_CUSTOM** | A flag for using on the last argument of ``emit_subparticle()`` function to assign a custom data vector to a new particle. |
-| in vec3 **EMITTER_VELOCITY** | Velocity of the :ref:`Particles2D&lt;class_GPUParticles2D&gt;` (:ref:`3D&lt;class_GPUParticles3D&gt;`) node. |
-| in float **INTERPOLATE_TO_END** | Value of :ref:`interp_to_end&lt;class_GPUParticles2D_property_interp_to_end&gt;` (:ref:`3D&lt;class_GPUParticles3D_property_interp_to_end&gt;`) property of Particles node. |
-| in uint **AMOUNT_RATIO** | Value of :ref:`amount_ratio&lt;class_GPUParticles2D_property_amount_ratio&gt;` (:ref:`3D&lt;class_GPUParticles3D_property_amount_ratio&gt;`) property of Particles node. |
+| in vec3 **EMITTER_VELOCITY** | Velocity of the [Particles2D](class_GPUParticles2D) ([3D](class_GPUParticles3D)) node. |
+| in float **INTERPOLATE_TO_END** | Value of [interp_to_end](class_GPUParticles2D_property_interp_to_end) ([3D](class_GPUParticles3D_property_interp_to_end)) property of Particles node. |
+| in uint **AMOUNT_RATIO** | Value of [amount_ratio](class_GPUParticles2D_property_amount_ratio) ([3D](class_GPUParticles3D_property_amount_ratio)) property of Particles node. |
 
 :::note
 In order to use the ``COLOR`` variable in a StandardMaterial3D, set ``vertex_color_use_as_albedo``

@@ -35,7 +35,7 @@ extensions are videos - some of them may only contain audio.
    and load an ``.ogv`` file in the Stream property.
 
    - If you don't have your video in Ogg Theora format yet, jump to
-     [doc_playing_videos_recommended_theora_encoding_settings](doc_playing_videos_recommended_theora_encoding_settings).
+     [doc_playing_videos_recommended_theora_encoding_settings](doc_playing_videos#recommended-theora-encoding-settings).
 
 3. If you want the video to play as soon as the scene is loaded, check
    **Autoplay** in the inspector. If not, leave **Autoplay** disabled and call

@@ -102,7 +102,7 @@ generation for it in the Import dock. This will also speed up resource
 importing. This can be done globally in the 3D scene's import options, or on
 a per-mesh basis using the Advanced Import Settings dialog.
 
-See [Importing 3D scenes](doc_importing_3d_scenes_using_the_import_dock)
+See [Importing 3D scenes](doc_import_configuration#using-the-import-dock)
 for more information.
 
 :::

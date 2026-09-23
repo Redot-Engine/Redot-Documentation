@@ -5,7 +5,7 @@ This is a (incomplete) list of API differences between C# and GDScript.
 
 ## General differences
 
-As explained in [doc_c_sharp_general_differences](doc_c_sharp_general_differences), ``PascalCase`` is used
+As explained in [doc_c_sharp_general_differences](doc_c_sharp_basics#general-differences-between-c-and-gdscript), ``PascalCase`` is used
 to access Redot APIs in C# instead of the ``snake_case`` used by GDScript and
 C++. Where possible, fields and getters/setters have been converted to
 properties. In general, the C# Redot API strives to be as idiomatic as is
@@ -20,7 +20,7 @@ translate the GDScript code ``x.set_name("Friend")`` to C#, write
 A C# IDE will provide intellisense, which is extremely useful when figuring out
 renamed C# APIs. The built-in Redot script editor has no support for C#
 intellisense, and it also doesn't provide many other C# development tools that
-are considered essential. See [doc_c_sharp_setup_external_editor](doc_c_sharp_setup_external_editor).
+are considered essential. See [doc_c_sharp_setup_external_editor](doc_c_sharp_basics#configuring-an-external-editor).
 
 ## Global scope
 
@@ -53,7 +53,7 @@ Math global functions, like ``abs``, ``acos``, ``asin``, ``atan`` and ``atan2``,
 located under ``Mathf`` as ``Abs``, ``Acos``, ``Asin``, ``Atan`` and ``Atan2``.
 The ``PI`` constant can be found as ``Mathf.Pi``.
 
-C# also provides static [System.Math](System.Math) and [System.MathF](System.MathF) classes that may
+C# also provides static [System.Math](https://learn.microsoft.com/en-us/dotnet/api/system.math) and [System.MathF](https://learn.microsoft.com/en-us/dotnet/api/system.mathf) classes that may
 contain other useful mathematical operations.
 
 ### Random functions
@@ -61,8 +61,8 @@ contain other useful mathematical operations.
 Random global functions, like ``rand_range`` and ``rand_seed``, are located under ``GD``.
 Example: ``GD.RandRange`` and ``GD.RandSeed``.
 
-Consider using [System.Random](System.Random) or, if you need cryptographically strong randomness,
-[System.Security.Cryptography.RandomNumberGenerator](System.Security.Cryptography.RandomNumberGenerator).
+Consider using [System.Random](https://learn.microsoft.com/en-us/dotnet/api/system.random) or, if you need cryptographically strong randomness,
+[System.Security.Cryptography.RandomNumberGenerator](https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.randomnumbergenerator).
 
 ### Other functions
 
@@ -148,12 +148,12 @@ hash                             GD.Hash
 instance_from_id                 RedotObject.InstanceFromId
 inverse_lerp                     Mathf.InverseLerp
 is_equal_approx                  Mathf.IsEqualApprox
-is_finite                        Mathf.IsFinite or [float.IsFinite](float.IsFinite) or [double.IsFinite](double.IsFinite)
-is_inf                           Mathf.IsInf or [float.IsInfinity](float.IsInfinity) or [double.IsInfinity](double.IsInfinity)
+is_finite                        Mathf.IsFinite or [float.IsFinite](https://learn.microsoft.com/en-us/dotnet/api/system.single.isfinite) or [double.IsFinite](https://learn.microsoft.com/en-us/dotnet/api/system.double.isfinite)
+is_inf                           Mathf.IsInf or [float.IsInfinity](https://learn.microsoft.com/en-us/dotnet/api/system.single.isinfinity) or [double.IsInfinity](https://learn.microsoft.com/en-us/dotnet/api/system.double.isinfinity)
 is_instance_id_valid             RedotObject.IsInstanceIdValid
 is_instance_valid                RedotObject.IsInstanceValid
-is_nan                           Mathf.IsNaN or [float.IsNaN](float.IsNaN) or [double.IsNaN](double.IsNaN)
-is_same                          operator == or [object.ReferenceEquals](object.ReferenceEquals)
+is_nan                           Mathf.IsNaN or [float.IsNaN](https://learn.microsoft.com/en-us/dotnet/api/system.single.isnan) or [double.IsNaN](https://learn.microsoft.com/en-us/dotnet/api/system.double.isnan)
+is_same                          operator == or [object.ReferenceEquals](https://learn.microsoft.com/en-us/dotnet/api/system.object.referenceequals)
 is_zero_approx                   Mathf.IsZeroApprox
 lerp                             Mathf.Lerp
 lerp_angle                       Mathf.LerpAngle
@@ -228,18 +228,18 @@ List of GDScript utility functions and their equivalent in C#:
 =======================  ==============================================================
 GDScript                 C#
 =======================  ==============================================================
-assert                   [System.Diagnostics.Debug.Assert](System.Diagnostics.Debug.Assert)
+assert                   [System.Diagnostics.Debug.Assert](https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.debug.assert)
 char                     Use explicit conversion: ``(char)65``
 convert                  GD.Convert
 dict_to_inst             N/A
-get_stack                [System.Environment.StackTrace](System.Environment.StackTrace)
+get_stack                [System.Environment.StackTrace](https://learn.microsoft.com/en-us/dotnet/api/system.environment.stacktrace)
 inst_to_dict             N/A
 len                      N/A
 load                     GD.Load
 preload                  N/A
 print_debug              N/A
-print_stack              GD.Print([System.Environment.StackTrace](System.Environment.StackTrace))
-range                    GD.Range or [System.Linq.Enumerable.Range](System.Linq.Enumerable.Range)
+print_stack              GD.Print([System.Environment.StackTrace](https://learn.microsoft.com/en-us/dotnet/api/system.environment.stacktrace))
+range                    GD.Range or [System.Linq.Enumerable.Range](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.range)
 type_exists              ClassDB.ClassExists(type)
 =======================  ==============================================================
 
@@ -249,7 +249,7 @@ Use ``GD.Load`` or ``ResourceLoader.Load`` instead.
 ## ``@export`` annotation
 
 Use the ``[Export]`` attribute instead of the GDScript ``@export`` annotation.
-This attribute can also be provided with optional [PropertyHint](enum_@GlobalScope_PropertyHint) and ``hintString`` parameters.
+This attribute can also be provided with optional [PropertyHint](class_@GlobalScope_enum_propertyhint) and ``hintString`` parameters.
 Default values can be set by assigning a value.
 
 Example:
@@ -293,7 +293,7 @@ See also: [doc_c_sharp_signals](c_sharp_signals.md).
 ## `@onready` annotation
 
 GDScript has the ability to defer the initialization of a member variable until the ready function
-is called with `@onready` (cf. [doc_gdscript_onready_annotation](doc_gdscript_onready_annotation)).
+is called with `@onready` (cf. [doc_gdscript_onready_annotation](doc_gdscript_basics#onready-annotation)).
 For example:
 
 ```gdscript
@@ -365,29 +365,29 @@ string[] bigrams = text.Bigrams(); // ["Ge", "et", "t ", " u", "up", "p!"]
 Strings are immutable in .NET, so all methods that manipulate a string don't
 modify the original string and return a newly created string with the
 modifications applied. To avoid creating multiple string allocations consider
-using a [StringBuilder](StringBuilder).
+using a [StringBuilder](https://learn.microsoft.com/en-us/dotnet/api/system.text.stringbuilder).
 
 List of Redot's String methods and their equivalent in C#:
 
 =======================  ==============================================================
 GDScript                 C#
 =======================  ==============================================================
-begins_with              [string.StartsWith](string.StartsWith)
+begins_with              [string.StartsWith](https://learn.microsoft.com/en-us/dotnet/api/system.string.startswith)
 bigrams                  StringExtensions.Bigrams
 bin_to_int               StringExtensions.BinToInt
 c_escape                 StringExtensions.CEscape
 c_unescape               StringExtensions.CUnescape
 capitalize               StringExtensions.Capitalize
-casecmp_to               StringExtensions.CasecmpTo or StringExtensions.CompareTo (Consider using [string.Equals](string.Equals) or [string.Compare](string.Compare))
+casecmp_to               StringExtensions.CasecmpTo or StringExtensions.CompareTo (Consider using [string.Equals](https://learn.microsoft.com/en-us/dotnet/api/system.string.equals) or [string.Compare](https://learn.microsoft.com/en-us/dotnet/api/system.string.compare))
 chr                      N/A
-contains                 [string.Contains](string.Contains)
-count                    StringExtensions.Count (Consider using [RegEx](RegEx))
-countn                   StringExtensions.CountN (Consider using [RegEx](RegEx))
+contains                 [string.Contains](https://learn.microsoft.com/en-us/dotnet/api/system.string.contains)
+count                    StringExtensions.Count (Consider using [RegEx](https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expressions))
+countn                   StringExtensions.CountN (Consider using [RegEx](https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expressions))
 dedent                   StringExtensions.Dedent
-ends_with                [string.EndsWith](string.EndsWith)
-erase                    [string.Remove](string.Remove) (Consider using [StringBuilder](StringBuilder) to manipulate strings)
-find                     StringExtensions.Find (Consider using [string.IndexOf](string.IndexOf) or [string.IndexOfAny](string.IndexOfAny))
-findn                    StringExtensions.FindN (Consider using [string.IndexOf](string.IndexOf) or [string.IndexOfAny](string.IndexOfAny))
+ends_with                [string.EndsWith](https://learn.microsoft.com/en-us/dotnet/api/system.string.endswith)
+erase                    [string.Remove](https://learn.microsoft.com/en-us/dotnet/api/system.string.remove) (Consider using [StringBuilder](https://learn.microsoft.com/en-us/dotnet/api/system.text.stringbuilder) to manipulate strings)
+find                     StringExtensions.Find (Consider using [string.IndexOf](https://learn.microsoft.com/en-us/dotnet/api/system.string.indexof) or [string.IndexOfAny](https://learn.microsoft.com/en-us/dotnet/api/system.string.indexofany))
+findn                    StringExtensions.FindN (Consider using [string.IndexOf](https://learn.microsoft.com/en-us/dotnet/api/system.string.indexof) or [string.IndexOfAny](https://learn.microsoft.com/en-us/dotnet/api/system.string.indexofany))
 format                   Use [$ string interpolation]($ string interpolation)
 get_base_dir             StringExtensions.GetBaseDir
 get_basename             StringExtensions.GetBaseName
@@ -396,81 +396,81 @@ get_file                 StringExtensions.GetFile
 get_slice                N/A
 get_slice_count          N/A
 get_slicec               N/A
-hash                     StringExtensions.Hash (Consider using [object.GetHashCode](object.GetHashCode) unless you need to guarantee the same behavior as in GDScript)
-hex_decode               StringExtensions.HexDecode (Consider using [System.Convert.FromHexString](System.Convert.FromHexString))
-hex_to_int               StringExtensions.HexToInt (Consider using [int.Parse](int.Parse) or [long.Parse](long.Parse) with [System.Globalization.NumberStyles.HexNumber](System.Globalization.NumberStyles.HexNumber))
+hash                     StringExtensions.Hash (Consider using [object.GetHashCode](https://learn.microsoft.com/en-us/dotnet/api/system.object.gethashcode) unless you need to guarantee the same behavior as in GDScript)
+hex_decode               StringExtensions.HexDecode (Consider using [System.Convert.FromHexString](https://learn.microsoft.com/en-us/dotnet/api/system.convert.fromhexstring))
+hex_to_int               StringExtensions.HexToInt (Consider using [int.Parse](https://learn.microsoft.com/en-us/dotnet/api/system.int32.parse) or [long.Parse](https://learn.microsoft.com/en-us/dotnet/api/system.int64.parse) with [System.Globalization.NumberStyles.HexNumber](https://learn.microsoft.com/en-us/dotnet/api/system.globalization.numberstyles#system-globalization-numberstyles-hexnumber))
 humanize_size            N/A
 indent                   StringExtensions.Indent
-insert                   [string.Insert](string.Insert) (Consider using [StringBuilder](StringBuilder) to manipulate strings)
+insert                   [string.Insert](https://learn.microsoft.com/en-us/dotnet/api/system.string.insert) (Consider using [StringBuilder](https://learn.microsoft.com/en-us/dotnet/api/system.text.stringbuilder) to manipulate strings)
 is_absolute_path         StringExtensions.IsAbsolutePath
-is_empty                 [string.IsNullOrEmpty](string.IsNullOrEmpty) or [string.IsNullOrWhiteSpace](string.IsNullOrWhiteSpace)
+is_empty                 [string.IsNullOrEmpty](https://learn.microsoft.com/en-us/dotnet/api/system.string.isnullorempty) or [string.IsNullOrWhiteSpace](https://learn.microsoft.com/en-us/dotnet/api/system.string.isnullorwhitespace)
 is_relative_path         StringExtensions.IsRelativePath
 is_subsequence_of        StringExtensions.IsSubsequenceOf
 is_subsequence_ofn       StringExtensions.IsSubsequenceOfN
 is_valid_filename        StringExtensions.IsValidFileName
-is_valid_float           StringExtensions.IsValidFloat (Consider using [float.TryParse](float.TryParse) or [double.TryParse](double.TryParse))
+is_valid_float           StringExtensions.IsValidFloat (Consider using [float.TryParse](https://learn.microsoft.com/en-us/dotnet/api/system.single.tryparse) or [double.TryParse](https://learn.microsoft.com/en-us/dotnet/api/system.double.tryparse))
 is_valid_hex_number      StringExtensions.IsValidHexNumber
 is_valid_html_color      StringExtensions.IsValidHtmlColor
 is_valid_identifier      StringExtensions.IsValidIdentifier
-is_valid_int             StringExtensions.IsValidInt (Consider using [int.TryParse](int.TryParse) or [long.TryParse](long.TryParse))
+is_valid_int             StringExtensions.IsValidInt (Consider using [int.TryParse](https://learn.microsoft.com/en-us/dotnet/api/system.int32.tryparse) or [long.TryParse](https://learn.microsoft.com/en-us/dotnet/api/system.int64.tryparse))
 is_valid_ip_address      StringExtensions.IsValidIPAddress
-join                     [string.Join](string.Join)
+join                     [string.Join](https://learn.microsoft.com/en-us/dotnet/api/system.string.join)
 json_escape              StringExtensions.JSONEscape
-left                     StringExtensions.Left (Consider using [string.Substring](string.Substring) or [string.AsSpan](string.AsSpan))
-length                   [string.Length](string.Length)
-lpad                     [string.PadLeft](string.PadLeft)
-lstrip                   [string.TrimStart](string.TrimStart)
-match                    StringExtensions.Match (Consider using [RegEx](RegEx))
-matchn                   StringExtensions.MatchN (Consider using [RegEx](RegEx))
-md5_buffer               StringExtensions.Md5Buffer (Consider using [System.Security.Cryptography.MD5.HashData](System.Security.Cryptography.MD5.HashData))
-md5_text                 StringExtensions.Md5Text (Consider using [System.Security.Cryptography.MD5.HashData](System.Security.Cryptography.MD5.HashData) with StringExtensions.HexEncode)
-naturalnocasecmp_to      N/A (Consider using [string.Equals](string.Equals) or [string.Compare](string.Compare))
-nocasecmp_to             StringExtensions.NocasecmpTo or StringExtensions.CompareTo (Consider using [string.Equals](string.Equals) or [string.Compare](string.Compare))
-num                      [float.ToString](float.ToString) or [double.ToString](double.ToString)
-num_int64                [int.ToString](int.ToString) or [long.ToString](long.ToString)
-num_scientific           [float.ToString](float.ToString) or [double.ToString](double.ToString)
-num_uint64               [uint.ToString](uint.ToString) or [ulong.ToString](ulong.ToString)
+left                     StringExtensions.Left (Consider using [string.Substring](https://learn.microsoft.com/en-us/dotnet/api/system.string.substring) or [string.AsSpan](https://learn.microsoft.com/en-us/dotnet/api/system.memoryextensions.asspan))
+length                   [string.Length](https://learn.microsoft.com/en-us/dotnet/api/system.string.length)
+lpad                     [string.PadLeft](https://learn.microsoft.com/en-us/dotnet/api/system.string.padleft)
+lstrip                   [string.TrimStart](https://learn.microsoft.com/en-us/dotnet/api/system.string.trimstart)
+match                    StringExtensions.Match (Consider using [RegEx](https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expressions))
+matchn                   StringExtensions.MatchN (Consider using [RegEx](https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expressions))
+md5_buffer               StringExtensions.Md5Buffer (Consider using [System.Security.Cryptography.MD5.HashData](https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.md5.hashdata))
+md5_text                 StringExtensions.Md5Text (Consider using [System.Security.Cryptography.MD5.HashData](https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.md5.hashdata) with StringExtensions.HexEncode)
+naturalnocasecmp_to      N/A (Consider using [string.Equals](https://learn.microsoft.com/en-us/dotnet/api/system.string.equals) or [string.Compare](https://learn.microsoft.com/en-us/dotnet/api/system.string.compare))
+nocasecmp_to             StringExtensions.NocasecmpTo or StringExtensions.CompareTo (Consider using [string.Equals](https://learn.microsoft.com/en-us/dotnet/api/system.string.equals) or [string.Compare](https://learn.microsoft.com/en-us/dotnet/api/system.string.compare))
+num                      [float.ToString](https://learn.microsoft.com/en-us/dotnet/api/system.single.tostring) or [double.ToString](https://learn.microsoft.com/en-us/dotnet/api/system.double.tostring)
+num_int64                [int.ToString](https://learn.microsoft.com/en-us/dotnet/api/system.int32.tostring) or [long.ToString](https://learn.microsoft.com/en-us/dotnet/api/system.int64.tostring)
+num_scientific           [float.ToString](https://learn.microsoft.com/en-us/dotnet/api/system.single.tostring) or [double.ToString](https://learn.microsoft.com/en-us/dotnet/api/system.double.tostring)
+num_uint64               [uint.ToString](https://learn.microsoft.com/en-us/dotnet/api/system.uint32.tostring) or [ulong.ToString](https://learn.microsoft.com/en-us/dotnet/api/system.uint64.tostring)
 pad_decimals             StringExtensions.PadDecimals
 pad_zeros                StringExtensions.PadZeros
 path_join                StringExtensions.PathJoin
-repeat                   Use [string constructor](string constructor) or a [StringBuilder](StringBuilder)
-replace                  [string.Replace](string.Replace) or [RegEx](RegEx)
-replacen                 StringExtensions.ReplaceN (Consider using [string.Replace](string.Replace) or [RegEx](RegEx))
+repeat                   Use [string constructor](string constructor) or a [StringBuilder](https://learn.microsoft.com/en-us/dotnet/api/system.text.stringbuilder)
+replace                  [string.Replace](https://learn.microsoft.com/en-us/dotnet/api/system.string.replace) or [RegEx](https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expressions)
+replacen                 StringExtensions.ReplaceN (Consider using [string.Replace](https://learn.microsoft.com/en-us/dotnet/api/system.string.replace) or [RegEx](https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expressions))
 reverse                  N/A
-rfind                    StringExtensions.RFind (Consider using [string.LastIndexOf](string.LastIndexOf) or [string.LastIndexOfAny](string.LastIndexOfAny))
-rfindn                   StringExtensions.RFindN (Consider using [string.LastIndexOf](string.LastIndexOf) or [string.LastIndexOfAny](string.LastIndexOfAny))
-right                    StringExtensions.Right (Consider using [string.Substring](string.Substring) or [string.AsSpan](string.AsSpan))
-rpad                     [string.PadRight](string.PadRight)
+rfind                    StringExtensions.RFind (Consider using [string.LastIndexOf](https://learn.microsoft.com/en-us/dotnet/api/system.string.lastindexof) or [string.LastIndexOfAny](https://learn.microsoft.com/en-us/dotnet/api/system.string.lastindexofany))
+rfindn                   StringExtensions.RFindN (Consider using [string.LastIndexOf](https://learn.microsoft.com/en-us/dotnet/api/system.string.lastindexof) or [string.LastIndexOfAny](https://learn.microsoft.com/en-us/dotnet/api/system.string.lastindexofany))
+right                    StringExtensions.Right (Consider using [string.Substring](https://learn.microsoft.com/en-us/dotnet/api/system.string.substring) or [string.AsSpan](https://learn.microsoft.com/en-us/dotnet/api/system.memoryextensions.asspan))
+rpad                     [string.PadRight](https://learn.microsoft.com/en-us/dotnet/api/system.string.padright)
 rsplit                   N/A
-rstrip                   [string.TrimEnd](string.TrimEnd)
-sha1_buffer              StringExtensions.Sha1Buffer (Consider using [System.Security.Cryptography.SHA1.HashData](System.Security.Cryptography.SHA1.HashData))
-sha1_text                StringExtensions.Sha1Text (Consider using [System.Security.Cryptography.SHA1.HashData](System.Security.Cryptography.SHA1.HashData) with StringExtensions.HexEncode)
-sha256_buffer            StringExtensions.Sha256Buffer (Consider using [System.Security.Cryptography.SHA256.HashData](System.Security.Cryptography.SHA256.HashData))
-sha256_text              StringExtensions.Sha256Text (Consider using [System.Security.Cryptography.SHA256.HashData](System.Security.Cryptography.SHA256.HashData) with StringExtensions.HexEncode)
+rstrip                   [string.TrimEnd](https://learn.microsoft.com/en-us/dotnet/api/system.string.trimend)
+sha1_buffer              StringExtensions.Sha1Buffer (Consider using [System.Security.Cryptography.SHA1.HashData](https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.sha1.hashdata))
+sha1_text                StringExtensions.Sha1Text (Consider using [System.Security.Cryptography.SHA1.HashData](https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.sha1.hashdata) with StringExtensions.HexEncode)
+sha256_buffer            StringExtensions.Sha256Buffer (Consider using [System.Security.Cryptography.SHA256.HashData](https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.sha256.hashdata))
+sha256_text              StringExtensions.Sha256Text (Consider using [System.Security.Cryptography.SHA256.HashData](https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.sha256.hashdata) with StringExtensions.HexEncode)
 similarity               StringExtensions.Similarity
 simplify_path            StringExtensions.SimplifyPath
-split                    StringExtensions.Split (Consider using [string.Split](string.Split))
+split                    StringExtensions.Split (Consider using [string.Split](https://learn.microsoft.com/en-us/dotnet/api/system.string.split))
 split_floats             StringExtensions.SplitFloat
-strip_edges              StringExtensions.StripEdges (Consider using [string.Trim](string.Trim), [string.TrimStart](string.TrimStart) or [string.TrimEnd](string.TrimEnd))
+strip_edges              StringExtensions.StripEdges (Consider using [string.Trim](https://learn.microsoft.com/en-us/dotnet/api/system.string.trim), [string.TrimStart](https://learn.microsoft.com/en-us/dotnet/api/system.string.trimstart) or [string.TrimEnd](https://learn.microsoft.com/en-us/dotnet/api/system.string.trimend))
 strip_escapes            StringExtensions.StripEscapes
-substr                   StringExtensions.Substr (Consider using [string.Substring](string.Substring) or [string.AsSpan](string.AsSpan))
-to_ascii_buffer          StringExtensions.ToAsciiBuffer (Consider using [System.Text.Encoding.ASCII.GetBytes](System.Text.Encoding.ASCII.GetBytes))
+substr                   StringExtensions.Substr (Consider using [string.Substring](https://learn.microsoft.com/en-us/dotnet/api/system.string.substring) or [string.AsSpan](https://learn.microsoft.com/en-us/dotnet/api/system.memoryextensions.asspan))
+to_ascii_buffer          StringExtensions.ToAsciiBuffer (Consider using [System.Text.Encoding.ASCII.GetBytes](https://learn.microsoft.com/en-us/dotnet/api/system.text.asciiencoding.getbytes))
 to_camel_case            StringExtensions.ToCamelCase
-to_float                 StringExtensions.ToFloat (Consider using [float.TryParse](float.TryParse) or [double.TryParse](double.TryParse))
-to_int                   StringExtensions.ToInt (Consider using [int.TryParse](int.TryParse) or [long.TryParse](long.TryParse))
-to_lower                 [string.ToLower](string.ToLower)
+to_float                 StringExtensions.ToFloat (Consider using [float.TryParse](https://learn.microsoft.com/en-us/dotnet/api/system.single.tryparse) or [double.TryParse](https://learn.microsoft.com/en-us/dotnet/api/system.double.tryparse))
+to_int                   StringExtensions.ToInt (Consider using [int.TryParse](https://learn.microsoft.com/en-us/dotnet/api/system.int32.tryparse) or [long.TryParse](https://learn.microsoft.com/en-us/dotnet/api/system.int64.tryparse))
+to_lower                 [string.ToLower](https://learn.microsoft.com/en-us/dotnet/api/system.string.tolower)
 to_pascal_case           StringExtensions.ToPascalCase
 to_snake_case            StringExtensions.ToSnakeCase
-to_upper                 [string.ToUpper](string.ToUpper)
-to_utf16_buffer          StringExtensions.ToUtf16Buffer (Consider using [System.Text.Encoding.UTF16.GetBytes](System.Text.Encoding.UTF16.GetBytes))
-to_utf32_buffer          StringExtensions.ToUtf32Buffer (Consider using [System.Text.Encoding.UTF32.GetBytes](System.Text.Encoding.UTF32.GetBytes))
-to_utf8_buffer           StringExtensions.ToUtf8Buffer (Consider using [System.Text.Encoding.UTF8.GetBytes](System.Text.Encoding.UTF8.GetBytes))
+to_upper                 [string.ToUpper](https://learn.microsoft.com/en-us/dotnet/api/system.string.toupper)
+to_utf16_buffer          StringExtensions.ToUtf16Buffer (Consider using [System.Text.Encoding.UTF16.GetBytes](https://learn.microsoft.com/en-us/dotnet/api/system.text.unicodeencoding.getbytes))
+to_utf32_buffer          StringExtensions.ToUtf32Buffer (Consider using [System.Text.Encoding.UTF32.GetBytes](https://learn.microsoft.com/en-us/dotnet/api/system.text.utf32encoding.getbytes))
+to_utf8_buffer           StringExtensions.ToUtf8Buffer (Consider using [System.Text.Encoding.UTF8.GetBytes](https://learn.microsoft.com/en-us/dotnet/api/system.text.utf8encoding.getbytes))
 to_wchar_buffer          StringExtensions.ToUtf16Buffer in Windows and StringExtensions.ToUtf32Buffer in other platforms
 trim_prefix              StringExtensions.TrimPrefix
 trim_suffix              StringExtensions.TrimSuffix
-unicode_at               [string[int]](string[int]) indexer
-uri_decode               StringExtensions.URIDecode (Consider using [System.Uri.UnescapeDataString](System.Uri.UnescapeDataString))
-uri_encode               StringExtensions.URIEncode (Consider using [System.Uri.EscapeDataString](System.Uri.EscapeDataString))
+unicode_at               [string indexer](https://learn.microsoft.com/en-us/dotnet/api/system.string.chars) indexer
+uri_decode               StringExtensions.URIDecode (Consider using [System.Uri.UnescapeDataString](https://learn.microsoft.com/en-us/dotnet/api/system.uri.unescapedatastring))
+uri_encode               StringExtensions.URIEncode (Consider using [System.Uri.EscapeDataString](https://learn.microsoft.com/en-us/dotnet/api/system.uri.escapedatastring))
 validate_node_name       StringExtensions.ValidateNodeName
 xml_escape               StringExtensions.XMLEscape
 xml_unescape             StringExtensions.XMLUnescape
@@ -481,17 +481,17 @@ List of Redot's PackedByteArray methods that create a String and their C# equiva
 =========================  ==============================================================
 GDScript                   C#
 =========================  ==============================================================
-get_string_from_ascii      StringExtensions.GetStringFromAscii (Consider using [System.Text.Encoding.ASCII.GetString](System.Text.Encoding.ASCII.GetString))
-get_string_from_utf16      StringExtensions.GetStringFromUtf16 (Consider using [System.Text.Encoding.UTF16.GetString](System.Text.Encoding.UTF16.GetString))
-get_string_from_utf32      StringExtensions.GetStringFromUtf32 (Consider using [System.Text.Encoding.UTF32.GetString](System.Text.Encoding.UTF32.GetString))
-get_string_from_utf8       StringExtensions.GetStringFromUtf8 (Consider using [System.Text.Encoding.UTF8.GetString](System.Text.Encoding.UTF8.GetString))
-hex_encode                 StringExtensions.HexEncode (Consider using [System.Convert.ToHexString](System.Convert.ToHexString))
+get_string_from_ascii      StringExtensions.GetStringFromAscii (Consider using [System.Text.Encoding.ASCII.GetString](https://learn.microsoft.com/en-us/dotnet/api/system.text.asciiencoding.getstring))
+get_string_from_utf16      StringExtensions.GetStringFromUtf16 (Consider using [System.Text.Encoding.UTF16.GetString](https://learn.microsoft.com/en-us/dotnet/api/system.text.unicodeencoding.getstring))
+get_string_from_utf32      StringExtensions.GetStringFromUtf32 (Consider using [System.Text.Encoding.UTF32.GetString](https://learn.microsoft.com/en-us/dotnet/api/system.text.utf32encoding.getstring))
+get_string_from_utf8       StringExtensions.GetStringFromUtf8 (Consider using [System.Text.Encoding.UTF8.GetString](https://learn.microsoft.com/en-us/dotnet/api/system.text.utf8encoding.getstring))
+hex_encode                 StringExtensions.HexEncode (Consider using [System.Convert.ToHexString](https://learn.microsoft.com/en-us/dotnet/api/system.convert.tohexstring))
 =========================  ==============================================================
 
 :::note
 
 .NET provides path utility methods under the
-[System.IO.Path](System.IO.Path)
+[System.IO.Path](https://learn.microsoft.com/en-us/dotnet/api/system.io.path)
 class. They can only be used with native OS paths, not Redot paths
 (paths that start with ``res://`` or ``user://``).
 See [doc_data_paths](../../io/data_paths.md).
@@ -520,7 +520,7 @@ GDScript              C#
 ====================  ==============================================================
 
 The ``Signal`` type implements the awaitable pattern which means it can be used with
-the ``await`` keyword. See [doc_c_sharp_differences_await](doc_c_sharp_differences_await).
+the ``await`` keyword. See [doc_c_sharp_differences_await](doc_c_sharp_differences#await-keyword).
 
 Instead of using the ``Signal`` type, the recommended way to use Redot signals in C# is
 to use the generated C# events. See [doc_c_sharp_signals](c_sharp_signals.md).
@@ -720,24 +720,24 @@ GDScript              C#
 
 The equivalent of packed arrays are ``System.Array``.
 
-See also [PackedArray in C# ](doc_c_sharp_collections_packedarray).
+See also [PackedArray in C# ](doc_c_sharp_collections#packedarray).
 
 Use ``Godot.Collections.Array`` for an untyped ``Variant`` array.
 ``Godot.Collections.Array&lt;T&gt;`` is a type-safe wrapper around ``Godot.Collections.Array``.
 
-See also [Array in C# ](doc_c_sharp_collections_array).
+See also [Array in C# ](doc_c_sharp_collections#array).
 
 ## Dictionary
 
 Use ``Godot.Collections.Dictionary`` for an untyped ``Variant`` dictionary.
 ``Godot.Collections.Dictionary&lt;TKey, TValue&gt;`` is a type-safe wrapper around ``Godot.Collections.Dictionary``.
 
-See also [Dictionary in C# ](doc_c_sharp_collections_dictionary).
+See also [Dictionary in C# ](doc_c_sharp_collections#dictionary).
 
 ## Variant
 
 ``Redot.Variant`` is used to represent Redot's native [Variant ](class_Variant) type.
-Any [Variant-compatible type ](c_sharp_variant_compatible_types) can be converted from/to it.
+Any [Variant-compatible type ](doc_c_sharp_variant#variant-compatible-types) can be converted from/to it.
 
 See also: [doc_c_sharp_variant](c_sharp_variant.md).
 

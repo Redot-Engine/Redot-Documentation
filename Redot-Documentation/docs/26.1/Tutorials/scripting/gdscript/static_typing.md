@@ -112,10 +112,10 @@ Here is a complete list of what can be used as a type hint:
    declaration, but increases readability. As a return type, forces the function
    to explicitly return some value.
 2. *(Only return type)* ``void``. Indicates that the function does not return any value.
-3. [Built-in types ](doc_gdscript_builtin_types).
+3. [Built-in types ](doc_gdscript_basics#built-in-types).
 4. Native classes (``Object``, ``Node``, ``Area2D``, ``Camera2D``, etc.).
-5. [Global classes ](doc_gdscript_basics_class_name).
-6. [Inner classes ](doc_gdscript_basics_inner_classes).
+5. [Global classes ](doc_gdscript_basics#registering-named-classes).
+6. [Inner classes ](doc_gdscript_basics#inner-classes).
 7. Global, native and custom named enums. Note that an enum type is just an ``int``,
    there is no guarantee that the value belongs to the set of enum values.
 8. Constants (including local ones) if they contain a preloaded class or enum.

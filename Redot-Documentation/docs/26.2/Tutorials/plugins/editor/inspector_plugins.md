@@ -21,7 +21,7 @@ between 0 and 99.
 Create a new empty plugin to get started.
 
 :::info
-See :ref:`doc_making_plugins` guide to set up your new plugin.
+See [doc_making_plugins](doc_making_plugins) guide to set up your new plugin.
 
 :::
 
@@ -106,7 +106,7 @@ method. This function is called for each edited [class_Object](class_Object) and
 return ``true`` if this plugin should handle the object or its properties.
 
 :::note
-This includes any :ref:`class_Resource` attached to the object.
+This includes any [class_Resource](class_Resource) attached to the object.
 
 :::
 

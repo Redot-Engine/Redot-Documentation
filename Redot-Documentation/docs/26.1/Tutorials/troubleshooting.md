@@ -223,13 +223,13 @@ in the Export dialog. By default, Redot will only include actual *resources*
 into the PCK file. Some files commonly used, such as JSON files, are not
 considered resources. For example, if you load ``test.json`` in the exported
 project, you need to specify ``*.json`` in the non-resource export filter. See
-[doc_exporting_projects_export_mode](doc_exporting_projects_export_mode) for more information.
+[doc_exporting_projects_export_mode](doc_exporting_projects#resource-options) for more information.
 
 Also, note that files and folders whose names begin with a period will never be
 included in the exported project. This is done to prevent version control
 folders like ``.git`` from being included in the exported PCK file.
 
-On Windows, this can also be due to [case sensitivity ](doc_project_organization_case_sensitivity) issues. If you reference a resource
+On Windows, this can also be due to [case sensitivity ](doc_project_organization#case-sensitivity) issues. If you reference a resource
 in your script with a different case than on the filesystem, loading will fail
 once you export the project. This is because the virtual PCK filesystem is
 case-sensitive, while Windows's filesystem is case-insensitive by default.

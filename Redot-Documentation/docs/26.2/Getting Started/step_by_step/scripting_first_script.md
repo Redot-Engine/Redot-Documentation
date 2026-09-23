@@ -1,26 +1,25 @@
 # Creating your first script
 
 In this lesson, you will code your first script to make the Redot icon turn in
-circles using GDScript. As we mentioned :ref:`in the introduction
-&lt;toc-learn-introduction&gt;`, we assume you have programming foundations.
+circles using GDScript. As we mentioned [in the introduction](doc_getting_started_introduction), we assume you have programming foundations.
 The equivalent C# code has been included in another tab for convenience.
 
 ![Image](/img/GettingStarted/step_by_step/img/scripting_first_script_rotating_godot.gif)
 
 :::info
 To learn more about GDScript, its keywords, and its syntax, head to
-the [GDScript reference](/en/26.2/Tutorials/scripting/gdscript/gdscript_basics).
+the [GDScript reference](doc_gdscript_basics).
 
 :::
 
 :::info
-To learn more about C#, head to the [C# basics](/en/26.2/Tutorials/scripting/c_sharp/c_sharp_basics) page.
+To learn more about C#, head to the [C# basics](doc_c_sharp_basics) page.
 
 :::
 
 ## Project setup
 
-Please [create a new project](/en/26.2/Tutorials/editor/project_manager) to
+Please [create a new project](doc_project_manager) to
 start with a clean slate. Your project should contain one picture: the Redot
 icon, which we often use for prototyping in the community.
 
@@ -366,13 +365,13 @@ Run the scene to see the Redot head run in circles.
 
 :::note
 Moving a node like that does not take into account colliding with
-walls or the floor. In [doc_your_first_2d_game](/en/26.2/Getting%20Started/first_2d_game/index), you will learn
+walls or the floor. In [doc_your_first_2d_game](doc_getting_started_first_2d_game), you will learn
 another approach to moving objects while detecting collisions.
 
 :::
 
 Our node currently moves by itself. In the next part,
-[doc_scripting_player_input](/en/26.2/Getting%20Started/step_by_step/scripting_player_input), we'll use player input to control it.
+[doc_scripting_player_input](doc_scripting_player_input), we'll use player input to control it.
 
 ## Complete script
 

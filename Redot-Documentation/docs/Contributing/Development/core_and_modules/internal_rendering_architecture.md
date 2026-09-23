@@ -164,7 +164,7 @@ loader, and
 is used for memory management.
 
 Both the Forward+ and Mobile
-[doc_internal_rendering_architecture_methods](doc_internal_rendering_architecture#methods) are supported when using the
+[doc_internal_rendering_architecture_methods](doc_internal_rendering_architecture#rendering-methods) are supported when using the
 Vulkan driver.
 
 **Vulkan context creation:**
@@ -180,7 +180,7 @@ Vulkan driver.
 Like Vulkan, the Direct3D 12 driver targets modern platforms only. It is
 designed to target both Windows and Xbox (whereas Vulkan can't be used directly on Xbox).
 
-Both the Forward+ and Mobile [doc_internal_rendering_architecture](doc_internal_rendering_architecture#methods) can be
+Both the Forward+ and Mobile [doc_internal_rendering_architecture](doc_internal_rendering_architecture#rendering-methods) can be
 used with Direct3D 12.
 
 <!-- TODO(Tekk): Link to godot article or keep godot link? -->
@@ -202,7 +202,7 @@ Redot provides a native Metal driver that works on all Apple Silicon hardware
 (macOS ARM). Compared to using the MoltenVK translation layer, this is
 significantly faster, particularly in CPU-bound scenarios.
 
-Both the Forward+ and Mobile [doc_internal_rendering_architecture_methods](doc_internal_rendering_architecture#methods) can be
+Both the Forward+ and Mobile [doc_internal_rendering_architecture_methods](doc_internal_rendering_architecture#rendering-methods) can be
 used with Metal.
 
 [doc_internal_rendering_architecture_core_shaders](doc_internal_rendering_architecture#core-shaders) are shared with the

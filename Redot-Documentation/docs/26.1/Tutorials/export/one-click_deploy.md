@@ -53,7 +53,7 @@ other preset will no longer be marked as runnable.
 
 - **Web:** Starts a local web server and runs the exported project by opening
   the default web browser. This is only accessible on ``localhost`` by default.
-  See [Troubleshooting ](doc_one-click_deploy_troubleshooting_web)
+  See [Troubleshooting ](doc_one-click_deploy#web)
   for making the exported project accessible on remote devices.
 
 ## Using one-click deploy

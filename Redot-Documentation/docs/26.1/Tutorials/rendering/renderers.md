@@ -5,7 +5,7 @@
 
 This page gives an overview of Redot's renderers, focusing on the differences
 between their rendering features. For more technical details on the renderers,
-see [doc_internal_rendering_architecture](../../Contributing/Development/core_and_modules/internal_rendering_architecture.md).
+see [doc_internal_rendering_architecture](doc_internal_rendering_architecture).
 
 :::
 
@@ -106,7 +106,7 @@ limited renderer. This behavior can be disabled in the project settings by unche
 
 This is not a complete list of the features of each renderer. If a feature is
 not listed here, it is available in all renderers, though it may be much faster
-on some renderers. For a list of *all* features in Redot, see [doc_list_of_features](doc_list_of_features). 
+on some renderers. For a list of *all* features in Redot, see [doc_list_of_features](abt_list_of_features).
 
 Hardware with RenderingDevice support is hardware which can run Vulkan, Direct3D
 12, or Metal.

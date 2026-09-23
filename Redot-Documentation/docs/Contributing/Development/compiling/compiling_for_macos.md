@@ -99,7 +99,7 @@ Manager.
 <!-- TODO(Tekk): doc_data_paths_self_contained_mode doesnt exist -->
 If you want to use separate editor settings for your own Redot builds
 and official releases, you can enable
-[doc_data_paths_self_contained_mode](doc_data_paths_self_contained_mode) by creating a file called
+[doc_data_paths_self_contained_mode](doc_data_paths#self-contained-mode) by creating a file called
 ``._sc_`` or ``_sc_`` in the ``bin/`` folder.
 
 :::
@@ -150,7 +150,7 @@ And then use the ``--headless`` command line argument
 ```
 
 To compile a debug *server* build which can be used with
-:ref:`remote debugging tools <doc_command_line_tutorial>`, use
+[remote debugging tools](doc_command_line_tutorial), use
 
 ```
 scons platform=macos target=template_debug

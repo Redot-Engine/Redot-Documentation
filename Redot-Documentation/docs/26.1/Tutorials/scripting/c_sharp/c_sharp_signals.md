@@ -5,17 +5,17 @@ For a detailed explanation of signals in general, see the [doc_signals](../../..
 by step tutorial.
 
 Signals are implemented using C# events, the idiomatic way to represent
-[the observer pattern](doc_key_concepts_signals) in C#. This is the
+[the observer pattern](doc_key_concepts_overview#signals) in C#. This is the
 recommended way to use signals in C# and the focus of this page.
 
 In some cases it's necessary to use the older
 [Connect()](class_object_method_connect) and
 [Disconnect()](class_object_method_disconnect) APIs.
-See [using_connect_and_disconnect](using_connect_and_disconnect) for more details.
+See [using_connect_and_disconnect](doc_c_sharp_signals#using-connect-and-disconnect) for more details.
 
 If you encounter a ``System.ObjectDisposedException`` while handling a signal,
 you might be missing a signal disconnection. See
-[disconnecting_automatically_when_the_receiver_is_freed](disconnecting_automatically_when_the_receiver_is_freed) for more details.
+[disconnecting_automatically_when_the_receiver_is_freed](doc_c_sharp_signals#disconnecting-automatically-when-the-receiver-is-freed) for more details.
 
 ## Signals as C# events
 
@@ -29,7 +29,7 @@ myTimer.Timeout += () => GD.Print("Timeout!");
 ```
 
 In addition, you can always access signal names associated with a node type through its nested
-``SignalName`` class. This is useful when, for example, you want to await on a signal (see [doc_c_sharp_differences_await](doc_c_sharp_differences_await)).
+``SignalName`` class. This is useful when, for example, you want to await on a signal (see [doc_c_sharp_differences_await](doc_c_sharp_differences#await-keyword)).
 
 ```csharp
 await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
@@ -93,7 +93,7 @@ public void MyMethodEmittingSignals()
 
 In contrast with other C# events, you cannot use ``Invoke`` to raise events tied to Redot signals.
 
-Signals support arguments of any [Variant-compatible type ](c_sharp_variant_compatible_types).
+Signals support arguments of any [Variant-compatible type ](doc_c_sharp_variant#variant-compatible-types).
 
 Consequently, any ``Node`` or ``RefCounted`` will be compatible automatically, but custom data objects will need
 to inherit from ``RedotObject`` or one of its subclasses.
@@ -160,8 +160,8 @@ In general, it isn't recommended to use
 [Connect()](class_object_method_connect) and
 [Disconnect()](class_object_method_disconnect). These APIs don't provide as
 much type safety as the events. However, they're necessary for
-[connecting to signals defined by GDScript ](connecting_to_signals_cross_language)
-and passing [ConnectFlags](enum_Object_ConnectFlags).
+[connecting to signals defined by GDScript ](doc_cross_language_scripting#connecting-to-signals)
+and passing [ConnectFlags](class_Object_enum_connectflags).
 
 In the following example, pressing the button for the first time prints
 ``Greetings!``. ``OneShot`` disconnects the signal, so pressing the button again

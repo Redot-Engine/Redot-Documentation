@@ -259,7 +259,7 @@ from the Filesystem dock to the *Texture* property of the ``Sprite2D``). In the
 size the rectangle to fit over the sprite image.
 
 :::note
-See :ref:`doc_2d_movement` for examples of implementing 2D movement schemes.
+See [doc_2d_movement](doc_2d_movement) for examples of implementing 2D movement schemes.
 
 :::
 

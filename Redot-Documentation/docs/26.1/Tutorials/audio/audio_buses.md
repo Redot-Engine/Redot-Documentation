@@ -91,7 +91,7 @@ playback mode is set to **Sample**, which is the default. It will only work if t
 playback mode is set to **Stream**, at the cost of increased latency if threads
 are not enabled.
 
-See [Audio playback in the Exporting for the Web documentation ](doc_exporting_for_web_audio_playback)
+See [Audio playback in the Exporting for the Web documentation ](doc_exporting_for_web#audio-playback)
 for details.
 
 :::

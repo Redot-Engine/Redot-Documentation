@@ -759,7 +759,7 @@ enum Element { EARTH, WATER, AIR, FIRE }
 ## Code order
 
 This section focuses on code order. For formatting, see
-[formatting](formatting). For naming conventions, see [naming_conventions](naming_conventions).
+[formatting](doc_gdscript_styleguide#formatting). For naming conventions, see [naming_conventions](doc_gdscript_styleguide#naming-conventions).
 
 We suggest to organize GDScript code this way:
 
@@ -1010,7 +1010,7 @@ that type will be used to infer the type of the var.
 
 ```
 
-This option is also considered more [type-safe](doc_gdscript_static_typing_safe_lines) than the first.
+This option is also considered more [type-safe](doc_static_typing#safe-lines) than the first.
 
 **Bad**:
 

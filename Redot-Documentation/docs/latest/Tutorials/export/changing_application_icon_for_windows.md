@@ -124,7 +124,7 @@ won't change as rcedit will fail to change the executable's metadata.
 :::note
 
 If rcedit fails to change the icon, you can instead
-[compile your own Windows export templates ](../../Contributing/Development/compiling/compiling_for_windows.md)
+[compile your own Windows export templates ](doc_compiling_for_windows)
 with the icon changed. To do so, replace
 [platform/windows/Godot.ico ](https://github.com/redot-engine/redot-engine/blob/master/platform/windows/Godot.ico)
 with your own ICO file *before* compiling export templates.

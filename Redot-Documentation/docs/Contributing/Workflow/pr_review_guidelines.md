@@ -148,7 +148,7 @@ Maintainers should provide feedback and suggestions for improvement if they spot
 things in the code that they would like changed. Preferably, suggestions should
 come in order of importance: first, address overall code design and the approach
 to solving the problem, then make sure the code is complying with the engine's
-best practices, and lastly, do the [code style review](doc_code_style_review).
+best practices, and lastly, do the [code style review](doc_pr_review_guidelines#code-style-review).
 
 :::note
 

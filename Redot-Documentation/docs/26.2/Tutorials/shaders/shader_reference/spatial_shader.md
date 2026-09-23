@@ -57,7 +57,7 @@ Global built-ins are available everywhere, including custom functions.
 
 | Built-in | Description |
 | --- | --- |
-| in float **TIME** | Global time since the engine has started, in seconds. It repeats after every ``3,600`` seconds (which can  be changed with the :ref:`rollover&lt;class_ProjectSettings_property_rendering/limits/time/time_rollover_secs&gt;` setting). It's affected by :ref:`time_scale&lt;class_Engine_property_time_scale&gt;` but not by pausing. If you need a ``TIME`` variable that is not affected by time scale, add your own :ref:`global shader uniform&lt;doc_shading_language_global_uniforms&gt;` and update it each frame. |
+| in float **TIME** | Global time since the engine has started, in seconds. It repeats after every ``3,600`` seconds (which can  be changed with the [rollover](class_ProjectSettings_property_rendering/limits/time/time_rollover_secs) setting). It's affected by [time_scale](class_Engine_property_time_scale) but not by pausing. If you need a ``TIME`` variable that is not affected by time scale, add your own [global shader uniform](doc_shading_language#global-uniforms) and update it each frame. |
 | in float **PI** | A ``PI`` constant (``3.141592``). A ratio of a circle's circumference to its diameter and amount of radians in half turn. |
 | in float **TAU** | A ``TAU`` constant (``6.283185``). An equivalent of ``PI * 2`` and amount of radians in full turn. |
 | in float **E** | An ``E`` constant (``2.718281``). Euler's number and a base of the natural logarithm. |
@@ -231,7 +231,7 @@ these properties, and if you don't write to them, Redot will optimize away the c
 
 Shaders going through the transparent pipeline when ``ALPHA`` is written to
 may exhibit transparency sorting issues. Read the
-[transparency sorting section in the 3D rendering limitations page ](doc_3d_rendering_limitations_transparency_sorting)
+[transparency sorting section in the 3D rendering limitations page ](doc_3d_rendering_limitations#transparency-sorting)
 for more information and ways to avoid issues.
 
 :::
@@ -278,9 +278,9 @@ is enabled in the Project Settings. (It's enabled by default on mobile platforms
 | in vec2 **UV2** | UV2 that comes from the ``vertex()`` function. |
 | in vec3 **VIEW** | View vector, in view space. |
 | in vec3 **LIGHT** | Light vector, in view space. |
-| in vec3 **LIGHT_COLOR** | :ref:`Light color&lt;class_Light3D_property_light_color&gt;` multiplied by :ref:`light energy&lt;class_Light3D_property_light_energy&gt;` multiplied by ``PI``. The ``PI`` multiplication is present because physically-based lighting models include a division by ``PI``. |
-| in float **SPECULAR_AMOUNT** | For :ref:`class_OmniLight3D` and :ref:`class_SpotLight3D`, ``2.0`` multiplied by :ref:`light_specular&lt;class_Light3D_property_light_specular). For :ref:`class_DirectionalLight3D`, ``1.0``. |
-| in bool **LIGHT_IS_DIRECTIONAL** | ``true`` if this pass is a :ref:`class_DirectionalLight3D`. |
+| in vec3 **LIGHT_COLOR** | [Light color](class_Light3D_property_light_color) multiplied by [light energy](class_Light3D_property_light_energy) multiplied by ``PI``. The ``PI`` multiplication is present because physically-based lighting models include a division by ``PI``. |
+| in float **SPECULAR_AMOUNT** | For [OmniLight3D](class_OmniLight3D) and [SpotLight3D](class_SpotLight3D), `2.0` multiplied by [light_specular](class_Light3D_property_light_specular). For [DirectionalLight3D](class_DirectionalLight3D), `1.0`. |
+| in bool **LIGHT_IS_DIRECTIONAL** | ``true`` if this pass is a [class_DirectionalLight3D](class_DirectionalLight3D). |
 | in float **ATTENUATION** | Attenuation based on distance or shadow. |
 | in vec3 **ALBEDO** | Base albedo. |
 | in vec3 **BACKLIGHT** |  |
@@ -294,7 +294,7 @@ is enabled in the Project Settings. (It's enabled by default on mobile platforms
 
 Shaders going through the transparent pipeline when ``ALPHA`` is written to
 may exhibit transparency sorting issues. Read the
-[transparency sorting section in the 3D rendering limitations page ](doc_3d_rendering_limitations_transparency_sorting)
+[transparency sorting section in the 3D rendering limitations page ](doc_3d_rendering_limitations#transparency-sorting)
 for more information and ways to avoid issues.
 
 Transparent materials also cannot cast shadows or appear in

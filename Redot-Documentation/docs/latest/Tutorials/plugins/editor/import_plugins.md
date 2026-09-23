@@ -257,9 +257,9 @@ shows the possible keys:
 | --- | --- | --- |
 | ``name`` | String | The name of the option. When showed, underscores become spaces and first letters are capitalized. |
 | ``default_value`` | Any | The default value of the option for this preset. |
-| ``property_hint`` | Enum value | One of the :ref:`PropertyHint &lt;enum_@GlobalScope_PropertyHint&gt;` values to use as hint. |
+| ``property_hint`` | Enum value | One of the [PropertyHint](class_@GlobalScope_enum_propertyhint) values to use as hint. |
 | ``hint_string`` | String | The hint text of the property. The same as you'd add in the ``export`` statement in GDScript. |
-| ``usage`` | Enum value | One of the :ref:`PropertyUsageFlags &lt;enum_@GlobalScope_PropertyUsageFlags&gt;` values to define the usage. |
+| ``usage`` | Enum value | One of the [PropertyUsageFlags](class_@GlobalScope_enum_propertyusageflags) values to define the usage. |
 
 The ``name`` and ``default_value`` keys are **mandatory**, the rest are optional.
 

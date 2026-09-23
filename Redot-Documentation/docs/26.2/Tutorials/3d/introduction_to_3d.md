@@ -14,7 +14,7 @@ which are almost identical to their 2D counterparts.
   <figcaption>
     Redot Third Person Shooter (TPS) Demo, available on the 
 [Github repository](https://github.com/redot-engine/tps-demo) or the 
-[Asset Library](doc_project_manager_downloading_demos).
+[Asset Library](doc_project_manager#downloading-demos-and-templates).
   </figcaption>
 </figure>
 
@@ -54,11 +54,11 @@ left to right:
   Clicking on a selected node while holding `Shift` deselects the node.
   In this mode, you can use the gizmos to perform movement or rotation.
 - **Move Mode** (`W`): Enables move (or translate) mode for the selected nodes. 
-  See [doc_introduction_to_3d_space_and_manipulation](doc_introduction_to_3d_space_and_manipulation) for more details.
+  See [doc_introduction_to_3d_space_and_manipulation](doc_introduction_to_3d#space-and-manipulation-gizmos) for more details.
 - **Rotate Mode** (`E`): Enables rotation mode for the selected nodes. See 
-  [doc_introduction_to_3d_space_and_manipulation](doc_introduction_to_3d_space_and_manipulation) for more details.
+  [doc_introduction_to_3d_space_and_manipulation](doc_introduction_to_3d#space-and-manipulation-gizmos) for more details.
 - **Scale Mode** (`R`): Enables scaling and displays scaling gizmos in different 
-  axes for the selected nodes. See [doc_introduction_to_3d_space_and_manipulation](doc_introduction_to_3d_space_and_manipulation) 
+  axes for the selected nodes. See [doc_introduction_to_3d_space_and_manipulation](doc_introduction_to_3d#space-and-manipulation-gizmos)
   for more details.
 
 - **Show the list of selectable nodes at the clicked position**: As the description suggests,
@@ -74,7 +74,7 @@ left to right:
   Using `Ctrl + G` ungroups them. Additionally, clicking the ungroup button in 
   the scene tree performs the same action.
 - **Use Local Space** (`T`): If enabled, gizmos of a node are drawn using the current node's 
-  rotation angle instead of the [global viewport axes](doc_introduction_to_3d_coordinate_system).
+  rotation angle instead of the [global viewport axes](doc_introduction_to_3d#coordinate-system).
 - **Use Snap** (`Y`): If enabled, movement, and rotation snap to grid. Snapping can also 
   temporarily be activated using `Ctrl` while performing the action.
   The settings for changing snap options are explained below.
@@ -83,12 +83,12 @@ left to right:
   to move freely and inspect the level's different parts, while game is running.
 - **Toggle preview sunlight**: If no DirectionalLight3D exist in the scene, a preview 
   of sunlight can be used as a light source. See 
-  [doc_introduction_to_3d_preview_environment_light](doc_introduction_to_3d_preview_environment_light) for more details.
+  [doc_introduction_to_3d_preview_environment_light](doc_introduction_to_3d#preview-environment-and-light) for more details.
 - **Toggle preview environment**: If no WorldEnvironment exists in the scene, a preview of the 
   environment can be used as a placeholder. See 
-  [doc_introduction_to_3d_preview_environment_light](doc_introduction_to_3d_preview_environment_light) for more details.
+  [doc_introduction_to_3d_preview_environment_light](doc_introduction_to_3d#preview-environment-and-light) for more details.
 - **Edit Sun and Environment Settings (three dots)**: Opens the menu to configure preview 
-  sunlight and environment settings. See [doc_introduction_to_3d_preview_environment_light](doc_introduction_to_3d_preview_environment_light) 
+  sunlight and environment settings. See [doc_introduction_to_3d_preview_environment_light](doc_introduction_to_3d#preview-environment-and-light)
   for more details.
 
 - **Transform menu**: It has three options:
@@ -270,7 +270,7 @@ To use Blender-style transform shortcuts in Redot, go to the Editor Settings'
 
 :::tip
 More shortcuts can be found on the
-[doc_default_key_mapping_shortcuts_spatial_editor](doc_default_key_mapping_shortcuts_spatial_editor) page.
+[doc_default_key_mapping_shortcuts_spatial_editor](doc_default_key_mapping#d-spatial-editor) page.
 
 :::
 
@@ -308,7 +308,7 @@ the 3D modeling software), including animation, skeletal rigs, blend shapes, or
 as simple resources.
 
 :::info
-See :ref:`doc_importing_3d_scenes` for more on importing.
+See [doc_importing_3d_scenes](doc_importing_3d_scenes) for more on importing.
 
 :::
 

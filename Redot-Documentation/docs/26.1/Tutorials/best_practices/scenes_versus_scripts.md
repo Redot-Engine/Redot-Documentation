@@ -110,7 +110,7 @@ There are two systems for registering types:
 
    - Set up using [EditorPlugin.add_custom_type ](class_EditorPlugin_method_add_custom_type).
 
-- [Script Classes ](doc_gdscript_basics_class_name)
+- [Script Classes ](doc_gdscript_basics#registering-named-classes)
 
    - Editor and runtime accessible.
 

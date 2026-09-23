@@ -160,8 +160,8 @@ Currently they supported tags for the GDExtension documentation system are:
         to that size.
       | Add ``%`` to the end of ``{width}`` or ``{height}`` value to specify it as percentages of the control width instead of pixels.
       | If ``{valign}`` configuration is provided, the image will try to align to the
-        surrounding text, see [doc_bbcode_in_richtextlabel_image_and_table_alignment](doc_bbcode_in_richtextlabel_image_and_table_alignment).
-      | Supports configuration options, see [doc_bbcode_in_richtextlabel_image_options](doc_bbcode_in_richtextlabel_image_options).
+        surrounding text, see [doc_bbcode_in_richtextlabel_image_and_table_alignment](doc_bbcode_in_richtextlabel#image-and-table-vertical-alignment).
+      | Supports configuration options, see [doc_bbcode_in_richtextlabel_image_options](doc_bbcode_in_richtextlabel#image-options).
 
     - | ``[img]{path}[/img]``
       | ``[img={width}]{path}[/img]``
@@ -171,8 +171,8 @@ Currently they supported tags for the GDExtension documentation system are:
 
   * - | **color**
       | Changes the color of ``{text}``. Color must be provided by a common name (see
-        [doc_bbcode_in_richtextlabel_named_colors](doc_bbcode_in_richtextlabel_named_colors)) or using the HEX format (e.g.
-        ``#ff00ff``, see [doc_bbcode_in_richtextlabel_hex_colors](doc_bbcode_in_richtextlabel_hex_colors)).
+        [doc_bbcode_in_richtextlabel_named_colors](doc_bbcode_in_richtextlabel#named-colors)) or using the HEX format (e.g.
+        ``#ff00ff``, see [doc_bbcode_in_richtextlabel_hex_colors](doc_bbcode_in_richtextlabel#hexadecimal-color-codes)).
 
     - ``[color={code/name}]{text}[/color]``
 

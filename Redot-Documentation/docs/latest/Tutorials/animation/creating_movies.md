@@ -35,7 +35,7 @@ Compared to real-time video recording, some advantages of non-real-time recordin
   rely on driver-specific tools such as NVIDIA's Dynamic Super Resolution or
   AMD's Virtual Super Resolution.
 - Render at a higher framerate than the video's target framerate, then
-  [post-process to generate high-quality motion blur ](doc_creating_movies_motion_blur).
+  [post-process to generate high-quality motion blur ](doc_creating_movies#cutting-video).
   This also makes effects that converge over several frames (such as temporal antialiasing,
   SDFGI and volumetric fog) look better.
 
@@ -126,7 +126,7 @@ Redot --path /path/to/your_project --write-movie output.avi --resolution 1280x72
 ```
 
 Note that the window size is clamped by your display's resolution. See
-[doc_creating_movies_recording_at_higher_resolution](doc_creating_movies_recording_at_higher_resolution) if you need to record
+[doc_creating_movies_recording_at_higher_resolution](doc_creating_movies#rendering-at-a-higher-resolution-than-the-screen-resolution) if you need to record
 a video at a higher resolution than the screen resolution.
 
 The recording FPS can also be overridden on the command line,
@@ -172,7 +172,7 @@ To use AVI, specify a path to an ``.avi`` file to be created in the
 PNG image sequence for video and WAV for audio. Features lossless video
 compression, at the cost of large file sizes and slow encoding. This is designed
 to be
-[encoded to a video file with an external tool after recording ](doc_creating_movies_converting_avi).
+[encoded to a video file with an external tool after recording ](doc_creating_movies#converting-avi-video-to-mp4).
 
 Transparency is supported, but the root viewport **must** have its
 ``transparent_bg`` property set to ``true`` for transparency to be visible on
@@ -233,7 +233,7 @@ recommended to adjust the
 **Display &gt; Window &gt; Size &gt; Window Width Override** and
 **Window Height Override** advanced project settings.
 
-See also [doc_creating_movies_recording_at_higher_resolution](doc_creating_movies_recording_at_higher_resolution).
+See also [doc_creating_movies_recording_at_higher_resolution](doc_creating_movies#rendering-at-a-higher-resolution-than-the-screen-resolution).
 
 :::
 
@@ -253,7 +253,7 @@ will still lack duration information.
 Some video players may still be able to play the AVI or WAV file with working
 video and audio. However, software that makes use of the AVI or WAV file such as
 video editors may not be able to open the file.
-[Using a video converter program ](doc_creating_movies_converting_avi)
+[Using a video converter program ](doc_creating_movies#converting-avi-video-to-mp4)
 can help in those cases.
 
 If you're using an AnimationPlayer to control a "main action" in the scene (such
@@ -483,5 +483,5 @@ ffmpeg -i input.avi -vf "tmix=frames=4, fps=60" -crf 15 output.mp4
 This also makes effects that converge over several frames (such as temporal
 antialiasing, SDFGI and volumetric fog) converge faster and therefore look
 better, since they'll be able to work with more data at a given time.
-See [doc_creating_movies_reducing_framerate](doc_creating_movies_reducing_framerate) if you want to get this benefit
+See [doc_creating_movies_reducing_framerate](doc_creating_movies#reducing-framerate) if you want to get this benefit
 without adding motion blur.

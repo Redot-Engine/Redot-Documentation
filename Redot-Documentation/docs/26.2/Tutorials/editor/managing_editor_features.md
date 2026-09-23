@@ -44,4 +44,4 @@ editor's **Manage Editor Feature Profiles** window and click import, then select
 This process is potentially cumbersome however if a large amount of computers need
 custom profiles. As an alternative, you can enable self-contained mode for Redot,
 which allows putting all editor configuration in the same folder as the editor binary.
-See [doc_data_paths_self_contained_mode](doc_data_paths_self_contained_mode) for details.
+See [doc_data_paths_self_contained_mode](doc_data_paths#self-contained-mode) for details.

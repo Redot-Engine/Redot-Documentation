@@ -152,7 +152,7 @@ and quality:
 :::note
 
 Volumetric fog can cause banding to appear on the viewport, especially at
-higher density levels. See [doc_3d_rendering_limitations_color_banding](doc_3d_rendering_limitations_color_banding)
+higher density levels. See [doc_3d_rendering_limitations_color_banding](doc_3d_rendering_limitations#color-banding)
 for guidance on reducing banding.
 
 :::
@@ -223,7 +223,7 @@ the following properties in FogMaterial:
   with any kind of static pattern. For animated effects, consider using a custom
   [fog shader](../shaders/shader_reference/fog_shader.md).
   You can import any image as a 3D texture by
-  [changing its import type in the Import dock](doc_importing_images_changing_import_type).
+  [changing its import type in the Import dock](doc_importing_images#changing-import-type).
 
 ### Using 3D noise density textures
 

@@ -19,10 +19,10 @@ Project Settings, select **Project &gt; Project Settings** from the main menu.
 
 The **Project Settings** window is mainly used to change settings in the
 **General** tab. Additionally, there are tabs for the
-[Input Map ](doc_input_examples_input_map),
+[Input Map ](doc_input_examples#inputmap),
 [Localization ](../i18n/internationalizing_games.md),
 [Globals ](../scripting/singletons_autoload.md),
-[Plugins ](doc_installing_plugins_enabling_a_plugin), and
+[Plugins ](doc_installing_plugins#enabling-a-plugin), and
 **Import Defaults**. Usage of these other tabs is documented elsewhere.
 
 ## Changing project settings

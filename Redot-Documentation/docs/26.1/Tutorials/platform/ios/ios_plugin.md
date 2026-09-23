@@ -48,7 +48,7 @@ An iOS plugin can have the same functionality as a Redot module but provides mor
 Here are the steps to get a plugin's development started. We recommend using [Xcode ](https://developer.apple.com/develop/) as your development environment.
 
 :::info
-The `Redot iOS Plugins <https://github.com/redot-engine/redot-ios-plugins>`_.
+The [Redot iOS Plugins](https://github.com/redot-engine/redot-ios-plugins).
 The [Redot iOS plugin template ](https://github.com/naithar/godot_ios_plugin) gives you all the boilerplate you need to get your iOS plugin started.
 
 :::
@@ -61,7 +61,7 @@ To build an iOS plugin:
 
     - Download the Redot engine source from the [Redot GitHub page ](https://github.com/redot-engine/redot).
 
-    - Run SCons to generate headers. You can learn the process by reading [doc_compiling_for_ios](../../../Contributing/Development/compiling/compiling_for_ios.md). You don't have to wait for compilation to complete to move forward as headers are generated before the engine starts to compile.
+    - Run SCons to generate headers. You can learn the process by reading [doc_compiling_for_ios](doc_compiling_for_ios). You don't have to wait for compilation to complete to move forward as headers are generated before the engine starts to compile.
 
     - You should use the same header files for iOS plugins and for the iOS export template.
 

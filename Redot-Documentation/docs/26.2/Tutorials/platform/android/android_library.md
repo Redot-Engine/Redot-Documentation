@@ -178,7 +178,7 @@ On Android, Redot's project files are exported to the ``assets`` directory of th
 
 We leverage that architecture to bind our Android app and Redot project together by creating the Redot project in the Android app's ``assets`` directory.
 
-Note that it's also possible to create the Redot project in a separate directory and export it as a [PCK or ZIP file ](/en/latest/Tutorials/export/exporting_projects#pck-versus-zip-pack-file-formats)
+Note that it's also possible to create the Redot project in a separate directory and export it as a [PCK or ZIP file ](doc_exporting_projects#pck-versus-zip-pack-file-formats)
 to the Android app's ``assets`` directory.
 Using this approach requires passing the ``--main-pack &lt;pck_or_zip_filepath_relative_to_assets_dir&gt;[` argument to the hosted Redot Engine instance using `RedotHost#getCommandLine() ](https://github.com/redot-engine/redot-engine/blob/6916349697a4339216469e9bf5899b983d78db07/platform/android/java/lib/src/org/Redotengine/Redot/RedotHost.java#L45).
 

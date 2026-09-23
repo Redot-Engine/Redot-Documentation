@@ -9,7 +9,7 @@ This document presents the ones you'll use most often.
 :::info
 Under the hood, these functions rely on Redot's low-level
 notifications system. To learn more about it, see
-[doc_Redot_notifications](doc_Redot_notifications).
+[doc_redot_notifications](doc_redot_notifications).
 
 :::
 
@@ -136,7 +136,7 @@ every key press, mouse click, etc. that have not been handled already in an
 gameplay input in general. The ``_input()`` callback allows you to intercept and
 process input events before ``_unhandled_input()`` gets them.
 
-To learn more about inputs in Redot, see the [Input section ](toc-learn-features-inputs).
+To learn more about inputs in Redot, see the [Input section ](doc_inputs).
 
 <Tabs>
 

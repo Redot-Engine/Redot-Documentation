@@ -48,7 +48,7 @@ The ``GodotPlugin`` class provides APIs to access the running Redot instance and
 
 v1 Android plugins required a custom ``gdap`` configuration file that was used by the Redot Editor to detect and load them.
 However this approach had several drawbacks, primary ones being that it lacked flexibility and departed from the existing
-[EditorExportPlugin format, delivery, and installation flow](/en/latest/Tutorials/plugins/editor/installing_plugins).
+[EditorExportPlugin format, delivery, and installation flow](doc_installing_plugins).
 
 This has been resolved for v2 Android plugins by deprecating the ``gdap`` packaging and configuration mechanism in favor of
 the existing Redot ``EditorExportPlugin`` packaging format.
@@ -65,7 +65,7 @@ To provide further understanding, here is a break-down of the steps used to crea
 
 1. Create an Android library module using [these instructions ](https://developer.android.com/studio/projects/android-library)
 
-2. Add the Redot Android library as a dependency by updating the module's ``gradle`` `build file <https://github.com/m4gr3d/Godot-Android-Plugin-Template/blob/main/plugin/build.gradle.kts#L42>`_
+2. Add the Redot Android library as a dependency by updating the module's ``gradle`` [build file](https://github.com/m4gr3d/Godot-Android-Plugin-Template/blob/main/plugin/build.gradle.kts#L42)
 
 ```
 dependencies {
@@ -78,7 +78,7 @@ dependencies {
 
 3. Create [GodotAndroidPlugin ](https://github.com/m4gr3d/Godot-Android-Plugin-Template/blob/a01286b4cb459133bf07b11dfabdfd3980268797/plugin/src/main/java/org/Redotengine/plugin/android/template/GodotAndroidPlugin.kt#L10), an init class for the plugin extending [GodotPlugin ](https://github.com/redot-engine/redot-engine/blob/0a7f75ec7b465604b6496c8f5f1d638aed250d6d/platform/android/java/lib/src/org/Redotengine/Redot/plugin/GodotPlugin.java#L80).
 
-- If the plugin exposes Kotlin or Java methods to be called from GDScript, they must be annotated with `@UsedByGodot <https://github.com/redot-engine/redot-engine/blob/0a7f75ec7b465604b6496c8f5f1d638aed250d6d/platform/android/java/lib/src/org/Redotengine/Redot/plugin/UsedByRedot.java#L45>`_. The name called from GDScript **must match the method name exactly**. There is **no** coercing ``snake_case`` to ``camelCase``. For example, from GDScript
+- If the plugin exposes Kotlin or Java methods to be called from GDScript, they must be annotated with [@UsedByGodot](https://github.com/redot-engine/redot-engine/blob/0a7f75ec7b465604b6496c8f5f1d638aed250d6d/platform/android/java/lib/src/org/Redotengine/Redot/plugin/UsedByRedot.java#L45). The name called from GDScript **must match the method name exactly**. There is **no** coercing ``snake_case`` to ``camelCase``. For example, from GDScript
 
 ```
 if Engine.has_singleton("MyPlugin"):
@@ -89,7 +89,7 @@ if Engine.has_singleton("MyPlugin"):
 
     - If the plugin uses [signals ](https://docs.redotengine.org/en/stable/getting_started/step_by_step/signals.html), the init class must return the set of signals used by overriding [GodotPlugin::getPluginSignals() ](https://github.com/redot-engine/redot-engine/blob/fa3428ff25bc577d2a3433090478a6d615567056/platform/android/java/lib/src/org/Redotengine/Redot/plugin/GodotPlugin.java#L302). To emit signals, the plugin can use the [GodotPlugin::emitSignal(...) method ](https://github.com/redot-engine/redot-engine/blob/0a7f75ec7b465604b6496c8f5f1d638aed250d6d/platform/android/java/lib/src/org/Redotengine/Redot/plugin/GodotPlugin.java#L317).
 
-4. Update the plugin ``AndroidManifest.xml`` `file <https://github.com/m4gr3d/Godot-Android-Plugin-Template/blob/main/plugin/src/main/AndroidManifest.xml>`_ with the following meta-data
+4. Update the plugin ``AndroidManifest.xml`` [file](https://github.com/m4gr3d/Godot-Android-Plugin-Template/blob/main/plugin/src/main/AndroidManifest.xml) with the following meta-data
 
 ```
 <meta-data
@@ -143,11 +143,11 @@ dependencies {
 ## Packaging a v2 Android plugin
 
 As mentioned, a v2 Android plugin is provided to the Redot Editor as an
-`EditorExportPlugin`, so it shares many of the [same packaging steps](/en/latest/Tutorials/plugins/editor/making_plugins#creating-a-plugin).
+`EditorExportPlugin`, so it shares many of the [same packaging steps](doc_making_plugins#creating-a-plugin).
 
 1. Add the plugin output binaries within the plugin directory (e.g: in ``addons/&lt;plugin_name&gt;/``)
 
-2. Add the [tool script ](/en/latest/Tutorials/plugins/editor/making_plugins#the-script-file) for the export functionality within the plugin directory (e.g: in ``addons/&lt;plugin_name&gt;/``)
+2. Add the [tool script ](doc_making_plugins#the-script-file) for the export functionality within the plugin directory (e.g: in ``addons/&lt;plugin_name&gt;/``)
 
     - The created script must be a ``@tool`` script, or else it will not work properly
 - The export tool script is used to configure the Android plugin and hook it within the Redot Editor's export process. It should look something like this
@@ -232,7 +232,7 @@ export_scripts_template/
 
 ### Packaging a v2 Android plugin with GDExtension capabilities
 
-For GDExtension, we follow the same steps as for [Packaging a v2 Android plugin](#packaging-a-v2-android-plugin) and add the [GDExtension config file](/en/latest/Tutorials/scripting/gdextension/gdextension_cpp_example#using-the-gdextension-module) in
+For GDExtension, we follow the same steps as for [Packaging a v2 Android plugin](#packaging-a-v2-android-plugin) and add the [GDExtension config file](doc_gdextension_cpp_example#using-the-gdextension-module) in
 the same location as ``plugin.cfg``.
 
 For reference, here is the [folder structure for the GDExtension Android plugin project template ](https://github.com/m4gr3d/GDExtension-Android-Plugin-Template/tree/main/plugin/export_scripts_template).

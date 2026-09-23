@@ -15,7 +15,7 @@ Compatibility renderers.
 :::info
 
 Not sure if VoxelGI is suited to your needs?
-See [doc_introduction_to_global_illumination_comparison](doc_introduction_to_global_illumination_comparison)
+See [doc_introduction_to_global_illumination_comparison](doc_introduction_to_global_illumination#which-global-illumination-technique-should-i-use)
 for a comparison of GI techniques available in Redot 4.
 
 :::
@@ -144,7 +144,7 @@ by the light, adjust the **Indirect Energy** property in the Light3D inspector.
 
 :::info
 
-See [doc_introduction_to_global_illumination_gi_mode_recommendations](doc_introduction_to_global_illumination_gi_mode_recommendations)
+See [doc_introduction_to_global_illumination_gi_mode_recommendations](doc_introduction_to_global_illumination#which-global-illumination-mode-should-i-use-on-meshes-and-lights)
 for general usage recommendations.
 
 :::

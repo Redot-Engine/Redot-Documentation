@@ -180,7 +180,7 @@ GD.Print(GD.Randi() % 51 + 10);
 
 [randf() ](class_@GlobalScope_method_randf) returns a random floating-point
 number between 0 and 1. This is useful to implement a
-[doc_random_number_generation_weighted_random_probability](doc_random_number_generation_weighted_random_probability) system, among
+[doc_random_number_generation_weighted_random_probability](doc_random_number_generation#weighted-random-probability) system, among
 other things.
 
 [randfn() ](class_@GlobalScope_method_randfn) returns a random
@@ -412,7 +412,7 @@ public string GetFruit()
 
 This approach can be useful to make random number generation feel less
 repetitive. Still, it doesn't prevent results from "ping-ponging" between a
-limited set of values. To prevent this, use the [shuffle bag ](doc_random_number_generation_shuffle_bags) pattern instead.
+limited set of values. To prevent this, use the [shuffle bag ](doc_random_number_generation#better-randomness-using-shuffle-bags) pattern instead.
 
 ## Get a random dictionary value
 

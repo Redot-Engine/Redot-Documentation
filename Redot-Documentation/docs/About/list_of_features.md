@@ -80,7 +80,7 @@ web platform.
   [asset library](doc_what_is_assetlib) to extend editor functionality.
 - [Create your own plugins](doc_making_plugins) using GDScript to add new
   features or speed up your workflow.
-- [Download projects from the asset library](doc_using_assetlib_editor)
+- [Download projects from the asset library](doc_using_assetlib#in-the-editor)
   in the Project Manager and import them directly.
 
 ## Rendering
@@ -141,7 +141,7 @@ See [doc_renderers](doc_renderers) for a detailed comparison of the rendering me
 - GPU-based [particles](doc_particle_systems_2d) with support for
   [custom particle shaders](doc_particle_shader).
 - CPU-based particles.
-- Optional [2D HDR rendering](doc_environment_and_post_processing_using_glow_in_2d)
+- Optional [2D HDR rendering](doc_environment_and_post_processing#using-glow-in-2d)
   for better glow capabilities.
 
 ## 2D tools
@@ -237,7 +237,7 @@ See [doc_renderers](doc_renderers) for a detailed comparison of the rendering me
    - Lightmaps are baked on the GPU using compute shaders (much faster compared
      to CPU lightmapping). Baking can only be performed from the editor,
      not in exported projects.
-   - Supports GPU-based [denoising](doc_using_lightmap_gi_denoising)
+   - Supports GPU-based [denoising](doc_using_lightmap_gi#denoising)
      with JNLM, or CPU/GPU-based denoising with OIDN.
 
 - [Voxel-based GI probes](doc_using_voxel_gi). Supports
@@ -247,7 +247,7 @@ See [doc_renderers](doc_renderers) for a detailed comparison of the rendering me
 - [Signed-distance field GI](doc_using_sdfgi) designed for large open worlds.
   Supports dynamic lights, but not dynamic occluders. Supports reflections.
   No baking required.
-- [Screen-space indirect lighting (SSIL)](doc_environment_and_post_processing_ssil)
+- [Screen-space indirect lighting (SSIL)](doc_environment_and_post_processing#screen-space-indirect-lighting-ssil)
   at half or full resolution. Fully real-time and supports any kind of emissive
   light source (including decals).
 - VoxelGI and SDFGI use a deferred pass to allow for rendering GI at half
@@ -339,7 +339,7 @@ See [doc_renderers](doc_renderers) for a detailed comparison of the rendering me
 - Glow/bloom with optional bicubic upscaling and several blend modes available:
   Screen, Soft Light, Add, Replace, Mix.
 - Glow can have a colored dirt map texture, acting as a lens dirt effect.
-- Glow can be [used as a screen-space blur effect](doc_environment_and_post_processing_using_glow_to_blur_the_screen).
+- Glow can be [used as a screen-space blur effect](doc_environment_and_post_processing#using-glow-to-blur-the-screen).
 - Color correction using a one-dimensional ramp or a 3D LUT texture.
 - Roughness limiter to reduce the impact of specular aliasing.
 - Brightness, contrast and saturation adjustments.
@@ -433,16 +433,16 @@ improve quality. This can be helpful when
 - Support for [cross-language scripting](doc_cross_language_scripting).
 - Many 2D, 3D and 4D linear algebra data types such as vectors and transforms.
 
-[GDScript:](toc-learn-scripting-gdscript)
+[GDScript:](doc_gdscript)
 
 - [High-level interpreted language](doc_gdscript) with
-  [optional static typing](doc_gdscript_static_typing).
+  [optional static typing](doc_static_typing).
 - Syntax inspired by Python. However, GDScript is **not** based on Python.
 - Syntax highlighting is provided on GitHub.
 - [Use threads](doc_using_multiple_threads) to perform asynchronous actions
   or make use of multiple processor cores.
 
-[C#:](toc-learn-scripting-C#)
+[C#:](doc_c_sharp)
 
 - Packaged in a separate binary to keep file sizes and dependencies down.
 - Supports .NET 8 and higher.
@@ -552,7 +552,7 @@ improve quality. This can be helpful when
 
 - A* algorithm in [2D](class_AStar2D) and [3D](class_AStar3D).
 - Navigation meshes with dynamic obstacle avoidance in
-  [2D](doc_navigation_overview_2d) and [3D](doc_navigation_overview_3d).
+  [2D](doc_navigation_introduction_2d) and [3D](doc_navigation_introduction_3d).
 - Generate navigation meshes from the editor or at runtime (including from an exported project).
 
 ## Networking
@@ -585,7 +585,7 @@ improve quality. This can be helpful when
 - Use localized strings in your project automatically in GUI elements or by
   using the ``tr()`` function.
 - Support for pluralization and translation contexts when using gettext translations.
-- Support for [bidirectional typesetting](doc_internationalizing_games_bidi),
+- Support for [bidirectional typesetting](doc_internationalizing_games#bidirectional-text-and-ui-mirroring),
   text shaping and OpenType localized forms.
 - Automatic UI mirroring for right-to-left locales.
 - Support for pseudolocalization to test your project for i18n-friendliness.
@@ -694,7 +694,7 @@ like Electron or Qt.
 
 ## File formats
 
-- Scenes and resources can be saved in [text-based](doc_tscn_file_format) or binary formats.
+- Scenes and resources can be saved in [text-based](doc_tscn) or binary formats.
 
    - Text-based formats are human-readable and more friendly to version control.
    - Binary formats are faster to save/load for large scenes/resources.
@@ -709,7 +709,7 @@ like Electron or Qt.
    - Can (de)serialize any Redot datatype, including Vector2/3, Color, ...
 
 - Read XML files using [XMLParser](class_XMLParser).
-- [Load and save images, audio/video, fonts and ZIP archives](doc_runtime_loading_and_saving)
+- [Load and save images, audio/video, fonts and ZIP archives](doc_runtime_file_loading_and_saving)
   in an exported project without having to go through Redot's import system.
 - Pack game data into a PCK file (custom format optimized for fast seeking),
   into a ZIP archive, or directly into the executable for single-file distribution.
@@ -743,7 +743,7 @@ like Electron or Qt.
 
 - Licensed under the permissive MIT license.
 
-   - Open development process with [contributions welcome](doc_ways_to_contribute).
+   - Open development process with [contributions welcome](doc_how_to_contribute).
 
 :::info
 

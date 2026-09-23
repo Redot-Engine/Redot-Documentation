@@ -12,7 +12,7 @@ a 2D game.
 :::note
 This project is an introduction to the Redot engine. It assumes that
 you have some programming experience already. If you're new to
-programming entirely, you should start here: [doc_scripting](/en/latest/Getting%20Started/step_by_step/scripting_languages).
+programming entirely, you should start here: [doc_scripting](doc_scripting_languages).
 
 :::
 
@@ -45,7 +45,7 @@ You can find a completed version of this project at this location:
 ## Prerequisites
 
 This step-by-step tutorial is intended for beginners who followed the complete
-[Getting Started](/en/latest/Getting%20Started/step_by_step/index).
+[Getting Started](doc_getting_started_step_by_step).
 
 If you're an experienced programmer, you can find the complete demo's source
 code here: `Dodge the Creeps source code
@@ -60,10 +60,10 @@ You can download them by clicking the link below.
 
 ## In this section
 
-- [Setting up the project](/en/latest/Getting%20Started/first_2d_game/01.project_setup)
-- [Creating the player scene](/en/latest/Getting%20Started/first_2d_game/02.player_scene)
-- [Coding the player](/en/latest/Getting%20Started/first_2d_game/03.coding_the_player)
-- [Creating the enemy](/en/latest/Getting%20Started/first_2d_game/04.creating_the_enemy)
-- [The main game scene](/en/latest/Getting%20Started/first_2d_game/05.the_main_game_scene)
-- [Heads up display](/en/latest/Getting%20Started/first_2d_game/06.heads_up_display)
-- [Finishing up](/en/latest/Getting%20Started/first_2d_game/07.finishing-up)
+- [Setting up the project](doc_01.project_setup)
+- [Creating the player scene](doc_02.player_scene)
+- [Coding the player](doc_03.coding_the_player)
+- [Creating the enemy](doc_04.creating_the_enemy)
+- [The main game scene](doc_05.the_main_game_scene)
+- [Heads up display](doc_06.heads_up_display)
+- [Finishing up](doc_07.finishing-up)

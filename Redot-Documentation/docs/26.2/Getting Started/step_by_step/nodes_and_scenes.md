@@ -1,6 +1,6 @@
 # Nodes and Scenes
 
-In [doc_key_concepts_overview](/en/26.2/Getting%20Started/introduction/key_concepts_overview), we saw that a Redot game is a tree of
+In [doc_key_concepts_overview](doc_key_concepts_overview), we saw that a Redot game is a tree of
 scenes and that each scene is a tree of nodes. In this lesson, we explain a bit
 more about them. You will also create your first scene.
 
@@ -58,7 +58,7 @@ On top of acting like nodes, scenes have the following characteristics:
 ## Creating your first scene
 
 Let's create our first scene with a single node. To do so, you will need to
-[create a new project](/en/26.2/Tutorials/editor/project_manager) first. After
+[create a new project](doc_project_manager) first. After
 opening the project, you should see an empty editor.
 
 ![Image](/img/GettingStarted/step_by_step/img/nodes_and_scenes_01_empty_editor.webp)
@@ -113,7 +113,7 @@ You will see the text draw in the viewport as you type.
 :::info
 You can edit any property listed in the Inspector as we did with
 the Text. For a complete reference of the Inspector dock, see
-[doc_editor_inspector_dock](/en/26.2/Tutorials/editor/inspector_dock).
+[doc_editor_inspector_dock](doc_inspector_dock).
 
 :::
 
@@ -144,7 +144,7 @@ The Save Scene As dialog, like other file dialogs in the editor, only
 allows you to save files inside the project. The ``res://`` path at
 the top of the window represents the project's root directory and
 stands for "resource path". For more information about file paths in
-Redot, see [doc_filesystem](/en/26.2/Tutorials/scripting/filesystem).
+Redot, see [doc_filesystem](doc_filesystem).
 
 :::
 
@@ -179,7 +179,7 @@ The editor saves the main scene's path in a project.Redot file in your
 project's directory. While you can edit this text file directly to
 change project settings, you can also use the "Project -&gt; Project
 Settings" window to do so. For more information, see
-[doc_project_settings](/en/26.2/Tutorials/editor/project_settings).
+[doc_project_settings](doc_project_settings).
 
 :::
 

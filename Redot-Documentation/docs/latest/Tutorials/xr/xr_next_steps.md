@@ -3,9 +3,9 @@
 
 Now that we have the basics covered there are several options to look at for your XR game dev journey:
 
-* You can take a look at the [Advanced topics ](openxr-advanced-topics) section.
+* You can take a look at the [Advanced topics ](index#advanced-topics) section.
 * You can look at a number of [XR demos here ](https://github.com/redot-engine/redot-demo-projects/tree/master/xr).
-* You can find 3rd party tutorials on our [Tutorials and resources ](../../Community/tutorials.md) page.
+* You can find 3rd party tutorials on our [Tutorials and resources ](doc_tutorials) page.
 
 ## XR Toolkits
 

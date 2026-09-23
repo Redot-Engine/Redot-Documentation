@@ -13,7 +13,7 @@ You can also create breakpoints to debug your project without switching to
 another window.
 The text editor also serves as an offline class reference viewer, which can
 be accessed in several ways as described in the
-[doc_intro_to_the_editor_interface_integrated_class_reference](doc_intro_to_the_editor_interface_integrated_class_reference).
+[doc_intro_to_the_editor_interface_integrated_class_reference](doc_first_look_at_the_editor#integrated-class-reference).
 
 ![Image](/img/Tutorials/editor/img/script_editor_icons/text_editor.webp)
 
@@ -43,7 +43,7 @@ the user interface can also be modified directly through code.
 :::note
 If you would like to use an external text editor or prefer to use C#
 in your project, see [doc_external_editor](external_editor.md) and
-[doc_c_sharp_setup_external_editor](doc_c_sharp_setup_external_editor).
+[doc_c_sharp_setup_external_editor](doc_c_sharp_basics#configuring-an-external-editor).
 
 :::
 
@@ -88,7 +88,7 @@ column, and whether the indentation is done using tabs, or spaces.
 
 Many of the actions performed in the text editor can also be executed using
 shortcuts. The actions show their corresponding shortcuts next to them.
-For a complete shortcut list, see the [text editor shortcuts ](doc_default_key_mapping_shortcuts_text_editor).
+For a complete shortcut list, see the [text editor shortcuts ](doc_default_key_mapping#text-editor).
 
 In the next sections, we will go through different aspects of the text editor.
 You can also select a section below to jump to a specific topic:
@@ -211,10 +211,10 @@ The **File** menu provides the following options:
   scripts.
 - **Run**: If the script extends [EditorScript ](class_EditorScript) and
   intended to be executed without running the project, this option runs the script.
-  See [doc_running_code_in_the_editor_editorscript](doc_running_code_in_the_editor_editorscript) for more.
+  See [doc_running_code_in_the_editor_editorscript](doc_running_code_in_the_editor#running-one-off-scripts-using-editorscript) for more.
 - **Toggle Scripts Panel**: Shows or hides the script panel located on the left side
   of the text editor, allowing you to expand the available coding area. More on the
-  `Scripts Panel` is explained [above ](doc_script_editor_script_panel).
+  `Scripts Panel` is explained [above ](doc_script_editor#script-panel).
 
 The **Edit** menu provides several options for line operations:
 
@@ -259,7 +259,7 @@ The **Edit** menu provides several options for line operations:
   - **Fold All Lines**: Folds all code blocks or code regions in the open document.
   - **Unfold All Lines**: Unfolds all code blocks and code regions in the open document.
   - **Create Code Region***: Wraps the selected text in a foldable code region to improve
-    the readability of larger scripts. See [doc_gdscript_builtin_types](doc_gdscript_builtin_types) for more.
+    the readability of larger scripts. See [doc_gdscript_builtin_types](doc_gdscript_basics#built-in-types) for more.
 
 - **Completion Query**: Suggests from built-in or user created symbols to auto-complete the
   partially written code. `Up` and `Down` arrows navigate up and down, pressing
@@ -355,14 +355,14 @@ The **Go To** menu lets you navigate within the code at ease with these options:
   breakpoint and the circle will stay there. Clicking on a circle removes the breakpoint.
 
 **Debug** menu offers actions which can be used while debugging. See
-[doc_debugger_tools_and_options](doc_debugger_tools_and_options) for more.
+[doc_debugger_tools_and_options](doc_overview_of_debugging_tools#script-editor-debug-tools-and-options) for more.
 
 ### Coding area
 
 :::note
 This section will only cover the basics of the coding area in terms of the user
 interface. To learn more about scripting in Redot, refer to the [doc_gdscript](../scripting/gdscript/gdscript_basics.md) or
-[Scripting ](toc-learn-scripting) documentation.
+[Scripting ](doc_scripting) documentation.
 
 :::
 

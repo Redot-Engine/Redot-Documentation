@@ -75,7 +75,7 @@ This documentation is organized into several sections:
   information about the engine, its history, its licensing, authors, etc. It
   also contains the [doc_faq](abt_faq).
 - **Getting Started** contains all necessary information on using the
-  engine to make games. It starts with the [Step by step ](toc-learn-step_by_step) tutorial which should be the entry point for all
+  engine to make games. It starts with the [Step by step ](doc_getting_started_step_by_step) tutorial which should be the entry point for all
   new users. **This is the best place to start if you're new!**
 - The **Manual** can be read or referenced as needed,
   in any order. It contains feature-specific tutorials and documentation.
@@ -101,8 +101,8 @@ various [Redot demo projects ](https://github.com/redot-engine/Redot-demo-projec
 Members of the Redot Engine community continuously write, correct, edit, and
 improve this documentation. We are always looking for more help. You can also
 contribute by opening Github issues or translating the documentation into your language.
-If you are interested in helping, see [Ways to contribute ](doc_ways_to_contribute)
-and [Writing documentation ](../Contributing/Documentation/index.md),
+If you are interested in helping, see [Ways to contribute ](doc_how_to_contribute)
+and [Writing documentation ](../Contributing/Documentation/contributing_to_the_documentation.md),
 or get in touch with the [Documentation team ](https://redotengine.org/teams/#documentation)
 on [Redot Contributors Chat ](https://chat.redotengine.org/).
 

@@ -151,7 +151,7 @@ what they can pass in as a substitute.
 
 ### Coordinates
 
-``fragCoord`` behaves the same as ``gl_FragCoord`` in [GLSL ](glsl_coordinates) and ``FRAGCOORD`` in Redot.
+``fragCoord`` behaves the same as ``gl_FragCoord`` in [GLSL ](#coordinates) and ``FRAGCOORD`` in Redot.
 
 ## The Book of Shaders
 
@@ -192,4 +192,4 @@ implements fewer uniforms than Shadertoy.
 ### Coordinates
 
 The Book of Shaders uses the same coordinate system as
-[GLSL ](glsl_coordinates).
+[GLSL ](#coordinates).

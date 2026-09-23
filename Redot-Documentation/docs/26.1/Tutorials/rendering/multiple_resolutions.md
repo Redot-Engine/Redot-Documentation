@@ -83,7 +83,7 @@ To configure the stretch base size at runtime from a script, use the
 [Window.content_scale_size ](class_Window_property_content_scale_size)).
 Changing this value can indirectly change the size of 2D elements. However, to
 provide a user-accessible scaling option, using
-[doc_multiple_resolutions_stretch_scale](doc_multiple_resolutions_stretch_scale) is recommended as it's easier to
+[doc_multiple_resolutions_stretch_scale](doc_multiple_resolutions#stretch-scale) is recommended as it's easier to
 adjust.
 
 :::note
@@ -165,7 +165,7 @@ and a diagonal [Line2D ](class_Line2D) is added on top of it:
 To configure the stretch mode at runtime from a script, use the
 ``get_tree().root.content_scale_mode`` property (see
 [Window.content_scale_mode ](class_Window_property_content_scale_mode)
-and the [ContentScaleMode ](enum_Window_ContentScaleMode) enum).
+and the [ContentScaleMode ](class_Window_enum_contentscalemode) enum).
 
 ### Stretch Aspect
 
@@ -248,7 +248,7 @@ remember to set **Display &gt; Window &gt; Handheld &gt; Orientation** to ``sens
 To configure the stretch aspect at runtime from a script, use the
 ``get_tree().root.content_scale_aspect`` property (see
 [Window.content_scale_aspect ](class_Window_property_content_scale_aspect)
-and the [ContentScaleAspect ](enum_Window_ContentScaleAspect) enum).
+and the [ContentScaleAspect ](class_Window_enum_contentscaleaspect) enum).
 
 ### Stretch Scale
 
@@ -353,7 +353,7 @@ ratios well.
   visuals at the cost of higher memory usage and file sizes.
   Note that this will make non-mipmapped textures grainy on low resolution devices,
   so make sure to follow the instructions described in
-  [doc_multiple_resolutions_reducing_aliasing_on_downsampling](doc_multiple_resolutions_reducing_aliasing_on_downsampling).
+  [doc_multiple_resolutions_reducing_aliasing_on_downsampling](doc_multiple_resolutions#reducing-aliasing-on-downsampling).
 - Set the stretch mode to ``canvas_items``.
 - Set the stretch aspect to ``expand``. This allows for supporting multiple aspect ratios
   and makes better use of tall smartphone displays (such as 18:9 or 19:9 aspect ratios).
@@ -400,7 +400,7 @@ to change the display orientation project setting.
   barely visible given the small size of smartphone displays.
   Note that this will make non-mipmapped textures grainy on low resolution devices,
   so make sure to follow the instructions described in
-  [doc_multiple_resolutions_reducing_aliasing_on_downsampling](doc_multiple_resolutions_reducing_aliasing_on_downsampling).
+  [doc_multiple_resolutions_reducing_aliasing_on_downsampling](doc_multiple_resolutions#reducing-aliasing-on-downsampling).
 - Set the stretch mode to ``canvas_items``.
 - Set the stretch aspect to ``expand``. This allows for supporting multiple aspect ratios
   and makes better use of tall smartphone displays (such as 18:9 or 19:9 aspect ratios).
@@ -427,7 +427,7 @@ base window height to ``960``.
   barely visible given the small size of smartphone displays.
   Note that this will make non-mipmapped textures grainy on low resolution devices,
   so make sure to follow the instructions described in
-  [doc_multiple_resolutions_reducing_aliasing_on_downsampling](doc_multiple_resolutions_reducing_aliasing_on_downsampling).
+  [doc_multiple_resolutions_reducing_aliasing_on_downsampling](doc_multiple_resolutions#reducing-aliasing-on-downsampling).
 - Set **Display &gt; Window &gt; Handheld &gt; Orientation** to ``portrait``.
 - Set the stretch mode to ``canvas_items``.
 - Set the stretch aspect to ``expand``. This allows for supporting multiple aspect ratios
@@ -508,7 +508,7 @@ Project Settings.
 If the game has a very high base resolution (e.g. 3840×2160), aliasing might
 appear when downsampling to something considerably lower like 1280×720.
 
-To resolve this, you can [enable mipmaps ](doc_importing_images_mipmaps) on
+To resolve this, you can [enable mipmaps ](doc_importing_images#mipmaps-generate) on
 all your 2D textures. However, enabling mipmaps will increase memory usage which
 can be an issue on low-end mobile devices.
 

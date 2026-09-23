@@ -64,7 +64,7 @@ terms imposed by console manufacturers.
 ## Which programming languages are supported in Redot?
 
 The officially supported languages for Redot are GDScript, C#, and C++.
-See the subcategories for each language in the [scripting ](toc-learn-scripting) section.
+See the subcategories for each language in the [scripting ](doc_scripting) section.
 
 If you are just starting out with either Redot or game development in general,
 GDScript is the recommended language to learn and use since it is native to Redot.
@@ -93,7 +93,7 @@ up to maximize Redot's potential in the least amount of code, affording both nov
 and expert developers alike to capitalize on Redot's strengths as fast as possible.
 If you've ever written anything in a language like Python before, then you'll feel
 right at home. For examples and a complete overview of the power GDScript offers
-you, check out the [GDScript scripting guide ](../tutorials/scripting/gdscript/gdscript_basics.md).
+you, check out the [GDScript scripting guide ](doc_gdscript_basics).
 
 There are several reasons to use GDScript, but the most salient reason is the overall
 **reduction of complexity**.
@@ -116,7 +116,7 @@ once you see how powerful it is and how rapid your development becomes, we think
 will grow on you.
 
 More information about getting comfortable with GDScript or dynamically typed
-languages can be found in the [doc_gdscript_more_efficiently](../tutorials/scripting/gdscript/gdscript_advanced.md) tutorial.
+languages can be found in the [doc_gdscript_more_efficiently](doc_gdscript_advanced) tutorial.
 
 ## What were the motivations behind creating GDScript?
 
@@ -166,12 +166,12 @@ to the cost of *marshalling*. C#'s performance can also be brought down by garba
 collection which occurs at random and unpredictable moments. This can result in
 stuttering issues in complex projects, and is not exclusive to Redot.
 
-C++, using [GDExtension ](../tutorials/scripting/gdextension/what_is_gdextension.md), will almost always be
+C++, using [GDExtension ](doc_what_is_gdextension), will almost always be
 faster than either C# or GDScript. However, C++ is less easy to use than C# or
 GDScript, and is slower to develop with.
 
 You can also use multiple languages within a single project, with
-[cross-language scripting ](../tutorials/scripting/cross_language_scripting.md), or by using
+[cross-language scripting ](doc_cross_language_scripting), or by using
 GDExtension and scripting languages together. Be aware that doing so comes with
 its own complications.
 
@@ -179,7 +179,7 @@ its own complications.
 
 You can find detailed information on supported formats, how to export them from
 your 3D modeling software, and how to import them for Redot in the
-[doc_importing_3d_scenes](../tutorials/assets_pipeline/importing_3d_scenes/index.md) documentation.
+[doc_importing_3d_scenes](doc_importing_3d_scenes) documentation.
 
 ## Will [insert closed SDK such as FMOD, GameWorks, etc.] be supported in Redot?
 
@@ -203,7 +203,7 @@ with ambitious community contributors like you.
 ## How can I extend Redot?
 
 For extending Redot, like creating Redot Editor plugins or adding support
-for additional languages, take a look at [EditorPlugins ](../tutorials/plugins/editor/making_plugins.md)
+for additional languages, take a look at [EditorPlugins ](doc_making_plugins)
 and tool scripts.
 
 Also, see the official blog post on GDExtension, a way to develop native extensions for Redot:
@@ -248,7 +248,7 @@ to the Dock if desired. Spotlight will be able to find Redot as long as it's in
   This is typically ``/usr/local/bin/Redot`` or ``/usr/bin/Redot``.
   Doing this requires administrator privileges,
   but this also allows you to
-  [run the Redot editor from a terminal ](../tutorials/editor/command_line_tutorial.md) by entering ``Redot``.
+  [run the Redot editor from a terminal ](doc_command_line_tutorial) by entering ``Redot``.
 
   - If you cannot move the Redot editor binary to a protected location, you can
     keep the binary somewhere in your home directory, and modify the ``Path=``
@@ -269,10 +269,10 @@ administrator privileges.
 However, configuration files will be written to the user-wide configuration or
 data directory. This is usually a good approach, but this means configuration files
 will not carry across machines if you copy the folder containing the Redot executable.
-See [doc_data_paths](../tutorials/io/data_paths.md) for more information.
+See [doc_data_paths](doc_data_paths) for more information.
 
 If *true* portable operation is desired (e.g. for use on a USB stick),
-follow the steps in [doc_data_paths_self_contained_mode](doc_data_paths_self_contained_mode).
+follow the steps in [doc_data_paths_self_contained_mode](doc_data_paths#self-contained-mode).
 
 ## Why does Redot prioritize Vulkan and OpenGL over Direct3D?
 
@@ -354,15 +354,15 @@ horizontal FOV.
    and the longer the time it will take for loading.
 
 2. Use the stretch options in Redot; canvas items stretching while keeping
-   aspect ratios works best. Check the [doc_multiple_resolutions](../tutorials/rendering/multiple_resolutions.md) tutorial
+   aspect ratios works best. Check the [doc_multiple_resolutions](doc_multiple_resolutions) tutorial
    on how to achieve this.
 
 3. Determine a minimum resolution and then decide if you want your game
    to stretch vertically or horizontally for different aspect ratios, or
    if there is one aspect ratio and you want black bars to appear
-   instead. This is also explained in [doc_multiple_resolutions](../tutorials/rendering/multiple_resolutions.md).
+   instead. This is also explained in [doc_multiple_resolutions](doc_multiple_resolutions).
 
-4. For user interfaces, use the [anchoring ](../tutorials/ui/size_and_anchors.md)
+4. For user interfaces, use the [anchoring ](doc_size_and_anchors)
    to determine where controls should stay and move. If UIs are more
    complex, consider learning about Containers.
 
@@ -382,11 +382,11 @@ page on our website.
 
 Some new versions are safer to upgrade to than others. In general, whether you
 should upgrade depends on your project's circumstances. See
-[abt_release_policy_should_i_upgrade_my_project](abt_release_policy_should_i_upgrade_my_project) for more information.
+[abt_release_policy_should_i_upgrade_my_project](abt_release_policy#should-i-upgrade-my-project-to-use-new-engine-versions) for more information.
 
 ## Should I use the Forward+, Mobile, or Compatibility renderer?
 
-You can find a detailed comparison of the renderers in [doc_renderers](../tutorials/rendering/renderers.md).
+You can find a detailed comparison of the renderers in [doc_renderers](doc_renderers).
 
 ## I would like to contribute! How can I get started?
 
@@ -405,7 +405,7 @@ compile the engine from sources, or how to build the documentation. You also nee
 get familiar with Git, a version control system that Redot developers use.
 
 We explain how to work with the engine source, how to edit the documentation, and
-what other ways to contribute are there in our [documentation for contributors](doc_ways_to_contribute).
+what other ways to contribute are there in our [documentation for contributors](doc_how_to_contribute).
 
 ## I have a great idea for Redot. How can I share it?
 
@@ -474,9 +474,9 @@ have to deal with the LGPL licensing caveats that come with GTK or Qt. Lastly,
 this means Redot is "eating its own dog food" since the editor itself is one of
 the most complex users of Redot's UI system.
 
-This custom UI toolkit [can't be used as a library](abt_faq_use_Redot_as_library),
+This custom UI toolkit [can't be used as a library](abt_faq#is-it-possible-to-use-redot-as-a-library),
 but you can still
-[use Redot to create non-game applications by using the editor](abt_faq_non_game_applications).
+[use Redot to create non-game applications by using the editor](abt_faq#is-it-possible-to-use-redot-to-create-non-game-applications).
 
 ## Why does Redot use the SCons build system?
 
@@ -566,7 +566,7 @@ for the rest of the game.
 
 ## How can I support Redot development or contribute?
 
-See [doc_ways_to_contribute](doc_ways_to_contribute).
+See [doc_ways_to_contribute](doc_how_to_contribute).
 
 ## Who is working on Redot? How can I contact you?
 

@@ -66,7 +66,7 @@ The location of the ``user://`` folder depends on what is configured in the
 Project Settings:
 
 - By default, the ``user://`` folder is created within Redot's
-  [editor data path ](doc_data_paths_editor_data_paths) in the
+  [editor data path ](doc_data_paths#editor-data-paths) in the
   ``app_userdata/[project_name]`` folder. This is the default so that prototypes
   and test projects stay self-contained within Redot's data folder.
 - If [application/config/use_custom_user_dir ](class_ProjectSettings_property_application/config/use_custom_user_dir)

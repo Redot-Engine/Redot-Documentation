@@ -72,11 +72,11 @@ top-right corner, then specify the path to the output file. This file can be
 placed anywhere in the project directory, but it's recommended to keep it in a
 subdirectory such as ``locale``, as each locale will be defined in its own file.
 
-See [below ](doc_localization_using_gettext_gdscript) for how to add comments for translators
+See [below ](doc_localization_using_gettext#extracting-localizable-strings-from-gdscript-files) for how to add comments for translators
 or exclude some strings from being added to the PO template for GDScript files.
 
 You can then move over to
-[creating a messages file from a PO template ](doc_localization_using_gettext_messages_file).
+[creating a messages file from a PO template ](doc_localization_using_gettext#creating-a-messages-file-from-a-po-template).
 
 :::note
 
@@ -156,7 +156,7 @@ in the file dialog. The locale will be inferred from the
 ``"Language: &lt;code&gt;\n"`` property in the messages file.
 
 :::note
-See :ref:`doc_internationalizing_games` for more information on
+See [doc_internationalizing_games](doc_internationalizing_games) for more information on
 importing and testing translations in Redot.
 
 :::

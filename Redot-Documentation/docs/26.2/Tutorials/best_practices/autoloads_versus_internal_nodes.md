@@ -64,7 +64,7 @@ Another reason to use an Autoload can be that you want to reuse the same method
 or data across many scenes.
 
 In the case of functions, you can create a new type of ``Node`` that provides
-that feature for an individual scene using the [class_name ](doc_gdscript_basics_class_name) keyword in GDScript.
+that feature for an individual scene using the [class_name ](doc_gdscript_basics#registering-named-classes) keyword in GDScript.
 
 When it comes to data, you can either:
 

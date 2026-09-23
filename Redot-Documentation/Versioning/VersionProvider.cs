@@ -73,7 +73,10 @@ public class VersionProvider
     public void ParseSlugs()
     {
         SortRankings();
-        var slugLookupTable = new Dictionary<string, string>();
+        var slugLookupTable = new Dictionary<string, string>
+        {
+            ["doc_class_reference"] = $"/en/{Version.Slug}/Classes"
+        };
         foreach (IRanking ranking in GetSortedRankings())
         {
             if (ranking is Section subSection)

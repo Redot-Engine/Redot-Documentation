@@ -365,7 +365,7 @@ public partial class MyCharacterBody2D : CharacterBody2D
 
 </Tabs>
 
-See [doc_physics_introduction_collision_layer_code_example](doc_physics_introduction_collision_layer_code_example) for details on how to set the collision mask.
+See [doc_physics_introduction_collision_layer_code_example](doc_physics_introduction#code-example) for details on how to set the collision mask.
 
 ## 3D ray casting from screen
 

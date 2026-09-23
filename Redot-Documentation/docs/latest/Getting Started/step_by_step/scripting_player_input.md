@@ -1,6 +1,6 @@
 # Listening to player input
 
-Building upon the previous lesson, [doc_scripting_first_script](/en/latest/Getting%20Started/step_by_step/scripting_first_script), let's look
+Building upon the previous lesson, [doc_scripting_first_script](doc_scripting_first_script), let's look
 at another important feature of any game: giving control to the player.
 To add this, we need to modify our ``sprite_2d.gd`` code.
 
@@ -12,7 +12,7 @@ You have two main tools to process the player's input in Redot:
    ``_process()``, it's a built-in virtual function that Redot calls every time
    the player presses a key. It's the tool you want to use to react to events
    that don't happen every frame, like pressing `Space` to jump. To learn
-   more about input callbacks, see [doc_inputevent](/en/latest/Tutorials/inputs/inputevent).
+   more about input callbacks, see [doc_inputevent](doc_inputevent).
 2. The ``Input`` singleton. A singleton is a globally accessible object. Redot
    provides access to several in scripts. It's the right tool to check for input
    every frame.
@@ -253,5 +253,5 @@ button presses from the users. There are quite a few more.
 The ``Input`` singleton allows you to react to the players' input anywhere in
 your code. In particular, you'll get to use it in the ``_process()`` loop.
 
-In the next lesson, [doc_signals](/en/latest/Getting%20Started/step_by_step/signals), we'll build upon the relationship between
+In the next lesson, [doc_signals](doc_signals), we'll build upon the relationship between
 scripts and nodes by having our nodes trigger code in scripts.

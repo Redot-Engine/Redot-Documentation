@@ -83,7 +83,7 @@ The [CSGPolygon3D](class_CSGPolygon3D) node extrude along a Polygon drawn in
 ![Image](/img/Tutorials/3d/img/csg_poly.png)
 
 :::note
-The **Path** mode must be provided with a :ref:`Path3D <class_Path3D>`
+The **Path** mode must be provided with a [Path3D](class_Path3D)
 node to work. In the Path node, draw the path and the polygon in
 CSGPolygon3D will extrude along the given path.
 

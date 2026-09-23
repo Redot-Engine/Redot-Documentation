@@ -5,7 +5,7 @@
 
 This page describes how to export a Redot project to iOS.
 If you're looking to compile export template binaries from source instead,
-read [doc_compiling_for_ios](../../Contributing/Development/compiling/compiling_for_ios.md).
+read [doc_compiling_for_ios](doc_compiling_for_ios).
 
 :::
 

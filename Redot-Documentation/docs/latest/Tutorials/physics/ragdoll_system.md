@@ -8,7 +8,7 @@ Since version 3.1, Redot supports ragdoll physics. Ragdolls rely on physics simu
 In this tutorial, we will be using the Platformer3D demo to set up a ragdoll.
 
 :::note
-You can download the Platformer3D demo on `GitHub <https://github.com/redot-engine/redot-demo-projects/tree/master/3d/platformer>`_ or using the `Asset Library <https://godotengine.org/asset-library/asset/2748>`_.
+You can download the Platformer3D demo on [GitHub](https://github.com/redot-engine/redot-demo-projects/tree/master/3d/platformer) or using the [Asset Library](https://godotengine.org/asset-library/asset/2748).
 
 :::
 
@@ -96,4 +96,4 @@ Make sure to set up your collision layers and masks properly so the ``CharacterB
 
 ![Image](/img/Tutorials/physics/img/ragdoll_layer.png)
 
-For more information, read [doc_physics_introduction_collision_layers_and_masks](doc_physics_introduction_collision_layers_and_masks).
+For more information, read [doc_physics_introduction_collision_layers_and_masks](doc_physics_introduction#collision-layers-and-masks).

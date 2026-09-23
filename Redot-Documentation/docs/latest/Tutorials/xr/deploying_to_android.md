@@ -118,4 +118,4 @@ For some devices on some platforms, you may need to perform some extra steps in 
 
 For example, with the Meta Quest 2, you need to enable developer mode on the headset, and if you're on Windows, you'll need to install special ADB drivers. See the [official Meta Quest developer documentation ](https://developer.oculus.com/documentation/native/android/mobile-device-setup/) for more details.
 
-If you're having any issues with one-click deploy, check the [Troubleshooting section ](doc_one-click_deploy_troubleshooting).
+If you're having any issues with one-click deploy, check the [Troubleshooting section ](doc_one-click_deploy#troubleshooting).

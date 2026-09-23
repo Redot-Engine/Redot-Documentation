@@ -14,7 +14,7 @@ To create editor plugins in GDScript, see [making plugins](doc_making_plugins) i
 :::info
 
 If you are new to Redot, we recommended you to read
-[Redot design philosophy](doc_Redot_design_philosophy) before continuing. Since the Redot editor
+[Redot design philosophy](doc_godot_design_philosophy) before continuing. Since the Redot editor
 is a Redot project written in C++, much of the engine's philosophy applies
 to the editor.
 
@@ -24,7 +24,7 @@ to the editor.
 
 <!-- TODO(Tekk): doc_ui_index doesnt exist. it was the index file of the UI tutorial. -->
 The Redot editor is drawn using Redot's renderer and
-[UI system](doc_ui_index). It does *not* rely on a toolkit
+[UI system](doc_ui). It does *not* rely on a toolkit
 such as GTK or Qt. This is similar in spirit to software like Blender.
 While using toolkits makes it easier to achieve a "native" appearance, they are
 also quite heavy and their licensing is not compatible with Redot's.

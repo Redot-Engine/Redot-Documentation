@@ -127,7 +127,7 @@ those to be treated as occluders, you have to manually create occluder
 shapes that (roughly) match their geometry.
 
 Since Redot 4.4, CSG nodes can be taken into account in the baking process if they are
-[converted to a MeshInstance3D](doc_csg_tools_converting_to_mesh_instance_3d)
+[converted to a MeshInstance3D](doc_csg_tools#converting-to-meshinstance3d)
 before baking occluders.
 
 This restriction does not apply to *occludees*. Any node type that inherits
@@ -266,7 +266,7 @@ increase the **Bake &gt; Simplification** property then bake occluders again.
 
 Remember to keep the simplification value reasonable. Values that are too high
 for the level's geometry may cause incorrect occlusion culling to occur, as in
-[doc_occlusion_culling_troubleshooting_false_negative](doc_occlusion_culling_troubleshooting_false_negative).
+[doc_occlusion_culling_troubleshooting_false_negative](doc_occlusion_culling#my-occludee-is-being-culled-when-it-shouldnt-be).
 
 If this still doesn't lead to low enough CPU usage,
 you can try adjusting the **Rendering &gt; Occlusion Culling &gt; BVH Build Quality**
@@ -313,9 +313,9 @@ this, select the OccluderInstance3D node and bake occluders again.
 
 This can also happen because dynamic objects were included in the bake, even
 though they shouldn't be. Use the
-[occlusion culling debug draw mode](doc_occlusion_culling_preview) to look
+[occlusion culling debug draw mode](doc_occlusion_culling#previewing-occlusion-culling) to look
 for occluder shapes that shouldn't be present, then
-[adjust the bake cull mask accordingly](doc_occlusion_culling_baking).
+[adjust the bake cull mask accordingly](doc_occlusion_culling#automatically-baking-occluders-recommended).
 
 The last possible cause for this is overly aggressive mesh simplification during
 the occluder baking process. Select the OccluderInstance3D node,

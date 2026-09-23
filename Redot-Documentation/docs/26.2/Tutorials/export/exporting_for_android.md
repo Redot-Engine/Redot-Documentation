@@ -5,7 +5,7 @@
 
 This page describes how to export a Redot project to Android.
 If you're looking to compile export template binaries from source instead,
-read [doc_compiling_for_android](../../Contributing/Development/compiling/compiling_for_android.md).
+read [doc_compiling_for_android](doc_compiling_for_android).
 
 :::
 
@@ -102,7 +102,7 @@ There are three types of icons:
 - **Themed Icons (optional):** Starting from Android 13 (inclusive), Themed Icons were introduced. Applications will need to include a monochrome icon to enable this feature. The user's launcher application will control the icon's theme. Must be at least 432×432 px.
 
 :::info
-It's important to adhere to some rules when designing adaptive icons. `Google Design has provided a nice article <https://medium.com/google-design/designing-adaptive-icons-515af294c783>`_ that helps to understand those rules and some of the capabilities of adaptive icons.
+It's important to adhere to some rules when designing adaptive icons. [Google Design has provided a nice article](https://medium.com/google-design/designing-adaptive-icons-515af294c783) that helps to understand those rules and some of the capabilities of adaptive icons.
 
 :::
 
@@ -158,7 +158,7 @@ this to save space with AABs is that Google automatically splits up the AAB on t
 backend, so the user only downloads what they need.
 
 You can optimize the size further by compiling an Android export template with
-only the features you need. See [doc_optimizing_for_size](../../Contributing/Development/compiling/optimizing_for_size.md) for more
+only the features you need. See [doc_optimizing_for_size](doc_optimizing_for_size) for more
 information.
 
 ## Environment variables

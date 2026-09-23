@@ -196,7 +196,7 @@ easier, at the cost of being less intuitive.
 ```
 
 For values that are meant to represent an easing factor, use
-[doc_gdscript_exports_floats_with_easing_hint](doc_gdscript_exports_floats_with_easing_hint) instead.
+[doc_gdscript_exports_floats_with_easing_hint](doc_gdscript_exports#floats-with-easing-hint) instead.
 
 The ``"hide_slider"`` hint can be used to hide the horizontal bar that
 appears below ``float`` properties, or the up/down arrows that appear besides
@@ -316,7 +316,7 @@ its derived classes.
 
 It must be noted that even if the script is not being run while in the
 editor, the exported properties are still editable. This can be used
-in conjunction with a [script in "tool" mode ](doc_gdscript_tool_mode).
+in conjunction with a [script in "tool" mode ](doc_gdscript_basics#tool-mode).
 
 ## Exporting bit flags
 
@@ -542,7 +542,7 @@ func hello():
 ## Setting exported variables from a tool script
 
 When changing an exported variable's value from a script in
-[doc_gdscript_tool_mode](doc_gdscript_tool_mode), the value in the inspector won't be updated
+[doc_gdscript_tool_mode](doc_gdscript_basics#tool-mode), the value in the inspector won't be updated
 automatically. To update it, call
 [notify_property_list_changed() ](class_Object_method_notify_property_list_changed)
 after setting the exported variable's value.
@@ -558,11 +558,11 @@ handled and how they can be customized with
 [_set() ](class_Object_private_method__set),
 [_get() ](class_Object_private_method__get), and
 [_get_property_list() ](class_Object_private_method__get_property_list) methods as
-described in [doc_accessing_data_or_logic_from_object](doc_accessing_data_or_logic_from_object).
+described in [doc_accessing_data_or_logic_from_object](doc_godot_interfaces#accessing-data-or-logic-from-an-object).
 
 :::info
 For binding properties using the above methods in C++, see
-[doc_binding_properties_using_set_get_property_list](doc_binding_properties_using_set_get_property_list).
+[doc_binding_properties_using_set_get_property_list](doc_object_class#binding-properties-using_set_get_get_property_list).
 
 :::
 

@@ -129,7 +129,7 @@ simulated in Redot.
 
 :::
 
-See [doc_physical_light_and_camera_units_setting_up_physical_camera_units](doc_physical_light_and_camera_units_setting_up_physical_camera_units)
+See [doc_physical_light_and_camera_units_setting_up_physical_camera_units](doc_physical_light_and_camera_units#setting-up-physical-camera-units)
 for a description of CameraAttributesPhysical properties that are also available when
 **not** using physical light units.
 

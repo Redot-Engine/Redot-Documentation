@@ -21,4 +21,4 @@
 ![Image](/img/Contributing/Development/core_and_modules/Node3D.webp)
 
 <!-- TODO(Tekk): need to fix link for zip download -->
-Source files: [class_tree.zip](files/class_tree.zip).
+Source files: [class_tree.zip](/downloads/class_tree.zip).
