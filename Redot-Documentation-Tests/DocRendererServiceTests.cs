@@ -13,10 +13,10 @@ public sealed class DocRendererServiceTests : IDisposable
         $"redot-documentation-tests-{Guid.NewGuid():N}");
 
     [Theory]
-    [InlineData("doc_some_doc#some_section", "/en/About/some_doc.md#some-section")]
-    [InlineData("doc_some_doc#some-section", "/en/About/some_doc.md#some-section")]
-    [InlineData("doc_some_doc#Some%20Section", "/en/About/some_doc.md#some-section")]
-    [InlineData("doc_some_doc", "/en/About/some_doc.md")]
+    [InlineData("doc_some_doc#some_section", "/en/About/some_doc#some-section")]
+    [InlineData("doc_some_doc#some-section", "/en/About/some_doc#some-section")]
+    [InlineData("doc_some_doc#Some%20Section", "/en/About/some_doc#some-section")]
+    [InlineData("doc_some_doc", "/en/About/some_doc")]
     public async Task RenderToHtmlAsync_ResolvesDocumentSlugsWithOptionalSections(
         string target,
         string expectedHref)
@@ -26,7 +26,8 @@ public sealed class DocRendererServiceTests : IDisposable
             Path.Combine(contentRootPath, "docs", "source.md"),
             $"[Some Section]({target})");
 
-        var renderer = new DocRendererService(new TestWebHostEnvironment(contentRootPath));
+        var renderer = new DocRendererService(new DocumentPathResolver(new TestWebHostEnvironment(contentRootPath),
+            new VersionManagerService(new TestWebHostEnvironment(contentRootPath))));
 
         var html = await renderer.RenderToHtmlAsync("source.md", CreateVersionProvider());
 
@@ -41,7 +42,8 @@ public sealed class DocRendererServiceTests : IDisposable
             Path.Combine(contentRootPath, "docs", "source.md"),
             "[Missing](doc_missing#some_section)");
 
-        var renderer = new DocRendererService(new TestWebHostEnvironment(contentRootPath));
+        var renderer = new DocRendererService(new DocumentPathResolver(new TestWebHostEnvironment(contentRootPath),
+            new VersionManagerService(new TestWebHostEnvironment(contentRootPath))));
 
         var html = await renderer.RenderToHtmlAsync("source.md", CreateVersionProvider());
 
@@ -63,7 +65,8 @@ public sealed class DocRendererServiceTests : IDisposable
             Path.Combine(contentRootPath, "docs", "source.md"),
             $"[Class reference]({target})");
 
-        var renderer = new DocRendererService(new TestWebHostEnvironment(contentRootPath));
+        var renderer = new DocRendererService(new DocumentPathResolver(new TestWebHostEnvironment(contentRootPath),
+            new VersionManagerService(new TestWebHostEnvironment(contentRootPath))));
 
         string html = await renderer.RenderToHtmlAsync("source.md", CreateVersionProvider());
 
@@ -88,7 +91,8 @@ public sealed class DocRendererServiceTests : IDisposable
             </Tabs>
             """);
 
-        var renderer = new DocRendererService(new TestWebHostEnvironment(contentRootPath));
+        var renderer = new DocRendererService(new DocumentPathResolver(new TestWebHostEnvironment(contentRootPath),
+            new VersionManagerService(new TestWebHostEnvironment(contentRootPath))));
 
         string html = await renderer.RenderToHtmlAsync("source.md", CreateVersionProvider());
 
@@ -110,7 +114,8 @@ public sealed class DocRendererServiceTests : IDisposable
             <TabItem value="C#" label="Repeated">Third sample.</TabItem>
             </Tabs>
             """);
-        var renderer = new DocRendererService(new TestWebHostEnvironment(contentRootPath));
+        var renderer = new DocRendererService(new DocumentPathResolver(new TestWebHostEnvironment(contentRootPath),
+            new VersionManagerService(new TestWebHostEnvironment(contentRootPath))));
         string html = await renderer.RenderToHtmlAsync("source.md", CreateVersionProvider());
         TabMarkupAssertions.AssertAccessibleTabs(html, 3);
     }

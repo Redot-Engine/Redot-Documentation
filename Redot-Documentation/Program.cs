@@ -18,6 +18,7 @@ public class Program
             .AddInteractiveWebAssemblyComponents();
         builder.Services.AddMudServices();
         builder.Services.AddScoped<DocRendererService>();
+        builder.Services.AddSingleton<DocumentPathResolver>();
         builder.Services.AddSingleton<VersionManagerService>();
         builder.Services.AddSingleton<Redot_Documentation.Search.DocumentationSearchService>();
         builder.Services.AddSingleton<Redot_Documentation.Search.IDocumentationSearch>(sp => sp.GetRequiredService<Redot_Documentation.Search.DocumentationSearchService>());
@@ -56,6 +57,7 @@ public class Program
             .AddInteractiveWebAssemblyRenderMode()
             .AddAdditionalAssemblies(typeof(Client._Imports).Assembly);
         app.Services.GetService<VersionManagerService>()?.LoadContent();
+        _ = app.Services.GetRequiredService<DocumentPathResolver>();
         app.MapGet("/health/class-docs", (
             ClassDocumentationCatalog catalog,
             VersionManagerService versionManager) =>

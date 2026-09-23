@@ -187,6 +187,54 @@ public sealed class ClassDocumentationComponentTests : IDisposable
         Assert.Empty(renderer.Errors);
     }
 
+    [Theory]
+    [InlineData("26.1/tutorials/MIXED.HTML")]
+    [InlineData("26.1/TUTORIALS/mixed.MD")]
+    [InlineData("tutorials/mixed")]
+    public async Task Manual_LegacyAliasesRenderAndHeadingLinksPreserveQuery(string route)
+    {
+        Directory.CreateDirectory(Path.Combine(_root, "docs", "26.1", "Tutorials"));
+        File.WriteAllText(Path.Combine(_root, "docs", "26.1", "Tutorials", "Mixed.md"), "# Mixed heading");
+        await using var services = CreateServices();
+        services.GetRequiredService<NavigationManager>().NavigateTo("/en/" + route + "?source=Legacy#Mixed");
+        await using var renderer = new TestRenderer(services);
+        int id = await renderer.Dispatcher.InvokeAsync(() => renderer.RenderAsync(typeof(DocViewer),
+            ParameterView.FromDictionary(new Dictionary<string, object?> { ["DocumentPath"] = route })));
+        Assert.Contains("Mixed heading", await renderer.Dispatcher.InvokeAsync(() => renderer.Text(id)));
+        Assert.Contains("/en/26.1/Tutorials/Mixed?source=Legacy#mixed-heading",
+            await renderer.Dispatcher.InvokeAsync(() => renderer.Hrefs(id).ToArray()));
+        Assert.Empty(renderer.Errors);
+    }
+
+    [Theory]
+    [InlineData("/en/26.1/tutorials/MIXED.HTML?source=Legacy#SomeHeading", "/en/latest/Tutorials/Mixed?source=Legacy#SomeHeading")]
+    [InlineData("/en/tutorials/mixed.md?source=Legacy#SomeHeading", "/en/latest/Tutorials/Mixed?source=Legacy#SomeHeading")]
+    [InlineData("/en/about/INTRO.HTML?source=Legacy#SomeHeading", "/en/About/Intro?source=Legacy#SomeHeading")]
+    public async Task NavMenu_VersionSwitchResolvesAliasesAndPreservesQueryAndFragment(string source, string expected)
+    {
+        foreach (var version in new[] { "26.1", "latest" })
+        {
+            Directory.CreateDirectory(Path.Combine(_root, "docs", version, "Tutorials"));
+            File.WriteAllText(Path.Combine(_root, "docs", version, "Tutorials", "Mixed.md"), "# Mixed");
+        }
+        Directory.CreateDirectory(Path.Combine(_root, "docs", "About"));
+        File.WriteAllText(Path.Combine(_root, "docs", "About", "Intro.md"), "# Intro");
+        await using var services = CreateServices();
+        var navigation = services.GetRequiredService<NavigationManager>();
+        navigation.NavigateTo(source);
+        await using var renderer = new TestRenderer(services);
+        int id = await renderer.Dispatcher.InvokeAsync(() => renderer.RenderAsync(typeof(NavMenu), ParameterView.Empty));
+        Assert.Contains("doc-current", await renderer.Dispatcher.InvokeAsync(() => renderer.CssClasses(id).ToArray()));
+        await renderer.Dispatcher.InvokeAsync(async () =>
+        {
+            var select = renderer.FindComponent<MudBlazor.MudSelect<string>>(id);
+            Assert.NotNull(select);
+            await select.ValueChanged.InvokeAsync("latest");
+        });
+        Assert.Equal("http://localhost" + expected, navigation.Uri);
+        Assert.Empty(renderer.Errors);
+    }
+
     [Fact]
     public async Task Manual_IncludesCcAttributionAndModificationNotice()
     {
@@ -265,7 +313,8 @@ public sealed class ClassDocumentationComponentTests : IDisposable
         return new ServiceCollection().AddLogging()
             .AddSingleton<IDocumentationSearch>(search ?? new ControlledSearch())
             .AddMudServices(options => options.PopoverOptions.CheckForPopoverProvider = false)
-            .AddSingleton<DocRendererService>(new DocRendererService(new TestEnvironment(_root)))
+            .AddSingleton(_ => new DocumentPathResolver(new TestEnvironment(_root), manager))
+            .AddSingleton<DocRendererService>()
             .AddSingleton(manager)
             .AddSingleton<ClassDocumentationCatalog>()
             .AddSingleton<ClassDocumentationRenderer>()
@@ -303,6 +352,18 @@ public sealed class ClassDocumentationComponentTests : IDisposable
                     yield return href;
                 if (frame.FrameType == RenderTreeFrameType.Component)
                     foreach (string childHref in Hrefs(frame.ComponentId)) yield return childHref;
+            }
+        }
+
+        public IEnumerable<string> CssClasses(int id)
+        {
+            var frames = GetCurrentRenderTreeFrames(id);
+            foreach (var frame in frames.Array.Take(frames.Count))
+            {
+                if (frame.FrameType == RenderTreeFrameType.Attribute && frame.AttributeName == "class" && frame.AttributeValue is string css)
+                    foreach (var name in css.Split(' ', StringSplitOptions.RemoveEmptyEntries)) yield return name;
+                if (frame.FrameType == RenderTreeFrameType.Component)
+                    foreach (var name in CssClasses(frame.ComponentId)) yield return name;
             }
         }
 

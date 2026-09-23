@@ -2,10 +2,10 @@
 @page "/en/{*DocumentPath}"
 @layout MainLayout
 @using Redot_Documentation.Services
-@using Redot_Documentation.Versioning
-@using System.Text.RegularExpressions
 @inject DocRendererService DocRendererService
 @inject VersionManagerService VersionManagerService
+@inject DocumentPathResolver Paths
+@inject NavigationManager Navigation
 @inject IJSRuntime JS
 
 
@@ -44,6 +44,7 @@ else
     [Parameter]
     public string? DocumentPath { get; set; }
 
+    private string pageUrl = "/en/";
     private bool isLoading = true;
     private string renderedHtml = string.Empty;
     private string? errorMessage;
@@ -56,19 +57,34 @@ else
 
         try
         {
-            var (versionProvider, docPath) = ResolveVersionProviderAndDocumentPath();
-            var path = string.IsNullOrWhiteSpace(docPath)
-                ? "index.md"
-                : docPath.EndsWith(".md", StringComparison.OrdinalIgnoreCase)
-                    ? docPath
-                    : $"{docPath}.md";
-
-            var html = await DocRendererService.RenderToHtmlAsync(path, versionProvider);
+            var (versionProvider, docPath) = DocumentPathResolver.ParseRoute(DocumentPath ?? "", VersionManagerService);
+            var document = Paths.Resolve(docPath, versionProvider);
+            if (document is null)
+            {
+                tableOfContents.Clear();
+                renderedHtml = string.Empty;
+                Navigation.NotFound();
+                return;
+            }
+            pageUrl = document.PublicUrl;
+            var html = await DocRendererService.RenderToHtmlAsync(document, versionProvider);
             renderedHtml = DocumentHeadings.Apply(html, tableOfContents);
         }
-        catch (Exception ex)
+        catch (ArgumentException)
         {
-            errorMessage = ex.Message;
+            tableOfContents.Clear();
+            renderedHtml = string.Empty;
+            Navigation.NotFound();
+        }
+        catch (FileNotFoundException)
+        {
+            tableOfContents.Clear();
+            renderedHtml = string.Empty;
+            Navigation.NotFound();
+        }
+        catch (Exception)
+        {
+            errorMessage = "The document could not be loaded.";
             tableOfContents.Clear();
         }
         finally
@@ -83,39 +99,7 @@ else
             await JS.InvokeVoidAsync("highlightCode");
     }
 
-    private (VersionProvider provider, string path) ResolveVersionProviderAndDocumentPath()
-    {
-        var normalizedPath = (DocumentPath ?? string.Empty).Trim('/');
-        if (string.IsNullOrWhiteSpace(normalizedPath))
-        {
-            return (VersionManagerService.GetVersionProvider(VersionManagerService.LatestStableVersion.Slug), normalizedPath);
-        }
-
-        var segments = normalizedPath.Split('/', StringSplitOptions.RemoveEmptyEntries);
-        var versionSegment = segments[0];
-
-        if (VersionManagerService.TryGetVersionProvider(versionSegment, out VersionProvider? provider))
-        {
-            var pathWithoutVersion = string.Join('/', segments.Skip(1));
-            return (provider!, pathWithoutVersion);
-        }
-
-        return (VersionManagerService.GetVersionProvider(VersionManagerService.LatestStableVersion.Slug), normalizedPath);
-    }
-
     private string BuildTableOfContentsHref(string id)
-    {
-        var normalizedPath = (DocumentPath ?? string.Empty).Trim('/');
-        if (normalizedPath.EndsWith(".md", StringComparison.OrdinalIgnoreCase))
-        {
-            normalizedPath = normalizedPath[..^3];
-        }
-
-        var pagePath = string.IsNullOrWhiteSpace(normalizedPath)
-            ? "/en/"
-            : $"/en/{normalizedPath}";
-
-        return $"{pagePath}#{Uri.EscapeDataString(id)}";
-    }
+        => $"{pageUrl}{new Uri(Navigation.Uri).Query}#{Uri.EscapeDataString(id)}";
 
 }

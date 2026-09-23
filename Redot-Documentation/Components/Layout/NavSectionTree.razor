@@ -1,18 +1,21 @@
 @using Redot_Documentation.Versioning
+@using Redot_Documentation.Services
 @inject NavigationManager Navigation
+@inject DocumentPathResolver Paths
+@inject VersionManagerService Versions
 
 <MudNavGroup Title="@Section.DisplayName" @bind-Expanded="_expanded">
     @if (_expanded)
     {
         @if (Section.IndexArticle is not null)
         {
-            <MudNavLink Href="@BuildArticleLink(Section.IndexArticle)" Match="NavLinkMatch.All">Overview</MudNavLink>
+            <MudNavLink Href="@BuildArticleLink(Section.IndexArticle)" Class="@(Matches(Section.IndexArticle) ? "doc-current" : null)" Match="NavLinkMatch.All">Overview</MudNavLink>
         }
         @foreach (IRanking ranking in Section.GetSortedRankings())
         {
             if (ranking is Article article)
             {
-                <MudNavLink Href="@BuildArticleLink(article)" Match="NavLinkMatch.All">@article.DisplayName.Replace(".md", "").Replace('_', ' ')</MudNavLink>
+                <MudNavLink Href="@BuildArticleLink(article)" Class="@(Matches(article) ? "doc-current" : null)" Match="NavLinkMatch.All">@article.DisplayName.Replace(".md", "").Replace('_', ' ')</MudNavLink>
             }
             else if (ranking is Section child)
             {
@@ -34,12 +37,18 @@
         _lastLocation = Navigation.Uri;
         _expanded = ContainsCurrentArticle(Section);
     }
-    private bool ContainsCurrentArticle(Section section)
+    private bool Matches(Article article)
     {
-        string current = Uri.UnescapeDataString(new Uri(Navigation.Uri).AbsolutePath).TrimEnd('/');
-        if (current.EndsWith(".md", StringComparison.OrdinalIgnoreCase)) current = current[..^3];
-        bool Matches(Article article) => current.Equals(Uri.UnescapeDataString(BuildArticleLink(article)).TrimEnd('/'), StringComparison.OrdinalIgnoreCase);
-        return (section.IndexArticle is not null && Matches(section.IndexArticle))
-            || section.Articles.Any(Matches) || section.SubSections.Any(ContainsCurrentArticle);
+        try
+        {
+            var path = Uri.UnescapeDataString(new Uri(Navigation.Uri).AbsolutePath);
+            return path.StartsWith("/en/", StringComparison.OrdinalIgnoreCase)
+                && Paths.ResolveRoute(path[4..], Versions)?.FullPath == article.Path;
+        }
+        catch (ArgumentException) { return false; }
     }
+
+    private bool ContainsCurrentArticle(Section section)
+        => (section.IndexArticle is not null && Matches(section.IndexArticle))
+            || section.Articles.Any(Matches) || section.SubSections.Any(ContainsCurrentArticle);
 }

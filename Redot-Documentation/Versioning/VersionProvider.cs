@@ -113,7 +113,7 @@ public class VersionProvider
 
     private void AddSlug(IRanking ranking, IDictionary<string, string> slugLookupTable)
     {
-        string path = GetReferentialPath(ranking.Path);
+        string path = Services.DocumentPathResolver.PublicUrl(Path.GetRelativePath(_docsRootPath, ranking.Path));
         if (slugLookupTable.TryGetValue(ranking.Slug, out string? existingPath))
             throw new InvalidOperationException(
                 $"Duplicate documentation slug '{ranking.Slug}' in version '{Version.Slug}': '{existingPath}' and '{path}'.");

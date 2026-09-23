@@ -57,7 +57,7 @@ public sealed class DocumentationSearchTests
             var versions = new VersionManagerService(env); versions.LoadContent();
             var catalog = new ClassDocumentationCatalog();
             var logger = new TestLogger();
-            using var service = new DocumentationSearchService(versions, catalog, env, logger);
+            using var service = new DocumentationSearchService(versions, catalog, env, logger, new DocumentPathResolver(env, versions));
             await service.StartAsync(default);
             await Wait(() => service.Search("latest", "physics").Available);
             string cache = Path.Combine(root, "App_Data", "search", "stable");
@@ -104,13 +104,59 @@ public sealed class DocumentationSearchTests
             catalog.Publish(new(versions.LatestStableVersion, "revision2", DateTimeOffset.UtcNow,
                 new Dictionary<string, ClassDocumentationEntry> { ["NewClass"] = new() { Name = "NewClass", Description = "Replacement snapshot" } }));
             await service.StopAsync(default);
-            using var cached = new DocumentationSearchService(versions, catalog, env, NullLogger<DocumentationSearchService>.Instance);
+            using var cached = new DocumentationSearchService(versions, catalog, env, NullLogger<DocumentationSearchService>.Instance, new DocumentPathResolver(env, versions));
             await cached.StartAsync(default);
             await Wait(() => cached.Search("stable", "replacement").Hits.Count == 1);
             await cached.StopAsync(default);
         }
         finally { Directory.Delete(root, true); }
     }
+    [Fact]
+    public async Task Index_IncludesUppercaseMarkdownAndExcludesSymlinkedFilesAndDirectories()
+    {
+        string root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
+        try
+        {
+            foreach (var version in new[] { "stable", "latest" })
+                Directory.CreateDirectory(Path.Combine(root, "docs", version));
+            await File.WriteAllTextAsync(Path.Combine(root, "docs", "stable", "Upper.MD"),
+                "# Uppercase document\n\nUppercaseextensiontoken");
+            await File.WriteAllTextAsync(Path.Combine(root, "docs", "Versions.json"), JsonSerializer.Serialize(new[] {
+                new DocumentationVersion { Slug="stable",FriendlyName="Stable",BranchName="stable",IsLatestStable=true },
+                new DocumentationVersion { Slug="latest",FriendlyName="Latest",BranchName="master",IsNextPrerelease=true }
+            }));
+            var env = new TestEnvironment(root);
+            var versions = new VersionManagerService(env);
+            versions.LoadContent();
+            var outside = Path.Combine(root, "outside");
+            Directory.CreateDirectory(outside);
+            var secret = Path.Combine(outside, "secret.md");
+            await File.WriteAllTextAsync(secret, "# Private\n\nOutsidesentineltoken");
+            if (!OperatingSystem.IsWindows())
+            {
+                File.CreateSymbolicLink(Path.Combine(root, "docs", "stable", "linked.md"), secret);
+                Directory.CreateSymbolicLink(Path.Combine(root, "docs", "stable", "linked-folder"), outside);
+                Directory.CreateSymbolicLink(Path.Combine(root, "docs", "Community"), outside);
+            }
+            var logger = new TestLogger();
+            using var service = new DocumentationSearchService(versions, new ClassDocumentationCatalog(), env,
+                logger, new DocumentPathResolver(env, versions));
+            await service.StartAsync(default);
+            try
+            {
+                await Wait(() => service.Search("latest", "anything").Available);
+                var hit = Assert.Single(service.Search("stable", "Uppercaseextensiontoken").Hits);
+                Assert.StartsWith("/en/stable/Upper", hit.Url);
+                Assert.Empty(service.Search("latest", "Uppercaseextensiontoken").Hits);
+                Assert.Empty(service.Search("stable", "Outsidesentineltoken").Hits);
+                Assert.Empty(service.Search("latest", "Outsidesentineltoken").Hits);
+                Assert.Equal(0, logger.Errors);
+            }
+            finally { await service.StopAsync(default); }
+        }
+        finally { Directory.Delete(root, true); }
+    }
+
     private static async Task Wait(Func<bool> ready)
     {
         for (int i = 0; i < 200; i++) { if (ready()) return; await Task.Delay(50); }

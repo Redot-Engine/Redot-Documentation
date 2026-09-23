@@ -16,7 +16,7 @@ using Redot_Documentation.Versioning;
 namespace Redot_Documentation.Search;
 
 public sealed class DocumentationSearchService(VersionManagerService versions, ClassDocumentationCatalog catalog,
-    IWebHostEnvironment environment, ILogger<DocumentationSearchService> logger) : BackgroundService, IDocumentationSearch
+    IWebHostEnvironment environment, ILogger<DocumentationSearchService> logger, DocumentPathResolver paths) : BackgroundService, IDocumentationSearch
 {
     private readonly object _gate = new();
     private readonly Dictionary<string, OpenIndex> _indexes = new(StringComparer.OrdinalIgnoreCase);
@@ -47,7 +47,7 @@ public sealed class DocumentationSearchService(VersionManagerService versions, C
         var provider = versions.GetVersionProvider(slug);
         string root = Path.Combine(environment.ContentRootPath, "docs");
         var files = new[] { provider.VersionRoot, Path.Combine(root, "About"), Path.Combine(root, "Community"), Path.Combine(root, "Contributing") }
-            .Where(System.IO.Directory.Exists).SelectMany(p => System.IO.Directory.EnumerateFiles(p, "*.md", SearchOption.AllDirectories)).Order().ToArray();
+            .SelectMany(DocumentPathResolver.EnumerateMarkdownFiles).Order().ToArray();
         catalog.TryGetSnapshot(slug, out var snapshot);
         using var hash = IncrementalHash.CreateHash(HashAlgorithmName.SHA256);
         hash.AppendData(Encoding.UTF8.GetBytes("search-schema-2:" + snapshot?.CommitSha));
@@ -84,13 +84,16 @@ public sealed class DocumentationSearchService(VersionManagerService versions, C
                 using (var analyzer = new WhitespaceAnalyzer(LuceneVersion.LUCENE_48))
                 using (var writer = new IndexWriter(directory, new IndexWriterConfig(LuceneVersion.LUCENE_48, analyzer) { Similarity = new BM25Similarity() }))
                 {
-                    var renderer = new DocRendererService(environment);
+                    var renderer = new DocRendererService(paths);
                     foreach (string file in files)
                     {
                         ct.ThrowIfCancellationRequested();
                         string relative = Path.GetRelativePath(root, file).Replace('\\', '/');
-                        string html = DocumentHeadings.Apply(await renderer.RenderToHtmlAsync(relative, provider, ct), []);
-                        string url = "/en/" + string.Join('/', relative[..^3].Split('/').Select(Uri.EscapeDataString));
+                        string documentPath = relative.StartsWith(provider.Version.Slug + "/", StringComparison.OrdinalIgnoreCase)
+                            ? relative[(provider.Version.Slug.Length + 1)..]
+                            : relative;
+                        string html = DocumentHeadings.Apply(await renderer.RenderToHtmlAsync(documentPath, provider, ct), []);
+                        string url = DocumentPathResolver.PublicUrl(relative);
                         foreach (var entry in SearchContent.Extract(html, url, "guides")) Add(writer, entry);
                     }
                     if (snapshot is not null)

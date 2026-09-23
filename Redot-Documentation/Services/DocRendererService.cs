@@ -13,39 +13,23 @@ public class DocRendererService
         .UseAdvancedExtensions()
         .Build();
 
-    private readonly string docsRootPath;
+    private readonly DocumentPathResolver paths;
 
-    public DocRendererService(IWebHostEnvironment webHostEnvironment)
+    public DocRendererService(DocumentPathResolver paths)
     {
-        docsRootPath = Path.Combine(webHostEnvironment.ContentRootPath, "docs");
+        this.paths = paths;
     }
 
     public async Task<string> RenderToHtmlAsync(string documentPath, VersionProvider versionProvider, CancellationToken cancellationToken = default)
     {
-        if (string.IsNullOrWhiteSpace(documentPath))
-        {
-            throw new ArgumentException("Document path cannot be null or empty.", nameof(documentPath));
-        }
+        var document = paths.Resolve(documentPath, versionProvider)
+            ?? throw new FileNotFoundException("Markdown document not found.");
+        return await RenderToHtmlAsync(document, versionProvider, cancellationToken);
+    }
 
-        var normalizedPath = documentPath.Replace('\\', '/').Trim('/');
-        var fullPath = Path.GetFullPath(Path.Combine(docsRootPath, normalizedPath));
-
-        if (!fullPath.StartsWith(docsRootPath, StringComparison.OrdinalIgnoreCase))
-        {
-            throw new InvalidOperationException("Document path points outside the docs directory.");
-        }
-
-        if (!File.Exists(fullPath))
-        {
-            fullPath = Path.GetFullPath(Path.Combine(versionProvider.VersionRoot, normalizedPath));
-            if (!fullPath.StartsWith(docsRootPath, StringComparison.OrdinalIgnoreCase))
-            {
-                throw new InvalidOperationException("Document path points outside the docs directory.");
-            }
-            if (!File.Exists(fullPath))
-                throw new FileNotFoundException($"Markdown document not found: {documentPath}", fullPath);
-        }
-
+    internal async Task<string> RenderToHtmlAsync(ResolvedDocument document, VersionProvider versionProvider, CancellationToken cancellationToken = default)
+    {
+        var fullPath = document.FullPath;
         var markdown = await File.ReadAllTextAsync(fullPath, cancellationToken);
         var transformedMarkdown = TransformMarkdown(markdown, versionProvider);
         var renderedHtml = Markdown.ToHtml(transformedMarkdown.Markdown, MarkdownPipeline);
