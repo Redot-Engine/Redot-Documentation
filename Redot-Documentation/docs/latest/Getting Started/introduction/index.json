@@ -1,7 +1,7 @@
 {
   "Slug": "getting_started_introduction",
   "RankingPriorities": {
-    "introduction_to_godot.md": 0,
+    "introduction_to_redot.md": 0,
     "learn_to_code_with_gdscript.md": 1,
     "key_concepts_overview.md": 2,
     "first_look_at_the_editor.md": 3,

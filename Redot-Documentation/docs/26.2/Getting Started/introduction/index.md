@@ -10,7 +10,7 @@ make the most of your time learning it.
 
 ## In this section
 
-- [Introduction to Redot](doc_introduction_to_godot)
+- [Introduction to Redot](doc_introduction_to_redot)
 - [Learn to code with GDScript](doc_learn_to_code_with_gdscript)
 - [Overview of Redot's key concepts](doc_key_concepts_overview)
 - [First look at Redot's interface](doc_first_look_at_the_editor)
