@@ -162,6 +162,12 @@ If you have downloaded a standard binary (e.g., from the Redot website):
 
 ```
 
+:::note
+
+Some agents may require the ``--quiet`` flag, and may not work properly without it.
+
+:::
+
 ## Tools Reference
 
 The MCP server exposes 5 master controllers, designed to give AI agents comprehensive control over the engine:
