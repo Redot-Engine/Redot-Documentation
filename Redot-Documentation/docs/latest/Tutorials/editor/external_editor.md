@@ -65,7 +65,7 @@ For details, see [Script editor debug tools and options ](doc_overview_of_debugg
 
 We have official plugins for the following code editors:
 
-- [Visual Studio Code ](https://github.com/redot-engine/redot-vscode-plugin)
+- [Visual Studio Code ](https://github.com/godotengine/godot-vscode-plugin)
 - [Emacs ](https://github.com/redot-engine/emacs-gdscript-mode)
 
 ## LSP/DAP support
@@ -78,9 +78,9 @@ Below are some configuration steps for specific editors:
 
 ### Visual Studio Code
 
-You need to install the official [Visual Studio Code plugin ](https://github.com/redot-engine/redot-vscode-plugin).
+You need to install the official [Visual Studio Code plugin ](https://github.com/godotengine/godot-vscode-plugin).
 
-For **LSP**, follow [these instructions ](https://github.com/redot-engine/redot-vscode-plugin#gdscript_lsp_server_port) to change the default LSP port. The connection status can be checked on the status bar:
+For **LSP**, follow [these instructions ](https://github.com/godotengine/godot-vscode-plugin#gdscript_lsp_server_port) to change the default LSP port. The connection status can be checked on the status bar:
 
 ![Image](/img/Tutorials/editor/img/lsp_vscode_status.png)
 
