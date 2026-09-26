@@ -1,7 +1,7 @@
 
 # Localization using gettext
 
-In addition to [doc_importing_translations](../assets_pipeline/importing_translations.md) in CSV format, Redot
+In addition to [doc_importing_translations](doc_importing_translations#importing-translations) in CSV format, Redot
 also supports loading translation files written in the GNU gettext
 format (text-based ``.po`` and compiled ``.mo`` since Redot 4.0).
 

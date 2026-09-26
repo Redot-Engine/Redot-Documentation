@@ -13,7 +13,7 @@ Localization is usually done by specific studios hired for the job. Despite the
 huge amount of software and file formats available for this, the most common way
 to do localization to this day is still with spreadsheets. The process of
 creating the spreadsheets and importing them is already covered in the
-[doc_importing_translations](../assets_pipeline/importing_translations.md) tutorial. If you haven't read the Importing
+[doc_importing_translations](doc_importing_translations#importing-translations) tutorial. If you haven't read the Importing
 translations page before, we recommend you give it a read before reading this
 page.
 
