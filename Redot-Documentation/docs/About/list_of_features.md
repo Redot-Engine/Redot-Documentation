@@ -465,7 +465,7 @@ improve quality. This can be helpful when
      performance is suitable.
 
 - Official GDExtension bindings for [C](https://github.com/redot-engine/redot-engine-headers)_
-  and [C++](https://github.com/redot-engine/redot-engine-cpp)_.
+  and [C++](https://github.com/Redot-Engine/redot-cpp)_.
 
    - Use any build system and language features you wish.
 
