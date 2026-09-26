@@ -55,6 +55,14 @@ For a general overview of SCons usage for Redot, see
 
 :::
 
+:::note
+
+If you are building the engine with C# support, please also see the page
+for [Compiling with .NET](doc_compiling_with_dotnet) as there are additional steps
+and considerations that need to be followed.
+
+:::
+
 ## Compiling
 
 Start a terminal, go to the root directory of the engine source code.
