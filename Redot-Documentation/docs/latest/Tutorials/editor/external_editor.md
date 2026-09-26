@@ -80,7 +80,7 @@ Below are some configuration steps for specific editors:
 
 You need to install the official [Visual Studio Code plugin ](https://github.com/godotengine/godot-vscode-plugin).
 
-For **LSP**, follow [these instructions ](https://github.com/godotengine/godot-vscode-plugin#gdscript_lsp_server_port) to change the default LSP port. The connection status can be checked on the status bar:
+For **LSP**, follow [these instructions ](https://github.com/godotengine/godot-vscode-plugin#gdscript_lsp_server_port) to set ``godotTools.lsp.serverPort`` to Redot's default LSP port, ``6005``. The connection status can be checked on the status bar:
 
 ![Image](/img/Tutorials/editor/img/lsp_vscode_status.png)
 
@@ -92,7 +92,7 @@ For **DAP**, specify the ``debugServer`` property in your ``launch.json`` file:
     "configurations": [
         {
             "name": "GDScript Redot",
-            "type": "Redot",
+            "type": "godot",
             "request": "launch",
             "project": "${workspaceFolder}",
             "port": 6007,
