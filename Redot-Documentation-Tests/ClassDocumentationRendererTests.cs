@@ -1,5 +1,7 @@
 using System.Text.RegularExpressions;
+using HtmlAgilityPack;
 using Redot_Documentation.ClassDocumentation;
+using Redot_Documentation.Components.Layout;
 using Redot_Documentation.Versioning;
 
 namespace Redot_Documentation_Tests;
@@ -39,7 +41,60 @@ public sealed class ClassDocumentationRendererTests
         Assert.Contains("id=\"method-add-child\"", html);
         Assert.Contains("href=\"/en/latest/Classes/Object\"", html);
         Assert.Contains("class-status-experimental", html);
-        Assert.Contains("<code>Node</code></a> child", html);
+        Assert.Contains("<span class=\"token class-name\">Node</span></a> <span class=\"token variable\">child</span>", html);
+    }
+
+    [Fact]
+    public void RenderPage_HighlightsSignaturesAndCollectsMatchingMemberHeadings()
+    {
+        var renderer = new ClassDocumentationRenderer();
+        ClassDocumentationSnapshot snapshot = CreateSnapshot();
+        ClassDocumentationEntry node = snapshot.Classes["Node"] with
+        {
+            Description = "A useful class.",
+            Members = [new ClassDocumentationMember { Name = "enabled", Type = "bool", Default = "true" }],
+            Methods =
+            [
+                new ClassDocumentationCallable
+                {
+                    Name = "add_child", ReturnType = "void", Qualifiers = "virtual const",
+                    Parameters = [new ClassDocumentationParameter("child", "Node", "Node(1, 2)", null, false)]
+                },
+                new ClassDocumentationCallable
+                {
+                    Name = "add_child", ReturnType = "void",
+                    Parameters = [new ClassDocumentationParameter("unsafe", "String", "\"<script>\"", null, false)]
+                }
+            ],
+            Constants = [new ClassDocumentationConstant { Name = "MAX_COUNT", Value = "7" }]
+        };
+        var headings = new List<DocumentHeading>();
+
+        string html = renderer.RenderPage(node, snapshot, headings);
+        var document = new HtmlDocument();
+        document.LoadHtml(html);
+
+        Assert.Equal(
+            [
+                new(2, "description", "Description"),
+                new(2, "properties", "Properties"),
+                new(3, "member-enabled", "enabled"),
+                new(2, "methods", "Methods"),
+                new(3, "method-add-child", "add_child"),
+                new(3, "method-add-child-2", "add_child (overload 2)"),
+                new(2, "constants", "Constants"),
+                new(3, "constant-max-count", "MAX_COUNT")
+            ], headings);
+        Assert.Equal(headings.Select(heading => heading.Id),
+            document.DocumentNode.SelectNodes("//h2[@id]|//h3[@id]")!.Select(node => node.GetAttributeValue("id", "")));
+        Assert.Contains("<span class=\"token boolean\">true</span>", html);
+        Assert.Contains("<span class=\"token keyword\">virtual const</span>", html);
+        Assert.Contains("<span class=\"token function\">Node</span>", html);
+        Assert.Contains("<span class=\"token number\">7</span>", html);
+        Assert.Contains("href=\"/en/latest/Classes/Node\"><span class=\"token class-name\">Node</span></a>", html);
+        Assert.Contains("&lt;script&gt;", html);
+        Assert.DoesNotContain("<script>", html);
+        Assert.DoesNotContain("<code><a", html);
     }
 
     [Fact]

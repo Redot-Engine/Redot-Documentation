@@ -161,6 +161,42 @@ public sealed class ClassDocumentationComponentTests : IDisposable
         Assert.Empty(renderer.Errors);
     }
 
+    [Fact]
+    public async Task ClassPage_RendersNavigationForSectionsAndOverloadedMembers()
+    {
+        await using var services = CreateServices();
+        var catalog = services.GetRequiredService<ClassDocumentationCatalog>();
+        var manager = services.GetRequiredService<VersionManagerService>();
+        var navigation = services.GetRequiredService<NavigationManager>();
+        navigation.NavigateTo("/en/26.1/Classes/Node?source=search");
+        var node = new ClassDocumentationEntry
+        {
+            Name = "Node",
+            Methods =
+            [
+                new ClassDocumentationCallable { Name = "add_child" },
+                new ClassDocumentationCallable { Name = "add_child" }
+            ]
+        };
+        catalog.Publish(new ClassDocumentationSnapshot(manager.LatestStableVersion, "1234567890abcdef",
+            DateTimeOffset.UtcNow, new Dictionary<string, ClassDocumentationEntry> { ["Node"] = node }));
+
+        await using var renderer = new TestRenderer(services);
+        int id = await renderer.Dispatcher.InvokeAsync(() => renderer.RenderAsync(typeof(ClassDocViewer),
+            ParameterView.FromDictionary(new Dictionary<string, object?>
+            { ["VersionSlug"] = "26.1", ["ClassName"] = "Node" })));
+
+        string rendered = await renderer.Dispatcher.InvokeAsync(() => renderer.Text(id));
+        string[] hrefs = await renderer.Dispatcher.InvokeAsync(() => renderer.Hrefs(id).ToArray());
+        Assert.Contains("desktop-toc", await renderer.Dispatcher.InvokeAsync(() => renderer.CssClasses(id).ToArray()));
+        Assert.Contains("mobile-toc", await renderer.Dispatcher.InvokeAsync(() => renderer.CssClasses(id).ToArray()));
+        Assert.Contains("<h3 id=\"method-add-child-2\">", rendered);
+        Assert.Contains("/en/26.1/Classes/Node?source=search#methods", hrefs);
+        Assert.Contains("/en/26.1/Classes/Node?source=search#method-add-child", hrefs);
+        Assert.Contains("/en/26.1/Classes/Node?source=search#method-add-child-2", hrefs);
+        Assert.Empty(renderer.Errors);
+    }
+
     [Theory]
     [InlineData(null)]
     [InlineData("Node")]

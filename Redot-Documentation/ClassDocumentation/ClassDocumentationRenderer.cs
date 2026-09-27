@@ -2,6 +2,7 @@ using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using Redot_Documentation.Components.Layout;
 
 namespace Redot_Documentation.ClassDocumentation;
 
@@ -53,15 +54,31 @@ public sealed class ClassDocumentationRenderer
         @"\[(?<class>@?[A-Za-z_][A-Za-z0-9_]*)\]",
         RegexOptions.Compiled);
 
+    private static readonly Regex SignatureValueRegex = new(
+        "(?<string>\"(?:\\\\.|[^\"\\\\])*\"|'(?:\\\\.|[^'\\\\])*')|" +
+        @"(?<number>(?<![\w.])(?:0x[0-9a-fA-F]+|\d+(?:\.\d+)?)(?![\w.]))|" +
+        @"(?<boolean>\b(?:true|false)\b)|(?<keyword>\bnull\b)|" +
+        @"(?<identifier>\b[A-Za-z_]\w*\b)|(?<operator>[-+*/%=<>!&|]+)|" +
+        @"(?<punctuation>[()\[\]{},.:])",
+        RegexOptions.Compiled);
+
+    private static readonly HashSet<string> BuiltInTypes = new(StringComparer.Ordinal)
+    {
+        "bool", "int", "float", "String", "StringName", "Variant", "void"
+    };
+
     /// <summary>Renders a complete class-reference page.</summary>
     /// <param name="entry">The class to render.</param>
     /// <param name="snapshot">The containing snapshot.</param>
+    /// <param name="tableOfContents">Receives headings and their existing fragment IDs when supplied.</param>
     /// <returns>The rendered HTML.</returns>
     public string RenderPage(
         ClassDocumentationEntry entry,
-        ClassDocumentationSnapshot snapshot)
+        ClassDocumentationSnapshot snapshot,
+        List<DocumentHeading>? tableOfContents = null)
     {
-        var context = new RenderContext();
+        tableOfContents?.Clear();
+        var context = new RenderContext(tableOfContents);
         var html = new StringBuilder();
         html.Append("<article class=\"class-reference\">");
         html.Append("<header class=\"class-reference-header\"><p class=\"class-reference-kicker\">Class reference</p><h1>")
@@ -90,7 +107,7 @@ public sealed class ClassDocumentationRenderer
         AppendCallables(html, "Operators", "operators", "operator", entry.Operators, entry, snapshot, context);
         AppendCallables(html, "Annotations", "annotations", "annotation", entry.Annotations, entry, snapshot, context);
         AppendThemeItems(html, entry, snapshot, context);
-        AppendTutorials(html, entry.Tutorials, snapshot.Version.Slug);
+        AppendTutorials(html, entry.Tutorials, snapshot.Version.Slug, context);
 
         html.Append("<footer class=\"class-reference-source\">Source revision <code>")
             .Append(Encode(ShortCommit(snapshot.CommitSha)))
@@ -215,6 +232,7 @@ public sealed class ClassDocumentationRenderer
     {
         if (string.IsNullOrWhiteSpace(description))
             return;
+        context.AddHeading(2, id, title);
         html.Append("<section><h2 id=\"").Append(id).Append("\">").Append(title).Append("</h2>")
             .Append(RenderMarkup(description, entry, snapshot, context)).Append("</section>");
     }
@@ -232,14 +250,24 @@ public sealed class ClassDocumentationRenderer
     {
         if (entry.Members.Count == 0)
             return;
+        context.AddHeading(2, "properties", "Properties");
         html.Append("<section><h2 id=\"properties\">Properties</h2><div class=\"class-api-list\">");
         foreach (ClassDocumentationMember member in entry.Members)
         {
+            string anchor = MemberAnchor("member", member.Name);
+            context.AddHeading(3, anchor, member.Name);
             html.Append("<article class=\"class-api-item\"><h3 id=\"")
-                .Append(MemberAnchor("member", member.Name)).Append("\"><code>")
-                .Append(RenderType(member.Type, snapshot)).Append(' ').Append(Encode(member.Name));
+                .Append(anchor).Append("\"><code>");
+            AppendSignatureType(html, member.Type, snapshot);
+            html.Append(' ');
+            AppendToken(html, "property", member.Name);
             if (!string.IsNullOrWhiteSpace(member.Default))
-                html.Append(" = ").Append(Encode(member.Default));
+            {
+                html.Append(' ');
+                AppendToken(html, "operator", "=");
+                html.Append(' ');
+                AppendSignatureValue(html, member.Default);
+            }
             html.Append("</code></h3>");
             AppendStatus(html, "Deprecated", member.Deprecated, "deprecated", entry, snapshot, context);
             AppendStatus(html, "Experimental", member.Experimental, "experimental", entry, snapshot, context);
@@ -269,6 +297,7 @@ public sealed class ClassDocumentationRenderer
     {
         if (callables.Count == 0)
             return;
+        context.AddHeading(2, sectionId, title);
         html.Append("<section><h2 id=\"").Append(sectionId).Append("\">").Append(title)
             .Append("</h2><div class=\"class-api-list\">");
         var anchorCounts = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
@@ -278,21 +307,37 @@ public sealed class ClassDocumentationRenderer
             anchorCounts.TryGetValue(baseAnchor, out int anchorCount);
             anchorCounts[baseAnchor] = ++anchorCount;
             string anchor = anchorCount == 1 ? baseAnchor : $"{baseAnchor}-{anchorCount}";
-            html.Append("<article class=\"class-api-item\"><h3 id=\"").Append(anchor).Append("\"><code>")
-                .Append(RenderType(callable.ReturnType, snapshot)).Append(' ')
-                .Append(Encode(callable.Name)).Append('(');
+            context.AddHeading(3, anchor, anchorCount == 1 ? callable.Name : $"{callable.Name} (overload {anchorCount})");
+            html.Append("<article class=\"class-api-item\"><h3 id=\"").Append(anchor).Append("\"><code>");
+            AppendSignatureType(html, callable.ReturnType, snapshot);
+            html.Append(' ');
+            AppendToken(html, "function", callable.Name);
+            AppendToken(html, "punctuation", "(");
             for (int index = 0; index < callable.Parameters.Count; index++)
             {
                 if (index > 0)
-                    html.Append(", ");
+                {
+                    AppendToken(html, "punctuation", ",");
+                    html.Append(' ');
+                }
                 ClassDocumentationParameter parameter = callable.Parameters[index];
-                html.Append(RenderType(parameter.Type, snapshot)).Append(' ').Append(Encode(parameter.Name));
+                AppendSignatureType(html, parameter.Type, snapshot);
+                html.Append(' ');
+                AppendToken(html, "variable", parameter.Name);
                 if (!string.IsNullOrWhiteSpace(parameter.Default))
-                    html.Append(" = ").Append(Encode(parameter.Default));
+                {
+                    html.Append(' ');
+                    AppendToken(html, "operator", "=");
+                    html.Append(' ');
+                    AppendSignatureValue(html, parameter.Default);
+                }
             }
-            html.Append(')');
+            AppendToken(html, "punctuation", ")");
             if (!string.IsNullOrWhiteSpace(callable.Qualifiers))
-                html.Append(' ').Append(Encode(callable.Qualifiers));
+            {
+                html.Append(' ');
+                AppendToken(html, "keyword", callable.Qualifiers);
+            }
             html.Append("</code></h3>");
             AppendStatus(html, "Deprecated", callable.Deprecated, "deprecated", entry, snapshot, context);
             AppendStatus(html, "Experimental", callable.Experimental, "experimental", entry, snapshot, context);
@@ -314,19 +359,30 @@ public sealed class ClassDocumentationRenderer
     {
         if (entry.Signals.Count == 0)
             return;
+        context.AddHeading(2, "signals", "Signals");
         html.Append("<section><h2 id=\"signals\">Signals</h2><div class=\"class-api-list\">");
         foreach (ClassDocumentationSignal signal in entry.Signals)
         {
-            html.Append("<article class=\"class-api-item\"><h3 id=\"").Append(MemberAnchor("signal", signal.Name))
-                .Append("\"><code>").Append(Encode(signal.Name)).Append('(');
+            string anchor = MemberAnchor("signal", signal.Name);
+            context.AddHeading(3, anchor, signal.Name);
+            html.Append("<article class=\"class-api-item\"><h3 id=\"").Append(anchor)
+                .Append("\"><code>");
+            AppendToken(html, "function", signal.Name);
+            AppendToken(html, "punctuation", "(");
             for (int index = 0; index < signal.Parameters.Count; index++)
             {
                 if (index > 0)
-                    html.Append(", ");
+                {
+                    AppendToken(html, "punctuation", ",");
+                    html.Append(' ');
+                }
                 ClassDocumentationParameter parameter = signal.Parameters[index];
-                html.Append(RenderType(parameter.Type, snapshot)).Append(' ').Append(Encode(parameter.Name));
+                AppendSignatureType(html, parameter.Type, snapshot);
+                html.Append(' ');
+                AppendToken(html, "variable", parameter.Name);
             }
-            html.Append(")</code></h3>");
+            AppendToken(html, "punctuation", ")");
+            html.Append("</code></h3>");
             AppendStatus(html, "Deprecated", signal.Deprecated, "deprecated", entry, snapshot, context);
             AppendStatus(html, "Experimental", signal.Experimental, "experimental", entry, snapshot, context);
             html.Append(RenderMarkup(signal.Description, entry, snapshot, context)).Append("</article>");
@@ -347,12 +403,20 @@ public sealed class ClassDocumentationRenderer
     {
         if (entry.Constants.Count == 0)
             return;
+        context.AddHeading(2, "constants", "Constants");
         html.Append("<section><h2 id=\"constants\">Constants</h2><div class=\"class-api-list\">");
         foreach (ClassDocumentationConstant constant in entry.Constants)
         {
-            html.Append("<article class=\"class-api-item\"><h3 id=\"").Append(MemberAnchor("constant", constant.Name))
-                .Append("\"><code>").Append(Encode(constant.Name)).Append(" = ").Append(Encode(constant.Value))
-                .Append("</code></h3>");
+            string anchor = MemberAnchor("constant", constant.Name);
+            context.AddHeading(3, anchor, constant.Name);
+            html.Append("<article class=\"class-api-item\"><h3 id=\"").Append(anchor)
+                .Append("\"><code>");
+            AppendToken(html, "constant", constant.Name);
+            html.Append(' ');
+            AppendToken(html, "operator", "=");
+            html.Append(' ');
+            AppendSignatureValue(html, constant.Value);
+            html.Append("</code></h3>");
             if (!string.IsNullOrWhiteSpace(constant.Enum))
                 html.Append("<p class=\"class-api-meta\">Enum: ").Append(Encode(constant.Enum)).Append("</p>");
             AppendStatus(html, "Deprecated", constant.Deprecated, "deprecated", entry, snapshot, context);
@@ -375,13 +439,24 @@ public sealed class ClassDocumentationRenderer
     {
         if (entry.ThemeItems.Count == 0)
             return;
+        context.AddHeading(2, "theme-items", "Theme properties");
         html.Append("<section><h2 id=\"theme-items\">Theme properties</h2><div class=\"class-api-list\">");
         foreach (ClassDocumentationThemeItem item in entry.ThemeItems)
         {
-            html.Append("<article class=\"class-api-item\"><h3 id=\"").Append(MemberAnchor("theme-item", item.Name))
-                .Append("\"><code>").Append(RenderType(item.Type, snapshot)).Append(' ').Append(Encode(item.Name));
+            string anchor = MemberAnchor("theme-item", item.Name);
+            context.AddHeading(3, anchor, item.Name);
+            html.Append("<article class=\"class-api-item\"><h3 id=\"").Append(anchor)
+                .Append("\"><code>");
+            AppendSignatureType(html, item.Type, snapshot);
+            html.Append(' ');
+            AppendToken(html, "property", item.Name);
             if (!string.IsNullOrWhiteSpace(item.Default))
-                html.Append(" = ").Append(Encode(item.Default));
+            {
+                html.Append(' ');
+                AppendToken(html, "operator", "=");
+                html.Append(' ');
+                AppendSignatureValue(html, item.Default);
+            }
             html.Append("</code></h3>").Append(RenderMarkup(item.Description, entry, snapshot, context)).Append("</article>");
         }
         html.Append("</div></section>");
@@ -394,10 +469,12 @@ public sealed class ClassDocumentationRenderer
     private static void AppendTutorials(
         StringBuilder html,
         IReadOnlyList<ClassDocumentationTutorial> tutorials,
-        string versionSlug)
+        string versionSlug,
+        RenderContext context)
     {
         if (tutorials.Count == 0)
             return;
+        context.AddHeading(2, "tutorials", "Tutorials");
         html.Append("<section><h2 id=\"tutorials\">Tutorials</h2><ul class=\"class-tutorials\">");
         foreach (ClassDocumentationTutorial tutorial in tutorials)
         {
@@ -592,14 +669,43 @@ public sealed class ClassDocumentationRenderer
         return placeholder;
     }
 
-    /// <summary>Renders a type name, linking known classes.</summary>
-    /// <param name="type">The type name.</param>
-    /// <param name="snapshot">The containing snapshot.</param>
-    /// <returns>The rendered type.</returns>
-    private static string RenderType(string type, ClassDocumentationSnapshot snapshot)
-        => snapshot.Classes.ContainsKey(type)
-            ? RenderClassLink(type, snapshot.Version.Slug)
-            : Encode(type);
+    /// <summary>Adds a highlighted type while preserving links to documented classes.</summary>
+    private static void AppendSignatureType(StringBuilder html, string type, ClassDocumentationSnapshot snapshot)
+    {
+        if (snapshot.Classes.ContainsKey(type))
+        {
+            html.Append("<a href=\"").Append(Encode(ClassPath(snapshot.Version.Slug, type))).Append("\">");
+            AppendToken(html, "class-name", type);
+            html.Append("</a>");
+            return;
+        }
+
+        AppendToken(html, type == "void" ? "keyword" : BuiltInTypes.Contains(type) ? "builtin" : "class-name", type);
+    }
+
+    /// <summary>Adds highlighted literal and expression tokens from an XML signature value.</summary>
+    private static void AppendSignatureValue(StringBuilder html, string value)
+    {
+        int position = 0;
+        foreach (Match match in SignatureValueRegex.Matches(value))
+        {
+            html.Append(Encode(value[position..match.Index]));
+            string tokenType = match.Groups["string"].Success ? "string"
+                : match.Groups["number"].Success ? "number"
+                : match.Groups["boolean"].Success ? "boolean"
+                : match.Groups["keyword"].Success ? "keyword"
+                : match.Groups["operator"].Success ? "operator"
+                : match.Groups["punctuation"].Success ? "punctuation"
+                : value[(match.Index + match.Length)..].TrimStart().StartsWith('(') ? "function" : "constant";
+            AppendToken(html, tokenType, match.Value);
+            position = match.Index + match.Length;
+        }
+        html.Append(Encode(value[position..]));
+    }
+
+    private static void AppendToken(StringBuilder html, string tokenType, string value)
+        => html.Append("<span class=\"token ").Append(tokenType).Append("\">")
+            .Append(Encode(value)).Append("</span>");
 
     /// <summary>Renders a class link.</summary>
     /// <param name="className">The class name.</param>
@@ -637,7 +743,7 @@ public sealed class ClassDocumentationRenderer
         => commitSha.Length > 12 ? commitSha[..12] : commitSha;
 
     /// <summary>Tracks identifiers within one rendered output.</summary>
-    private sealed class RenderContext
+    private sealed class RenderContext(List<DocumentHeading>? headings = null)
     {
         /// <summary>Stores the next tab-group index.</summary>
         private int _nextTabGroupIndex;
@@ -645,5 +751,8 @@ public sealed class ClassDocumentationRenderer
         /// <summary>Gets and advances the next tab-group index.</summary>
         /// <returns>The next unique index.</returns>
         public int NextTabGroupIndex() => _nextTabGroupIndex++;
+
+        public void AddHeading(int level, string id, string title)
+            => headings?.Add(new DocumentHeading(level, id, title));
     }
 }

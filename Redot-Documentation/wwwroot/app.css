@@ -36,6 +36,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .landing-container { flex: 1; min-width: 0; }
 .landing-container > .doc-viewer-content { padding: 48px 24px; }
 .doc-viewer-layout { display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: clamp(24px, 4vw, 64px); max-width: 1260px; margin-inline: auto; align-items: start; }
+.class-doc-layout { max-width: none; grid-template-columns: minmax(0, 1fr) 240px; gap: clamp(28px, 3vw, 56px); }
 .doc-viewer-layout:not(:has(.doc-viewer-toc)) { grid-template-columns: minmax(0, 1fr); }
 .doc-viewer-content { min-width: 0; width: 100%; max-width: 80ch; margin-inline: auto; font-size: 1rem; line-height: 1.75; overflow-wrap: break-word; }
 .doc-viewer-content h1 { font-size: clamp(2rem, 3vw, 2.75rem); line-height: 1.15; font-weight: 750; letter-spacing: -.035em; margin: .2rem 0 1.75rem; }
@@ -64,7 +65,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .doc-viewer-toc li { margin: 0 0 12px; line-height: 1.5; }
 .doc-viewer-toc .toc-level-2 { padding-left: 10px; }
 .doc-viewer-toc .toc-level-3 { padding-left: 20px; }
-.doc-viewer-toc a { color: var(--redot-muted); text-decoration: none; }
+.doc-viewer-toc a { color: var(--redot-muted); text-decoration: none; overflow-wrap: anywhere; }
 .doc-viewer-toc a:hover { color: #ff967c; }
 .mobile-toc { display: none; }
 .doc-tabs { margin: 1.5rem 0; border: 1px solid var(--redot-border); border-radius: 10px; overflow: hidden; background: #121216; }
@@ -133,9 +134,10 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .lookup-preview img { display: block; width: 100%; }
 .lookup-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
 .lookup-actions .mud-button { font-size: .75rem; padding: 10px 14px; }
-.class-doc-viewer, .class-index { max-width: 1000px; }
+.class-doc-viewer { max-width: 1100px; }
+.class-index { max-width: 1000px; }
 .class-search-field { max-width: 36rem; margin: 20px 0 32px; }
-@media (max-width: 1250px) { .doc-viewer-layout { grid-template-columns: minmax(0,1fr); } .desktop-toc { display: none; } .mobile-toc { display: block; margin-bottom: 24px; } .mobile-toc .doc-viewer-toc { position: static; max-height: 320px; border: 0; padding: 0; } }
+@media (max-width: 1250px) { .doc-viewer-layout, .class-doc-layout { grid-template-columns: minmax(0,1fr); } .desktop-toc { display: none; } .mobile-toc { display: block; margin-bottom: 24px; } .mobile-toc .doc-viewer-toc { position: static; max-height: 320px; border: 0; padding: 0; } }
 @media (max-width: 959px) { .header-links { gap: 12px; } .hero-preview { transform: none; } .topic-band { grid-template-columns: 1fr; gap: 20px; } .article-container { padding: 24px 20px 40px; } .footer-inner nav { margin-left: 0; } }
 @media (max-width: 599px) { .docs-appbar .mud-toolbar { gap: 8px; padding-inline: 12px; } .header-links { display: none; } .docs-brand { font-size: 1.05rem; gap: 8px; } .brand-icon { width: 28px; height: 28px; } .section-heading { display: block; } .home-hero { padding: 40px 0; } .home-sections { padding-top: 36px; } .topic-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } .topic-band { margin-top: 32px; } .home-actions .mud-button { flex-grow: 1; } .lookup-section { padding-top: 40px; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0s !important; animation-duration: 0s !important; } }
@@ -167,20 +169,33 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
 .class-api-list {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1rem;
 }
 
 .class-api-item {
+    min-width: 0;
     background: var(--app-panel);
     border: 1px solid #333;
     border-radius: 6px;
     padding: 0 1rem 0.75rem;
 }
 
-.class-api-item h3 {
-    font-size: 1rem;
-    margin: 1rem 0;
+.doc-viewer-content .class-api-item h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.45;
+    margin: 1.1rem 0 .9rem;
     overflow-wrap: anywhere;
+}
+
+.doc-viewer-content .class-api-item h3 > code {
+    color: inherit;
+    background: none;
+    padding: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
 }
 
 .class-status {

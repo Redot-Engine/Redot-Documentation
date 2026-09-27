@@ -2,9 +2,11 @@
 @page "/en/{VersionSlug}/Classes/{ClassName}"
 @layout MainLayout
 @using Redot_Documentation.ClassDocumentation
+@using Redot_Documentation.Components.Layout
 @implements IDisposable
 @inject ClassDocumentationCatalog Catalog
 @inject ClassDocumentationRenderer Renderer
+@inject NavigationManager Navigation
 @inject IJSRuntime JS
 
 <PageTitle>@PageTitleText</PageTitle>
@@ -26,9 +28,21 @@ else if (!string.IsNullOrWhiteSpace(ClassName))
     }
     else
     {
-        <div class="doc-viewer-content class-doc-viewer">
-            @((MarkupString)Renderer.RenderPage(_classDocumentation, _snapshot))
-            <DocumentationAttribution ClassReference="true" />
+        <div class="doc-viewer-layout class-doc-layout">
+            <article class="doc-viewer-content class-doc-viewer">
+                @if (_tableOfContents.Count > 0)
+                {
+                    <MudExpansionPanels Class="mobile-toc" Elevation="0" Outlined="true">
+                        <MudExpansionPanel Text="On this page"><DocumentToc Items="_tableOfContents" BuildHref="BuildTableOfContentsHref" /></MudExpansionPanel>
+                    </MudExpansionPanels>
+                }
+                @((MarkupString)_renderedHtml)
+                <DocumentationAttribution ClassReference="true" />
+            </article>
+            @if (_tableOfContents.Count > 0)
+            {
+                <div class="desktop-toc"><DocumentToc Items="_tableOfContents" BuildHref="BuildTableOfContentsHref" /></div>
+            }
         </div>
     }
 }
@@ -83,6 +97,8 @@ else
 
     private ClassDocumentationSnapshot? _snapshot;
     private ClassDocumentationEntry? _classDocumentation;
+    private string _renderedHtml = string.Empty;
+    private readonly List<DocumentHeading> _tableOfContents = [];
     private string _searchText = string.Empty;
     private bool _disposed;
 
@@ -107,10 +123,17 @@ else
     private void LoadSnapshot()
     {
         _classDocumentation = null;
+        _renderedHtml = string.Empty;
+        _tableOfContents.Clear();
         Catalog.TryGetSnapshot(VersionSlug, out _snapshot);
         if (_snapshot is not null && !string.IsNullOrWhiteSpace(ClassName))
             _snapshot.TryGetClass(ClassName, out _classDocumentation);
+        if (_classDocumentation is not null && _snapshot is not null)
+            _renderedHtml = Renderer.RenderPage(_classDocumentation, _snapshot, _tableOfContents);
     }
+
+    private string BuildTableOfContentsHref(string id)
+        => $"{ClassDocumentationRenderer.ClassPath(VersionSlug, _classDocumentation!.Name)}{new Uri(Navigation.Uri).Query}#{Uri.EscapeDataString(id)}";
 
     private void OnCatalogChanged(string versionSlug)
     {
