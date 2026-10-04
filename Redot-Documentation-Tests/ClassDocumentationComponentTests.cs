@@ -134,6 +134,33 @@ public sealed class ClassDocumentationComponentTests : IDisposable
         Assert.Empty(renderer.Errors);
     }
 
+    [Theory]
+    [InlineData("/en/26.1/Tutorials/example")]
+    [InlineData("/en/26.1/Classes")]
+    public async Task MainLayout_RegistersDockedDrawerWhenNavigatingFromHome(string destination)
+    {
+        await using var services = CreateServices();
+        var navigation = services.GetRequiredService<NavigationManager>();
+        navigation.NavigateTo("/");
+        await using var renderer = new TestRenderer(services);
+        int id = await renderer.Dispatcher.InvokeAsync(() => renderer.RenderAsync(typeof(MainLayout), ParameterView.Empty));
+
+        for (int visit = 0; visit < 2; visit++)
+        {
+            await renderer.Dispatcher.InvokeAsync(() => navigation.NavigateTo(destination));
+            Assert.Empty(renderer.Errors);
+            string[] classes = await renderer.Dispatcher.InvokeAsync(() => renderer.CssClasses(id).ToArray());
+            Assert.True(classes.Contains("mud-drawer-open-responsive-md-left"),
+                $"Visit {visit}: {string.Join(' ', classes.Where(css => css.StartsWith("mud-drawer")))}");
+
+            await renderer.Dispatcher.InvokeAsync(() => navigation.NavigateTo("/"));
+            Assert.DoesNotContain("mud-drawer-open-responsive-md-left",
+                await renderer.Dispatcher.InvokeAsync(() => renderer.CssClasses(id).ToArray()));
+        }
+
+        Assert.Empty(renderer.Errors);
+    }
+
     [Fact]
     public async Task ClassSearch_FiltersResultsThroughMudInput()
     {
@@ -447,11 +474,19 @@ public sealed class ClassDocumentationComponentTests : IDisposable
         }
     }
 
-    private sealed class TestJsRuntime : IJSRuntime
+    private sealed class TestJsRuntime : IJSRuntime, IJSObjectReference
     {
-        public ValueTask<TValue> InvokeAsync<TValue>(string identifier, object?[]? args) => ValueTask.FromResult(default(TValue)!);
+        public ValueTask<TValue> InvokeAsync<TValue>(string identifier, object?[]? args)
+        {
+            object? result = typeof(TValue) == typeof(IJSObjectReference) ? this
+                : typeof(TValue) == typeof(MudBlazor.Breakpoint) ? MudBlazor.Breakpoint.Lg
+                : typeof(TValue) == typeof(BrowserWindowSize) ? new BrowserWindowSize { Width = 1280, Height = 900 }
+                : default(TValue);
+            return ValueTask.FromResult((TValue)result!);
+        }
         public ValueTask<TValue> InvokeAsync<TValue>(string identifier, CancellationToken cancellationToken, object?[]? args)
             => InvokeAsync<TValue>(identifier, args);
+        public ValueTask DisposeAsync() => ValueTask.CompletedTask;
     }
 
     private sealed class TestEnvironment(string root) : IWebHostEnvironment

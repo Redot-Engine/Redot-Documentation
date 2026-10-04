@@ -25,7 +25,7 @@ public static class RedotTheme
         LayoutProperties = new LayoutProperties { DefaultBorderRadius = "10px", DrawerWidthLeft = "300px" },
         Typography = new Typography
         {
-            Default = new DefaultTypography { FontFamily = ["Helvetica Neue", "Helvetica", "Arial", "sans-serif"] }
+            Default = new DefaultTypography { FontFamily = ["Geist", "Helvetica Neue", "Helvetica", "Arial", "sans-serif"] }
         }
     };
 }

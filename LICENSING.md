@@ -72,6 +72,8 @@ The website MIT grant does not replace any dependency's license.
 | --- | --- |
 | `Redot-Documentation/wwwroot/lib/bootstrap/` (Bootstrap 5.3.3) | MIT, Copyright (c) 2011-2024 The Bootstrap Authors; [full text](Redot-Documentation/wwwroot/lib/bootstrap/LICENSE.txt) |
 | `Redot-Documentation/wwwroot/lib/prism/` (Prism) | MIT, Copyright (c) 2012 Lea Verou; [full text](Redot-Documentation/wwwroot/lib/prism/LICENSE.txt) |
+| `Redot-Documentation/wwwroot/fonts/geist/` (Geist) | SIL OFL 1.1, Copyright 2024 The Geist Project Authors; [full text](Redot-Documentation/wwwroot/fonts/geist/OFL.txt) |
+| `Redot-Documentation/wwwroot/fonts/jetbrains-mono/` (JetBrains Mono) | SIL OFL 1.1, Copyright 2020 The JetBrains Mono Project Authors; [full text](Redot-Documentation/wwwroot/fonts/jetbrains-mono/OFL.txt) |
 | `Redot-Documentation/wwwroot/Icons/Font-Awesome/` | Font Awesome Free: icons CC BY 4.0, fonts SIL OFL 1.1, code MIT, as applicable; [original notice](Redot-Documentation/wwwroot/Icons/Font-Awesome/LICENSE.txt) |
 | MudBlazor 9.9.0 | MIT; [full notice](Redot-Documentation/wwwroot/licenses/MUDBLAZOR-MIT.txt) |
 | Markdig 0.41.3 | BSD-2-Clause, Copyright (c) 2018-2019 Alexandre Mutel; [full text](Redot-Documentation/wwwroot/licenses/MARKDIG-BSD-2-CLAUSE.txt), retrieved from the package's source revision `7ff8db9016593b71f9ae17d9b2b053fbd54e9cdf` |

@@ -32,7 +32,8 @@
     </MudAppBar>
     @if (HasNavigation)
     {
-        <MudDrawer @bind-Open="_drawerOpen" Variant="@(IsDocumentation ? DrawerVariant.Responsive : DrawerVariant.Temporary)" ClipMode="DrawerClipMode.Always" Breakpoint="Breakpoint.Md" Elevation="0" Class="docs-drawer">
+        @* Recreate the drawer when its variant changes so MudLayout updates its content offset. *@
+        <MudDrawer @key="IsDocumentation" @bind-Open="_drawerOpen" Variant="@(IsDocumentation ? DrawerVariant.Responsive : DrawerVariant.Temporary)" ClipMode="DrawerClipMode.Always" Breakpoint="Breakpoint.Md" Elevation="0" Class="docs-drawer">
             <NavMenu />
         </MudDrawer>
     }
