@@ -10,8 +10,8 @@ limited to assets that are compatible with Godot 4.5.x.
 
 # About the Asset Library
 
-The Redot Asset Library, otherwise known as the AssetLib, is a repository of
-user-submitted Redot addons, scripts, tools, and other resources, collectively referred
+The Godot Asset Library, otherwise known as the AssetLib, is a repository of
+user-submitted Godot and Redot addons, scripts, tools, and other resources, collectively referred
 to as assets. They're available to all Godot and Redot users for download directly from within the
 engine, but it can also be accessed at Godot's [official website](https://godotengine.org/asset-library/asset).
 
@@ -29,7 +29,7 @@ This set of pages will cover how to use the AssetLib (both from inside Redot, an
 website), how you can submit your own assets, and what the guidelines for submission are.
 
 Please note that the AssetLib is relatively young - it may have various pain points, bugs,
-and usability issues. As with all Redot projects, the code repository is available on [GitHub](https://github.com/redot-engine/redot-asset-library),
+and usability issues. As with all Godot and Redot projects, the code repository is available on [GitHub](https://github.com/redot-engine/redot-asset-library),
 where you can submit pull requests and issues, so please do not hesitate to visit it!
 
 ## Types of assets
