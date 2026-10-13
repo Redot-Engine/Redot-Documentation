@@ -125,7 +125,7 @@ The following NavigationAgent properties are relevant for avoidance:
 
 Avoidance exists in its own space and has no information from navigation meshes or physics collision.
 Behind the scene avoidance agents are just circles with different radius on a flat 2D plane or spheres in an otherwise empty 3D space.
-NavigationObstacles can be used to add some environment constrains to the avoidance simulation, see [doc_navigation_using_navigationobstacles](navigation_using_navigationobstacles.md).
+NavigationObstacles can be used to add some environment constrains to the avoidance simulation, see [doc_navigation_using_navigationobstacles](doc_navigation_using_navigationobstacles).
 
 :::note
 

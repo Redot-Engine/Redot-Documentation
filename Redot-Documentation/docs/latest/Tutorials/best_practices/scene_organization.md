@@ -505,7 +505,7 @@ GUI nodes would also delete themselves during scene transitions.
 
 If you have systems that modify other systems' data, you should define those as
 their own scripts or scenes, rather than autoloads. For more information, see
-[Autoloads versus regular nodes ](autoloads_versus_internal_nodes.md).
+[Autoloads versus regular nodes ](doc_autoloads_versus_internal_nodes).
 
 Each subsystem within your game should have its own section within the
 SceneTree. You should use parent-child relationships only in cases where nodes

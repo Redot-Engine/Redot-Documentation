@@ -42,7 +42,7 @@ the user interface can also be modified directly through code.
 
 :::note
 If you would like to use an external text editor or prefer to use C#
-in your project, see [doc_external_editor](external_editor.md) and
+in your project, see [doc_external_editor](doc_external_editor) and
 [doc_c_sharp_setup_external_editor](doc_c_sharp_basics#configuring-an-external-editor).
 
 :::

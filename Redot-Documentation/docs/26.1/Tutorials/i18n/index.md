@@ -4,8 +4,7 @@ This section contains tutorials and documentation about internationalization (i1
 
 ## Articles
 
-- [Internationalizing games](internationalizing_games)
-- [Locale codes](locales)
-- [Localization using gettext](localization_using_gettext)
-- [Pseudolocalization](pseudolocalization)
-
+- [Internationalizing games](doc_internationalizing_games)
+- [Locale codes](doc_locales)
+- [Localization using gettext](doc_localization_using_gettext)
+- [Pseudolocalization](doc_pseudolocalization)

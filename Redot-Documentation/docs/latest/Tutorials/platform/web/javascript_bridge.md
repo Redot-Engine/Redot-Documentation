@@ -140,7 +140,7 @@ func _on_permissions(args):
 You most likely can. First, you have to
 include your library in the page. You can customize the
 [Head Include ](doc_exporting_for_web#export-options) during export (see below),
-or even [write your own template ](customizing_html5_shell.md).
+or even [write your own template ](doc_customizing_html5_shell).
 
 In the example below, we customize the ``Head Include`` to add an external library
 ([axios ](https://axios-http.com/)) from a content delivery network, and a

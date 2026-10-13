@@ -275,7 +275,7 @@ Reflected light can be set to one of 3 modes:
 :::note
 
 This section refers to non-volumetric fog only.
-It is possible to use both non-volumetric fog and [doc_volumetric_fog](volumetric_fog.md)
+It is possible to use both non-volumetric fog and [doc_volumetric_fog](doc_volumetric_fog)
 at the same time.
 
 :::
@@ -894,7 +894,7 @@ real life, daytime photography generally uses ISO values between 100 and 800.
 
 :::info
 
-See [doc_physical_light_and_camera_units](physical_light_and_camera_units.md) if you wish to use real world
+See [doc_physical_light_and_camera_units](doc_physical_light_and_camera_units) if you wish to use real world
 units to configure your camera's exposure, field of view and depth of field.
 
 :::

@@ -139,7 +139,7 @@ way to deal with resources.
 There are many types of assets available for import. Continue reading to
 understand how to work with all of them:
 
-- [doc_importing_images](importing_images.md)
-- [doc_importing_audio_samples](importing_audio_samples.md)
-- [doc_importing_3d_scenes](importing_3d_scenes/index.md)
-- [doc_importing_translations](importing_translations.md)
+- [doc_importing_images](doc_importing_images)
+- [doc_importing_audio_samples](doc_importing_audio_samples)
+- [doc_importing_3d_scenes](importing_3d_scenes/index)
+- [doc_importing_translations](doc_importing_translations)

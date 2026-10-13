@@ -249,7 +249,7 @@ GetNode<Label>("Label").Text = string.Format(TrN("{0} job", "{0} jobs", numJobs,
 :::note
 
 Providing pluralized translations is only supported with
-[doc_localization_using_gettext](localization_using_gettext.md), not CSV.
+[doc_localization_using_gettext](doc_localization_using_gettext), not CSV.
 
 :::
 
@@ -404,4 +404,4 @@ translation. After doing that you can now type in the localized name.
 ![Image](/img/Tutorials/i18n/img/localized_name.webp)
 
 If you are unsure about the language code to use, refer to the
-[list of locale codes ](locales.md).
+[list of locale codes ](doc_locales).

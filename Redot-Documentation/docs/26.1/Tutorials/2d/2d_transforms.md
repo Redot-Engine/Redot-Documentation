@@ -15,7 +15,7 @@ available in [doc_2d_coordinate_systems](doc_2d_coordinate_systems).
 
 ## Canvas transform
 
-As mentioned in the previous tutorial, [doc_canvas_layers](canvas_layers.md), every
+As mentioned in the previous tutorial, [doc_canvas_layers](doc_canvas_layers), every
 CanvasItem node (remember that Node2D and Control based nodes use
 CanvasItem as their common root) will reside in a *Canvas Layer*. Every
 canvas layer has a transform (translation, rotation, scale, etc.) that

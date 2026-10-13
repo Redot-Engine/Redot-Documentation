@@ -4,7 +4,7 @@
 :::info
 
 This page assumes you have created or downloaded a TileSet already. If not,
-please read [doc_using_tilesets](using_tilesets.md) first as you will need a TileSet
+please read [doc_using_tilesets](doc_using_tilesets) first as you will need a TileSet
 to create a TileMap.
 
 :::

@@ -72,7 +72,7 @@ to discuss implementation options for exposing the missing functionality.
 The Redot developers officially support the following language bindings for
 GDExtension:
 
-- C++ [(tutorial) ](gdextension_cpp_example.md)
+- C++ [(tutorial) ](doc_gdextension_cpp_example)
 
 :::note
 

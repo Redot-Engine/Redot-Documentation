@@ -15,7 +15,7 @@ your plugin structure, and the second one will let you store some per-gizmo data
 
 :::note
 This tutorial assumes you already know how to make generic plugins. If
-in doubt, refer to the [doc_making_plugins](making_plugins.md) page.
+in doubt, refer to the [doc_making_plugins](doc_making_plugins) page.
 
 :::
 

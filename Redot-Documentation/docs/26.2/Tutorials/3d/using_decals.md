@@ -32,7 +32,7 @@ The Redot demo projects repository contains a
 [3D decals demo](https://github.com/redot-engine/redot-demo-projects/tree/master/3d/decals).
 
 If you're looking to write arbitrary 3D text on top of a surface, use
-[doc_3d_text](3d_text.md) placed close to a surface instead of a Decal node.
+[doc_3d_text](doc_3d_text) placed close to a surface instead of a Decal node.
 
 :::
 
@@ -252,7 +252,7 @@ When using the Forward+ renderer, Redot uses a *clustering* approach for
 decal rendering. As many decals as desired can be added (as long as
 performance allows). However, there's still a default limit of 512 *clustered
 elements* that can be present in the current camera view. A clustered element is
-an omni light, a spot light, a [decal](using_decals.md) or a
+an omni light, a spot light, a [decal](doc_using_decals) or a
 [reflection probe](global_illumination/reflection_probes.md). This limit can be increased by adjusting
 [Max Clustered Elements](class_ProjectSettings_property_rendering/limits/cluster_builder/max_clustered_elements)
 in **Project Settings &gt; Rendering &gt; Limits &gt; Cluster Builder**.

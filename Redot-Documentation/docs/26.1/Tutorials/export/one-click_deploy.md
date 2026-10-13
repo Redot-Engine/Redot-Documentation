@@ -29,7 +29,7 @@ other preset will no longer be marked as runnable.
 - **Android:** Exports the project with debugging enabled and runs it on the
   connected device.
 
-   - Make sure to follow the steps described in [doc_exporting_for_android](exporting_for_android.md).
+   - Make sure to follow the steps described in [doc_exporting_for_android](doc_exporting_for_android).
      Otherwise, the one-click deploy button won't appear.
 
    - If you have more than one device connected, Redot will ask you which device

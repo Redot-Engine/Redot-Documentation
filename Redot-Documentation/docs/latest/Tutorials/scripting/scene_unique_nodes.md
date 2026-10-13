@@ -88,10 +88,10 @@ is marked as a scene unique node in the **Player** scene, so this is possible:
 Scene unique nodes are a useful tool to navigate a scene. However, there are
 some situations where other techniques may be better.
 
-A [Group ](groups.md) allows locating a node (or a group of many nodes)
+A [Group ](doc_groups) allows locating a node (or a group of many nodes)
 from any other node, no matter what scene the two nodes are located in.
 
-A [Singleton (Autoload) ](singletons_autoload.md) is an always loaded node
+A [Singleton (Autoload) ](doc_singletons_autoload) is an always loaded node
 that can be accessed directly by any node regardless of the scene. These are useful
 when some data or functionality is shared globally.
 

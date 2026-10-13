@@ -11,7 +11,7 @@ works and what their pros and cons are. In this tutorial, we'll look at the
 
 :::note
 This document assumes you're familiar with Redot's various physics
-bodies. Please read [doc_physics_introduction](physics_introduction.md) first.
+bodies. Please read [doc_physics_introduction](doc_physics_introduction) first.
 
 :::
 

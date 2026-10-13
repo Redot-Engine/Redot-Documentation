@@ -72,7 +72,7 @@ joining static objects often outweigh other considerations, especially for large
 numbers of distant or low-poly objects.
 
 For more information on 3D specific optimizations, see
-[doc_optimizing_3d_performance](optimizing_3d_performance.md).
+[doc_optimizing_3d_performance](doc_optimizing_3d_performance).
 
 ### Reuse shaders and materials
 

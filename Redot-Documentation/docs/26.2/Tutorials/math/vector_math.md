@@ -571,5 +571,5 @@ resulting perpendicular vector is the axis of rotation.
 
 For more information on using vector math in Redot, see the following articles:
 
-- [doc_vectors_advanced](vectors_advanced.md)
-- [doc_matrices_and_transforms](matrices_and_transforms.md)
+- [doc_vectors_advanced](doc_vectors_advanced)
+- [doc_matrices_and_transforms](doc_matrices_and_transforms)

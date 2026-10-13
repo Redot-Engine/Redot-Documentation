@@ -4,6 +4,5 @@ This section contains tutorials and documentation about vertex animation in Redo
 
 ## Articles
 
-- [Animating thousands of fish with MultiMeshInstance3D](animating_thousands_of_fish)
-- [Controlling thousands of fish with Particles](controlling_thousands_of_fish)
-
+- [Animating thousands of fish with MultiMeshInstance3D](doc_animating_thousands_of_fish)
+- [Controlling thousands of fish with Particles](doc_controlling_thousands_of_fish)

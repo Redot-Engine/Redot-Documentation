@@ -48,7 +48,7 @@ blending with what is behind work. As a result,
 small section with transparency, try to make that section a separate surface
 with its own material.
 
-For more information, see the [GPU optimizations ](gpu_optimization.md)
+For more information, see the [GPU optimizations ](doc_gpu_optimization)
 doc.
 
 ## Level of detail (LOD)
@@ -104,7 +104,7 @@ of many thousands of objects at very little performance cost, making it ideal
 for flocks, grass, particles, and anything else where you have thousands of
 identical objects.
 
-See also the [Using MultiMesh ](using_multimesh.md) documentation.
+See also the [Using MultiMesh ](doc_using_multimesh) documentation.
 
 ## Bake lighting
 

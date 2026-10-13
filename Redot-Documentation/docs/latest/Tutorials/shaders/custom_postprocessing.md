@@ -11,7 +11,7 @@ to write your own custom effects.
 The easiest way to implement a custom post-processing shader is to use Redot's
 built-in ability to read from the screen texture. If you're not familiar with
 this, you should read the
-[Screen Reading Shaders Tutorial ](screen-reading_shaders.md) first.
+[Screen Reading Shaders Tutorial ](doc_screen-reading_shaders) first.
 
 ## Single pass post-processing
 

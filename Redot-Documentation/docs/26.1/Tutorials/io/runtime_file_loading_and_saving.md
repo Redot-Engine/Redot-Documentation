@@ -3,7 +3,7 @@
 
 :::info
 
-See [doc_saving_games](saving_games.md) for information on saving and loading game progression.
+See [doc_saving_games](doc_saving_games) for information on saving and loading game progression.
 
 :::
 
@@ -97,7 +97,7 @@ If you need more control over reading binary files or need to read binary
 streams that are not part of a file, [class_PackedByteArray](class_PackedByteArray) provides
 several helper methods to decode/encode series of bytes to integers, floats,
 strings and more. These PackedByteArray methods have names that start with
-``decode_`` and ``encode_``. See also [doc_binary_serialization_api](binary_serialization_api.md).
+``decode_`` and ``encode_``. See also [doc_binary_serialization_api](doc_binary_serialization_api).
 
 ## Images
 

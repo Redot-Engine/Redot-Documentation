@@ -88,7 +88,7 @@ The NavigationServer can create and support as many navigation maps as required 
 Additional navigation maps are created and handled by using the NavigationServer API
 directly e.g. to support different avoidance agent or actor locomotion types.
 
-For example uses of different navigation maps see [doc_navigation_different_actor_types](navigation_different_actor_types.md) and [doc_navigation_different_actor_locomotion](navigation_different_actor_locomotion.md).
+For example uses of different navigation maps see [doc_navigation_different_actor_types](doc_navigation_different_actor_types) and [doc_navigation_different_actor_locomotion](doc_navigation_different_actor_locomotion).
 
 Each navigation map individually synchronizes queued changes to its navigation regions and avoidance agents.
 A navigation map that has not received changes will consume little to no processing time.

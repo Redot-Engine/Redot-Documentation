@@ -13,7 +13,7 @@ collision, occlusion, and navigation shapes.
 
 To use TileMapLayer nodes, you will need to create a TileSet first. A TileSet is a
 collection of tiles that can be placed in a TileMapLayer node. After creating a
-TileSet, you will be able to place them [using the TileMap editor ](using_tilemaps.md).
+TileSet, you will be able to place them [using the TileMap editor ](doc_using_tilemaps).
 
 To follow this guide, you will need an image containing your tiles where every
 tile has the same size (large objects can be split into several tiles). This
@@ -238,7 +238,7 @@ If you use [2D navigation ](../navigation/navigation_introduction_2d.md), you'll
 to define navigation polygons for tiles to generate a navigation mesh that
 agents can use for pathfinding.
 
-Lastly, if you use [doc_2d_lights_and_shadows](2d_lights_and_shadows.md) or GPUParticles2D, you may
+Lastly, if you use [doc_2d_lights_and_shadows](doc_2d_lights_and_shadows) or GPUParticles2D, you may
 also want your TileSet to be able to cast shadows and collide with particles.
 This requires defining occluder polygons for "solid" tiles on the TileSet.
 

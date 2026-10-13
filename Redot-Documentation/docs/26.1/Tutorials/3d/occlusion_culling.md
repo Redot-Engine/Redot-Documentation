@@ -55,7 +55,7 @@ Since the engine has less work to do (fewer vertices to render and fewer draw ca
 performance will increase as long as there are enough occlusion culling opportunities
 in the scene. This means occlusion culling is most effective in indoor scenes,
 preferably with many smaller rooms instead of fewer larger rooms. Combine
-this with [doc_mesh_lod](mesh_lod.md) and [doc_visibility_ranges](visibility_ranges.md) to further improve
+this with [doc_mesh_lod](doc_mesh_lod) and [doc_visibility_ranges](visibility_ranges.md) to further improve
 performance gains.
 
 :::note

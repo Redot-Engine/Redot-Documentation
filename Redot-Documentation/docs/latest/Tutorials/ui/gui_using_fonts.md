@@ -197,7 +197,7 @@ The result should look like this:
 
 You can create local overrides to font display in Label nodes by creating a
 [class_LabelSettings](class_LabelSettings) resource that you reuse across Label nodes. This
-resource takes priority over [theme properties ](gui_skinning.md).
+resource takes priority over [theme properties ](doc_gui_skinning).
 
 :::
 
@@ -403,7 +403,7 @@ font generation tools remains scarce.
 :::
 
 Depending on your use cases, this may lead to better results compared to using
-the ``img`` tag in [RichTextLabel ](bbcode_in_richtextlabel.md). Unlike
+the ``img`` tag in [RichTextLabel ](doc_bbcode_in_richtextlabel). Unlike
 bitmap images (including SVGs which are rasterized on import by Redot),
 true vector data can be resized to any size without losing quality.
 

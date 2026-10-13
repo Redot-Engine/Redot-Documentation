@@ -13,7 +13,7 @@ that use the same navigation layer bits can find a path through the "door" navig
 
 The bitmask can act as a set of door keys or abilities and only actors with at least 
 one matching and enabled bit layer in their pathfinding query will find a path through this region.
-See [doc_navigation_advanced_using_navigationlayers](navigation_using_navigationlayers.md) for more information on how to work with navigation layers and the bitmask.
+See [doc_navigation_advanced_using_navigationlayers](doc_navigation_using_navigationlayers) for more information on how to work with navigation layers and the bitmask.
 
 ![Image](/img/Tutorials/navigation/img/nav_actor_doorbitmask.png)
 

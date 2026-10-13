@@ -176,7 +176,7 @@ GD.Print(myGDScriptNode.Get("my_property"));
 
 Keep in mind that when setting a field value you should only use types the
 GDScript side knows about.
-Essentially, you want to work with built-in types as described in [doc_gdscript](gdscript/gdscript_basics.md) or classes extending [class_Object](class_Object).
+Essentially, you want to work with built-in types as described in [GDScript](gdscript/gdscript_basics.md) or classes extending [class_Object](class_Object).
 
 ## Calling methods
 

@@ -40,7 +40,7 @@ For compiling under Windows, Linux or macOS, the following is required:
 :::info
 
 To get the Redot source code for compiling, see
-[doc_getting_source](getting_source.md).
+[doc_getting_source](doc_getting_source).
 
 For a general overview of SCons usage for Redot, see
 [doc_introduction_to_the_buildsystem](doc_introduction_to_the_buildsystem).

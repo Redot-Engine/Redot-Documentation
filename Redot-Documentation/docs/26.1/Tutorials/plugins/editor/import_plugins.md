@@ -6,7 +6,7 @@ This page is marked as outdated and may not reflect current Redot behavior.
 
 :::note
 This tutorial assumes you already know how to make generic plugins. If
-in doubt, refer to the [doc_making_plugins](making_plugins.md) page. This also
+in doubt, refer to the [doc_making_plugins](doc_making_plugins) page. This also
 assumes you are acquainted with Redot's import system.
 
 :::

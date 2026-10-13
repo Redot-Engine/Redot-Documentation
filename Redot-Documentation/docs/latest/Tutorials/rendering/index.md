@@ -4,9 +4,8 @@ This section contains tutorials and documentation about rendering in Redot Engin
 
 ## Articles
 
-- [The Compositor](compositor)
-- [Fixing jitter, stutter and input lag](jitter_stutter)
-- [Multiple resolutions](multiple_resolutions)
-- [Renderers](renderers)
-- [Using Viewports](viewports)
-
+- [The Compositor](doc_compositor)
+- [Fixing jitter, stutter and input lag](doc_jitter_stutter)
+- [Multiple resolutions](doc_multiple_resolutions)
+- [Renderers](doc_renderers)
+- [Using Viewports](doc_viewports)

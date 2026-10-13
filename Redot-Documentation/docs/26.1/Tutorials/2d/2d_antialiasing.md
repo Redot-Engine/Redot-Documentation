@@ -13,7 +13,7 @@ Redot also supports antialiasing in 3D rendering. This is covered on the
 Due to their limited resolution, scenes rendered in 2D can exhibit aliasing
 artifacts. These artifacts usually manifest in the form of a "staircase" effect on
 geometry edges, and are most noticeable when using nodes such as [class_Line2D](class_Line2D),
-[class_Polygon2D](class_Polygon2D) or [class_TextureProgressBar](class_TextureProgressBar). [doc_custom_drawing_in_2d](custom_drawing_in_2d.md)
+[class_Polygon2D](class_Polygon2D) or [class_TextureProgressBar](class_TextureProgressBar). [doc_custom_drawing_in_2d](doc_custom_drawing_in_2d)
 can also have aliasing artifacts for methods that don't support antialiasing.
 
 In the example below, you can notice how

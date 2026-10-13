@@ -107,7 +107,7 @@ and how that effects performance.
 :::info
 
 A detailed explanation of how to use the profiler can be found in the
-dedicated [doc_the_profiler](the_profiler.md) page.
+dedicated [doc_the_profiler](doc_the_profiler) page.
 
 :::
 
@@ -222,7 +222,7 @@ is running, you can open it later and see how the values changed.
 :::info
 
 In addition to the default performance monitors, you can also create
-[custom performance monitors ](custom_performance_monitors.md)
+[custom performance monitors ](doc_custom_performance_monitors)
 to track arbitrary values in your project.
 
 :::

@@ -46,8 +46,8 @@ behavior once and feed it to multiple render passes.
 
 If you followed the steps above, your particle system should now be emitting particles in a waterfall-like fashion,
 making them move downwards and disappear after a few seconds. This is the foundation for all
-particle effects. Take a look at the documentation for [particle ](properties.md) and
-[particle material ](process_material_properties.md) properties to
+particle effects. Take a look at the documentation for [particle ](doc_properties) and
+[particle material ](doc_process_material_properties) properties to
 learn how to make particle effects more interesting.
 
 ![Image](/img/Tutorials/3d/particles/img/particle_basic_system.webp)

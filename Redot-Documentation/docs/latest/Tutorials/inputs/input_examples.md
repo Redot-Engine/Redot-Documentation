@@ -12,7 +12,7 @@ own projects.
 
 :::note
 For a detailed overview of how Redot's input event system works,
-see [doc_inputevent](inputevent.md).
+see [doc_inputevent](doc_inputevent).
 
 :::
 

@@ -92,7 +92,7 @@ It is however a stationary point in the real world.
 
 This reference space is the best option for room scale games where the user is expected to walk around a larger space,
 or for games where there is a need to switch between game modes.
-See [Room Scale ](xr_room_scale.md) for more information.
+See [Room Scale ](doc_xr_room_scale) for more information.
 
 When the user enacts the recenter option on their headset, the method of which is different per XR runtime,
 the XR runtime will not change the origin point.
@@ -248,7 +248,7 @@ come from optical hand tracking sensors or any other applicable source.
 
 If your game only supports controllers this should be turned off. 
 
-See the chapter on [hand tracking ](openxr_hand_tracking.md) for additional details.
+See the chapter on [hand tracking ](doc_openxr_hand_tracking) for additional details.
 
 ### Eye Gaze Interaction
 

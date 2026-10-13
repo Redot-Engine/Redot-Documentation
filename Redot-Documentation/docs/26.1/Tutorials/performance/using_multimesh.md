@@ -7,7 +7,7 @@ This page is marked as outdated and may not reflect current Redot behavior.
 
 For large amount of instances (in the thousands), that need to be constantly processed
 (and certain amount of control needs to be retained),
-[using servers directly ](using_servers.md) is the recommended optimization.
+[using servers directly ](doc_using_servers) is the recommended optimization.
 
 When the amount of objects reach the hundreds of thousands or millions,
 none of these approaches are efficient anymore. Still, depending on the requirements, there

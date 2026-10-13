@@ -4,7 +4,7 @@
 :::info
 
 This page covers running Redot projects on macOS.
-If you haven't exported your project yet, read [doc_exporting_for_macos](exporting_for_macos.md) first.
+If you haven't exported your project yet, read [doc_exporting_for_macos](doc_exporting_for_macos) first.
 
 :::
 

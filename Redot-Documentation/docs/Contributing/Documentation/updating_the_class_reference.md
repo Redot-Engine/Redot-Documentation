@@ -51,7 +51,7 @@ For details on Git usage and the pull request workflow, please
 refer to the [doc_pr_workflow](doc_pr_workflow) page.
 
 If you want to translate the class reference from English to another
-language, see [doc_editor_and_docs_localization](editor_and_docs_localization.md). This guide is
+language, see [doc_editor_and_docs_localization](doc_editor_and_docs_localization). This guide is
 also available as a [video tutorial on YouTube](https://www.youtube.com/watch?v=5jeHXxeX-JY).
 
 :::

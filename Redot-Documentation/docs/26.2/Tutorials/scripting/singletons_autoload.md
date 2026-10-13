@@ -152,7 +152,7 @@ runtime, or the engine will crash.
 This tutorial will demonstrate building a scene switcher using autoloads.
 For basic scene switching, you can use the
 [SceneTree.change_scene_to_file() ](class_SceneTree_method_change_scene_to_file)
-method (see [doc_scene_tree](scene_tree.md) for details). However, if you need more
+method (see [doc_scene_tree](doc_scene_tree) for details). However, if you need more
 complex behavior when changing scenes, this method provides more functionality.
 
 To begin, download the template from here:

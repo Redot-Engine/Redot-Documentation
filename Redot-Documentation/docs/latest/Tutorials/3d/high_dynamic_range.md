@@ -111,4 +111,4 @@ HDR settings can be found in the [Environment](class_Environment)
 resource. Most of the time, these are found inside a
 [WorldEnvironment](class_WorldEnvironment)
 node or set in a Camera node. For more information, see
-[doc_environment_and_post_processing](environment_and_post_processing.md).
+[doc_environment_and_post_processing](doc_environment_and_post_processing).

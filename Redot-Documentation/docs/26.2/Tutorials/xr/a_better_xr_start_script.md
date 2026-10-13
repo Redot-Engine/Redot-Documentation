@@ -1,14 +1,14 @@
 
 # A better XR start script
 
-In [doc_setting_up_xr](setting_up_xr.md) we introduced a startup script that initialises our setup which we used as our script on our main node.
+In [doc_setting_up_xr](doc_setting_up_xr) we introduced a startup script that initialises our setup which we used as our script on our main node.
 This script performs the minimum steps required for any given interface.
 
 When using OpenXR there are a number of improvements we should do here.
 For this we've created a more elaborate starting script.
 You will find these used in our demo projects.
 
-Alternatively, if you are using XR Tools (see [doc_introducing_xr_tools](introducing_xr_tools.md)) it contains a version of this script updated with some features related to XR tools.
+Alternatively, if you are using XR Tools (see [doc_introducing_xr_tools](doc_introducing_xr_tools)) it contains a version of this script updated with some features related to XR tools.
 
 Below we will detail out the script used in our demos and explain the parts that are added.
 
@@ -118,7 +118,7 @@ On platforms that support this, this will enable foveated rendering.
 
 If we're using the compatibility renderer, we check if the OpenXR foveated rendering settings
 are configured and if not, we output a warning.
-See [OpenXR Settings ](openxr_settings.md) for further details.
+See [OpenXR Settings ](doc_openxr_settings) for further details.
 
 We hook up a number of signals that will be emitted by the [XRInterface ](class_xrinterface).
 We'll provide more detail about these signals as we implement them.

@@ -1,7 +1,7 @@
 
 # GDScript reference
 
-[GDScript](gdscript_basics.md) is a high-level, [object-oriented](https://en.wikipedia.org/wiki/Object-oriented_programming), [imperative](https://en.wikipedia.org/wiki/Imperative_programming), and [gradually typed](https://en.wikipedia.org/wiki/Gradual_typing) programming language built for Redot.
+GDScript is a high-level, [object-oriented](https://en.wikipedia.org/wiki/Object-oriented_programming), [imperative](https://en.wikipedia.org/wiki/Imperative_programming), and [gradually typed](https://en.wikipedia.org/wiki/Gradual_typing) programming language built for Redot.
 It uses an indentation-based syntax similar to languages like
 [Python ](https://en.wikipedia.org/wiki/Python_%28programming_language%29).
 Its goal is to be optimized for and tightly integrated with Redot Engine,
@@ -106,7 +106,7 @@ func _init():
 
 If you have previous experience with statically typed languages such as
 C, C++, or C# but never used a dynamically typed one before, it is advised you
-read this tutorial: [doc_gdscript_more_efficiently](gdscript_advanced.md).
+read this tutorial: [doc_gdscript_more_efficiently](doc_gdscript_advanced).
 
 ## Identifiers
 
@@ -302,7 +302,7 @@ or use concatenation with a regular string literal.
 
 :::
 
-GDScript also supports [format strings ](gdscript_format_string.md).
+GDScript also supports [format strings ](doc_gdscript_format_string).
 
 ## Annotations
 
@@ -322,7 +322,7 @@ var ranged_var: int = 50
 
 ```
 
-For more information about exporting properties, read the [GDScript exports ](gdscript_exports.md)
+For more information about exporting properties, read the [GDScript exports ](doc_gdscript_exports)
 article.
 
 Any constant expression compatible with the required argument type can be passed as an annotation argument value
@@ -446,7 +446,7 @@ comment*, which will appear in the script documentation and in the inspector
 description of an exported variable. Documentation comments must be placed
 directly *above* a documentable item (such as a member variable), or at the top
 of a file. Dedicated formatting options are also available. See
-[doc_gdscript_documentation_comments](gdscript_documentation_comments.md) for details.
+[doc_gdscript_documentation_comments](doc_gdscript_documentation_comments) for details.
 
 ```
 ## This comment will appear in the script documentation.
@@ -916,7 +916,7 @@ at all. Therefore, inference is not allowed by default for ``Variant``,
 since it's likely a mistake.
 
 You can turn off this check, or make it only a warning, by changing it in
-the project settings. See [doc_gdscript_warning_system](warning_system.md) for details.
+the project settings. See [doc_gdscript_warning_system](doc_warning_system) for details.
 
 :::
 

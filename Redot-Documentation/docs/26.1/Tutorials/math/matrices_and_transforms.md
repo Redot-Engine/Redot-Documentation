@@ -4,7 +4,7 @@
 ## Introduction
 
 Before reading this tutorial, we recommend that you thoroughly read
-and understand the [doc_vector_math](vector_math.md) tutorial, as this tutorial
+and understand the [doc_vector_math](doc_vector_math) tutorial, as this tutorial
 requires a knowledge of vectors.
 
 This tutorial is about *transformations* and how we represent them

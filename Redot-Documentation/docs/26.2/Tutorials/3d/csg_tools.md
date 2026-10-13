@@ -288,7 +288,7 @@ or a city; explore its limitations when designing your game.
 
 ## Using prototype textures
 
-Redot's [doc_standard_material_3d](standard_material_3d.md) supports *triplanar mapping*, which can be
+Redot's [doc_standard_material_3d](doc_standard_material_3d) supports *triplanar mapping*, which can be
 used to automatically apply a texture to arbitrary objects without distortion.
 This is handy when using CSG as Redot doesn't support editing UV maps on CSG
 nodes yet. Triplanar mapping is relatively slow, which usually restricts its

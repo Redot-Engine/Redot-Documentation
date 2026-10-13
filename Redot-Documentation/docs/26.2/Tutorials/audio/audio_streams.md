@@ -6,7 +6,7 @@ This page is marked as outdated and may not reflect current Redot behavior.
 
 ## Introduction
 
-As you might have already read in [doc_audio_buses](audio_buses.md), sound is sent to
+As you might have already read in [doc_audio_buses](doc_audio_buses), sound is sent to
 each bus via an AudioStreamPlayer node. There are different kinds
 of AudioStreamPlayers. Each one loads an AudioStream and plays it back.
 

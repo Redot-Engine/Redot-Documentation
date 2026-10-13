@@ -2,15 +2,15 @@
 # Using Lightmap global illumination
 
 Baked lightmaps are a workflow for adding indirect (or fully baked)
-lighting to a scene. Unlike the [VoxelGI ](using_voxel_gi.md) and
-[SDFGI ](using_sdfgi.md) approaches, baked lightmaps work fine on low-end PCs
+lighting to a scene. Unlike the [VoxelGI ](doc_using_voxel_gi) and
+[SDFGI ](doc_using_sdfgi) approaches, baked lightmaps work fine on low-end PCs
 and mobile devices, as they consume almost no resources at runtime. Also unlike
 VoxelGI and SDFGI, baked lightmaps can optionally be used to store direct
 lighting, which provides even further performance gains.
 
 Unlike VoxelGI and SDFGI, baked lightmaps are completely static. Once baked, they
 can't be modified at all. They also don't provide the scene with reflections, so
-using [doc_reflection_probes](reflection_probes.md) together with it on interiors (or using a Sky
+using [doc_reflection_probes](doc_reflection_probes) together with it on interiors (or using a Sky
 on exteriors) is a requirement to get good quality.
 
 As they are baked, they have fewer problems than VoxelGI and SDFGI regarding

@@ -35,7 +35,7 @@ There are two ways to export a project for a server:
 Both methods should result in identical output. The rest of the page will focus
 on the first approach.
 
-See [doc_exporting_projects](exporting_projects.md) for more information.
+See [doc_exporting_projects](doc_exporting_projects) for more information.
 
 ## Exporting a project for a dedicated server
 

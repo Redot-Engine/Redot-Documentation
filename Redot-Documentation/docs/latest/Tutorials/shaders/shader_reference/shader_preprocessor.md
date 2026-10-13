@@ -196,7 +196,7 @@ out. This does not apply to runtime ``if`` statements.
 
 **#if preprocessor versus if statement: Performance caveats**
 
-The [shading language ](shading_language.md) supports runtime ``if`` statements:
+The [shading language ](doc_shading_language) supports runtime ``if`` statements:
 
 ```glsl
 uniform bool USE_LIGHT = true;

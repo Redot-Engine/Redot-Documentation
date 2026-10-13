@@ -9,7 +9,7 @@ NavigationLayers can be named in the **ProjectSettings** the same as physics lay
 ![Image](/img/Tutorials/navigation/img/navigationlayers_naming.png)
 
 If a region has not a single compatible navigation layer with the ``navigation_layers`` parameter of a path query this regions navigation mesh will be skipped in pathfinding.
-See [doc_navigation_using_navigationpaths](navigation_using_navigationpaths.md) for more information on querying the NavigationServer for paths.
+See [doc_navigation_using_navigationpaths](doc_navigation_using_navigationpaths) for more information on querying the NavigationServer for paths.
 
 NavigationLayers are a single ``int`` value that is used as a **bitmask**.
 Many navigation related nodes have ``set_navigation_layer_value()`` and

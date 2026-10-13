@@ -20,7 +20,7 @@ which are almost identical to their 2D counterparts.
 
 In 3D, math is a little more complex than in 2D. For an introduction to the
 relevant math written for game developers, not mathemeticians or engineers,
-check out [doc_vector_math](../math/vector_math.md) and [doc_using_transforms](using_transforms.md).
+check out [doc_vector_math](../math/vector_math.md) and [doc_using_transforms](doc_using_transforms).
 
 ## 3D workspace
 
@@ -327,7 +327,7 @@ submitting them to the 3D API has a significant performance cost.
 
 :::note
 To learn about prototyping inside Redot or using external tools, see
-[doc_csg_tools](csg_tools.md).
+[doc_csg_tools](doc_csg_tools).
 
 :::
 

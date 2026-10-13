@@ -74,7 +74,7 @@ On this page, *window* refers to the screen area allotted to your game
 by the system, while *viewport* refers to the root object (accessible
 from ``get_tree().root``) which the game controls to fill this screen area.
 This viewport is a [Window ](class_Window) instance. Recall from the
-[introduction ](viewports.md) that *all* Window objects are viewports.
+[introduction ](doc_viewports) that *all* Window objects are viewports.
 
 :::
 

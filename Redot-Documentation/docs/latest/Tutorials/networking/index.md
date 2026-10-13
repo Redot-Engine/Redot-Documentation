@@ -4,10 +4,9 @@ This section contains tutorials and documentation about networking in Redot Engi
 
 ## Articles
 
-- [High-level multiplayer](high_level_multiplayer)
-- [HTTP client class](http_client_class)
-- [Making HTTP requests](http_request_class)
-- [TLS/SSL certificates](ssl_certificates)
-- [WebRTC](webrtc)
-- [WebSocket](websocket)
-
+- [High-level multiplayer](doc_high_level_multiplayer)
+- [HTTP client class](doc_http_client_class)
+- [Making HTTP requests](doc_http_request_class)
+- [TLS/SSL certificates](doc_ssl_certificates)
+- [WebRTC](doc_webrtc)
+- [WebSocket](doc_websocket)

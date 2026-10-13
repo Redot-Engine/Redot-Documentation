@@ -28,7 +28,7 @@ An Android plugin is an Android library with a dependency on the Redot Android l
 which the plugin uses to integrate into the engine's lifecycle and to access Redot APIs,
 granting it powerful capabilities such as GDExtension support which allows to update / mod the engine behavior as needed.
 
-For more information, see [Redot Android plugins ](android_plugin.md).
+For more information, see [Redot Android plugins ](doc_android_plugin).
 
 ## Embedding Redot in existing Android projects
 
@@ -149,7 +149,7 @@ Alternatively, applications can directly create a [Redot ](https://github.com/re
 
 - Using [RedotHost#getHostPlugins(...) ](https://github.com/m4gr3d/Godot-Android-Samples/blob/0e3440f357f8be5b4c63a4fe75766793199a99d0/apps/gltf_viewer/src/main/java/fhuyakou/Redot/app/android/gltfviewer/MainActivity.kt#L55), the sample app creates a [runtime GodotPlugin instance ](https://github.com/m4gr3d/Godot-Android-Samples/blob/master/apps/gltf_viewer/src/main/java/fhuyakou/Redot/app/android/gltfviewer/AppPlugin.kt) that's used to send [signals ](../../../Getting Started/step_by_step/signals.md) to the ``gdscript`` logic
 
-  - The runtime ``GodotPlugin`` can also be used by ``gdscript`` logic to access JVM methods. For more information, see [Redot Android plugins ](android_plugin.md).
+  - The runtime ``GodotPlugin`` can also be used by ``gdscript`` logic to access JVM methods. For more information, see [Redot Android plugins ](doc_android_plugin).
 
 - Add any additional logic that will be used by your application
 

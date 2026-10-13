@@ -78,7 +78,7 @@ Finally, toggle the **Playing** property to **On** and sound will flow.
 
 :::info
 
-You may also be interested in reading about [doc_audio_streams](audio_streams.md) now.
+You may also be interested in reading about [doc_audio_streams](doc_audio_streams) now.
 
 :::
 
@@ -101,7 +101,7 @@ one way or another and are applied in order.
 
 ![Image](/img/Tutorials/audio/img/audio_buses4.webp)
 
-For information on what each effect does, see [doc_audio_effects](audio_effects.md).
+For information on what each effect does, see [doc_audio_effects](doc_audio_effects).
 
 ## Automatic bus disabling
 

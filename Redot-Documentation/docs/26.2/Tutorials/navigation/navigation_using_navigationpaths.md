@@ -10,7 +10,7 @@ To obtain a 2D path, use ``NavigationServer2D.map_get_path(map, from, to, optimi
 
 To obtain a 3D path, use ``NavigationServer3D.map_get_path(map, from, to, optimize, navigation_layers)``.
 
-For more customizable navigation path queries that require additional setup see [doc_navigation_using_navigationpathqueryobjects](navigation_using_navigationpathqueryobjects.md).
+For more customizable navigation path queries that require additional setup see [doc_navigation_using_navigationpathqueryobjects](doc_navigation_using_navigationpathqueryobjects).
 
 One of the required parameters for the query is the RID of the navigation map.
 Each game world has a default navigation map automatically created.

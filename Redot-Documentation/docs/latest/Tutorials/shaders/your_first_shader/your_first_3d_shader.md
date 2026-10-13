@@ -8,7 +8,7 @@ needs. Either way, you have decided to write your own and now you need to figure
 out where to start.
 
 This tutorial will explain how to write a Spatial shader and will cover more
-topics than the [CanvasItem ](your_first_2d_shader.md) tutorial.
+topics than the [CanvasItem ](doc_your_first_2d_shader) tutorial.
 
 Spatial shaders have more built-in functionality than CanvasItem shaders. The
 expectation with spatial shaders is that Redot has already provided the
@@ -18,7 +18,7 @@ rendering) workflow.
 
 This is a two-part tutorial. In this first part we will create terrain using
 vertex displacement from a heightmap in the
-vertex function. In the [second part ](your_second_3d_shader.md) we
+vertex function. In the [second part ](doc_your_second_3d_shader) we
 will take the concepts from this tutorial and set up
 custom materials in a fragment shader by writing an ocean water shader.
 

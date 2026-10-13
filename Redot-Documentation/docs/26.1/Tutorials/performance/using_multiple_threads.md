@@ -16,7 +16,7 @@ threading classes they support.
 
 :::warning
 
-Before using a built-in class in a thread, read [doc_thread_safe_apis](thread_safe_apis.md)
+Before using a built-in class in a thread, read [doc_thread_safe_apis](doc_thread_safe_apis)
 first to check whether it can be safely used in a thread.
 
 :::

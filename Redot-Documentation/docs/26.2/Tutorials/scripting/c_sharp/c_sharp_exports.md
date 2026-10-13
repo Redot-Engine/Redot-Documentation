@@ -343,7 +343,7 @@ public Sprite2D Sprite2D { get; set; }
 
 Custom node classes can also be exported directly. The filtering behavior
 depends on whether the custom class is a
-[global class ](c_sharp_global_classes.md).
+[global class ](doc_c_sharp_global_classes).
 
 Exporting NodePaths like in Redot 3.x is still possible, in case you need it:
 

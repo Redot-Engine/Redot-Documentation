@@ -171,5 +171,5 @@ reduce **Physics Ticks per Second** to alleviate this.
 This is caused by floating-point precision errors, which become more pronounced
 as the physics simulation occurs further away from the world origin. This issue
 also affects rendering, which results in wobbly camera movement when far away
-from the world origin. See [doc_large_world_coordinates](large_world_coordinates.md) for more
+from the world origin. See [doc_large_world_coordinates](doc_large_world_coordinates) for more
 information.

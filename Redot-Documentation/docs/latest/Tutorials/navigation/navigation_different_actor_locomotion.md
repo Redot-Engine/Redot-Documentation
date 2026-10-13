@@ -4,7 +4,7 @@
 ![Image](/img/Tutorials/navigation/img/nav_actor_locomotion.png)
 
 To support different actor locomotion like crouching and crawling, a similar
-map setup as supporting [doc_navigation_different_actor_types](navigation_different_actor_types.md) is required.
+map setup as supporting [doc_navigation_different_actor_types](doc_navigation_different_actor_types) is required.
 
 Bake different navigation meshes with an appropriate height for crouched
 or crawling actors so they can find paths through those narrow sections in your game world.

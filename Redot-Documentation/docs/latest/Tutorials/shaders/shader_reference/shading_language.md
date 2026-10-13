@@ -1158,13 +1158,13 @@ function used (``vertex``, ``fragment``, ``light``, ``start``, ``process,
 ``sky``, or ``fog``). For a list of the built-in variables that are available,
 please see the corresponding pages:
 
-- [Spatial shaders ](spatial_shader.md)
-- [Canvas item shaders ](canvas_item_shader.md)
-- [Particle shaders ](particle_shader.md)
-- [Sky shaders ](sky_shader.md)
-- [Fog shaders ](fog_shader.md)
+- [Spatial shaders ](doc_spatial_shader)
+- [Canvas item shaders ](doc_canvas_item_shader)
+- [Particle shaders ](doc_particle_shader)
+- [Sky shaders ](doc_sky_shader)
+- [Fog shaders ](doc_fog_shader)
 
 ## Built-in functions
 
 A large number of built-in functions are supported, conforming to GLSL ES 3.0.
-See the [Built-in functions ](shader_functions.md) page for details.
+See the [Built-in functions ](doc_shader_functions) page for details.

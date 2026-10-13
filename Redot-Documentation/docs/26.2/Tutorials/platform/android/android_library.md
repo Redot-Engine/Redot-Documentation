@@ -28,7 +28,7 @@ An Android plugin is an Android library with a dependency on the Redot Android l
 which the plugin uses to integrate into the engine's lifecycle and to access Redot APIs,
 granting it powerful capabilities such as GDExtension support which allows to update / mod the engine behavior as needed.
 
-For more information, see [Redot Android plugins ](android_plugin.md).
+For more information, see [Redot Android plugins ](doc_android_plugin).
 
 ## Embedding Redot in existing Android projects
 

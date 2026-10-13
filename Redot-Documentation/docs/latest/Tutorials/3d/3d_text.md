@@ -113,7 +113,7 @@ There are some limitations to TextMesh:
 - Antialiasing the text rendering requires a full-scene antialiasing method to
   be enabled such as MSAA, FXAA and temporal antialiasing (TAA). If no
   antialiasing method is enabled, text will appear grainy, especially at a
-  distance. See [doc_3d_antialiasing](3d_antialiasing.md) for more information.
+  distance. See [doc_3d_antialiasing](doc_3d_antialiasing) for more information.
 
 ## Projected Label node (or any other Control)
 

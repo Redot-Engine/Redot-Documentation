@@ -28,7 +28,7 @@ Redot Android plugin leverages the [Gradle build system ](../../export/android_g
 Building on the previous v1 architecture, Android plugins continue to be derived from the
 [Android archive library ](https://developer.android.com/studio/projects/android-library#aar-contents).
 
-At its core, a Redot Android plugin v2 is an Android library with a dependency on the [Redot Android library ](android_library.md),
+At its core, a Redot Android plugin v2 is an Android library with a dependency on the [Redot Android library ](doc_android_library),
 and a custom Android library manifest.
 
 This architecture allows Android plugins to extend the functionality of the engine with:
@@ -40,7 +40,7 @@ This architecture allows Android plugins to extend the functionality of the engi
 - GDExtension libraries
 
 Each plugin has an init class extending from the [GodotPlugin ](https://github.com/redot-engine/redot-engine/blob/0a7f75ec7b465604b6496c8f5f1d638aed250d6d/platform/android/java/lib/src/org/Redotengine/Redot/plugin/GodotPlugin.java#L80) class
-which is provided by the [Redot Android library ](android_library.md).
+which is provided by the [Redot Android library ](doc_android_library).
 
 The ``GodotPlugin`` class provides APIs to access the running Redot instance and hook into its lifecycle. It is loaded at runtime by the Redot engine.
 

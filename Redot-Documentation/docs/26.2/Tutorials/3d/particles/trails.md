@@ -9,7 +9,7 @@
 
 Redot provides several types of trails you can add to a particle system. Before you can
 work with trails, you need to set up a couple of parameters first. Create a new particle
-system and assign a process material [as described before ](creating_a_3d_particle_system.md).
+system and assign a process material [as described before ](doc_creating_a_3d_particle_system).
 In the ``Trails`` group of the particle system, check the box next to ``Enabled`` and
 increase the emission duration by setting ``Lifetime`` to something like ``0.8``. On
 the process material, set ``Direction`` to ``(X=0,Y=1.0,Z=0)`` and ``Initial Velocity`` to

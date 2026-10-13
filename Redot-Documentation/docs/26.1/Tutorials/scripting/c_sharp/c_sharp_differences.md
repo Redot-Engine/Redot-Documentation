@@ -9,7 +9,7 @@ As explained in [doc_c_sharp_general_differences](doc_c_sharp_basics#general-dif
 to access Redot APIs in C# instead of the ``snake_case`` used by GDScript and
 C++. Where possible, fields and getters/setters have been converted to
 properties. In general, the C# Redot API strives to be as idiomatic as is
-reasonably possible. See the [doc_c_sharp_styleguide](c_sharp_style_guide.md), which we encourage
+reasonably possible. See the [doc_c_sharp_styleguide](doc_c_sharp_style_guide), which we encourage
 you to also use for your own C# code.
 
 In GDScript, the setters/getters of a property can be called directly, although
@@ -274,7 +274,7 @@ public partial class MyNode : Node
 
 ```
 
-See also: [doc_c_sharp_exports](c_sharp_exports.md).
+See also: [doc_c_sharp_exports](doc_c_sharp_exports).
 
 ## ``signal`` keyword
 
@@ -523,7 +523,7 @@ The ``Signal`` type implements the awaitable pattern which means it can be used 
 the ``await`` keyword. See [doc_c_sharp_differences_await](doc_c_sharp_differences#await-keyword).
 
 Instead of using the ``Signal`` type, the recommended way to use Redot signals in C# is
-to use the generated C# events. See [doc_c_sharp_signals](c_sharp_signals.md).
+to use the generated C# events. See [doc_c_sharp_signals](doc_c_sharp_signals).
 
 ## Callable
 
@@ -739,7 +739,7 @@ See also [Dictionary in C# ](doc_c_sharp_collections#dictionary).
 ``Redot.Variant`` is used to represent Redot's native [Variant ](class_Variant) type.
 Any [Variant-compatible type ](doc_c_sharp_variant#variant-compatible-types) can be converted from/to it.
 
-See also: [doc_c_sharp_variant](c_sharp_variant.md).
+See also: [doc_c_sharp_variant](doc_c_sharp_variant).
 
 ## Communicating with other scripting languages
 

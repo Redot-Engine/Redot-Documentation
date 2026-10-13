@@ -6,7 +6,7 @@
 This tutorial describes an advanced method for post-processing in Redot.
 In particular, it will explain how to write a post-processing shader that
 uses the depth buffer. You should already be familiar with post-processing
-generally and, in particular, with the methods outlined in the [custom post-processing tutorial ](custom_postprocessing.md).
+generally and, in particular, with the methods outlined in the [custom post-processing tutorial ](doc_custom_postprocessing).
 
 ## Full screen quad
 

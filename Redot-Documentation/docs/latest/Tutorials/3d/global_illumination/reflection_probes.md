@@ -11,11 +11,11 @@ not the Compatibility renderer.
 As stated in the [doc_standard_material_3d](../standard_material_3d.md), objects can show reflected and/or
 diffuse light. Reflection probes are used as a source of reflected *and* ambient
 light for objects inside their area of influence. They can be used to provide
-more accurate reflections than [VoxelGI ](using_voxel_gi.md) and
-[SDFGI ](using_sdfgi.md) while being fairly cheap on system resources.
+more accurate reflections than [VoxelGI ](doc_using_voxel_gi) and
+[SDFGI ](doc_using_sdfgi) while being fairly cheap on system resources.
 
 Since reflection probes can also store ambient light, they can be used as a
-low-end alternative to VoxelGI and SDFGI when [baked lightmaps ](using_lightmap_gi.md) aren't viable (e.g. in procedurally generated levels).
+low-end alternative to VoxelGI and SDFGI when [baked lightmaps ](doc_using_lightmap_gi) aren't viable (e.g. in procedurally generated levels).
 
 Reflection probes can also be used at the same time as screen-space reflections
 to provide reflections for off-screen objects. In this case, Redot will blend

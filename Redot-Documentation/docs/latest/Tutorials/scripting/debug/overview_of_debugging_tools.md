@@ -15,12 +15,12 @@ and to reload changes to your scenes or your code while the game is running.
 ## Output Panel
 
 The output panel allows you to see text printed by the project, but also by the editor (e.g. from ``@tool`` scripts).
-You can find information about in [doc_output_panel](output_panel.md).
+You can find information about in [doc_output_panel](doc_output_panel).
 
 ## Debugger Panel
 
 Many of Redot's debugging tools are part of the Debugger panel, which you can
-find information about in [doc_debugger_panel](debugger_panel.md).
+find information about in [doc_debugger_panel](doc_debugger_panel).
 
 ## Debug menu options
 

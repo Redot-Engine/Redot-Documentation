@@ -117,7 +117,7 @@ renderers.*
 
 Since Redot 4.2, there is built-in support for
 [AMD FidelityFX Super Resolution](https://www.amd.com/en/products/graphics/technologies/fidelityfx/super-resolution.html)
-2.2. This is an [upscaling method](resolution_scaling.md)
+2.2. This is an [upscaling method](doc_resolution_scaling)
 compatible with all recent GPUs from any vendor. FSR2 is normally designed to
 improve performance by lowering the internal 3D rendering resolution,
 then upscaling to the output resolution.
@@ -289,4 +289,3 @@ same time.
 | Forward+ | ✔️ Yes | ✔️ Yes | ✔️ Yes | ✔️ Yes | ✔️ Yes | ✔️ Yes |
 | Mobile | ✔️ Yes | ❌ No                    \| | ❌ No                    \| | ️ Yes                   \| | ️ Yes                   \| | ️ Yes                   \| |
 | Compatibility | ✔️ Yes | ❌ No                    \| | ❌ No                    \| | No                    \| ✔ | Yes                   \| ❌ | No                    \| |
-

@@ -87,7 +87,7 @@ Unlike "classical" Redot builds, when building with the .NET module enabled
 for the editor and for exported projects. This directory is important for
 proper functioning and must be distributed together with Redot.
 More details about this directory in
-[Data directory](compiling_with_dotnet#data-directory).
+[Data directory](doc_compiling_with_dotnet#data-directory).
 
 ### Build Platform
 

@@ -19,7 +19,7 @@ cause the particle system to restart. It's useful for making effects where the n
 varies over time.
 
 You can set another particle node as a ``Sub Emitter``, which will be spawned as a child of each
-particle. See the [Sub-emitters ](subemitters.md) section in this manual for a detailed explanation of how
+particle. See the [Sub-emitters ](doc_subemitters) section in this manual for a detailed explanation of how
 to add a sub-emitter to a particle system.
 
 ### Time properties
@@ -106,7 +106,7 @@ running at ``60``.
 
 :::note
 
-When using [particle collision ](collision.md), tunneling can occur
+When using [particle collision ](doc_collision), tunneling can occur
 if the particles move fast and colliders are thin. This can be remedied by increasing
 ``Fixed FPS`` (at a performance cost).
 
@@ -117,7 +117,7 @@ if the particles move fast and colliders are thin. This can be remedied by incre
 :::info
 
 Setting up particle collision requires following further steps described in
-[doc_3d_particles_collision](collision.md).
+[doc_3d_particles_collision](doc_collision).
 
 :::
 
@@ -182,5 +182,5 @@ to be checked if you want to make use of particle trails.
 The ``Length Secs`` property controls for how long a trail should be emitted. The longer
 this duration is, the longer the trail will be.
 
-See the [Particle trails ](trails.md) section in this manual for a detailed
+See the [Particle trails ](doc_trails) section in this manual for a detailed
 explanation of how particle trails work and how to set them up.

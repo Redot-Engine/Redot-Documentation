@@ -27,7 +27,7 @@ have entered the scene tree first, so you can safely call ``get_node()`` on them
 
 :::info
 To learn more about getting node references, read
-[doc_nodes_and_scene_instances](nodes_and_scene_instances.md).
+[doc_nodes_and_scene_instances](doc_nodes_and_scene_instances).
 
 :::
 
@@ -87,7 +87,7 @@ public override void _ExitTree()
 The two virtual methods ``_process()`` and ``_physics_process()`` allow you to
 update the node, every frame and every physics frame respectively. For more
 information, read the dedicated documentation:
-[doc_idle_and_physics_processing](idle_and_physics_processing.md).
+[doc_idle_and_physics_processing](doc_idle_and_physics_processing).
 
 <Tabs>
 

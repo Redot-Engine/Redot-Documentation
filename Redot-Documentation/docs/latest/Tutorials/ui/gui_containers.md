@@ -5,7 +5,7 @@ This page is marked as outdated and may not reflect current Redot behavior.
 
 # Using Containers
 
-[Anchors ](size_and_anchors.md) are an efficient way to handle
+[Anchors ](doc_size_and_anchors) are an efficient way to handle
 different aspect ratios for basic multiple resolution handling in GUIs.
 
 For more complex user interfaces, they can become difficult to use.

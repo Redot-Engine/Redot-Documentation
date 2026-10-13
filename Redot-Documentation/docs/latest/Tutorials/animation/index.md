@@ -4,11 +4,10 @@ This section contains tutorials and documentation about animation in Redot Engin
 
 ## Articles
 
-- [2D skeletons](2d_skeletons)
-- [Animation Track types](animation_track_types)
-- [Using AnimationTree](animation_tree)
-- [Creating movies](creating_movies)
-- [Cutout animation](cutout_animation)
-- [Introduction to the animation features](introduction)
-- [Playing videos](playing_videos)
-
+- [2D skeletons](doc_2d_skeletons)
+- [Animation Track types](doc_animation_track_types)
+- [Using AnimationTree](doc_animation_tree)
+- [Creating movies](doc_creating_movies)
+- [Cutout animation](doc_cutout_animation)
+- [Introduction to the animation features](doc_introduction)
+- [Playing videos](doc_playing_videos)

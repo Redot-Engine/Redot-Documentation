@@ -38,7 +38,7 @@ other preset will no longer be marked as runnable.
 - **iOS:** Exports the project with debugging enabled and runs it on the
   connected device or simulator.
 
-   - Make sure to follow the steps described in [doc_exporting_for_ios](exporting_for_ios.md).
+   - Make sure to follow the steps described in [doc_exporting_for_ios](doc_exporting_for_ios).
      Otherwise, the one-click deploy button won't appear.
 
    - For each new bundle identifier, export the project, open it in the

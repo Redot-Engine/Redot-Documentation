@@ -69,7 +69,7 @@ global Z-axis.
 
 In addition to these relatively simple shapes, you can select the ``Points`` or
 ``Directed Points`` option to create highly complex emission shapes. See the
-[Complex emission shapes ](complex_shapes.md) section for a detailed
+[Complex emission shapes ](doc_complex_shapes) section for a detailed
 explanation of how to set these up.
 
 ### Angle
@@ -218,7 +218,7 @@ time it takes to bring particles to a complete halt.
 
 ### Attractor interaction
 
-If you want the particle system to interact with [particle attractors ](attractors.md),
+If you want the particle system to interact with [particle attractors ](doc_attractors),
 you have to check the ``Enabled`` property. When it is disabled, the particle system
 ignores all particle attractors.
 
@@ -350,7 +350,7 @@ Turbulence adds noise to particle movement, creating interesting and lively patt
 Check the box next to the ``Enabled`` property to activate it. A number
 of new properties show up that control the movement speed, noise pattern and overall influence
 on the particle system. You can find a detailed explanation of these in the section on
-[particle turbulence ](turbulence.md).
+[particle turbulence ](doc_turbulence).
 
 ## Collision
 
@@ -371,7 +371,7 @@ is multiplied by the particle's [current scale ](#scale). You can use this to
 make sure that the rendered size and the collision size match for particles
 with random scale or scale that varies over time.
 
-You can learn more about particle collisions in the [Collisions ](collision.md)
+You can learn more about particle collisions in the [Collisions ](doc_collision)
 section in this manual.
 
 ## Sub-emitter
@@ -392,5 +392,5 @@ environment. The ``Amount At Collision`` property controls how many sub-emitters
 When the ``Keep Velocity`` property is enabled, the newly spawned sub-emitter starts off
 with the parent particle's velocity at the time the sub-emitter is created.
 
-See the [Sub-emitters ](subemitters.md) section in this manual for a detailed explanation of how
+See the [Sub-emitters ](doc_subemitters) section in this manual for a detailed explanation of how
 to add a sub-emitter to a particle system.

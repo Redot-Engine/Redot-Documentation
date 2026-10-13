@@ -99,7 +99,7 @@ platforms.
 :::note
 
 Redot also exposes an API for users to write totally custom GLSL shaders. For
-more information see [doc_compute_shaders](compute_shaders.md).
+more information see [doc_compute_shaders](doc_compute_shaders).
 
 :::
 

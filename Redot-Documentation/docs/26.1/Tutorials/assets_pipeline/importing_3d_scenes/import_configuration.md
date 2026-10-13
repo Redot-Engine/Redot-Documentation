@@ -11,8 +11,8 @@ process to perform arbitrary customization.
 Note that, when applicable, modifying the original data should be preferred
 to configuring the scene after import. This helps minimize the differences
 between the 3D modeling application and the imported scene. See the
-[doc_importing_3d_scenes_model_export_considerations](model_export_considerations.md) and
-[doc_importing_3d_scenes_node_type_customization](node_type_customization.md) articles
+[doc_importing_3d_scenes_model_export_considerations](doc_model_export_considerations) and
+[doc_importing_3d_scenes_node_type_customization](doc_node_type_customization) articles
 for more information.
 
 ## Import workflows
@@ -36,7 +36,7 @@ This import process is customizable using 3 separate interfaces, depending on yo
 - The **Advanced Import Settings** dialog, which can be accessed by double-clicking
   the 3D scene in the FileSystem dock or by clicking the **Advanced…** button in
   the Import dock. This allows you to customize per-object options in Redot.
-- [Import hints ](node_type_customization.md), which are special
+- [Import hints ](doc_node_type_customization), which are special
   suffixes added to object names in the 3D modeling software. This allows you to
   customize per-object options in the 3D modeling software.
 

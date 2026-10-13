@@ -192,7 +192,7 @@ This is likely caused by one of the following reasons:
 
 ## Handling user input
 
-Reacting to actions performed by the user is handled through [doc_xr_action_map](xr_action_map.md)
+Reacting to actions performed by the user is handled through [doc_xr_action_map](doc_xr_action_map)
 if controllers are used.
 In the action map you can map various inputs like the trigger or joystick on the controller
 to an action. This can then drive logic in your game.

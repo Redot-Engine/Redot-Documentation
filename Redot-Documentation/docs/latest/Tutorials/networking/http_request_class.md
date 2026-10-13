@@ -7,7 +7,7 @@
 to communicate with web servers and other non-Redot programs.
 
 Compared to Redot's other networking features (like
-[High-level multiplayer ](high_level_multiplayer.md)),
+[High-level multiplayer ](doc_high_level_multiplayer)),
 HTTP requests have more overhead and take more time to get going,
 so they aren't suited for real-time communication, and aren't great to send
 lots of small updates as is common for multiplayer gameplay.
@@ -31,7 +31,7 @@ Refer to the [Introduction ](doc_getting_started_introduction) and the
 
 The [HTTPRequest ](class_HTTPRequest) node is the easiest way to make HTTP requests in Redot.
 It is backed by the more low-level [HTTPClient ](class_HTTPClient),
-for which a tutorial is available [here ](http_client_class.md).
+for which a tutorial is available [here ](doc_http_client_class).
 
 For this example, we will make an HTTP request to GitHub to retrieve the name
 of the latest Redot release.

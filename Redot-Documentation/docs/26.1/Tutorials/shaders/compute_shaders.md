@@ -8,7 +8,7 @@ Redot.
 :::note
 
 This tutorial assumes you are familiar with shaders generally. If you are new
-to shaders please read [doc_introduction_to_shaders](introduction_to_shaders.md) and [your first shader ](doc_your_first_shader) before proceeding with this tutorial.
+to shaders please read [doc_introduction_to_shaders](doc_introduction_to_shaders) and [your first shader ](doc_your_first_shader) before proceeding with this tutorial.
 
 :::
 

@@ -17,8 +17,8 @@ Different NavigationRegions can connect their navigation meshes without the need
 as long as they have overlapping edges or edges that are within navigation map ``edge_connection_margin``.
 As soon as the distance becomes too large, building valid connections becomes a problem - a problem that NavigationLinks can solve.
 
-See [doc_navigation_using_navigationregions](navigation_using_navigationregions.md) to learn more about the use of navigation regions.
-See [doc_navigation_connecting_navmesh](navigation_connecting_navmesh.md) to learn more about how to connect navigation meshes.
+See [doc_navigation_using_navigationregions](doc_navigation_using_navigationregions) to learn more about the use of navigation regions.
+See [doc_navigation_connecting_navmesh](doc_navigation_connecting_navmesh) to learn more about how to connect navigation meshes.
 
 ![Image](/img/Tutorials/navigation/img/nav_link_properties.png)
 

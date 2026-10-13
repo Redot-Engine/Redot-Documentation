@@ -4,12 +4,11 @@ This section contains tutorials and documentation about shader reference in Redo
 
 ## Articles
 
-- [CanvasItem shaders](canvas_item_shader)
-- [Fog shaders](fog_shader)
-- [Particle shaders](particle_shader)
-- [Built-in functions](shader_functions)
-- [Shader preprocessor](shader_preprocessor)
-- [Shading language](shading_language)
-- [Sky shaders](sky_shader)
-- [Spatial shaders](spatial_shader)
-
+- [CanvasItem shaders](doc_canvas_item_shader)
+- [Fog shaders](doc_fog_shader)
+- [Particle shaders](doc_particle_shader)
+- [Built-in functions](doc_shader_functions)
+- [Shader preprocessor](doc_shader_preprocessor)
+- [Shading language](doc_shading_language)
+- [Sky shaders](doc_sky_shader)
+- [Spatial shaders](doc_spatial_shader)
