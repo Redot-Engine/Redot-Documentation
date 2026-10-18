@@ -1,0 +1,54 @@
+
+# Console support in Redot
+
+## Console porting process
+
+In order to develop for consoles in Redot, you need access to the console SDK and
+export templates for it. These export templates need to be developed either by
+yourself or someone hired to do it, or provided by a third-party company.
+
+Currently, the only console Redot officially supports is Steam Deck (through the
+official Linux export templates).
+
+The reason other consoles are not officially supported are:
+
+- To develop for consoles, one must be licensed as a company.
+  As an open source project, Redot has no legal structure to provide console ports.
+- Console SDKs are secret and covered by non-disclosure agreements.
+  Even if we could get access to them, we could not publish the platform-specific
+  code under an open source license.
+
+As explained, however, it is possible to port your games to consoles thanks to
+services provided by third-party companies.
+
+:::note
+
+In practice, the process is quite similar to Unity and Unreal Engine. In other
+words, there is no engine that is legally allowed to distribute console export
+templates without requiring the user to prove that they are a licensed console
+developer.
+
+:::
+
+## Console publishing process
+
+Regardless of the engine used to create the game, the process to publish a game
+to a console platform is as follows:
+
+- Register a developer account on the console manufacturer's website, then sign
+  NDAs and publishing contracts. This requires you to have a registered legal
+  entity.
+- Gain access to the publishing platform by passing the acceptance process. This
+  can take up to several months. Note that this step is significantly easier if
+  an established publisher is backing your game. Nintendo is generally known to
+  be more accepting of smaller developers, but this is not guaranteed.
+- Get access to developer tools and order a console specially made for
+  developers (*devkit*). The cost of those devkits is confidential.
+- Port the engine to the console platform or pay a company to do it.
+- To be published, your game needs to be rated in the regions you'd like to sell
+  it in. For example, game ratings are handled by [ESRB ](https://www.esrb.org/)
+  in North America, and [PEGI ](https://pegi.info/) in Europe. Indie developers
+  can generally get a rating for cheaper compared to more established developers.
+
+Due to the complexity of the process, many studios and developers prefer to
+outsource console porting.

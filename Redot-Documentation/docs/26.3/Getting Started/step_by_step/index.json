@@ -1,0 +1,11 @@
+{
+  "Slug": "getting_started_step_by_step",
+  "RankingPriorities": {
+    "nodes_and_scenes.md": 0,
+    "instancing.md": 1,
+    "scripting_languages.md": 2,
+    "scripting_first_script.md": 3,
+    "scripting_player_input.md": 4,
+    "signals.md": 5
+  }
+}
