@@ -15,7 +15,7 @@ on a simple 2D or 3D project:
 
 | Component | Requirements |
 |-----------|--------------|
-| **CPU** | **Windows:** x86_32 CPU with SSE2 instructions, x86_64 CPU, ARMv8 CPU<br>*Example: Intel Core 2 Duo E8200, AMD Athlon XE BE-2300, Snapdragon X Elite*<br><br>**macOS:** x86_64 or ARM CPU (Apple Silicon)<br>*Example: Intel Core 2 Duo SU9400, Apple M1*<br><br>**Linux:** x86_32 CPU with SSE2 instructions, x86_64 CPU, ARMv7 or ARMv8 CPU<br>*Example: Intel Core 2 Duo E8200, AMD Athlon XE BE-2300, Raspberry Pi 4* |
+| **CPU** | **Windows:** x86_32 CPU with SSE2 instructions, x86_64 CPU with SSE4.2 instructions, ARMv8 CPU<br>*Example: Intel Core 2 Duo E8200, AMD Athlon XE BE-2300, Snapdragon X Elite*<br><br>**macOS:** x86_64 or ARM CPU (Apple Silicon)<br>*Example: Intel Core 2 Duo SU9400, Apple M1*<br><br>**Linux:** x86_32 CPU with SSE2 instructions, x86_64 CPU, ARMv7 or ARMv8 CPU<br>*Example: Intel Core 2 Duo E8200, AMD Athlon XE BE-2300, Raspberry Pi 4* |
 | **GPU** | **Forward+ renderer:** Integrated graphics with full Vulkan 1.0 support<br>*Example: Intel HD Graphics 5500 (Broadwell), AMD Radeon R5 Graphics (Kaveri)*<br><br>**Mobile renderer:** Integrated graphics with full Vulkan 1.0 support<br>*Example: Intel HD Graphics 5500 (Broadwell), AMD Radeon R5 Graphics (Kaveri)*<br><br>**Compatibility renderer:** Integrated graphics with full OpenGL 3.3 support<br>*Example: Intel HD Graphics 2500 (Ivy Bridge), AMD Radeon R5 Graphics (Kaveri)* |
 | **RAM** | **Native editor:** 4 GB<br>**Web editor:** 8 GB |
 | **Storage** | 200 MB (used for the executable, project files and cache). <br> Exporting projects requires downloading export templates separately (1.3 GB after installation). |
