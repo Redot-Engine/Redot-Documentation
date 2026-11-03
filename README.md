@@ -74,7 +74,7 @@ page provides the same distinctions and links to full license texts.
 
 ## Interface and theme
 
-The site uses MudBlazor 9.9.0 with a shared Interactive Server root and prerendered
+The site uses MudBlazor 9.12.0 with a shared Interactive Server root and prerendered
 initial content. `Components/Layout/RedotTheme.cs` defines the Redot palette;
 `wwwroot/app.css` styles the responsive home page, documentation layout, and HTML
 produced by the Markdown and class-reference renderers. Bootstrap assets remain
