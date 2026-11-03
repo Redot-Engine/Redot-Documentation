@@ -12,7 +12,7 @@ The Redot team does not have any involvement in the submission or moderation pro
 ## Introduction
 
 This tutorial aims to serve as a guide on how you can submit your own assets
-to the [Redot Asset Library](https://godotengine.org/asset-library/asset)
+to the [Godot Asset Library](https://godotengine.org/asset-library/asset)
 and share them with the Redot community.
 
 As mentioned in the [doc_using_assetlib](using_assetlib.md) document, in order to be able to
@@ -31,11 +31,11 @@ are accepted. However, in order for your asset to be accepted, there
 are a few requirements your asset needs to meet to be approved.
 
 * The asset must **work**. If the asset doesn't run or otherwise doesn't
-  work in the specified Redot version, then it will be rejected.
+  work in the specified Godot version, then it will be rejected.
 
 * The asset must have a proper **.gitignore** file. It's important to
   keep redundant data out of the repository.
-  [Here's a template.](https://raw.githubusercontent.com/aaronfranke/gitignore/Redot/Redot.gitignore)
+  [Here's a template.](https://raw.githubusercontent.com/aaronfranke/gitignore/godot/Godot.gitignore)
 
 * No **submodules**, or any submodules must be non-essential. GitHub
   does not include submodules in the downloaded ZIP file, so if the
@@ -147,12 +147,12 @@ is required in the submission form here as well.
     In-editor, assets of the Project type (Templates, Demos, Projects) only show
     up when viewing the AssetLib from the Project Manager, while assets of the
     Addon type will only be visible from inside a project.
-* **Redot version**:
+* **Godot version**:
     The version of the engine that the asset works with.
     Currently, it's not possible to have a single asset entry contain downloads for
     multiple engine versions, so you may need to re-submit the asset multiple times,
-    with an entry for each Redot version it supports. This is particularly important
-    when dealing with major versions of the engine, such as Redot 2.x and Redot 3.x.
+    with an entry for each Godot version it supports. This is particularly important
+    when dealing with major versions of the engine, such as Godot 3.x and Godot 4.x.
 * **Version**:
     The version number of the asset. While you are free to choose
     and use any versioning scheme that you like, you may want to look into

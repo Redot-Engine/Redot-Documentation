@@ -35,12 +35,12 @@ While most other filter settings should be fairly self-explanatory, it's worth
 going over what "support level" means in the Asset Library.
 Currently there are three support levels, and each asset can belong to only one.
 
-**Official** assets are created and maintained by the official Redot Engine
+**Official** assets are created and maintained by the official Godot Engine
 developers. Currently, these include the official engine demos, which showcase
 how various areas of the engine work.
 
 **Community** assets are submitted and maintained by the members of the
-Redot community.
+Godot community.
 
 **Testing** assets are works-in-progress, and may contain bugs and usability
 issues. They are not recommended for use in serious projects, but you are
@@ -63,7 +63,7 @@ Now let's take a look at what an asset's page looks like and what it contains.
 1. Asset's thumbnail/icon.
 2. Asset's name.
 3. Current version number of the asset.
-4. Asset's category, Redot version, and support status.
+4. Asset's category, Godot version, and support status.
 5. Asset's original author/submitter.
 6. The license the asset is distributed under.
 7. The date of the asset's latest edit/update.
@@ -146,7 +146,7 @@ query for the changes to take place).
 
 In the future, you will be able to choose a different AssetLib provider to fetch
 assets from (using the Site dropdown menu), however currently only the official
-[Redot website](https://redotengine.org) version of the AssetLib is supported,
+[Godot website](https://godotengine.org/asset-library/asset) version of the AssetLib is supported,
 as well as the version that may be running on your local machine's web server
 (the localhost option).
 
