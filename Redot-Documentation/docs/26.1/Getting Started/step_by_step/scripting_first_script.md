@@ -286,7 +286,9 @@ instructions.
 Notice how ``_process()``, like ``_init()``, starts with a leading
 underscore. By convention, Redot's virtual functions, that is to say,
 built-in functions you can override to communicate with the engine,
-start with an underscore.
+start with an underscore. Because the engine calls them for
+you, the documentation also refers to them as *callbacks*: both terms mean
+the same thing.
 
 :::
 
