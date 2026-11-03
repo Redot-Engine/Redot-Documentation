@@ -1,0 +1,7 @@
+stateDiagram-v2
+    accTitle: Character movement states
+    accDescr: A character starts idle, moves while input is active, and returns to idle before removal.
+    [*] --> Idle
+    Idle --> Moving: Input received
+    Moving --> Idle: Input released
+    Idle --> [*]: Removed

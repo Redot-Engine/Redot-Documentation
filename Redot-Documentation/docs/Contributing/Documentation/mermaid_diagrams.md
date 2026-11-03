@@ -17,10 +17,56 @@ flowchart LR
     Start --> Running --> Exit
 ```
 
+`flowchart LR` arranges nodes from left to right, and `-->` connects them with
+directed arrows. This guide's copy is saved in `diagrams/scene-lifecycle.mmd`:
+
+<mermaid ref="./diagrams/scene-lifecycle.mmd" alt="A scene starts, runs, and then exits." caption="Scene lifecycle flowchart." />
+
 The site uses [Mermaider](https://github.com/nullean/mermaider) 0.15.1 to render
 SVGs in C# at startup. Its syntax support and layout can differ from Mermaid.js
 and the Mermaid Live Editor. Test the result on the documentation site before
 submitting it. Describe complex diagrams in the surrounding article as well.
+
+## More syntax examples
+
+### Sequence diagram
+
+Sequence diagrams show messages between participants over time. In this example,
+`->>` sends a message and `-->>` draws a dashed reply. Save this definition in
+`diagrams/scene-loading-sequence.mmd`:
+
+```text
+sequenceDiagram
+    accTitle: Scene loading sequence
+    accDescr: The game asks a loader to read assets, then receives a scene-ready reply.
+    participant Game
+    participant Loader
+    participant Assets
+    Game->>Loader: Load level
+    Loader->>Assets: Read resources
+    Assets-->>Loader: Resources ready
+    Loader-->>Game: Scene ready
+```
+
+<mermaid ref="./diagrams/scene-loading-sequence.mmd" alt="The game requests a scene, the loader reads assets, then sends a ready reply." caption="A request and its replies between three participants."></mermaid>
+
+### State diagram
+
+State diagrams describe named states and the events that connect them. A label
+after `:` names a transition; `[*]` marks the starting or ending point. Save
+this definition in `diagrams/character-movement-states.mmd`:
+
+```text
+stateDiagram-v2
+    accTitle: Character movement states
+    accDescr: A character starts idle, moves while input is active, and returns to idle before removal.
+    [*] --> Idle
+    Idle --> Moving: Input received
+    Moving --> Idle: Input released
+    Idle --> [*]: Removed
+```
+
+<mermaid slug="character-movement-states" alt="A character starts idle, moves when input arrives, stops when it ends, then can be removed." caption="Named states and labeled transitions." />
 
 ## Embed a diagram
 
@@ -92,7 +138,7 @@ independently of the selected release. A versioned article can reference a
 shared diagram explicitly:
 
 ```html
-<mermaid ref="/Contributing/Documentation/diagrams/contribution-flow.mmd" />
+<mermaid ref="/Contributing/Documentation/diagrams/scene-lifecycle.mmd" />
 ```
 
 When creating a release directory, include its diagram files with its Markdown
