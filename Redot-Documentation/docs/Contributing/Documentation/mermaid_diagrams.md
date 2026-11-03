@@ -1,14 +1,20 @@
 # Mermaid diagrams
 
-Store diagram source in separate `.mmd` files next to the documentation that uses
-them. A `diagrams/` subfolder keeps large definitions out of Markdown articles and
-out of the navigation menu.
+Mermaid turns text into diagrams. Use it to show a series of steps, messages
+between parts of a game, or changes in a character's state.
 
-## Create a diagram
+## Add your first diagram
 
-For an article at `docs/26.3/Tutorials/example.md`, create
-`docs/26.3/Tutorials/diagrams/scene-lifecycle.mmd`. The file contains Mermaid
-source without Markdown fences:
+Create a `diagrams` folder next to your page's `.md` file. Inside it, create a
+text file named `scene-lifecycle.mmd`:
+
+```text
+example.md
+diagrams/
+    scene-lifecycle.mmd
+```
+
+Copy this text into the new file:
 
 ```text
 flowchart LR
@@ -17,23 +23,80 @@ flowchart LR
     Start --> Running --> Exit
 ```
 
-`flowchart LR` arranges nodes from left to right, and `-->` connects them with
-directed arrows. This guide's copy is saved in `diagrams/scene-lifecycle.mmd`:
+The first line chooses a flowchart. `LR` means left to right, and `-->` joins
+the boxes. `accTitle` and `accDescr` add a title and description.
 
-<mermaid ref="./diagrams/scene-lifecycle.mmd" alt="A scene starts, runs, and then exits." caption="Scene lifecycle flowchart." />
+Add this line to your `.md` page, outside a code block. Leave a blank line
+before and after it:
 
-The site uses [Mermaider](https://github.com/nullean/mermaider) 0.15.1 to render
-SVGs in C# at startup. Its syntax support and layout can differ from Mermaid.js
-and the Mermaid Live Editor. Test the result on the documentation site before
-submitting it. Describe complex diagrams in the surrounding article as well.
+```html
+<mermaid ref="./diagrams/scene-lifecycle.mmd" />
+```
 
-## More syntax examples
+`ref` names the file to display. `./` starts from the page's folder. Here is the
+result:
 
-### Sequence diagram
+<mermaid ref="./diagrams/scene-lifecycle.mmd" />
 
-Sequence diagrams show messages between participants over time. In this example,
-`->>` sends a message and `-->>` draws a dashed reply. Save this definition in
-`diagrams/scene-loading-sequence.mmd`:
+## Preview your page
+
+Open a terminal in the repository's main folder and run:
+
+```bash
+dotnet run --project Redot-Documentation
+```
+
+Open the address shown in the terminal in your browser, then open your page.
+After an `.mmd` edit, press `Ctrl+C` in the terminal and run the command again
+to update the diagram. Check the result there even if it works in the Mermaid
+Live Editor.
+
+## Describe the diagram
+
+`caption` adds text below a diagram. `alt` describes it for people who use
+screen readers:
+
+```html
+<mermaid ref="./diagrams/scene-lifecycle.mmd"
+         alt="A scene starts, runs, and then exits."
+         caption="The three stages of the scene lifecycle." />
+```
+
+If you leave out `alt`, the site uses `accTitle`. If there is no title, it uses
+the filename. Describe complex diagrams in the article too. Captions use plain
+text.
+
+Keep values in quotes. Use `&quot;` for a double quote inside a quoted value,
+and `&amp;` for `&`.
+
+## Use a shorter name
+
+A **slug** is a name based on the filename: `Scene_Lifecycle.mmd` becomes
+`scene-lifecycle`. Remove `.mmd`, use lowercase, and replace spaces or
+punctuation with hyphens.
+
+You can use the slug in place of `ref`:
+
+```html
+<mermaid slug="scene-lifecycle" />
+```
+
+Use `ref` or `slug`, never both. If a slug matches two files, use `ref`.
+
+A separate closing tag works too. Leave it empty:
+
+```html
+<mermaid slug="scene-lifecycle"></mermaid>
+```
+
+These tags also work in tabs and callouts.
+
+## Try other diagrams
+
+### Sequence diagrams
+
+Read sequence diagrams from top to bottom. This one shows a game loading a
+level. Save it as `diagrams/scene-loading-sequence.mmd`:
 
 ```text
 sequenceDiagram
@@ -48,13 +111,17 @@ sequenceDiagram
     Loader-->>Game: Scene ready
 ```
 
-<mermaid ref="./diagrams/scene-loading-sequence.mmd" alt="The game requests a scene, the loader reads assets, then sends a ready reply." caption="A request and its replies between three participants."></mermaid>
+Each `participant` names a column. `->>` draws a solid arrow; `-->>` draws a
+dashed arrow.
 
-### State diagram
+<mermaid ref="./diagrams/scene-loading-sequence.mmd"
+         alt="The game requests a scene, the loader reads assets, then sends a ready reply."
+         caption="A request and its replies between three participants."></mermaid>
 
-State diagrams describe named states and the events that connect them. A label
-after `:` names a transition; `[*]` marks the starting or ending point. Save
-this definition in `diagrams/character-movement-states.mmd`:
+### State diagrams
+
+A state diagram shows how a character switches between states, such as idle
+and moving. Save this example as `diagrams/character-movement-states.mmd`:
 
 ```text
 stateDiagram-v2
@@ -66,99 +133,36 @@ stateDiagram-v2
     Idle --> [*]: Removed
 ```
 
-<mermaid slug="character-movement-states" alt="A character starts idle, moves when input arrives, stops when it ends, then can be removed." caption="Named states and labeled transitions." />
+Read `Idle --> Moving: Input received` as "input changes Idle to Moving." Text
+after `:` labels the arrow; `[*]` marks the start or end.
 
-## Embed a diagram
+<mermaid slug="character-movement-states"
+         alt="A character moves when input arrives, stops when it ends, then can be removed."
+         caption="Named states and labeled transitions." />
 
-Put an embed on its own line, with blank lines before and after it. Both paired
-and self-closing tags work:
+## Keep versions together
 
-```html
-<mermaid ref="./diagrams/scene-lifecycle.mmd"></mermaid>
+Keep a diagram with its page. A page in `docs/26.3/` looks for slugs in `26.3`,
+not `latest`. Copy both pages and diagrams when you create a new version.
 
-<mermaid ref="./diagrams/scene-lifecycle.mmd" />
-```
+In versioned pages, `/` starts at that version's folder. `../` goes up one
+folder; keep the path within the same version. Use `.mmd` files from this
+repository, not web addresses.
 
-Use `slug` to reference a diagram by filename:
-
-```html
-<mermaid slug="scene-lifecycle"></mermaid>
-
-<mermaid slug="scene-lifecycle" />
-```
-
-Provide exactly one of `ref` or `slug`. Attribute values must be quoted; single
-and double quotes work. Paired tags must have an empty body. Embeds work inside
-tabs and callouts. Tags inside code examples and HTML comments remain literal.
-
-The optional `alt` attribute supplies alternative text for the generated image;
-otherwise the site uses the diagram's `accTitle`, or its filename when no title
-is supplied. Use `caption` for a visible caption. Both are plain text:
-
-```html
-<mermaid slug="scene-lifecycle"
-         alt="A scene starts, runs, and then exits."
-         caption="The three stages of the scene lifecycle." />
-```
-
-Escape special characters in attributes with HTML entities, such as `&amp;`
-and `&quot;`. Captions appear in documentation search; diagram source and
-rendering errors do not.
-
-## Paths and slugs
-
-Relative paths resolve from the article's directory. Parent segments such as
-`../diagrams/example.mmd` work when they stay within the same documentation
-scope. A leading slash starts at the selected version's root:
-
-```html
-<mermaid ref="/Tutorials/diagrams/scene-lifecycle.mmd" />
-```
-
-Paths must name local `.mmd` files. Use literal spaces and Unicode characters,
-not URL encoding. External URLs, query strings, fragments, and symbolic links
-are not supported. Path matching ignores case, but two paths that differ only
-by case are an error.
-
-Slugs are derived from the filename without `.mmd`: letters become lowercase,
-and spaces, underscores, and punctuation become hyphens. For example,
-`Scene_Lifecycle.mmd` becomes `scene-lifecycle`. Slugs are case-insensitive.
-If two files in one scope produce the same slug, use `ref` to select one.
-
-## Versioned and shared diagrams
-
-Keep release-specific diagrams inside their release directory. An embed in
-`26.3` resolves slugs in `26.3`; the same embed in `latest` resolves them in
-`latest`. Missing diagrams do not fall back to another release. Unversioned
-documentation URLs use the latest stable version configured in `Versions.json`.
-
-Shared diagrams live under `docs/About/`, `docs/Community/`, or
-`docs/Contributing/`. Shared articles resolve slugs in that shared scope,
-independently of the selected release. A versioned article can reference a
-shared diagram explicitly:
+The `About`, `Community`, and `Contributing` folders share diagrams across
+versions. Pages in these folders look for slugs among the shared diagrams.
+To use a shared diagram in a versioned page, start its path at `docs/`:
 
 ```html
 <mermaid ref="/Contributing/Documentation/diagrams/scene-lifecycle.mmd" />
 ```
 
-When creating a release directory, include its diagram files with its Markdown
-files. Moving a diagram changes its relative paths but preserves its slug if
-the filename stays the same. Renaming it changes its slug; update all affected
-embeds. Generated SVG URLs are cache artifacts and should not be used directly
-in articles.
+Update the affected `ref` or `slug` when you move or rename a diagram.
 
-## Preview and validation
+## Before you submit
 
-Run the documentation project with `dotnet run --project Redot-Documentation`.
-Restart after editing `.mmd` files: diagram discovery and rendering happen at
-startup. Cached SVGs live under `Redot-Documentation/App_Data/mermaid/` and are
-reused when source, renderer version, and rendering settings match. This
-directory is generated, excluded from Git, and may be removed to rebuild it.
-The site can still render diagrams when the persistent cache is not writable.
+If you see **Diagram unavailable**, check the file path or slug and the diagram
+text. Split diagrams that are hard to follow into smaller ones.
 
-Run `dotnet test` before submitting changes. The documentation audit checks
-all configured versions, renders every diagram, and verifies embeds. A bad
-reference or diagram displays an error in its article; rendering failures are
-also recorded in the server log. Other diagrams and articles remain available.
-Sources are limited to 512 KiB; Mermaider also limits rendering time and graph
-size. Split diagrams that exceed these limits into smaller explanations.
+Run `dotnet test` from the repository's main folder to check diagrams and their
+references across all configured versions.
