@@ -80,6 +80,12 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .doc-viewer-content li > ul { margin-block: .25rem; }
 .doc-viewer-content a:not(.mud-button-root) { text-decoration: underline; }
 .doc-viewer-content img, .doc-viewer-content video { max-width: 100%; height: auto; border-radius: 6px; }
+.doc-mermaid { max-width: 100%; margin: 1.5rem 0; }
+.doc-mermaid-scroll { max-width: 100%; overflow-x: auto; border: 1px solid var(--redot-border); border-radius: 10px; background: #121216; }
+.doc-mermaid-scroll:focus-visible { outline: 2px solid var(--app-link-color); outline-offset: 2px; }
+.doc-viewer-content .doc-mermaid img { display: block; max-width: none; height: auto; margin-inline: auto; }
+.doc-mermaid figcaption { margin-top: .5rem; color: var(--redot-muted); font-size: .9rem; }
+.doc-mermaid-error { margin: 1rem 0; padding: 1rem; border: 1px solid var(--redot-border); border-radius: 6px; }
 .doc-viewer-content pre { max-width: 100%; overflow: auto; padding: 20px; margin: 1.25rem 0; border: 1px solid var(--redot-border); border-radius: 10px; background: #121216; font-size: .85rem; line-height: 1.7; }
 .doc-viewer-content code { font-family: var(--app-monospace-font-family); font-size: .9em; }
 .doc-viewer-content :not(pre) > code { color: #ffc2b2; background: #ffffff08; padding: .12em .3em; border-radius: 4px; overflow-wrap: anywhere; }

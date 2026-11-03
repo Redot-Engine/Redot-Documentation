@@ -209,6 +209,10 @@ Important warning.
 
 ### Adding images and attachments
 
+For diagrams written as text, see [Mermaid diagrams](doc_mermaid_diagrams).
+Keep Mermaid definitions in separate `.mmd` files and embed them with the
+`mermaid` tag described in that guide.
+
 To add images, please put them in the corresponding folder within ``wwwroot/img/<PATH TO IMAGE>`` file with
 a meaningful name and include them in your page with:
 

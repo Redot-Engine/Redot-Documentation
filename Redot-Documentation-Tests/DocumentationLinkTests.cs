@@ -1,6 +1,7 @@
 using HtmlAgilityPack;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Logging.Abstractions;
 using Redot_Documentation.Services;
 
 namespace Redot_Documentation_Tests;
@@ -19,7 +20,9 @@ public sealed class DocumentationLinkTests
         var versions = new VersionManagerService(environment);
         versions.LoadContent();
         var paths = new DocumentPathResolver(environment, versions);
-        var renderer = new DocRendererService(paths);
+        var diagrams = new MermaidDiagramCatalog(environment, versions, NullLogger<MermaidDiagramCatalog>.Instance);
+        Assert.True(diagrams.Errors.Count == 0, string.Join(Environment.NewLine, diagrams.Errors));
+        var renderer = new DocRendererService(paths, diagrams);
         var pages = new Dictionary<(string Version, string Route), HtmlDocument>();
         foreach (var version in versions.Versions)
         {
@@ -38,6 +41,8 @@ public sealed class DocumentationLinkTests
                     Assert.Equal(resolved, paths.ResolveRoute(relative[..^3].ToUpperInvariant() + suffix, versions));
                 var document = new HtmlDocument();
                 document.LoadHtml(DocumentHeadings.Apply(await renderer.RenderToHtmlAsync(resolved, provider), []));
+                Assert.True(document.DocumentNode.SelectSingleNode("//*[@class='doc-mermaid-error']") is null,
+                    version.Slug + ": " + relative + " contains an invalid Mermaid embed.");
                 pages.Add((version.Slug, resolved.PublicUrl), document);
             }
         }

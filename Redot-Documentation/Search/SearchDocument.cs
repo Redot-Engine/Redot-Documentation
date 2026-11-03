@@ -18,7 +18,7 @@ public static class SearchContent
     {
         var doc = new HtmlDocument();
         doc.LoadHtml(html);
-        foreach (var node in doc.DocumentNode.SelectNodes("//script|//style|//footer|//button")?.ToArray() ?? []) node.Remove();
+        foreach (var node in doc.DocumentNode.SelectNodes("//script|//style|//footer|//button|//*[@data-search-exclude]")?.ToArray() ?? []) node.Remove();
         string title = Clean(doc.DocumentNode.SelectSingleNode("//h1")?.InnerText ?? url.Split('/').Last());
         string heading = title, target = url;
         var body = new StringBuilder();

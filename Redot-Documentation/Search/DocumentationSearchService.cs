@@ -16,7 +16,8 @@ using Redot_Documentation.Versioning;
 namespace Redot_Documentation.Search;
 
 public sealed class DocumentationSearchService(VersionManagerService versions, ClassDocumentationCatalog catalog,
-    IWebHostEnvironment environment, ILogger<DocumentationSearchService> logger, DocumentPathResolver paths) : BackgroundService, IDocumentationSearch
+    IWebHostEnvironment environment, ILogger<DocumentationSearchService> logger, DocumentPathResolver paths,
+    MermaidDiagramCatalog? diagrams = null) : BackgroundService, IDocumentationSearch
 {
     private readonly object _gate = new();
     private readonly Dictionary<string, OpenIndex> _indexes = new(StringComparer.OrdinalIgnoreCase);
@@ -50,7 +51,7 @@ public sealed class DocumentationSearchService(VersionManagerService versions, C
             .SelectMany(DocumentPathResolver.EnumerateMarkdownFiles).Order().ToArray();
         catalog.TryGetSnapshot(slug, out var snapshot);
         using var hash = IncrementalHash.CreateHash(HashAlgorithmName.SHA256);
-        hash.AppendData(Encoding.UTF8.GetBytes("search-schema-2:" + snapshot?.CommitSha));
+        hash.AppendData(Encoding.UTF8.GetBytes("search-schema-3:" + snapshot?.CommitSha + ":" + diagrams?.Fingerprint(slug)));
         foreach (string file in files)
         {
             hash.AppendData(Encoding.UTF8.GetBytes(Path.GetRelativePath(root, file)));
@@ -84,7 +85,7 @@ public sealed class DocumentationSearchService(VersionManagerService versions, C
                 using (var analyzer = new WhitespaceAnalyzer(LuceneVersion.LUCENE_48))
                 using (var writer = new IndexWriter(directory, new IndexWriterConfig(LuceneVersion.LUCENE_48, analyzer) { Similarity = new BM25Similarity() }))
                 {
-                    var renderer = new DocRendererService(paths);
+                    var renderer = new DocRendererService(paths, diagrams);
                     foreach (string file in files)
                     {
                         ct.ThrowIfCancellationRequested();

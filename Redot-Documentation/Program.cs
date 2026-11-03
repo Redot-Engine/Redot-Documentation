@@ -20,6 +20,7 @@ public class Program
         builder.Services.AddScoped<DocRendererService>();
         builder.Services.AddSingleton<DocumentPathResolver>();
         builder.Services.AddSingleton<VersionManagerService>();
+        builder.Services.AddSingleton<MermaidDiagramCatalog>();
         builder.Services.AddSingleton<Redot_Documentation.Search.DocumentationSearchService>();
         builder.Services.AddSingleton<Redot_Documentation.Search.IDocumentationSearch>(sp => sp.GetRequiredService<Redot_Documentation.Search.DocumentationSearchService>());
         builder.Services.AddHostedService(sp => sp.GetRequiredService<Redot_Documentation.Search.DocumentationSearchService>());
@@ -58,6 +59,8 @@ public class Program
             .AddAdditionalAssemblies(typeof(Client._Imports).Assembly);
         app.Services.GetService<VersionManagerService>()?.LoadContent();
         _ = app.Services.GetRequiredService<DocumentPathResolver>();
+        _ = app.Services.GetRequiredService<MermaidDiagramCatalog>();
+        app.MapGet("/_diagrams/{key}.svg", (string key, HttpContext context, MermaidDiagramCatalog diagrams) => diagrams.Image(key, context));
         app.MapGet("/health/class-docs", (
             ClassDocumentationCatalog catalog,
             VersionManagerService versionManager) =>
