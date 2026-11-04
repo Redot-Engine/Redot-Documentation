@@ -1,0 +1,766 @@
+[
+  {
+    "file": "rendering_source_map.md",
+    "title": "Renderer execution source map",
+    "sections": [
+      {
+        "title": "Startup and dispatch",
+        "entries": [
+          {
+            "label": "Engine renderer selection",
+            "path": "main/main.cpp",
+            "find": "// Start with RenderingDevice-based backends."
+          },
+          {
+            "label": "Main::setup2",
+            "path": "main/main.cpp",
+            "find": "Error Main::setup2("
+          },
+          {
+            "label": "Main loop render synchronization",
+            "path": "main/main.cpp",
+            "find": "sync(); //sync if still drawing"
+          },
+          {
+            "label": "RenderingServerDefault::_init",
+            "path": "servers/rendering/rendering_server_default.cpp",
+            "find": "void RenderingServerDefault::_init("
+          },
+          {
+            "label": "RenderingServerDefault::_draw",
+            "path": "servers/rendering/rendering_server_default.cpp",
+            "find": "void RenderingServerDefault::_draw("
+          },
+          {
+            "label": "RenderingServerDefault::init",
+            "path": "servers/rendering/rendering_server_default.cpp",
+            "find": "void RenderingServerDefault::init("
+          },
+          {
+            "label": "RenderingServerDefault::sync",
+            "path": "servers/rendering/rendering_server_default.cpp",
+            "find": "void RenderingServerDefault::sync("
+          },
+          {
+            "label": "RenderingServerDefault::_finish",
+            "path": "servers/rendering/rendering_server_default.cpp",
+            "find": "void RenderingServerDefault::_finish("
+          },
+          {
+            "label": "Texture dispatch wrappers",
+            "path": "servers/rendering/rendering_server_default.h",
+            "find": "#define FUNCRIDTEX0"
+          },
+          {
+            "label": "Server threading macros",
+            "path": "servers/server_wrap_mt_common.h",
+            "find": "#define FUNC1("
+          },
+          {
+            "label": "Renderer globals",
+            "path": "servers/rendering/rendering_server_globals.h",
+            "find": "class RenderingServerGlobals"
+          },
+          {
+            "label": "Compositor construction and method selection",
+            "path": "servers/rendering/renderer_rd/renderer_compositor_rd.cpp",
+            "find": "RendererCompositorRD::RendererCompositorRD("
+          },
+          {
+            "label": "Dummy compositor",
+            "path": "servers/rendering/dummy/rasterizer_dummy.h",
+            "find": "class RasterizerDummy"
+          }
+        ]
+      },
+      {
+        "title": "Viewports and scenes",
+        "entries": [
+          {
+            "label": "Viewport drawing and consumer tracking",
+            "path": "servers/rendering/renderer_viewport.cpp",
+            "find": "void RendererViewport::draw_viewports("
+          },
+          {
+            "label": "Viewport sorting",
+            "path": "servers/rendering/renderer_viewport.cpp",
+            "find": "RendererViewport::_sort_active_viewports("
+          },
+          {
+            "label": "Viewport composition",
+            "path": "servers/rendering/renderer_viewport.cpp",
+            "find": "void RendererViewport::_draw_viewport("
+          },
+          {
+            "label": "Canvas command retention",
+            "path": "servers/rendering/renderer_canvas_cull.cpp",
+            "find": "void RendererCanvasCull::canvas_item_add_texture_rect("
+          },
+          {
+            "label": "Canvas culling and dispatch",
+            "path": "servers/rendering/renderer_canvas_cull.cpp",
+            "find": "void RendererCanvasCull::_render_canvas_item_tree("
+          },
+          {
+            "label": "RD canvas execution",
+            "path": "servers/rendering/renderer_rd/renderer_canvas_render_rd.cpp",
+            "find": "void RendererCanvasRenderRD::canvas_render_items("
+          },
+          {
+            "label": "Camera and scene culling",
+            "path": "servers/rendering/renderer_scene_cull.cpp",
+            "find": "void RendererSceneCull::render_camera("
+          },
+          {
+            "label": "Scene preparation and render handoff",
+            "path": "servers/rendering/renderer_scene_cull.cpp",
+            "find": "void RendererSceneCull::_render_scene("
+          },
+          {
+            "label": "Dirty instance dependency updates",
+            "path": "servers/rendering/renderer_scene_cull.cpp",
+            "find": "void RendererSceneCull::_update_dirty_instance("
+          },
+          {
+            "label": "Shared RD scene setup",
+            "path": "servers/rendering/renderer_rd/renderer_scene_render_rd.cpp",
+            "find": "void RendererSceneRenderRD::render_scene("
+          },
+          {
+            "label": "Forward+ pass orchestration",
+            "path": "servers/rendering/renderer_rd/forward_clustered/render_forward_clustered.cpp",
+            "find": "void RenderForwardClustered::_render_scene("
+          },
+          {
+            "label": "Mobile pass orchestration",
+            "path": "servers/rendering/renderer_rd/forward_mobile/render_forward_mobile.cpp",
+            "find": "void RenderForwardMobile::_render_scene("
+          },
+          {
+            "label": "GLES3 pass orchestration",
+            "path": "drivers/gles3/rasterizer_scene_gles3.cpp",
+            "find": "void RasterizerSceneGLES3::render_scene("
+          }
+        ]
+      },
+      {
+        "title": "Resources and device",
+        "entries": [
+          {
+            "label": "Storage dependency tracking",
+            "path": "servers/rendering/storage/utilities.h",
+            "find": "class DependencyTracker"
+          },
+          {
+            "label": "RD texture storage",
+            "path": "servers/rendering/renderer_rd/storage_rd/texture_storage.h",
+            "find": "class TextureStorage"
+          },
+          {
+            "label": "RD texture deletion",
+            "path": "servers/rendering/renderer_rd/storage_rd/texture_storage.cpp",
+            "find": "void TextureStorage::texture_free("
+          },
+          {
+            "label": "Render scene buffers",
+            "path": "servers/rendering/renderer_rd/storage_rd/render_scene_buffers_rd.h",
+            "find": "class RenderSceneBuffersRD"
+          },
+          {
+            "label": "RenderingDevice initialization",
+            "path": "servers/rendering/rendering_device.cpp",
+            "find": "Error RenderingDevice::initialize("
+          },
+          {
+            "label": "RenderingDevice texture creation",
+            "path": "servers/rendering/rendering_device.cpp",
+            "find": "RID RenderingDevice::texture_create("
+          },
+          {
+            "label": "RenderingDevice uniform validation",
+            "path": "servers/rendering/rendering_device.cpp",
+            "find": "RID RenderingDevice::uniform_set_create("
+          },
+          {
+            "label": "RenderingDevice resource deletion",
+            "path": "servers/rendering/rendering_device.cpp",
+            "find": "void RenderingDevice::_free_internal("
+          },
+          {
+            "label": "Frame resource retirement",
+            "path": "servers/rendering/rendering_device.cpp",
+            "find": "void RenderingDevice::_begin_frame("
+          },
+          {
+            "label": "Device submission and presentation",
+            "path": "servers/rendering/rendering_device.cpp",
+            "find": "void RenderingDevice::swap_buffers("
+          },
+          {
+            "label": "Local device submission",
+            "path": "servers/rendering/rendering_device.cpp",
+            "find": "void RenderingDevice::submit("
+          },
+          {
+            "label": "Device command graph",
+            "path": "servers/rendering/rendering_device_graph.cpp",
+            "find": "void RenderingDeviceGraph::end("
+          },
+          {
+            "label": "Context contract",
+            "path": "servers/rendering/rendering_context_driver.h",
+            "find": "class RenderingContextDriver"
+          },
+          {
+            "label": "Driver contract",
+            "path": "servers/rendering/rendering_device_driver.h",
+            "find": "class RenderingDeviceDriver"
+          }
+        ]
+      },
+      {
+        "title": "Shaders and effects",
+        "entries": [
+          {
+            "label": "Shader preprocessing",
+            "path": "servers/rendering/shader_preprocessor.h",
+            "find": "class ShaderPreprocessor"
+          },
+          {
+            "label": "Shader language",
+            "path": "servers/rendering/shader_language.h",
+            "find": "class ShaderLanguage"
+          },
+          {
+            "label": "Shader compiler",
+            "path": "servers/rendering/shader_compiler.h",
+            "find": "class ShaderCompiler"
+          },
+          {
+            "label": "RD shader template and variants",
+            "path": "servers/rendering/renderer_rd/shader_rd.h",
+            "find": "class ShaderRD"
+          },
+          {
+            "label": "Shader containers",
+            "path": "servers/rendering/rendering_shader_container.h",
+            "find": "class RenderingShaderContainer"
+          },
+          {
+            "label": "Generated shader wrapper builder",
+            "path": "glsl_builders.py",
+            "find": "def build_rd_header("
+          },
+          {
+            "label": "Uniform set cache",
+            "path": "servers/rendering/renderer_rd/uniform_set_cache_rd.h",
+            "find": "class UniformSetCacheRD"
+          },
+          {
+            "label": "Pipeline background compilation",
+            "path": "servers/rendering/renderer_rd/pipeline_hash_map_rd.h",
+            "find": "class PipelineHashMapRD"
+          },
+          {
+            "label": "Post processing and tone mapping",
+            "path": "servers/rendering/renderer_rd/renderer_scene_render_rd.cpp",
+            "find": "void RendererSceneRenderRD::_render_buffers_post_process_and_tonemap("
+          },
+          {
+            "label": "Compositor callback execution",
+            "path": "servers/rendering/renderer_rd/renderer_scene_render_rd.cpp",
+            "find": "void RendererSceneRenderRD::_process_compositor_effects("
+          },
+          {
+            "label": "Particle simulation",
+            "path": "servers/rendering/renderer_rd/storage_rd/particles_storage.cpp",
+            "find": "void ParticlesStorage::update_particles("
+          },
+          {
+            "label": "Shader container reflection and native code",
+            "path": "servers/rendering/rendering_device.cpp",
+            "find": "Vector<uint8_t> RenderingDevice::shader_compile_binary_from_spirv("
+          },
+          {
+            "label": "Cluster construction",
+            "path": "servers/rendering/renderer_rd/cluster_builder_rd.cpp",
+            "find": "void ClusterBuilderRD::bake_cluster("
+          },
+          {
+            "label": "RD storage dirty-resource order",
+            "path": "servers/rendering/renderer_rd/storage_rd/utilities.cpp",
+            "find": "void Utilities::update_dirty_resources("
+          },
+          {
+            "label": "MetalFX graph callback and native encoding",
+            "path": "servers/rendering/renderer_rd/effects/metal_fx.mm",
+            "find": "void MFXSpatialEffect::process("
+          },
+          {
+            "label": "RenderingServer deprecated adapters",
+            "path": "servers/rendering/rendering_server.compat.inc",
+            "find": "#ifndef DISABLE_DEPRECATED"
+          },
+          {
+            "label": "RenderingDevice deprecated adapters",
+            "path": "servers/rendering/rendering_device.compat.inc",
+            "find": "#ifndef DISABLE_DEPRECATED"
+          },
+          {
+            "label": "RD render buffer deprecated adapters",
+            "path": "servers/rendering/renderer_rd/storage_rd/render_scene_buffers_rd.compat.inc",
+            "find": "#ifndef DISABLE_DEPRECATED"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "file": "rendering_backend_sources.md",
+    "title": "Rendering backend source map",
+    "sections": [
+      {
+        "title": "Vulkan",
+        "entries": [
+          {
+            "label": "Vulkan context",
+            "path": "drivers/vulkan/rendering_context_driver_vulkan.h",
+            "find": "class RenderingContextDriverVulkan"
+          },
+          {
+            "label": "Vulkan device initialization",
+            "path": "drivers/vulkan/rendering_device_driver_vulkan.cpp",
+            "find": "Error RenderingDeviceDriverVulkan::initialize("
+          },
+          {
+            "label": "Vulkan allocator",
+            "path": "drivers/vulkan/rendering_device_driver_vulkan.cpp",
+            "find": "vmaCreateAllocator("
+          },
+          {
+            "label": "Vulkan shader container",
+            "path": "drivers/vulkan/rendering_shader_container_vulkan.cpp",
+            "find": "bool RenderingShaderContainerVulkan::_set_code_from_spirv("
+          },
+          {
+            "label": "Vulkan interop hooks",
+            "path": "drivers/vulkan/vulkan_hooks.h",
+            "find": "class VulkanHooks"
+          }
+        ]
+      },
+      {
+        "title": "Direct3D 12",
+        "entries": [
+          {
+            "label": "D3D12 context",
+            "path": "drivers/d3d12/rendering_context_driver_d3d12.h",
+            "find": "class RenderingContextDriverD3D12"
+          },
+          {
+            "label": "D3D12 device",
+            "path": "drivers/d3d12/rendering_device_driver_d3d12.h",
+            "find": "class RenderingDeviceDriverD3D12"
+          },
+          {
+            "label": "D3D12 shader conversion",
+            "path": "drivers/d3d12/rendering_shader_container_d3d12.h",
+            "find": "class RenderingShaderContainerD3D12"
+          },
+          {
+            "label": "D3D12 descriptor and resource implementation",
+            "path": "drivers/d3d12/rendering_device_driver_d3d12.cpp",
+            "find": "RDD::BufferID RenderingDeviceDriverD3D12::buffer_create("
+          },
+          {
+            "label": "D3D12 interop hooks",
+            "path": "drivers/d3d12/d3d12_hooks.h",
+            "find": "class D3D12Hooks"
+          }
+        ]
+      },
+      {
+        "title": "Metal",
+        "entries": [
+          {
+            "label": "Metal context",
+            "path": "drivers/metal/rendering_context_driver_metal.h",
+            "find": "RenderingContextDriverMetal :"
+          },
+          {
+            "label": "Metal device",
+            "path": "drivers/metal/rendering_device_driver_metal.h",
+            "find": "RenderingDeviceDriverMetal :"
+          },
+          {
+            "label": "Metal shader container",
+            "path": "drivers/metal/rendering_shader_container_metal.h",
+            "find": "class RenderingShaderContainerMetal"
+          },
+          {
+            "label": "Metal command buffer wrappers",
+            "path": "drivers/metal/metal_objects.h",
+            "find": "MDCommandBuffer"
+          },
+          {
+            "label": "Metal device format features",
+            "path": "drivers/metal/metal_device_properties.h",
+            "find": "MetalFeatures {"
+          }
+        ]
+      },
+      {
+        "title": "OpenGL and platforms",
+        "entries": [
+          {
+            "label": "GLES3 compositor",
+            "path": "drivers/gles3/rasterizer_gles3.cpp",
+            "find": "void RasterizerGLES3::gl_end_frame("
+          },
+          {
+            "label": "GLES3 shader manager",
+            "path": "drivers/gles3/shader_gles3.h",
+            "find": "class ShaderGLES3"
+          },
+          {
+            "label": "GLES3 canvas execution",
+            "path": "drivers/gles3/rasterizer_canvas_gles3.cpp",
+            "find": "void RasterizerCanvasGLES3::canvas_render_items("
+          },
+          {
+            "label": "EGL manager",
+            "path": "drivers/egl/egl_manager.h",
+            "find": "class EGLManager"
+          },
+          {
+            "label": "X11 context and compositor selection",
+            "path": "platform/linuxbsd/x11/display_server_x11.cpp",
+            "find": "rendering_context = memnew(RenderingContextDriverVulkanX11)"
+          },
+          {
+            "label": "Wayland rendering integration",
+            "path": "platform/linuxbsd/wayland/display_server_wayland.h",
+            "find": "class DisplayServerWayland"
+          },
+          {
+            "label": "Windows context selection",
+            "path": "platform/windows/display_server_windows.cpp",
+            "find": "fallback_to_vulkan ="
+          },
+          {
+            "label": "macOS context selection",
+            "path": "platform/macos/display_server_macos.mm",
+            "find": "rendering_context = memnew(RenderingContextDriverMetal)"
+          },
+          {
+            "label": "Apple embedded context selection",
+            "path": "drivers/apple_embedded/display_server_apple_embedded.mm",
+            "find": "rendering_context = memnew(RenderingContextDriverVulkanAppleEmbedded)"
+          },
+          {
+            "label": "Android rendering integration",
+            "path": "platform/android/display_server_android.h",
+            "find": "class DisplayServerAndroid"
+          },
+          {
+            "label": "WebGL context creation",
+            "path": "platform/web/display_server_web.cpp",
+            "find": "bool webgl2_inited = false;"
+          },
+          {
+            "label": "Headless selection",
+            "path": "servers/display/display_server_headless.h",
+            "find": "class DisplayServerHeadless"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "file": "rendering_integration_sources.md",
+    "title": "Rendering integration source map",
+    "sections": [
+      {
+        "title": "Scene resources",
+        "entries": [
+          {
+            "label": "CanvasItem draw delegation",
+            "path": "scene/main/canvas_item.cpp",
+            "find": "void CanvasItem::draw_texture_rect("
+          },
+          {
+            "label": "Sprite2D draw notification",
+            "path": "scene/2d/sprite_2d.cpp",
+            "find": "void Sprite2D::_notification("
+          },
+          {
+            "label": "Visual instance ownership",
+            "path": "scene/3d/visual_instance_3d.cpp",
+            "find": "VisualInstance3D::VisualInstance3D("
+          },
+          {
+            "label": "Mesh instance mesh changes",
+            "path": "scene/3d/mesh_instance_3d.cpp",
+            "find": "void MeshInstance3D::set_mesh("
+          },
+          {
+            "label": "Texture resource",
+            "path": "scene/resources/image_texture.h",
+            "find": "class ImageTexture"
+          },
+          {
+            "label": "Shader resource",
+            "path": "scene/resources/shader.h",
+            "find": "class Shader :"
+          },
+          {
+            "label": "Material resource",
+            "path": "scene/resources/material.h",
+            "find": "class Material :"
+          },
+          {
+            "label": "RD texture bridge",
+            "path": "scene/resources/texture_rd.cpp",
+            "find": "void Texture2DRD::_set_texture_rd_rid("
+          },
+          {
+            "label": "Compositor resource",
+            "path": "scene/resources/compositor.cpp",
+            "find": "void CompositorEffect::_call_render_callback("
+          },
+          {
+            "label": "Mode7 material and texture generation",
+            "path": "scene/2d/mode7_sprite_2d.cpp",
+            "find": "void Mode7Sprite2D::_mode7_rebuild_material("
+          },
+          {
+            "label": "WorldScape material",
+            "path": "modules/worldscape_3d/worldscape_3d_material.h",
+            "find": "class WorldScape3DMaterial"
+          }
+        ]
+      },
+      {
+        "title": "Services and modules",
+        "entries": [
+          {
+            "label": "Display server contract",
+            "path": "servers/display/display_server.h",
+            "find": "class DisplayServer :"
+          },
+          {
+            "label": "XR interface contract",
+            "path": "servers/xr/xr_interface.h",
+            "find": "class XRInterface :"
+          },
+          {
+            "label": "Camera feeds",
+            "path": "servers/camera/camera_feed.h",
+            "find": "class CameraFeed :"
+          },
+          {
+            "label": "GL camera feed consumption",
+            "path": "drivers/gles3/rasterizer_scene_gles3.cpp",
+            "find": "#include \"servers/camera/camera_feed.h\""
+          },
+          {
+            "label": "OpenXR Vulkan hooks",
+            "path": "modules/openxr/extensions/platform/openxr_vulkan_extension.h",
+            "find": "class OpenXRVulkanExtension"
+          },
+          {
+            "label": "OpenXR D3D12 hooks",
+            "path": "modules/openxr/extensions/platform/openxr_d3d12_extension.h",
+            "find": "class OpenXRD3D12Extension"
+          },
+          {
+            "label": "GPU texture compressor",
+            "path": "modules/betsy/image_compress_betsy.cpp",
+            "find": "void BetsyCompressor::_init("
+          },
+          {
+            "label": "GPU lightmapper",
+            "path": "modules/lightmapper_rd/lightmapper_rd.h",
+            "find": "class LightmapperRD"
+          },
+          {
+            "label": "Raycast occlusion implementation",
+            "path": "modules/raycast/raycast_occlusion_cull.h",
+            "find": "class RaycastOcclusionCull"
+          },
+          {
+            "label": "GLSL to SPIR-V compiler",
+            "path": "modules/glslang/register_types.cpp",
+            "find": "Vector<uint8_t> compile_glslang_shader("
+          },
+          {
+            "label": "Render server registration",
+            "path": "servers/register_server_types.cpp",
+            "find": "void register_server_types("
+          },
+          {
+            "label": "Resource loader render progress dependency",
+            "path": "core/io/resource_loader.cpp",
+            "find": "bool ResourceLoader::_ensure_load_progress("
+          },
+          {
+            "label": "Engine frame limit device dependency",
+            "path": "core/config/engine.cpp",
+            "find": "void Engine::set_max_fps("
+          },
+          {
+            "label": "Physics soft body rendering contract",
+            "path": "servers/physics_3d/physics_server_3d.h",
+            "find": "class PhysicsServer3DRenderingServerHandler"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "file": "rendering_observation_sources.md",
+    "title": "Rendering observation source map",
+    "sections": [
+      {
+        "title": "Wrapper and ownership observations",
+        "entries": [
+          {
+            "label": "Scene dependency on shader includes",
+            "path": "servers/rendering/shader_language.h",
+            "find": "#include \"scene/resources/shader_include.h\""
+          },
+          {
+            "label": "Shader preprocessor scene dependency",
+            "path": "servers/rendering/shader_preprocessor.h",
+            "find": "#include \"scene/resources/shader_include.h\""
+          },
+          {
+            "label": "RD compiler module dependency",
+            "path": "servers/rendering/rendering_device.cpp",
+            "find": "#include \"modules/glslang/shader_compile.h\""
+          },
+          {
+            "label": "Android Vulkan platform dependency",
+            "path": "drivers/vulkan/rendering_device_driver_vulkan.cpp",
+            "find": "#include \"platform/android/"
+          },
+          {
+            "label": "Texture storage to scene renderer dependency",
+            "path": "servers/rendering/renderer_rd/storage_rd/texture_storage.cpp",
+            "find": "RD::DataFormat TextureStorage::render_target_get_color_format("
+          },
+          {
+            "label": "Server free dispatch",
+            "path": "servers/rendering/rendering_server_default.cpp",
+            "find": "void RenderingServerDefault::_free("
+          },
+          {
+            "label": "Material storage inspects concrete scene shader types",
+            "path": "servers/rendering/renderer_rd/storage_rd/material_storage.cpp",
+            "find": "dynamic_cast<RendererSceneRenderImplementation::SceneShaderForwardClustered::ShaderData *>"
+          },
+          {
+            "label": "Secondary command recording is disabled",
+            "path": "servers/rendering/rendering_device.cpp",
+            "find": "#define SECONDARY_COMMAND_BUFFERS_PER_FRAME 0"
+          },
+          {
+            "label": "GI intended separation comment",
+            "path": "servers/rendering/renderer_rd/environment/gi.h",
+            "find": "VoxelGIInstance is still directly used"
+          },
+          {
+            "label": "Resource loader coupling TODO",
+            "path": "core/io/resource_loader.cpp",
+            "find": "This may be refactored in the future to support other servers"
+          },
+          {
+            "label": "Betsy private server include",
+            "path": "modules/betsy/image_compress_betsy.h",
+            "find": "#include \"servers/rendering/rendering_server_default.h\""
+          }
+        ]
+      },
+      {
+        "title": "Incomplete and disabled paths",
+        "entries": [
+          {
+            "label": "D3D12 pipeline cache stub",
+            "path": "drivers/d3d12/rendering_device_driver_d3d12.cpp",
+            "find": "bool RenderingDeviceDriverD3D12::pipeline_cache_create("
+          },
+          {
+            "label": "Metal pipeline cache early return",
+            "path": "drivers/metal/rendering_device_driver_metal.mm",
+            "find": "bool RenderingDeviceDriverMetal::pipeline_cache_create("
+          },
+          {
+            "label": "Metal secondary command buffer rejection",
+            "path": "drivers/metal/rendering_device_driver_metal.mm",
+            "find": "bool RenderingDeviceDriverMetal::command_buffer_begin_secondary("
+          },
+          {
+            "label": "Metal pipeline barrier placeholder",
+            "path": "drivers/metal/rendering_device_driver_metal.mm",
+            "find": "void RenderingDeviceDriverMetal::command_pipeline_barrier("
+          },
+          {
+            "label": "Mobile compositor limitations",
+            "path": "servers/rendering/renderer_rd/forward_mobile/render_forward_mobile.cpp",
+            "find": "Post opaque rendering effect callback is not supported"
+          },
+          {
+            "label": "Legacy disabled texture binding",
+            "path": "servers/rendering/rendering_server_default.h",
+            "find": "Disabled during Vulkan refactoring"
+          },
+          {
+            "label": "GLES3 constructor failure marker",
+            "path": "drivers/gles3/rasterizer_gles3.cpp",
+            "find": "early return from a constructor"
+          },
+          {
+            "label": "Temporal accumulation reset marker",
+            "path": "servers/rendering/renderer_rd/forward_clustered/render_forward_clustered.cpp",
+            "find": "The engine does not provide a way to reset the accumulation"
+          }
+        ]
+      },
+      {
+        "title": "Performance investigation points",
+        "entries": [
+          {
+            "label": "Viewport usage snapshot allocation",
+            "path": "servers/rendering/renderer_viewport.cpp",
+            "find": "LocalVector<bool> rt_was_used_snapshot;"
+          },
+          {
+            "label": "Viewport sibling lookup",
+            "path": "servers/rendering/renderer_viewport.cpp",
+            "find": "// Build dependency graph with a linear search"
+          },
+          {
+            "label": "Render target storage usage flag",
+            "path": "servers/rendering/renderer_rd/storage_rd/texture_storage.cpp",
+            "find": "Storage bit should only be requested when FSR is required."
+          },
+          {
+            "label": "Uniform binding lookup",
+            "path": "servers/rendering/rendering_device.cpp",
+            "find": "uint32_t set_uniform_count = set.size();"
+          },
+          {
+            "label": "Staging capacity fallback",
+            "path": "servers/rendering/rendering_device.cpp",
+            "find": "// Oops, we are out of room"
+          },
+          {
+            "label": "FSR2 UBO allocation marker",
+            "path": "servers/rendering/renderer_rd/effects/fsr2.cpp",
+            "find": "This could be optimized to be a single memory block"
+          }
+        ]
+      }
+    ]
+  }
+]

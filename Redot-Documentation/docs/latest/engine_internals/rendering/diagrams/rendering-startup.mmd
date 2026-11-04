@@ -1,0 +1,20 @@
+sequenceDiagram
+    accTitle: Renderer startup sequence
+    accDescr: Platform graphics initialization precedes construction of the server component family.
+    participant Main
+    participant Display as DisplayServer
+    participant Context as Context driver
+    participant RD as RenderingDevice
+    participant Server as RenderingServerDefault
+    participant Comp as Compositor factory
+    Main->>Main: Select method and driver
+    Main->>Display: Create display server
+    Display->>Context: Initialize and create surface
+    Display->>RD: Initialize with context and window
+    RD->>Context: Create native device driver
+    Display->>Comp: Install selected compositor factory
+    Main->>Server: Construct and init
+    Server->>Server: Enter required render thread
+    Server->>Comp: Create component family
+    Comp-->>Server: Storage and drawing interfaces
+    Server->>Server: Publish RSG and attach scene renderer

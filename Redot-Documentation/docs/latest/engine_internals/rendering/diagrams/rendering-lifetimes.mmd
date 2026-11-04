@@ -1,0 +1,12 @@
+flowchart TD
+    accTitle: Resource identity and retirement
+    accDescr: Scene resource ownership, server RID ownership, device RID ownership, and native GPU retirement are distinct.
+    Resource[Scene Resource with Ref ownership] -->|creates or references| RS[Server RID record]
+    RS -->|storage creates or views| RD[Device RID record]
+    RD -->|driver identity| Native[Native allocation or view]
+    RS -.->|change notification| Tracker[Renderer dependency tracker]
+    RD -.->|invalidation| Cache[Uniform set and framebuffer caches]
+    Free[RD free request] --> Invalid[Remove device RID validity]
+    Invalid --> Deferred[Frame disposal queue]
+    Deferred -->|wait for slot completion| Release[Release native resource]
+    Native -.->|still used by submitted work| Deferred

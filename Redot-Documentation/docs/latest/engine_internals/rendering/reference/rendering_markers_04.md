@@ -1,0 +1,33 @@
+# Renderer source markers 4
+
+These are source markers, not confirmed defects or approved work. Read the containing
+function and its callers before classifying a marker. Some describe intentional API
+limits or old comments. See [unfinished paths](doc_rendering_unfinished) for assessed
+examples. The [maintenance procedure](doc_rendering_maintenance) rebuilds this catalog.
+
+| Source | Marker text |
+|---|---|
+| [drivers/metal/rendering_device_driver_metal.mm:426](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/drivers/metal/rendering_device_driver_metal.mm#L426) | // TODO(sgc): is it ok to create a shared texture from a multi-sample texture? |
+| [drivers/metal/rendering_device_driver_metal.mm:631](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/drivers/metal/rendering_device_driver_metal.mm#L631) | // TODO: Confirm with rendering team that there is no other way Redot may attempt to map a texture with multiple mipmaps or array layers. |
+| [drivers/metal/rendering_device_driver_metal.mm:838](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/drivers/metal/rendering_device_driver_metal.mm#L838) | WARN_PRINT_ONCE("not implemented"); |
+| [drivers/metal/rendering_device_driver_metal.mm:969](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/drivers/metal/rendering_device_driver_metal.mm#L969) | ERR_FAIL_V_MSG(false, "not implemented"); |
+| [drivers/metal/rendering_device_driver_metal.mm:978](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/drivers/metal/rendering_device_driver_metal.mm#L978) | ERR_FAIL_MSG("not implemented"); |
+| [drivers/metal/rendering_device_driver_metal.mm:1362](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/drivers/metal/rendering_device_driver_metal.mm#L1362) | // TODO. |
+| [drivers/metal/rendering_device_driver_metal.mm:1370](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/drivers/metal/rendering_device_driver_metal.mm#L1370) | //p_linear_pool_index = -1; // TODO:? Linear pools not implemented or not supported by API backend. |
+| [drivers/metal/rendering_device_driver_metal.mm:1459](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/drivers/metal/rendering_device_driver_metal.mm#L1459) | ERR_FAIL_MSG("not implemented: copy with intermediate buffer"); |
+| [drivers/metal/rendering_device_driver_metal.mm:2058](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/drivers/metal/rendering_device_driver_metal.mm#L2058) | uint32_t alignment = 16; // TODO(sgc): is this always correct? |
+| [drivers/metal/rendering_device_driver_metal.mm:2175](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/drivers/metal/rendering_device_driver_metal.mm#L2175) | ERR_FAIL_V_MSG(PipelineID(), "tessellation not implemented"); |
+| [drivers/metal/rendering_device_driver_metal.mm:2287](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/drivers/metal/rendering_device_driver_metal.mm#L2287) | // TODO(sgc): FB13671991 raised as Apple docs state calling setDepthStencilState:nil is valid, but currently generates an exception |
+| [drivers/metal/rendering_device_driver_metal.mm:2343](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/drivers/metal/rendering_device_driver_metal.mm#L2343) | // TODO(sgc): ?? |
+| [drivers/metal/rendering_device_driver_metal.mm:2347](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/drivers/metal/rendering_device_driver_metal.mm#L2347) | // TODO(sgc): ?? |
+| [drivers/metal/rendering_device_driver_metal.mm:2351](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/drivers/metal/rendering_device_driver_metal.mm#L2351) | // TODO(sgc): ?? |
+| [drivers/metal/rendering_device_driver_metal.mm:2509](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/drivers/metal/rendering_device_driver_metal.mm#L2509) | // TODO: Implement. |
+| [drivers/metal/rendering_device_driver_metal.mm:2616](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/drivers/metal/rendering_device_driver_metal.mm#L2616) | return 0; // TODO: Track this (grep for memoryless in Godot's Metal backend). |
+| [drivers/vulkan/rendering_device_driver_vulkan.cpp:388](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/drivers/vulkan/rendering_device_driver_vulkan.cpp#L388) | /// @todo FIXME: Add shader stage geometry bit. |
+| [drivers/vulkan/rendering_device_driver_vulkan.cpp:673](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/drivers/vulkan/rendering_device_driver_vulkan.cpp#L673) | /// @todo Allow the user to override these settings (i.e. turn off more stuff) using profiles |
+| [drivers/vulkan/rendering_device_driver_vulkan.cpp:971](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/drivers/vulkan/rendering_device_driver_vulkan.cpp#L971) | /// @todo Expose these somehow to the end user. |
+| [drivers/vulkan/rendering_device_driver_vulkan.cpp:2720](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/drivers/vulkan/rendering_device_driver_vulkan.cpp#L2720) | /// @todo FIXME: Allow specifying the stage mask in more detail. |
+| [drivers/vulkan/rendering_device_driver_vulkan.cpp:4073](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/drivers/vulkan/rendering_device_driver_vulkan.cpp#L4073) | CRASH_NOW_MSG("Unimplemented!"); /// @todo |
+| [drivers/vulkan/rendering_device_driver_vulkan.cpp:4491](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/drivers/vulkan/rendering_device_driver_vulkan.cpp#L4491) | /// @todo FIXME: |
+| [servers/rendering/instance_uniforms.cpp:175](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/servers/rendering/instance_uniforms.cpp#L175) | /// @todo HACK: Detect boolean flags count and prevent overhead. |
+| [servers/rendering/renderer_canvas_cull.cpp:1230](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/servers/rendering/renderer_canvas_cull.cpp#L1230) | /// @todo 'canvas_item_add_line'('multiline', 'polyline') share logic, should factor out. |

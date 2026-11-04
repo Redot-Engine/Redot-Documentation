@@ -1,0 +1,14 @@
+flowchart TD
+    accTitle: Forward+ conditional stage outline
+    accDescr: This outline groups responsibilities. Actual passes and resolves depend on materials, output configuration, environment features, and compositor flags.
+    Inputs[Visible geometry and render data] --> Prepare[Prepare buffers lists and shader requirements]
+    Prepare --> Depth[Depth normal roughness and shadow work as required]
+    Depth --> Lighting[Cluster and GI preparation]
+    Lighting --> Pre[Pre opaque callbacks]
+    Pre --> Opaque[Opaque drawing and motion work]
+    Opaque --> Post[Post opaque callbacks]
+    Post --> Sky[Sky and background]
+    Sky --> Effects[Post sky and screen or specular work]
+    Effects --> Alpha[Pre transparent callbacks and transparent drawing]
+    Alpha --> Temporal[Post transparent and temporal work]
+    Temporal --> Output[Post processing tone mapping and output]
