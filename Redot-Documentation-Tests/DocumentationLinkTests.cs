@@ -1,7 +1,11 @@
 using HtmlAgilityPack;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Logging.Abstractions;
 using Redot_Documentation.Services;
+using System.Text.RegularExpressions;
 
 namespace Redot_Documentation_Tests;
 
@@ -19,7 +23,10 @@ public sealed class DocumentationLinkTests
         var versions = new VersionManagerService(environment);
         versions.LoadContent();
         var paths = new DocumentPathResolver(environment, versions);
-        var renderer = new DocRendererService(paths);
+        var diagrams = new MermaidDiagramCatalog(environment, versions, NullLogger<MermaidDiagramCatalog>.Instance);
+        Assert.True(diagrams.Errors.Count == 0, string.Join(Environment.NewLine, diagrams.Errors));
+        var renderer = new DocRendererService(paths, diagrams);
+        using var services = new ServiceCollection().AddLogging().BuildServiceProvider();
         var pages = new Dictionary<(string Version, string Route), HtmlDocument>();
         foreach (var version in versions.Versions)
         {
@@ -38,6 +45,22 @@ public sealed class DocumentationLinkTests
                     Assert.Equal(resolved, paths.ResolveRoute(relative[..^3].ToUpperInvariant() + suffix, versions));
                 var document = new HtmlDocument();
                 document.LoadHtml(DocumentHeadings.Apply(await renderer.RenderToHtmlAsync(resolved, provider), []));
+                Assert.True(document.DocumentNode.SelectSingleNode("//*[@class='doc-mermaid-error']") is null,
+                    version.Slug + ": " + relative + " contains an invalid Mermaid embed.");
+                foreach (var image in document.DocumentNode.SelectNodes("//figure[@class='doc-mermaid']//img") ?? Enumerable.Empty<HtmlNode>())
+                {
+                    var source = image.GetAttributeValue("src", "");
+                    var match = Regex.Match(source, @"^/_diagrams/([a-f0-9]{64})\.svg$");
+                    Assert.True(match.Success, version.Slug + ": " + relative + " has an unexpected Mermaid image source: " + source);
+                    var context = new DefaultHttpContext { RequestServices = services };
+                    context.Request.Method = "GET";
+                    using var body = new MemoryStream();
+                    context.Response.Body = body;
+                    await diagrams.Image(match.Groups[1].Value, context).ExecuteAsync(context);
+                    Assert.Equal(StatusCodes.Status200OK, context.Response.StatusCode);
+                    Assert.Equal("image/svg+xml", context.Response.ContentType);
+                    Assert.True(body.Length > 0, source + " returned an empty SVG.");
+                }
                 pages.Add((version.Slug, resolved.PublicUrl), document);
             }
         }

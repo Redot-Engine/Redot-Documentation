@@ -85,6 +85,7 @@ public sealed class Section : IRanking
         DirectoryInfo[] subDirectories = directory.GetDirectories();
         foreach (DirectoryInfo subDirectory in subDirectories)
         {
+            if (subDirectory.Name.Equals("diagrams", StringComparison.OrdinalIgnoreCase)) continue;
             if (excludedItems.Contains(subDirectory.Name)) continue;
             int priority = rankingPriorities.GetValueOrDefault(subDirectory.Name, 1024);
             Section subSection = new Section(subDirectory.Name, FilePath.Combine(Path, subDirectory.Name), priority);

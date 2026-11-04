@@ -16,10 +16,12 @@ public class DocRendererService
         .Build();
 
     private readonly DocumentPathResolver paths;
+    private readonly MermaidDiagramCatalog? diagrams;
 
-    public DocRendererService(DocumentPathResolver paths)
+    public DocRendererService(DocumentPathResolver paths, MermaidDiagramCatalog? diagrams = null)
     {
         this.paths = paths;
+        this.diagrams = diagrams;
     }
 
     public async Task<string> RenderToHtmlAsync(string documentPath, VersionProvider versionProvider, CancellationToken cancellationToken = default)
@@ -33,10 +35,15 @@ public class DocRendererService
     {
         var fullPath = document.FullPath;
         var markdown = await File.ReadAllTextAsync(fullPath, cancellationToken);
+        var diagramPlaceholders = new Dictionary<string, string>();
+        markdown = MermaidEmbedTransform.Extract(markdown, attributes =>
+            diagrams?.RenderEmbed(document, versionProvider, attributes)
+            ?? throw new MermaidEmbedException("The diagram catalog is unavailable."), diagramPlaceholders);
         var transformedMarkdown = TransformMarkdown(markdown, versionProvider);
         var renderedHtml = Markdown.ToHtml(transformedMarkdown.Markdown, MarkdownPipeline);
 
         var placeholders = transformedMarkdown.HtmlPlaceholders;
+        foreach (var placeholder in diagramPlaceholders) placeholders.Add(placeholder.Key, placeholder.Value);
         for (var pass = 0; pass < placeholders.Count; pass++)
         {
             var replacedInPass = false;

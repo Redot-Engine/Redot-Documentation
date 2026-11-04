@@ -76,6 +76,7 @@ The website MIT grant does not replace any dependency's license.
 | `Redot-Documentation/wwwroot/fonts/jetbrains-mono/` (JetBrains Mono) | SIL OFL 1.1, Copyright 2020 The JetBrains Mono Project Authors; [full text](Redot-Documentation/wwwroot/fonts/jetbrains-mono/OFL.txt) |
 | `Redot-Documentation/wwwroot/Icons/Font-Awesome/` | Font Awesome Free: icons CC BY 4.0, fonts SIL OFL 1.1, code MIT, as applicable; [original notice](Redot-Documentation/wwwroot/Icons/Font-Awesome/LICENSE.txt) |
 | MudBlazor 9.12.0 | MIT; [full notice](Redot-Documentation/wwwroot/licenses/MUDBLAZOR-MIT.txt) |
+| Mermaider and Sugiyama 0.15.1 | MIT, Copyright (c) 2025 Nullean; [full text](Redot-Documentation/wwwroot/licenses/MERMAIDER-MIT.txt) and [third-party notices](Redot-Documentation/wwwroot/licenses/MERMAIDER-THIRD-PARTY-NOTICES.md), retrieved from package source revision `71b64845570d633a94d29e85579c0a02786fece8` |
 | Markdig 1.5.1 | BSD-2-Clause, Copyright (c) 2016-2026 Alexandre Mutel; [full text](Redot-Documentation/wwwroot/licenses/MARKDIG-BSD-2-CLAUSE.txt), retrieved from the package's source revision `bbf197eaf3c96b9a6ada6532ec970b59751ca9c6` |
 | .NET/ASP.NET Core and WebAssembly runtime assets | [MIT license](Redot-Documentation/wwwroot/licenses/DOTNET-MIT.txt), [.NET third-party notices](Redot-Documentation/wwwroot/licenses/DOTNET-THIRD-PARTY-NOTICES.txt), and [ASP.NET Core third-party notices](Redot-Documentation/wwwroot/licenses/ASPNETCORE-THIRD-PARTY-NOTICES.txt) |
 

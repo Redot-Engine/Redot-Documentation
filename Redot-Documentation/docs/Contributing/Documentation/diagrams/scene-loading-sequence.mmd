@@ -1,0 +1,10 @@
+sequenceDiagram
+    accTitle: Scene loading sequence
+    accDescr: The game asks a loader to read assets, then receives a scene-ready reply.
+    participant Game
+    participant Loader
+    participant Assets
+    Game->>Loader: Load level
+    Loader->>Assets: Read resources
+    Assets-->>Loader: Resources ready
+    Loader-->>Game: Scene ready
