@@ -15,40 +15,61 @@ internal static class MermaidEmbedTransform
     private static readonly MarkdownPipeline LiteralPipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().DisableHtml().Build();
     private static readonly Regex Openings = new(@"<mermaid(?=[\s/>])", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant, Timeout);
     private static readonly Regex Tags = new("""\G<mermaid(?=[\s/>])(?<attributes>(?:\s+[a-zA-Z][a-zA-Z0-9_-]*\s*=\s*(?:"[^"\r\n]*"|'[^'\r\n]*'))*\s*)(?<self>/\s*)?>""", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant, Timeout);
+    private static readonly Regex HtmlMarkup = new("""(?<comment><!--[\s\S]*?-->)|<(?<name>[a-zA-Z][a-zA-Z0-9:-]*)(?=[\s/>])(?:[^"'<>]|"[^"]*"|'[^']*')*>""", RegexOptions.CultureInvariant, Timeout);
     private static readonly Regex Closing = new(@"\G\s*</mermaid\s*>", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant, Timeout);
     private static readonly Regex Attribute = new("""\G\s+(?<name>[a-zA-Z][a-zA-Z0-9_-]*)\s*=\s*(?:"(?<value>[^"]*)"|'(?<value>[^']*)')""", RegexOptions.CultureInvariant, Timeout);
-    private static readonly Regex Literals = new(@"<!--.*?-->|<(pre|code|script|style)\b[^>]*>.*?</\1\s*>", RegexOptions.Singleline | RegexOptions.IgnoreCase | RegexOptions.CultureInvariant, Timeout);
+    private static readonly Dictionary<string, Regex> LiteralClosings = new[] { "pre", "code", "script", "style" }
+        .ToDictionary(name => name, name => new Regex($@"</{name}\s*>", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant, Timeout), StringComparer.OrdinalIgnoreCase);
 
     internal static string Extract(string markdown, Func<IReadOnlyDictionary<string, string>, string> render, Dictionary<string, string> placeholders)
     {
         if (!Openings.IsMatch(markdown)) return markdown;
         var openings = Openings.Matches(markdown).ToArray();
-        var attributeSpans = openings.Select(opening => Tags.Match(markdown, opening.Index))
-            .Where(tag => tag.Success).Select(tag => (Start: tag.Index, End: tag.Index + tag.Length - 1)).ToArray();
-        var codeSpans = Markdown.Parse(markdown, LiteralPipeline).Descendants()
-            .Where(node => node is CodeBlock || node is CodeInline && !attributeSpans.Any(span => node.Span.Start > span.Start && node.Span.Start <= span.End))
-            .Select(node => (Start: node.Span.Start, End: node.Span.End))
-            .ToArray();
-        var spans = codeSpans.ToList();
+        var codeNodes = Markdown.Parse(markdown, LiteralPipeline).Descendants()
+            .Where(node => node is CodeBlock or CodeInline).ToArray();
+        var attributeSpans = new List<(int Start, int End)>();
+        var literalSpans = new List<(int Start, int End)>();
+        bool InsideHtml(int index) => attributeSpans.Any(span => index > span.Start && index <= span.End)
+            || literalSpans.Any(span => index >= span.Start && index <= span.End);
+
+        // Collect real HTML in source order. Markup shown in Markdown examples must
+        // not create attribute or literal spans that extend into the rest of the page.
         for (var position = 0; position < markdown.Length;)
         {
-            var literal = Literals.Match(markdown, position);
-            if (!literal.Success) break;
-            if (codeSpans.Concat(attributeSpans).Any(span => literal.Index >= span.Start && literal.Index <= span.End))
+            var markup = HtmlMarkup.Match(markdown, position);
+            if (!markup.Success) break;
+            if (IsEscaped(markdown, markup.Index) || codeNodes.Any(node => markup.Index >= node.Span.Start
+                    && markup.Index <= node.Span.End && !InsideHtml(node.Span.Start)))
             {
-                // An HTML example must not create a literal span across subsequent article content.
-                position = literal.Index + 1;
+                position = markup.Index + 1;
                 continue;
             }
-            spans.Add((literal.Index, literal.Index + literal.Length - 1));
-            position = literal.Index + literal.Length;
+            position = markup.Index + markup.Length;
+            if (markup.Groups["comment"].Success)
+            {
+                literalSpans.Add((markup.Index, position - 1));
+                continue;
+            }
+            attributeSpans.Add((markup.Index, position - 1));
+            if (LiteralClosings.TryGetValue(markup.Groups["name"].Value, out var closingPattern))
+            {
+                var closing = closingPattern.Match(markdown, position);
+                if (closing.Success)
+                {
+                    position = closing.Index + closing.Length;
+                    literalSpans.Add((markup.Index, position - 1));
+                }
+            }
         }
+        var spans = codeNodes.Where(node => !InsideHtml(node.Span.Start))
+            .Select(node => (Start: node.Span.Start, End: node.Span.End)).Concat(literalSpans).ToArray();
         var output = new StringBuilder();
         var offset = 0;
         foreach (var opening in openings)
         {
             if (opening.Index < offset || IsEscaped(markdown, opening.Index)
-                || spans.Any(span => opening.Index >= span.Start && opening.Index <= span.End)) continue;
+                || spans.Any(span => opening.Index >= span.Start && opening.Index <= span.End)
+                || attributeSpans.Any(span => opening.Index > span.Start && opening.Index <= span.End)) continue;
             var tag = Tags.Match(markdown, opening.Index);
             var end = tag.Success ? tag.Index + tag.Length : MalformedTagEnd(markdown, opening.Index);
             var hasClosing = tag.Success && tag.Groups["self"].Success;

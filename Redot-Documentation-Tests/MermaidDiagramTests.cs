@@ -159,6 +159,70 @@ public sealed class MermaidDiagramTests : IDisposable
         Assert.Contains("missing", html);
     }
 
+    [Theory]
+    [InlineData("<span title=\"<mermaid slug='missing'/>\">Example</span>")]
+    [InlineData("<div data-example='<mermaid ref=\"./missing.mmd\"/>'>Example</div>")]
+    [InlineData("<div title=\"5 > 3\" data-example=\"<mermaid slug='missing'></mermaid>\">Example</div>")]
+    [InlineData("<div title=\"Example\n<mermaid slug='missing'/>\">Example</div>")]
+    public async Task MermaidTextInsideHtmlAttributesIsNotExpanded(string literal)
+    {
+        var placeholders = new Dictionary<string, string>();
+        var unchanged = MermaidEmbedTransform.Extract(literal,
+            _ => throw new InvalidOperationException("An HTML attribute must not render a Mermaid embed."), placeholders);
+        Assert.Equal(literal, unchanged);
+        Assert.Empty(placeholders);
+
+        WriteDiagram("26.1/Tutorials/diagrams/cycle.mmd", "Ready");
+        Write("26.1/Tutorials/source.md", literal + "\n\n<mermaid slug='cycle'/>");
+        var html = await Render(Catalog());
+        var document = new HtmlDocument();
+        document.LoadHtml(html);
+        Assert.Single(document.DocumentNode.SelectNodes("//figure[@class='doc-mermaid']//img") ?? Enumerable.Empty<HtmlNode>());
+        Assert.DoesNotContain("doc-mermaid-error", html);
+    }
+
+    [Theory]
+    [InlineData("code")]
+    [InlineData("pre")]
+    [InlineData("script")]
+    [InlineData("style")]
+    public async Task EscapedHtmlOpeningsCannotSuppressRealEmbeds(string tag)
+    {
+        WriteDiagram("26.1/Tutorials/diagrams/cycle.mmd", "Ready");
+        Write("26.1/Tutorials/source.md", $"""
+            \<{tag}>
+
+            <mermaid slug='cycle'/>
+
+            </{tag}>
+            """);
+        var html = await Render(Catalog());
+        Assert.Contains("<img", html);
+        Assert.DoesNotContain("doc-mermaid-error", html);
+    }
+
+    [Theory]
+    [InlineData("```html\n<span title=\"\n```", "```html\n\">\n```")]
+    [InlineData("\\<div title=\"", "\">")]
+    [InlineData("<!-- <span title=\" -->", "<!-- \"> -->")]
+    [InlineData("<script>const text = '<span title=\"';</script>", "\">")]
+    [InlineData("<style>/* <span title=\" */</style>", "\">")]
+    [InlineData("<pre><span title=\"</pre>", "\">")]
+    [InlineData("<code><span title=\"</code>", "\">")]
+    public void LiteralHtmlExamplesCannotCreateAttributeSpansAcrossMarkdown(string before, string after)
+    {
+        var markdown = before + "\n\n`<mermaid slug='missing'/>`\n\n<mermaid slug='cycle'/>\n\n" + after;
+        var placeholders = new Dictionary<string, string>();
+        var extracted = MermaidEmbedTransform.Extract(markdown, attributes =>
+        {
+            Assert.Equal("cycle", attributes["slug"]);
+            return "<figure>Ready</figure>";
+        }, placeholders);
+        Assert.Single(placeholders);
+        Assert.Contains("`<mermaid slug='missing'/>`", extracted);
+        Assert.DoesNotContain("<mermaid slug='cycle'/>", extracted);
+    }
+
     [Fact]
     public async Task EmbedsInsideTabsAndCalloutsSurviveAllPlaceholderPasses()
     {
@@ -327,6 +391,12 @@ public sealed class MermaidDiagramTests : IDisposable
         try
         {
             File.SetUnixFileMode(cached, UnixFileMode.None);
+            try
+            {
+                File.ReadAllBytes(cached);
+                return; // This account can bypass the mode, so the unreadable-cache path cannot be tested.
+            }
+            catch (UnauthorizedAccessException) { }
             Write("26.1/Tutorials/source.md", "<mermaid slug='cycle'/>");
             var catalog = Catalog();
             Assert.Empty(catalog.Errors);
