@@ -7,7 +7,7 @@ can update one baseline and regenerate the reference material.
 - Source revision: [82c6c949656f](https://github.com/Redot-Engine/redot-engine/commit/82c6c949656f8af31a37e0381048beb381fcbb27).
 - Narrative review revision: `82c6c949656f8af31a37e0381048beb381fcbb27`.
 - Primary source coverage: 140 headers and 235 other source files.
-- Marker catalog: 180 matching source lines.
+- Marker catalog: 161 matching source lines.
 - External search index: 291 files.
 
 The native backends are described from source inspection. Documentation tests validate

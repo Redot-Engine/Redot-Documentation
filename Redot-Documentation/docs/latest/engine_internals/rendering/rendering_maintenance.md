@@ -25,8 +25,14 @@ python3 tools/rendering_docs.py refresh --engine /path/to/redot-engine --revisio
 
 The tool reads committed source from the requested local revision. It rebuilds the
 class/header indexes, source symbol links, marker catalog, consumer search indexes, and
-machine-readable inventory. Missing source locators stop the refresh so a removed symbol
-cannot silently produce an unrelated link.
+machine-readable inventory. Missing or ambiguous source locators stop the refresh so a
+removed symbol cannot silently produce an unrelated link. Use a definition-specific
+locator when a name also appears in a forward declaration or another type.
+
+The marker catalog includes TODO, FIXME, and HACK markers in comments, plus explicit
+"not implemented" diagnostics and marked assertion/error messages. Ordinary identifiers
+and display strings do not count as comment markers. Run the helper's regression tests with
+`python3 -m unittest discover -s tools/tests` when changing this scan or path handling.
 
 A refresh preserves the previous narrative-review revision and date. If it differs from
 the new source revision, the baseline page displays that the prose still needs review.

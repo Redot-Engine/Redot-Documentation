@@ -38,7 +38,7 @@ symbols when line numbers change.
 
 ## Resources and device
 
-- [Storage dependency tracking](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/servers/rendering/storage/utilities.h#L43)
+- [Storage dependency tracking](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/servers/rendering/storage/utilities.h#L74)
 - [RD texture storage](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/servers/rendering/renderer_rd/storage_rd/texture_storage.h#L54)
 - [RD texture deletion](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/servers/rendering/renderer_rd/storage_rd/texture_storage.cpp#L756)
 - [Render scene buffers](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/servers/rendering/renderer_rd/storage_rd/render_scene_buffers_rd.h#L71)

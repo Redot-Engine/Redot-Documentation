@@ -20,7 +20,6 @@ investigation aids; the architecture pages explain which relationships matter.
 - [Renderer source markers 5](doc_rendering_markers_05)
 - [Renderer source markers 6](doc_rendering_markers_06)
 - [Renderer source markers 7](doc_rendering_markers_07)
-- [Renderer source markers 8](doc_rendering_markers_08)
 - [Renderer consumers in core 1](doc_rendering_consumers_core_01)
 - [Renderer consumers in scene 1](doc_rendering_consumers_scene_01)
 - [Renderer consumers in scene 2](doc_rendering_consumers_scene_02)

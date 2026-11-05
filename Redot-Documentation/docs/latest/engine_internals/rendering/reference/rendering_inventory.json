@@ -30081,56 +30081,6 @@
       "text": "global_defines += \"#define MAX_GLOBAL_SHADER_UNIFORMS 256\\n\"; /// @todo This is arbitrary for now"
     },
     {
-      "path": "drivers/gles3/storage/particles_storage.cpp",
-      "line": 1115,
-      "text": "double todo = particles->pre_process_time;"
-    },
-    {
-      "path": "drivers/gles3/storage/particles_storage.cpp",
-      "line": 1117,
-      "text": "while (todo >= 0) {"
-    },
-    {
-      "path": "drivers/gles3/storage/particles_storage.cpp",
-      "line": 1119,
-      "text": "todo -= frame_time;"
-    },
-    {
-      "path": "drivers/gles3/storage/particles_storage.cpp",
-      "line": 1133,
-      "text": "double todo = particles->frame_remainder + delta * time_scale;"
-    },
-    {
-      "path": "drivers/gles3/storage/particles_storage.cpp",
-      "line": 1135,
-      "text": "while (todo >= frame_time) {"
-    },
-    {
-      "path": "drivers/gles3/storage/particles_storage.cpp",
-      "line": 1137,
-      "text": "todo -= frame_time;"
-    },
-    {
-      "path": "drivers/gles3/storage/particles_storage.cpp",
-      "line": 1140,
-      "text": "particles->frame_remainder = todo;"
-    },
-    {
-      "path": "drivers/gles3/storage/particles_storage.cpp",
-      "line": 1155,
-      "text": "double todo = particles->request_process_time;"
-    },
-    {
-      "path": "drivers/gles3/storage/particles_storage.cpp",
-      "line": 1156,
-      "text": "while (todo >= 0) {"
-    },
-    {
-      "path": "drivers/gles3/storage/particles_storage.cpp",
-      "line": 1158,
-      "text": "todo -= frame_time;"
-    },
-    {
       "path": "drivers/gles3/storage/texture_storage.cpp",
       "line": 2032,
       "text": "/// @todo Validate texture atlas size with maximum texture size"
@@ -30482,53 +30432,8 @@
     },
     {
       "path": "servers/rendering/renderer_rd/storage_rd/particles_storage.cpp",
-      "line": 1546,
-      "text": "double todo = particles->request_process_time;"
-    },
-    {
-      "path": "servers/rendering/renderer_rd/storage_rd/particles_storage.cpp",
-      "line": 1548,
-      "text": "todo += particles->pre_process_time;"
-    },
-    {
-      "path": "servers/rendering/renderer_rd/storage_rd/particles_storage.cpp",
-      "line": 1551,
-      "text": "if (todo > 0.0) {"
-    },
-    {
-      "path": "servers/rendering/renderer_rd/storage_rd/particles_storage.cpp",
       "line": 1560,
       "text": "/// We need this otherwise the speed scale of the particle system influences the @todo"
-    },
-    {
-      "path": "servers/rendering/renderer_rd/storage_rd/particles_storage.cpp",
-      "line": 1562,
-      "text": "while (todo >= 0) {"
-    },
-    {
-      "path": "servers/rendering/renderer_rd/storage_rd/particles_storage.cpp",
-      "line": 1564,
-      "text": "todo -= frame_time;"
-    },
-    {
-      "path": "servers/rendering/renderer_rd/storage_rd/particles_storage.cpp",
-      "line": 1580,
-      "text": "todo = particles->frame_remainder + delta * time_scale;"
-    },
-    {
-      "path": "servers/rendering/renderer_rd/storage_rd/particles_storage.cpp",
-      "line": 1582,
-      "text": "while (todo >= frame_time || particles->clear) {"
-    },
-    {
-      "path": "servers/rendering/renderer_rd/storage_rd/particles_storage.cpp",
-      "line": 1584,
-      "text": "todo -= frame_time;"
-    },
-    {
-      "path": "servers/rendering/renderer_rd/storage_rd/particles_storage.cpp",
-      "line": 1587,
-      "text": "particles->frame_remainder = todo;"
     },
     {
       "path": "servers/rendering/renderer_rd/storage_rd/render_scene_buffers_rd.cpp",

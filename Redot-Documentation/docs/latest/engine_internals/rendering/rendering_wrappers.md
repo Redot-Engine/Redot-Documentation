@@ -7,7 +7,7 @@ to remove it.
 ## Texture creation chain
 
 <mermaid ref="./diagrams/rendering-wrapper-chain.mmd"
-         alt="Texture creation crosses resource semantics, server dispatch, storage metadata, device validation, and native resource translation." />
+         alt="Texture creation chooses direct or queued initialization, then the selected storage follows an RD, OpenGL, or dummy path." />
 
 | Layer | Work performed | What a bypass must preserve |
 |---|---|---|
@@ -22,13 +22,25 @@ Some calls can use a shorter route because their contract is narrower. Internal 
 code can construct RD C++ parameter structs without the object wrappers used by the
 exposed RD API. That does not make bypassing scene storage valid for every texture.
 
+The texture creation wrappers initialize directly when the caller is on the server
+thread **or** the compositor allows asynchronous resource creation. Otherwise they queue
+initialization through `CommandQueueMT`. The RD compositor allows asynchronous creation;
+GLES3 and dummy do not. Queueing and backend selection are separate decisions: GLES3
+storage uses OpenGL directly, and dummy storage does not allocate a GPU texture.
+
 ## Draw execution chain
 
-For 3D, the path crosses [RendererViewport](doc_rendering_classes_core), [RenderingMethod](doc_rendering_classes_core) / [RendererSceneCull](doc_rendering_classes_core),
-[RendererSceneRender](doc_rendering_classes_core), an RD scene base, a concrete scene method, RD, the command graph,
-and a native driver. The culler chooses visible inputs; the concrete method chooses
-semantic passes; RD validates and orders resource operations; the driver translates
-native commands.
+The common 3D path crosses [RendererViewport](doc_rendering_classes_core),
+[RenderingMethod](doc_rendering_classes_core) / [RendererSceneCull](doc_rendering_classes_core),
+and the [RendererSceneRender](doc_rendering_classes_core) interface. The culler chooses
+visible inputs before handing them to the selected scene implementation.
+
+Forward+ and Mobile continue through an RD scene base, a concrete scene method, RD,
+the command graph, and a native driver. The concrete method chooses semantic passes;
+RD validates and orders resource operations; the driver translates native commands.
+Compatibility instead uses [RasterizerSceneGLES3](doc_rendering_classes_gles) and OpenGL
+directly, without an RD command graph. The dummy scene implementation performs no GPU
+draws.
 
 Those jobs are not repeated merely because they use similar verbs such as render, draw,
 update, or prepare. However, the large handoff argument list, shared mutable data, and

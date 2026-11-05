@@ -5,7 +5,7 @@ creates its retained scene state. This page follows that order so that initializ
 changes preserve context, thread, and resource lifetimes.
 
 <mermaid ref="./diagrams/rendering-startup.mmd"
-         alt="Main selects a display server and graphics driver, the display server creates the device, and the rendering server creates its component family." />
+         alt="RD backends create a device, OpenGL establishes a context, and headless selects dummy rendering before the server creates its component family." />
 
 ## Select the implementation
 

@@ -1,12 +1,16 @@
 flowchart TD
     accTitle: Texture creation wrapper responsibilities
-    accDescr: Each layer carries a different contract: resource semantics, dispatch, storage metadata, device validation, or native API translation.
+    accDescr: Texture initialization is direct on the server thread or when the compositor allows asynchronous creation; otherwise it is queued. Each backend selects its own texture storage.
     Resource[ImageTexture resource] -->|scene identity and properties| API[RenderingServer API]
     API -->|virtual dispatch| Dispatch[RenderingServerDefault texture wrapper]
-    Dispatch -->|required caller thread| Direct[Direct initialization]
-    Dispatch -->|otherwise when required| Queue[CommandQueueMT initialization]
-    Direct --> Storage[RendererRD TextureStorage]
+    Dispatch -->|server thread OR async creation allowed| Direct[Direct initialization]
+    Dispatch -->|otherwise| Queue[CommandQueueMT initialization]
+    Direct --> Storage[Selected RendererTextureStorage]
     Queue --> Storage
-    Storage -->|format metadata and texture views| Device[RenderingDevice texture creation]
+    Storage --> RDStorage[RendererRD TextureStorage]
+    Storage --> GLStorage[GLES3 TextureStorage]
+    Storage --> Dummy[Dummy TextureStorage]
+    GLStorage -->|GL allocation| GL[OpenGL / OpenGL ES]
+    RDStorage -->|format metadata and texture views| Device[RenderingDevice texture creation]
     Device -->|validated native description| Driver[RenderingDeviceDriver]
     Driver -->|API allocation| Native[Native texture]

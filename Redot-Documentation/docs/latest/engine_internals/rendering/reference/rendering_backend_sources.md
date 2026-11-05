@@ -25,7 +25,7 @@ symbols when line numbers change.
 - [Metal context](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/drivers/metal/rendering_context_driver_metal.h#L66)
 - [Metal device](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/drivers/metal/rendering_device_driver_metal.h#L57)
 - [Metal shader container](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/drivers/metal/rendering_shader_container_metal.h#L124)
-- [Metal command buffer wrappers](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/drivers/metal/metal_objects.h#L124)
+- [Metal command buffer wrappers](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/drivers/metal/metal_objects.h#L318)
 - [Metal device format features](https://github.com/Redot-Engine/redot-engine/blob/82c6c949656f8af31a37e0381048beb381fcbb27/drivers/metal/metal_device_properties.h#L75)
 
 ## OpenGL and platforms

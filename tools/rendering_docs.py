@@ -10,7 +10,7 @@ import ast
 import datetime
 import hashlib
 import json
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import posixpath
 import re
 import subprocess
@@ -29,7 +29,19 @@ ROOTS = (
     "drivers/d3d12/", "drivers/metal/", "drivers/egl/", "drivers/gl_context/",
 )
 CODE_SUFFIXES = {".h", ".cpp", ".mm", ".c", ".glsl", ".glslinc", ".metal", ".inc"}
-MARKER = re.compile(r"\b(?:TODO|FIXME|HACK)\b|not (?:yet )?implemented|unimplemented", re.I)
+COMMENT_MARKER = re.compile(r"\b(?:TODO|FIXME|HACK)\b", re.I)
+DIAGNOSTIC_MARKER = re.compile(r"not (?:yet )?implemented|unimplemented", re.I)
+MARKED_DIAGNOSTIC = re.compile(
+    r'\b(?:DEV_ASSERT|ERR_[A-Z_]+)\s*\([^;\n]*?"[^"\n]*\b(?:TODO|FIXME|HACK)\b'
+)
+# Consume literals before looking inside them for comment delimiters. This is a
+# lexical C/C++/shader scan, including raw strings and escaped quote characters.
+SOURCE_TOKEN = re.compile(
+    r'(?P<comment>//(?:\\\r?\n|[^\n])*|/\*[\s\S]*?(?:\*/|\Z))'
+    r'|(?:u8|u|U|L)?R"(?P<delimiter>[^ ()\\\t\r\n]{0,16})\([\s\S]*?\)(?P=delimiter)"'
+    r'|"(?:\\[\s\S]|[^"\\])*"'
+    r"|(?<![\w'])'(?:\\[^\n]|[^'\\\n])*'"
+)
 EXTERNAL = re.compile(
     r'#\s*(?:include|import)\s*[<"](?:servers/rendering/|drivers/(?:gles3|vulkan|d3d12|metal)/)'
     r"|\b(?:RenderingServer|RenderingDevice|RS|RD|RSG)::"
@@ -72,11 +84,43 @@ def source_link(snapshot, path, line=1):
     return f"{snapshot['repository']}/blob/{snapshot['source_revision']}/{quote(path, safe='/')}#L{line}"
 
 
+def source_markers(content):
+    """Yield marked source lines, excluding TODO-like identifiers and literals."""
+    comment_lines = set()
+    line_number = 1
+    previous_end = 0
+    for token in SOURCE_TOKEN.finditer(content):
+        line_number += content.count("\n", previous_end, token.start())
+        text = token.group()
+        if token.group("comment") is not None:
+            comment_lines.update(line_number + offset for offset, line in enumerate(text.splitlines())
+                                 if COMMENT_MARKER.search(line))
+        line_number += text.count("\n")
+        previous_end = token.end()
+    for number, line in enumerate(content.splitlines(), 1):
+        # Explicit diagnostics such as ERR_FAIL_MSG("Not implemented") remain
+        # useful stub evidence even though they are string literals.
+        if (number in comment_lines or DIAGNOSTIC_MARKER.search(line)
+                or MARKED_DIAGNOSTIC.search(line)):
+            yield {"line": number, "text": line.strip()}
+
+
+def locate_source(content, path, locator):
+    if not locator:
+        raise ValueError(f"Empty source locator: {path}")
+    matches = [n for n, line in enumerate(content.splitlines(), 1) if locator in line]
+    if not matches:
+        raise ValueError(f"Missing source locator: {path}: {locator}")
+    if len(matches) != 1:
+        raise ValueError(f"Ambiguous source locator: {path}: {locator}")
+    return matches[0]
+
+
 def build(engine, snapshot):
     revision = snapshot["source_revision"]
     paths = git(engine, "ls-tree", "-r", "--name-only", revision).decode().splitlines()
     path_set = set(paths)
-    primary = [p for p in paths if p.startswith(ROOTS) and Path(p).suffix in CODE_SUFFIXES]
+    primary = [p for p in paths if p.startswith(ROOTS) and PurePosixPath(p).suffix in CODE_SUFFIXES]
     cache = {}
 
     def read(path):
@@ -99,7 +143,7 @@ def build(engine, snapshot):
     external = {}
     for result in grep.stdout.splitlines():
         _, path, number, evidence = result.split(":", 3)
-        if path.startswith(ROOTS) or Path(path).suffix not in {".h", ".cpp", ".mm"}:
+        if path.startswith(ROOTS) or PurePosixPath(path).suffix not in {".h", ".cpp", ".mm"}:
             continue
         if EXTERNAL.search(evidence):
             external.setdefault(path, []).append({"line": int(number), "text": evidence.strip()})
@@ -117,15 +161,14 @@ def build(engine, snapshot):
             include = re.match(r'\s*#\s*(?:include|import)\s*["<]([^">]+)[">]', line)
             if include:
                 target = include[1]
-                local = posixpath.normpath(str(Path(path).parent / target))
+                local = posixpath.normpath(str(PurePosixPath(path).parent / target))
                 resolved = target if target in path_set else local if local in path_set else None
                 includes.append({"line": number, "written": target, "resolved": resolved})
             if re.match(r"(?:class|struct)\s+", stripped) and not re.match(r"(?:class|struct)\s+\w+\s*;", stripped):
                 found = re.match(r"(?:class|struct)\s+(?:API_AVAILABLE\(.*?\)\s+)?(\w+)", stripped)
                 if found:
                     declarations.append({"name": found[1], "line": number})
-            if MARKER.search(line):
-                todos.append({"path": path, "line": number, "text": stripped})
+        todos.extend({"path": path, **marker} for marker in source_markers(content))
         inventory.append({
             "path": path, "sha256": hashlib.sha256(content.encode()).hexdigest(),
             "lines": len(content.splitlines()), "group": group_for(path),
@@ -147,7 +190,7 @@ def build(engine, snapshot):
             path = item["path"]
             links = f"[{path}]({source_link(snapshot, path)})"
             for suffix in (".cpp", ".mm"):
-                companion = str(Path(path).with_suffix(suffix))
+                companion = str(PurePosixPath(path).with_suffix(suffix))
                 if companion in paths:
                     links += f" · [{suffix[1:]}]({source_link(snapshot, companion)})"
             types = ", ".join(f"[{d['name']}]({source_link(snapshot, path, d['line'])})" for d in item["declarations"]) or "Definitions, aliases, or API includes."
@@ -197,12 +240,7 @@ def build(engine, snapshot):
             for entry in section["entries"]:
                 content = read(entry["path"])
                 locator = entry.get("find", "")
-                if not locator:
-                    raise ValueError(f"Empty source locator: {entry['path']}")
-                matches = [(n, line) for n, line in enumerate(content.splitlines(), 1) if locator in line]
-                if not matches:
-                    raise ValueError(f"Missing source locator: {entry['path']}: {entry['find']}")
-                number = matches[0][0]
+                number = locate_source(content, entry["path"], locator)
                 rows.append(f"- [{entry['label']}]({source_link(snapshot, entry['path'], number)})")
         outputs[page["file"]] = "\n".join(rows) + "\n"
 
@@ -242,7 +280,7 @@ def build(engine, snapshot):
     for name, content in outputs.items():
         if name.endswith(".md"):
             title = content.splitlines()[0][2:]
-            references.append(f"- [{title}](doc_{Path(name).stem})")
+            references.append(f"- [{title}](doc_{PurePosixPath(name).stem})")
     references += ["", wrap(
         "The adjacent rendering_inventory.json retains hashes, declarations, direct "
         "include/import edges, marker text, and search evidence for update tools. "

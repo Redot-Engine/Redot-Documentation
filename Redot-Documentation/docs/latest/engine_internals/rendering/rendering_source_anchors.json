@@ -149,7 +149,7 @@
           {
             "label": "Storage dependency tracking",
             "path": "servers/rendering/storage/utilities.h",
-            "find": "class DependencyTracker"
+            "find": "class DependencyTracker {"
           },
           {
             "label": "RD texture storage",
@@ -244,7 +244,7 @@
           {
             "label": "Shader containers",
             "path": "servers/rendering/rendering_shader_container.h",
-            "find": "class RenderingShaderContainer"
+            "find": "class RenderingShaderContainer :"
           },
           {
             "label": "Generated shader wrapper builder",
@@ -400,7 +400,7 @@
           {
             "label": "Metal command buffer wrappers",
             "path": "drivers/metal/metal_objects.h",
-            "find": "MDCommandBuffer"
+            "find": "class API_AVAILABLE(macos(11.0), ios(14.0), tvos(14.0)) MDCommandBuffer {"
           },
           {
             "label": "Metal device format features",
@@ -445,7 +445,7 @@
           {
             "label": "Windows context selection",
             "path": "platform/windows/display_server_windows.cpp",
-            "find": "fallback_to_vulkan ="
+            "find": "bool fallback_to_vulkan = GLOBAL_GET"
           },
           {
             "label": "macOS context selection",
@@ -506,7 +506,7 @@
           {
             "label": "Texture resource",
             "path": "scene/resources/image_texture.h",
-            "find": "class ImageTexture"
+            "find": "class ImageTexture :"
           },
           {
             "label": "Shader resource",
@@ -642,7 +642,7 @@
           {
             "label": "Android Vulkan platform dependency",
             "path": "drivers/vulkan/rendering_device_driver_vulkan.cpp",
-            "find": "#include \"platform/android/"
+            "find": "#include \"platform/android/java_godot_wrapper.h\""
           },
           {
             "label": "Texture storage to scene renderer dependency",
