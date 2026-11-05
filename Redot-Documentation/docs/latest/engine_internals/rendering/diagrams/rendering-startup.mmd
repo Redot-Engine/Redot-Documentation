@@ -1,0 +1,28 @@
+sequenceDiagram
+    accTitle: Renderer startup sequence
+    accDescr: RD backends create a device, OpenGL establishes a context, and headless selects dummy rendering before server construction.
+    participant Main
+    participant Display as DisplayServer
+    participant Context as RenderingContextDriver
+    participant RD as RenderingDevice
+    participant GL as Platform GL context manager
+    participant Server as RenderingServerDefault
+    participant Comp as Compositor factory
+    Main->>Main: Select method and driver
+    Main->>Display: Create display server
+    alt RD backend
+        Display->>Context: Initialize and create surface
+        Display->>RD: Initialize with context and window
+        RD->>Context: Create native device driver
+        Display->>Comp: Select RendererCompositorRD
+    else OpenGL / OpenGL ES
+        Display->>GL: Establish native context
+        Display->>Comp: Select RasterizerGLES3
+    else Headless
+        Display->>Comp: Select RasterizerDummy
+    end
+    Main->>Server: Construct and init
+    Server->>Server: Enter required render thread
+    Server->>Comp: Create component family
+    Comp-->>Server: Storage and drawing interfaces
+    Server->>Server: Publish RSG and attach scene renderer

@@ -1,0 +1,24 @@
+sequenceDiagram
+    accTitle: Server frame execution
+    accDescr: The server updates retained state and viewport work before the RD compositor submits the frame. GPU completion is separate from CPU notifications.
+    participant Main
+    participant Server as RenderingServerDefault
+    participant Scene as Scene and canvas cullers
+    participant Particles
+    participant VP as RendererViewport
+    participant Comp as RD compositor
+    participant RD as RenderingDevice
+    Main->>Server: sync
+    Main->>Server: draw
+    Server->>Comp: begin_frame
+    Server->>Scene: update scene then canvas
+    Server->>Particles: update_particles
+    Server->>Scene: render_probes
+    Server->>VP: draw_viewports
+    VP->>Scene: Render camera and canvas inputs
+    VP->>Comp: Blit window outputs when requested
+    Server->>Comp: end_frame
+    Comp->>RD: swap_buffers
+    RD->>RD: End graph and execute queues
+    RD->>RD: Reuse next frame slot after completion
+    Server->>Server: Visibility and post-draw notifications

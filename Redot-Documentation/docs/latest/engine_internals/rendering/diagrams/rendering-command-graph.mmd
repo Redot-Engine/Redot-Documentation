@@ -1,0 +1,11 @@
+flowchart TD
+    accTitle: Device resource dependency graph
+    accDescr: Resource use links recorded commands. The graph orders those operations, groups barriers, and records driver commands; semantic scene stage selection occurs above it.
+    Upload[Buffer or texture upload] -->|resource write| Draw[Draw list]
+    Draw -->|attachment write then texture read| Compute[Compute list]
+    Draw -->|resource usage| Callback[Native driver callback]
+    Compute --> Sort[Dependency levels and allowed reordering]
+    Callback --> Sort
+    Sort --> Barriers[Barrier grouping and pass creation]
+    Barriers --> Record[Native command recording]
+    Record --> Submit[RD queue submission]

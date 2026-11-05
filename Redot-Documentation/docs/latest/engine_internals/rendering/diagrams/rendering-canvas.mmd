@@ -1,0 +1,16 @@
+sequenceDiagram
+    accTitle: A retained canvas texture draw
+    accDescr: Texture resources submit commands into retained canvas items, which are culled and ordered before backend execution.
+    participant Node as Sprite2D or CanvasItem
+    participant Texture as Texture resource
+    participant RS as Server dispatch
+    participant Cull as RendererCanvasCull
+    participant VP as RendererViewport
+    participant Draw as Canvas renderer
+    Node->>Texture: Draw rectangle or region
+    Texture->>RS: Canvas command with server texture RID
+    RS->>Cull: Append command to item
+    VP->>Cull: render_canvas
+    Cull->>Cull: Transform, clip, sort, and select items
+    Cull->>Draw: canvas_render_items
+    Draw->>Draw: Batch and record RD or GL work

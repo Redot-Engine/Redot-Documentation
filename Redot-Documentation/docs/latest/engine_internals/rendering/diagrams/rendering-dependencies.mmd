@@ -1,0 +1,16 @@
+flowchart TD
+    accTitle: Renderer boundary crossings
+    accDescr: Solid arrows indicate a dependency or call into another subsystem. Relationships are source-backed examples, not an exhaustive transitive graph.
+    Scene[Scene resources and nodes] --> Server[RenderingServer and retained state]
+    Editor[Editor previews import and shader tools] --> Server
+    Tools[Lightmapper and GPU compression] --> RD[RenderingDevice]
+    Loader[Core ResourceLoader] -->|progress sync| Server
+    Engine[Core Engine frame limit] --> RD
+    Server --> Core[Core objects math queues and threads]
+    Renderer[Renderer implementations] --> RD
+    Renderer --> XR[XR and camera services]
+    Shader[Shader language and preprocessor] --> Includes[Scene ShaderInclude resource]
+    RD --> Compiler[glslang module]
+    Platform[DisplayServer implementations] --> Context[Graphics context and device drivers]
+    Renderer -->|MetalFX native integration| Metal[Concrete Metal driver]
+    Vulkan[Vulkan driver] -->|conditional glue| Android[Android platform services]
