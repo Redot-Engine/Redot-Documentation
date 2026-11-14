@@ -1,0 +1,16 @@
+flowchart TD
+    accTitle: Shader representations and conversion
+    accDescr: Scene shader code joins renderer templates. RD uses SPIR-V and backend containers, while GLES3 uses its own GL program compilation path.
+    Scene[Engine shader code and material parameters] --> Language[Preprocessor language and compiler]
+    Language --> RDTemplate[RD generated templates and ShaderRD variants]
+    Language --> GLTemplate[GLES3 templates and ShaderGLES3]
+    RDTemplate --> GLSL[Stage GLSL]
+    GLSL --> Glslang[glslang module]
+    Glslang --> SPIRV[SPIR-V and reflection]
+    SPIRV --> VK[Vulkan container]
+    SPIRV --> NIR[NIR then DXIL container]
+    SPIRV --> Metal[SPIRV-Cross and Metal container]
+    VK --> Pipeline[Native shader and pipeline creation]
+    NIR --> Pipeline
+    Metal --> Pipeline
+    GLTemplate --> GL[GL compile and link]

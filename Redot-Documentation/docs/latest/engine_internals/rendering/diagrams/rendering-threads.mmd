@@ -1,0 +1,15 @@
+flowchart TD
+    accTitle: Rendering synchronization domains
+    accDescr: Server command dispatch, CPU worker tasks, and GPU queue completion are different synchronization domains.
+    Caller[Main or loading thread] -->|server API| Dispatch[Dispatch wrapper]
+    Dispatch -->|caller is server thread| Direct[Direct operation]
+    Dispatch -->|queue required| Queue[CommandQueueMT]
+    Queue -->|pump and flush| Server[Server thread]
+    Direct --> Work[Retained state and resource work]
+    Server --> Work
+    Work -->|CPU preparation| Workers[WorkerThreadPool tasks]
+    Workers -->|task completion| Work
+    Work -->|RD recording| Graph[Command graph]
+    Graph -->|submit| GPU[Native GPU queues]
+    GPU -->|fence completion| Retire[Frame reuse and resource retirement]
+    Caller -.->|server sync waits for queue progress| Queue

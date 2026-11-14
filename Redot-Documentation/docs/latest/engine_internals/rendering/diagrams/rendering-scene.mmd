@@ -1,0 +1,15 @@
+flowchart TD
+    accTitle: Scene state and render handoff
+    accDescr: Shared scene culling uses retained instances and storage, then calls a concrete scene renderer with geometry and lighting inputs.
+    Node[VisualInstance3D and resources] -->|server updates| Instance[RendererSceneCull instances]
+    Instance -->|references| Storage[Mesh material light and particle storage]
+    VP[RendererViewport] -->|render camera| Cull[Scene visibility and preparation]
+    Instance --> Cull
+    Storage -->|bounds and metadata| Cull
+    Cull -->|geometry shadow and GI inputs| Interface[RendererSceneRender]
+    Interface -->|RD base and clustered policy| Plus[RenderForwardClustered]
+    Interface -->|RD base and mobile policy| Mobile[RenderForwardMobile]
+    Interface -->|GL policy| GL[RasterizerSceneGLES3]
+    Plus -->|record| RD[RenderingDevice]
+    Mobile -->|record| RD
+    GL -->|issue| OpenGL[GL commands]

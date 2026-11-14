@@ -1,0 +1,12 @@
+flowchart TD
+    accTitle: Rendering execution families
+    accDescr: Scene objects submit retained state through the server. Shared viewport and culling code selects RD or GLES3 execution. Dummy operation performs no GPU drawing.
+    Scene[Scene nodes and resources] -->|submit state| Server[RenderingServerDefault]
+    Server -->|coordinates| Shared[Shared viewport and culling]
+    Shared -->|visible inputs| RDRenderer[RD canvas and scene renderers]
+    Shared -->|visible inputs| GL[GLES3 canvas and scene renderers]
+    RDRenderer -->|resource and command API| RD[RenderingDevice and command graph]
+    RD -->|native commands| Driver[Vulkan D3D12 or Metal driver]
+    GL -->|direct API commands| GLAPI[Current GL context]
+    Driver --> GPU[GPU execution]
+    GLAPI --> GPU

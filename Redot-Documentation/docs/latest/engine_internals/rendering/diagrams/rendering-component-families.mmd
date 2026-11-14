@@ -1,0 +1,6 @@
+flowchart LR
+    accTitle: Compositor implementations
+    accDescr: Labeled arrows show interface implementation, not runtime ownership.
+    Comp[RendererCompositor] -->|implemented by| RDComp[RendererCompositorRD]
+    Comp -->|implemented by| GLComp[RasterizerGLES3]
+    Comp -->|implemented by| DummyComp[RasterizerDummy]

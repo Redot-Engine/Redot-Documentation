@@ -30,6 +30,7 @@ else
                 </MudExpansionPanels>
             }
             @((MarkupString)renderedHtml)
+            <ArticlePagination Neighbors="neighbors" />
             <DocumentationAttribution />
         </article>
 
@@ -49,11 +50,13 @@ else
     private string renderedHtml = string.Empty;
     private string? errorMessage;
     private List<DocumentHeading> tableOfContents = [];
+    private DocumentNeighbors neighbors = DocumentNeighbors.Empty;
 
     protected override async Task OnParametersSetAsync()
     {
         isLoading = true;
         errorMessage = null;
+        neighbors = DocumentNeighbors.Empty;
 
         try
         {
@@ -69,6 +72,7 @@ else
             pageUrl = document.PublicUrl;
             var html = await DocRendererService.RenderToHtmlAsync(document, versionProvider);
             renderedHtml = DocumentHeadings.Apply(html, tableOfContents);
+            neighbors = DocumentNavigation.GetNeighbors(versionProvider, document);
         }
         catch (ArgumentException)
         {

@@ -1,0 +1,6 @@
+flowchart LR
+    accTitle: Canvas renderer implementations
+    accDescr: RD, GLES3, and dummy canvas renderers implement the shared canvas interface.
+    Canvas[RendererCanvasRender] -->|implemented by| RDCanvas[RendererCanvasRenderRD]
+    Canvas -->|implemented by| GLCanvas[RasterizerCanvasGLES3]
+    Canvas -->|implemented by| DummyCanvas[RasterizerCanvasDummy]

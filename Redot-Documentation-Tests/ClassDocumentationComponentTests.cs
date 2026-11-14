@@ -299,6 +299,31 @@ public sealed class ClassDocumentationComponentTests : IDisposable
     }
 
     [Fact]
+    public async Task Manual_FooterResolvesAliasesAndUpdatesNeighborsWhenArticleChanges()
+    {
+        Directory.CreateDirectory(Path.Combine(_root, "docs", "latest", "Tutorials"));
+        foreach (var name in new[] { "First", "Second", "Third" })
+            File.WriteAllText(Path.Combine(_root, "docs", "latest", "Tutorials", name + ".md"), "# " + name);
+        await using var services = CreateServices();
+        await using var renderer = new TestRenderer(services);
+        ParameterView Parameters(string route) => ParameterView.FromDictionary(
+            new Dictionary<string, object?> { ["DocumentPath"] = route });
+        int id = await renderer.Dispatcher.InvokeAsync(() => renderer.RenderAsync(typeof(DocViewer),
+            Parameters("LATEST/tutorials/SECOND.HTML")));
+        string[] links = await renderer.Dispatcher.InvokeAsync(() => renderer.Hrefs(id).ToArray());
+        Assert.Contains("/en/latest/Tutorials/First", links);
+        Assert.Contains("/en/latest/Tutorials/Third", links);
+        Assert.Contains("article-pagination", await renderer.Dispatcher.InvokeAsync(() => renderer.CssClasses(id).ToArray()));
+
+        await renderer.Dispatcher.InvokeAsync(() => renderer.UpdateAsync(id, Parameters("latest/Tutorials/Third")));
+        links = await renderer.Dispatcher.InvokeAsync(() => renderer.Hrefs(id).ToArray());
+        Assert.Contains("/en/latest/Tutorials/Second", links);
+        Assert.DoesNotContain("/en/latest/Tutorials/First", links);
+        Assert.DoesNotContain("article-next", await renderer.Dispatcher.InvokeAsync(() => renderer.CssClasses(id).ToArray()));
+        Assert.Empty(renderer.Errors);
+    }
+
+    [Fact]
     public async Task Manual_IncludesCcAttributionAndModificationNotice()
     {
         await using var services = CreateServices();

@@ -1,0 +1,25 @@
+@using Redot_Documentation.Services
+
+@if (Neighbors.Previous is not null || Neighbors.Next is not null)
+{
+    <nav class="article-pagination" aria-label="Article navigation">
+        @if (Neighbors.Previous is { } previous)
+        {
+            <a class="article-pagination-link article-previous" href="@previous.Url" rel="prev">
+                <span class="article-pagination-direction"><span aria-hidden="true">← </span>Previous</span>
+                <span>@previous.Title</span>
+            </a>
+        }
+        @if (Neighbors.Next is { } next)
+        {
+            <a class="article-pagination-link article-next" href="@next.Url" rel="next">
+                <span class="article-pagination-direction">Next<span aria-hidden="true"> →</span></span>
+                <span>@next.Title</span>
+            </a>
+        }
+    </nav>
+}
+
+@code {
+    [Parameter, EditorRequired] public DocumentNeighbors Neighbors { get; set; } = DocumentNeighbors.Empty;
+}

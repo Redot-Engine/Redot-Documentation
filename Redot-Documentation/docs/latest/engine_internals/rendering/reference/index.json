@@ -1,0 +1,10 @@
+{
+  "Slug": "rendering_reference",
+  "RankingPriorities": {
+    "rendering_baseline.md": 0,
+    "rendering_source_map.md": 1,
+    "rendering_backend_sources.md": 2,
+    "rendering_integration_sources.md": 3,
+    "rendering_observation_sources.md": 4
+  }
+}

@@ -1,6 +1,15 @@
 
 # Internal rendering architecture
 
+:::info
+
+For the latest development renderer's execution paths, class/header maps, and
+dependency analysis, see the versioned
+[rendering internals manual](/en/latest/engine_internals/rendering/index).
+That section records its source revision and review date.
+
+:::
+
 This page is a high-level overview of Redot 4's internal renderer design.
 It does not apply to previous Redot versions.
 

@@ -1,0 +1,8 @@
+flowchart LR
+    accTitle: Scene renderer implementations
+    accDescr: Forward+ and Mobile inherit through the RD scene base. GLES3 and dummy implement the shared scene renderer interface independently.
+    Scene[RendererSceneRender] -->|implemented by| RDScene[RendererSceneRenderRD]
+    RDScene -->|specialized by| Plus[RenderForwardClustered]
+    RDScene -->|specialized by| Mobile[RenderForwardMobile]
+    Scene -->|implemented by| GLScene[RasterizerSceneGLES3]
+    Scene -->|implemented by| DummyScene[RasterizerSceneDummy]
